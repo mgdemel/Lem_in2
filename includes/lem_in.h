@@ -1,6 +1,6 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# include "../libft/libft.h"
+# include "../libftprintf/ft_printf.h"
 # include <stdlib.h>
 
 typedef struct			s_room
@@ -20,9 +20,8 @@ typedef struct		s_lem
 }					t_lem;
 
 
-t_lem		*initialize_lem(void);
-t_room		*initialize_room(void);
-void		free_array(char **array);
+void		initialize_lem(t_lem *lem);
+void		initialize_room(t_lem *room);
 int			get_rooms(char *line, t_room *r_data);
 
 #endif

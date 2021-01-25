@@ -49,14 +49,14 @@ static int		check_room(char *line, t_room *r_data)
 
 int				get_rooms(char *line, t_room *r_data)
 {
-	t_room *new_room;
-	t_room *temp;
-	
+	t_room new_room;
+	t_room temp;
+
 	temp = r_data;
 	// this should add the links between the rooms
 	if (r_data->name != NULL)
 	{
-		new_room = initialize_room();
+		initialize_room(&new_room);
 		r_data->next = new_room;
 		r_data = new_room;
 		r_data->prev = temp;	
