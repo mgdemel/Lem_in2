@@ -16,12 +16,14 @@ typedef struct			s_room
 typedef struct		s_lem
 {
 	int 			ants;
+	int				nbr_of_tunnels;
 	struct s_room	*first_room;
+	char			**tunnels;
 }					t_lem;
 
 
 void		initialize_lem(t_lem *lem);
 void		initialize_room(t_lem *room);
-int			get_rooms(char *line, t_room *r_data);
+int			store_data(char *line, t_room *r_data, t_lem *lem);
 
 #endif

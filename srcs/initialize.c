@@ -14,3 +14,9 @@ void	initialize_room(t_lem *room)
 	room->prev = NULL;
 	room->next = NULL;
 }
+
+/*
+**		TODO
+**		Count the number of tunnels, save in lem for
+**		mallocing the array of tunnels.
+*/

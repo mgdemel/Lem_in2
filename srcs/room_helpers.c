@@ -1,25 +1,40 @@
 #include "../includes/lem_in.h"
 
-static int		get_room(char *line, t_room *r_data)
+void	free_array(char **array)
 {
-	if (ft_strstr((char*)line, "##start") || ft_strstr(line, "##end"))
-	{
-		if (ft_strstr((char*)line, "##start"))
-			r_data->roomtype = 3;
-		else
-			r_data->roomtype = 1;
-		ft_strdel(&line);
-	}
-	else
-		r_data->roomtype = 2;
-	
-	int		i;
-	char	**coord;
+	int i;
 
 	i = 0;
-	if (*line == 'L')
-		return (1);
-	while (*line != ' ')
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+t_room		*get_room(char *line, t_room *r_data)
+{
+	t_room new_room;
+	t_room temp;
+	int		i;
+	char	**coord;
+	i = 0;
+
+	if (r_data->name != NULL) //makes a new room struct in linked list
+	{
+		initialize_room(&new_room);
+		r_data->next = new_room;
+		r_data = new_room;
+		r_data->prev = temp;
+	}
+	if (ft_strstr((char*)line, "##start")) //labels room based on type
+		r_data->roomtype = 1;
+	else if (ft_strstr((char*)line, "##end"))
+		r_data->roomtype = 3;
+	else
+		r_data->roomtype = 2;
+	while (*line != ' ') //stores the name of the room
 	{
 		r_data->name[i] = *line;
 		i++;
@@ -28,30 +43,26 @@ static int		get_room(char *line, t_room *r_data)
 	i++;
 	if (!(coord = ft_strsplit(&line[i], ' ')))
 		return (1);
-	r_data->y = ft_atoi(coord[0]);
-	r_data->x = ft_atoi(coord[1]);
+	r_data->x = ft_atoi(coord[0]);
+	r_data->y = ft_atoi(coord[1]);
 	free_array(coord);
+	return(r_data = r_data->next);
 }
 
-int				get_rooms(char *line, t_room *r_data)
+int				store_data(char *line, t_room *r_data, t_lem *lem)
 {
-	t_room new_room;
-	t_room temp;
+	int i;
 
-	temp = r_data;
-	// this should add the links between the rooms
-	if (r_data->name != NULL)
-	{
-		initialize_room(&new_room);
-		r_data->next = new_room;
-		r_data = new_room;
-		r_data->prev = temp;	
-
-	}
+	i = 0;
+	get_next_line(2, &line);
+	lem->ants = ft_atoi(line);
+	ft_strdel(&line);
 	while (get_next_line(2, &line) > 0)
 	{
-		if (check_room(line, r_data) == 1)
-			return (1);
+		if (!(ft_strstr(line, "-")))
+			r_data = get_room(line, r_data);
+		else
+			lem-> tunnels[i++] = ft_strdup(line);  // check if it works
 		ft_strdel(&line);
 	}
 	return (0);
