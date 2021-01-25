@@ -79,3 +79,12 @@ int				get_data(char *line, t_room *r_data)
 	}
 	return (0);
 }
+
+
+
+
+
+char **tunnels;
+
+lem->tunnels[i] = line;
+i++;

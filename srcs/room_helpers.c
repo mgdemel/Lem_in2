@@ -1,7 +1,18 @@
 #include "../includes/lem_in.h"
 
-static int		get_a_room(char *line, t_room *r_data)
+static int		get_room(char *line, t_room *r_data)
 {
+	if (ft_strstr((char*)line, "##start") || ft_strstr(line, "##end"))
+	{
+		if (ft_strstr((char*)line, "##start"))
+			r_data->roomtype = 3;
+		else
+			r_data->roomtype = 1;
+		ft_strdel(&line);
+	}
+	else
+		r_data->roomtype = 2;
+	
 	int		i;
 	char	**coord;
 
@@ -20,24 +31,6 @@ static int		get_a_room(char *line, t_room *r_data)
 	r_data->y = ft_atoi(coord[0]);
 	r_data->x = ft_atoi(coord[1]);
 	free_array(coord);
-	return (0);
-}
-
-static int		check_room(char *line, t_room *r_data)
-{
-	if (ft_strstr((char*)line, "-"))
-		get_tunnel(void);
-	else if (ft_strstr((char*)line, "##start") || ft_strstr(line, "##end"))
-	{
-		room_values(line);
-		if (ft_strstr((char*)line, "##start"))
-			r_data->roomtype = 1;
-		else
-			r_data->roomtype = 3;
-	}
-	else
-		r_data->roomtype = 2;
-	return (0);
 }
 
 int				get_rooms(char *line, t_room *r_data)
