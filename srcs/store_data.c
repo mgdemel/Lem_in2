@@ -21,17 +21,21 @@ t_room		*get_room(char *line, t_room *r_data)
 	char	**coord;
 	i = 0;
 
-	if (r_data->name != NULL) //makes a new room struct in linked list
-	{
-		initialize_room(&new_room);
-		r_data->next = new_room;
-		r_data = new_room;
-		r_data->prev = temp;
-	}
+	r_data->next = new_room;
+	r_data = new_room;
+	r_data->prev = temp;
 	if (ft_strstr((char*)line, "##start")) //labels room based on type
+	{
 		r_data->roomtype = 1;
+		ft_strdel(&line);
+		get_next_line(2, &line);
+	}
 	else if (ft_strstr((char*)line, "##end"))
+	{
 		r_data->roomtype = 3;
+		ft_strdel(&line);
+		get_next_line(2, &line);
+	}
 	else
 		r_data->roomtype = 2;
 	while (*line != ' ') //stores the name of the room

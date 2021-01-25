@@ -15,3 +15,9 @@ int main(void)
 	store_data(line, &r_data, &lem);
 	return (0);
 }
+
+
+
+create head node room{first room data}
+	-> create new node room{second room data}
+		-> create new node room{third room data}...
