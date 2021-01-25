@@ -11,9 +11,7 @@ int main(void)
 	initialize_room(&r_data);		
 	lem->first_room = r_data;
 	// the file needs to be opened and read properly
-	get_next_line(2, &line);
-		lem->ants = ft_atoi(line);
-	ft_strdel(&line);
-	get_rooms(line, &r_data);
+	
+	store_data(line, &r_data, &lem);
 	return (0);
 }

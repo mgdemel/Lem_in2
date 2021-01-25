@@ -33,7 +33,6 @@ static int		get_room(char *line, t_room *r_data)
 	free_array(coord);
 }
 
-<<<<<<< HEAD:srcs/room_helpers.c
 static int		check_room(char *line, t_room *r_data)
 {
 	if (ft_strstr((char*)line, "-"))
@@ -52,9 +51,6 @@ static int		check_room(char *line, t_room *r_data)
 }
 
 int				get_rooms(char *line, t_room *r_data)
-=======
-int				get_data(char *line, t_room *r_data)
->>>>>>> d8931f3cc94b81b0af248fa2a5f479611e90361d:srcs/sudocode.c
 {
 	t_room new_room;
 	t_room temp;

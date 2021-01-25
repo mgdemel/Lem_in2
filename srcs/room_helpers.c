@@ -23,8 +23,19 @@ static int		get_a_room(char *line, t_room *r_data)
 	return (0);
 }
 
-static int		check_room(char *line, t_room *r_data)
+static int		get_room(char *line, t_room *r_data)
 {
+	t_room temp;
+	t_room new_room;
+
+	temp = r_data;
+	if (r_data->name != NULL)
+	{
+		initialize_room(&new_room);
+		r_data->next = new_room;
+		r_data = new_room;
+		r_data->prev = temp;	
+	}
 	if (ft_strstr((char*)line, "-"))
 		get_tunnel(void);
 	else if (ft_strstr((char*)line, "##start") || ft_strstr(line, "##end"))
@@ -40,25 +51,22 @@ static int		check_room(char *line, t_room *r_data)
 	return (0);
 }
 
-int				get_rooms(char *line, t_room *r_data)
+int				store_data(char *line, t_room *r_data, t_lem *lem)
 {
 	t_room new_room;
 	t_room temp;
+	int i;
 
-	temp = r_data;
-	// this should add the links between the rooms
-	if (r_data->name != NULL)
-	{
-		initialize_room(&new_room);
-		r_data->next = new_room;
-		r_data = new_room;
-		r_data->prev = temp;	
-
-	}
+	i = 0;
+	get_next_line(2, &line);
+	lem->ants = ft_atoi(line);
+	ft_strdel(&line);
 	while (get_next_line(2, &line) > 0)
 	{
-		if (check_room(line, r_data) == 1)
-			return (1);
+		if (!(ft_strstr(line, "-")))
+			get_room(line, r_data);
+		else
+			lem-> tunnels[i++] = ft_strdup(line);  // check if it works
 		ft_strdel(&line);
 	}
 	return (0);
