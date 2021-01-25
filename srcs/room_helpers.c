@@ -25,25 +25,18 @@ static int		get_a_room(char *line, t_room *r_data)
 
 static int		check_room(char *line, t_room *r_data)
 {
-	if (ft_strstr((char*)line, "##start") || ft_strstr(line, "##end"))
+	if (ft_strstr((char*)line, "-"))
+		get_tunnel(void);
+	else if (ft_strstr((char*)line, "##start") || ft_strstr(line, "##end"))
 	{
+		room_values(line);
 		if (ft_strstr((char*)line, "##start"))
-			r_data->roomtype = 3;
-		else
 			r_data->roomtype = 1;
-		ft_strdel(&line);
+		else
+			r_data->roomtype = 3;
 	}
 	else
-		r_data->roomtype = 2;	
-	get_next_line(2, &line);
-	if (line[0] != '#' && ft_strstr(line, " "))
-	{
-		if (get_a_room(line, r_data) == 1)
-		{
-			ft_putstr("ERROR");
-			return (1);
-		}
-	}
+		r_data->roomtype = 2;
 	return (0);
 }
 
