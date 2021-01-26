@@ -21,7 +21,7 @@ int main(void)
 	// 	return (1);
 	initialize_lem(&lem);
 	initialize_room(&r_data);
-	lem->first_room = r_data;
+	lem->first_room = *r_data;
 	store_data(line, &r_data, &lem);
 	test_structs(lem, r_data);
 	return (0);

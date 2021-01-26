@@ -1,6 +1,6 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# include "../libftprintf/ft_printf.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 
 typedef struct			s_room
