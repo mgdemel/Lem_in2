@@ -7,6 +7,7 @@ t_lem	*initialize_lem()
 		return (NULL);
 	lem->ants = 0;
 	lem->nbr_tunnels = 0;
+	lem->nbr_rooms = 0;
 	lem->first_room = NULL;
 	if (!(lem->tunnels = (char**)malloc(sizeof(char*) * lem->nbr_tunnels)))
 		return (NULL);

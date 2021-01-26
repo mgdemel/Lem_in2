@@ -23,12 +23,13 @@ void test_structs(t_lem *lem, t_room *room)
     ft_putnbr(lem->nbr_tunnels);
     ft_putchar('\n');
 
-    ft_putstr("tunnels: ");
-    test_array(lem);
-    ft_putchar('\n');
+    // ft_putstr("tunnels: ");
+    // test_array(lem);
+    // ft_putchar('\n');
 
     // ********    ROOM:    ********
-    while (room->next)
+    room = lem->first_room;
+    while (room != NULL)
     {
         ft_putstr("name: ");
         ft_putstr(room->name);
@@ -45,7 +46,6 @@ void test_structs(t_lem *lem, t_room *room)
         ft_putstr("roomtype: ");
         ft_putnbr(room->roomtype);
         ft_putchar('\n');
-
-        room->next++;
+        room = room->next;
     }
 }
