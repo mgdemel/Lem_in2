@@ -2,6 +2,7 @@
 # define LEM_IN_H
 # include "../libft/libft.h"
 # include <stdlib.h>
+# include <fcntl.h> //for reading files from FD
 
 typedef struct			s_room
 {
