@@ -1,13 +1,14 @@
 #include "../includes/lem_in.h"
 
-void	initialize_lem(t_lem *lem)
+t_lem	*initialize_lem(t_lem *lem)
 {
 	lem->ants = 0;
 	lem->nbr_tunnels = 0;
 	lem->first_room = NULL;
+	return(lem);
 }
 
-void	initialize_room(t_lem *room)
+t_room	*initialize_room(t_room *room)
 {
 	room->name = NULL;
 	room->y = 0;
@@ -15,6 +16,7 @@ void	initialize_room(t_lem *room)
 	room->roomtype = 0;
 	room->prev = NULL;
 	room->next = NULL;
+	return (room);
 }
 
 /*

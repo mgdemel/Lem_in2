@@ -2,8 +2,8 @@
 
 int main(void)
 {
-	t_lem	lem;
-	t_room	r_data;
+	t_lem	*lem = NULL;
+	t_room *room = NULL;
 	char	*line;
 
 	line = NULL;
@@ -11,18 +11,19 @@ int main(void)
 	// {
 	// 	if (!(lem->tunnels = (int**)malloc(sizeof(int*) * lem->nbr_tunnels)))
 	// 		return (1);
-	// 	initialize_lem(&lem); //is this ever needed, really?
-	// 	initialize_room(&r_data); //is this ever needed, really?
+	// 	initialize_lem(&lem);
+	// 	initialize_room(&r_data);
 	// 	lem->first_room = r_data;
 	// 	store_data(line, &r_data, &lem);
 	// 	return (0);
 	// }
 	// else
 	// 	return (1);
-	initialize_lem(&lem);
-	initialize_room(&r_data);
-	lem->first_room = *r_data;
-	store_data(line, &r_data, &lem);
-	test_structs(lem, r_data);
+
+	lem = initialize_lem(lem);
+	room = initialize_room(room);
+	lem->first_room = room;
+	store_data(line, room, lem);
+	test_structs(lem, room);
 	return (0);
 }

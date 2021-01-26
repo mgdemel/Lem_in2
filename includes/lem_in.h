@@ -22,8 +22,9 @@ typedef struct		s_lem
 }					t_lem;
 
 
-void		initialize_lem(t_lem *lem);
-void		initialize_room(t_lem *room);
-int			store_data(char *line, t_room *r_data, t_lem *lem);
+t_lem 		*initialize_lem(t_lem *lem);
+t_room		*initialize_room(t_room *room);
+int			store_data(char *line, t_room *room, t_lem *lem);
+void		test_structs(t_lem *lem, t_room *room);
 
 #endif
