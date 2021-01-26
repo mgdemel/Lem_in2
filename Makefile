@@ -15,9 +15,11 @@ $(NAME):
 	@make -C libft
 	@gcc $(CFLAGS) -g -c $(SRCS) $(INCS)
 	@gcc $(CFLAGS) $(INCS) $(OBJS) $(LIB) -o $(NAME)
+	@mkdir objs 
+	@mv $(OBJS) objs 
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf objs
 	@make -C libft clean
 
 fclean: clean
