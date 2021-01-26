@@ -19,6 +19,7 @@ typedef struct		s_lem
 	int				nbr_of_tunnels;
 	struct s_room	*first_room;
 	char			**tunnels;
+	int				num_tunnels;
 }					t_lem;
 
 
