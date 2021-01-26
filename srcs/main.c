@@ -23,5 +23,6 @@ int main(void)
 	initialize_room(&r_data);
 	lem->first_room = r_data;
 	store_data(line, &r_data, &lem);
+	test_structs(lem, r_data);
 	return (0);
 }

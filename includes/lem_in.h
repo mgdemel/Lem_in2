@@ -6,8 +6,8 @@
 typedef struct			s_room
 {
 	char				*name;
-	int					y;
 	int					x;
+	int					y;
 	int					roomtype; //1=start, 2=normal, 3=end
 	struct s_room		*prev;
 	struct s_room		*next;
