@@ -1,4 +1,4 @@
-#include "../libftprintf/ft_printf.h"
+#include "../includes/lem_in.h"
 
 void test_array(char *arr)
 {
