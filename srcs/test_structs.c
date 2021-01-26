@@ -12,7 +12,7 @@ void test_array(t_lem *lem)
     }
 }
 
-void test_structs(t_lem *lem, t_room *room)
+void test_structs(t_lem *lem)
 {
     // ********    LEM:    ********
     ft_putstr("ants: ");
@@ -23,29 +23,33 @@ void test_structs(t_lem *lem, t_room *room)
     ft_putnbr(lem->nbr_tunnels);
     ft_putchar('\n');
 
+    ft_putstr("nbr_rooms: ");
+    ft_putnbr(lem->nbr_rooms);
+    ft_putchar('\n');
+
     // ft_putstr("tunnels: ");
     // test_array(lem);
     // ft_putchar('\n');
 
     // ********    ROOM:    ********
-    room = lem->first_room;
-    while (room != NULL)
-    {
-        ft_putstr("name: ");
-        ft_putstr(room->name);
-        ft_putchar('\n');
+    //room = lem->first_room;
+    // while (room != NULL)
+    // {
+    //     ft_putstr("name: ");
+    //     ft_putstr(room->name);
+    //     ft_putchar('\n');
 
-        ft_putstr("x: ");
-        ft_putnbr(room->x);
-        ft_putchar('\n');
+    //     ft_putstr("x: ");
+    //     ft_putnbr(room->x);
+    //     ft_putchar('\n');
 
-        ft_putstr("y: ");
-        ft_putnbr(room->y);
-        ft_putchar('\n');
+    //     ft_putstr("y: ");
+    //     ft_putnbr(room->y);
+    //     ft_putchar('\n');
 
-        ft_putstr("roomtype: ");
-        ft_putnbr(room->roomtype);
-        ft_putchar('\n');
-        room = room->next;
-    }
+    //     ft_putstr("roomtype: ");
+    //     ft_putnbr(room->roomtype);
+    //     ft_putchar('\n');
+    //     room = room->next;
+    // }
 }
