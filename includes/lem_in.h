@@ -16,10 +16,9 @@ typedef struct			s_room
 typedef struct		s_lem
 {
 	int 			ants;
-	int				nbr_of_tunnels;
+	int				nbr_tunnels;
 	struct s_room	*first_room;
 	char			**tunnels;
-	int				num_tunnels;
 }					t_lem;
 
 

@@ -3,6 +3,7 @@
 void	initialize_lem(t_lem *lem)
 {
 	lem->ants = 0;
+	lem->nbr_tunnels = 0;
 }
 
 void	initialize_room(t_lem *room)
