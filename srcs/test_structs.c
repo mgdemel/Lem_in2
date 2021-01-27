@@ -3,8 +3,10 @@
 void test_array(t_lem *lem)
 {
     int i;
+    int j;
     i = 0;
-    while (i <= lem->nbr_tunnels)
+    j = 0;
+    while (i < lem->nbr_tunnels)
     {
         ft_putstr(lem->tunnels[i]);
         ft_putchar('\n');
@@ -27,9 +29,9 @@ void test_structs(t_lem *lem)
     ft_putnbr(lem->nbr_rooms);
     ft_putchar('\n');
 
-    // ft_putstr("tunnels: ");
-    // test_array(lem);
-    // ft_putchar('\n');
+    ft_putstr("tunnels: \n");
+    test_array(lem);
+    ft_putchar('\n');
 
     // ********    ROOM:    ********
     //room = lem->first_room;

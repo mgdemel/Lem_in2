@@ -13,7 +13,7 @@ int file_is_valid(t_lem *lem, int fd)
 	{
 		if (!(ft_strstr(line, "-")))
         {
-            if (ft_strstr(line, "#"))
+            if (ft_strstr(line, "#")) //does not include ##start or ##end in room count
                 ft_strdel(&line);
             else
             {

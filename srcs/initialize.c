@@ -2,6 +2,8 @@
 
 t_lem	*initialize_lem()
 {
+	int i;
+	i = 0;
 	t_lem	*lem;
 	if (!(lem = (t_lem *)malloc(sizeof(t_lem))))
 		return (NULL);
@@ -9,8 +11,7 @@ t_lem	*initialize_lem()
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
 	lem->first_room = NULL;
-	if (!(lem->tunnels = (char**)malloc(sizeof(char*) * lem->nbr_tunnels)))
-		return (NULL);
+	lem->tunnels = NULL;
 	return(lem);
 }
 
@@ -27,9 +28,3 @@ t_room	*initialize_room()
 	room->next = NULL;
 	return (room);
 }
-
-/*
-**		TODO
-**		Count the number of tunnels, save in lem for
-**		mallocing the array of tunnels.
-*/
