@@ -10,7 +10,8 @@ t_lem	*initialize_lem()
 	lem->ants = 0;
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
-	lem->first_room = NULL;
+	lem->first_room = NULL; //need to init?
+	lem->temp = NULL; //need to init?
 	lem->tunnels = NULL;
 	return(lem);
 }

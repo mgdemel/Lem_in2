@@ -33,25 +33,26 @@ void test_structs(t_lem *lem)
     test_array(lem);
     ft_putchar('\n');
 
-    // ********    ROOM:    ********
-    //room = lem->first_room;
-    // while (room != NULL)
-    // {
-    //     ft_putstr("name: ");
-    //     ft_putstr(room->name);
-    //     ft_putchar('\n');
+   // ********    ROOM:    ********
+    
+    t_room *room = lem->first_room;
+    while (room != NULL)
+    {
+        ft_putstr("name: ");
+        ft_putstr(room->name);
+        ft_putchar('\n');
 
-    //     ft_putstr("x: ");
-    //     ft_putnbr(room->x);
-    //     ft_putchar('\n');
+        ft_putstr("x: ");
+        ft_putnbr(room->x);
+        ft_putchar('\n');
 
-    //     ft_putstr("y: ");
-    //     ft_putnbr(room->y);
-    //     ft_putchar('\n');
+        ft_putstr("y: ");
+        ft_putnbr(room->y);
+        ft_putchar('\n');
 
-    //     ft_putstr("roomtype: ");
-    //     ft_putnbr(room->roomtype);
-    //     ft_putchar('\n');
-    //     room = room->next;
-    // }
+        ft_putstr("roomtype: ");
+        ft_putnbr(room->roomtype);
+        ft_putchar('\n');
+        room = room->next;
+    }
 }
