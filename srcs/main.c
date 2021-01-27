@@ -13,6 +13,7 @@ int		main(int argc, char **argv)
 	lem = initialize_lem();
 	room = initialize_room();
 	lem->first_room = room;
+	room->first = 1;
 	if (file_is_valid(lem, fd) == 0)
 	{
 		fd = open(argv[1], O_RDONLY); //had to call it again to restart the GNL read

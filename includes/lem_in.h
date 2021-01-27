@@ -20,6 +20,7 @@ typedef struct			s_room
 	int					x;
 	int					y;
 	int					roomtype; //1=start, 2=normal, 3=end
+	int					first;
 	struct s_room		*prev;
 	struct s_room		*next;	
 }						t_room;

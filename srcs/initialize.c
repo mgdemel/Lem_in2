@@ -2,16 +2,14 @@
 
 t_lem	*initialize_lem()
 {
-	int i;
-	i = 0;
 	t_lem	*lem;
 	if (!(lem = (t_lem *)malloc(sizeof(t_lem))))
 		return (NULL);
 	lem->ants = 0;
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
-	lem->first_room = NULL; //need to init?
-	lem->temp = NULL; //need to init?
+	lem->first_room = NULL;
+	lem->temp = initialize_room();
 	lem->tunnels = NULL;
 	return(lem);
 }
@@ -25,6 +23,7 @@ t_room	*initialize_room()
 	room->x = 0;
 	room->y = 0;
 	room->roomtype = 0;
+	room->first = 0;
 	room->prev = NULL;
 	room->next = NULL;
 	return (room);

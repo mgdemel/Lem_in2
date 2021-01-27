@@ -13,24 +13,12 @@ void	free_array(char **array)
 	free(array);
 }
 
-t_room		*get_room(char *line, t_lem *lem, t_room *room, int fd)
+void 	get_room_data(char *line, t_room *room, int fd)
 {
 	int		i;
 	char	**coord;
 	i = 0;
 
-	ft_putstr("checking for head node\n");
-	if (room != lem->first_room)
-	{
-		ft_putstr("here\n");
-		t_room *new_room;
-
-		new_room = initialize_room();
-		room->next = new_room;
-		lem->temp = room;
-		room->prev = lem->temp;
-		room = new_room;
-	}
 	if (ft_strstr((char*)line, "##start")) //labels room based on type
 	{
 		room->roomtype = 1;
@@ -58,16 +46,31 @@ t_room		*get_room(char *line, t_lem *lem, t_room *room, int fd)
 	room->x = ft_atoi(coord[0]);
 	room->y = ft_atoi(coord[1]);
 	free_array(coord);
-	return(room);
+}
+
+t_room		*get_room(char *line, t_lem *lem, t_room *room, int fd)
+{
+	ft_putstr("checking for head node\n");
+	t_room *new_room;
+
+	new_room = initialize_room();
+	room->next = new_room;
+	if (room->first == 0)
+	{
+		ft_putstr("here\n");
+		lem->temp = room;
+		room->prev = lem->temp;
+		get_room_data(line, new_room, fd);
+	}
+	get_room_data(line, room, fd);
+	return(new_room);
 }
 
 int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
 	get_next_line(fd, &line);
 	lem->ants = ft_atoi(line);
 	ft_strdel(&line);
