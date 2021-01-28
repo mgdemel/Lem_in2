@@ -5,15 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/06/26 11:02:46 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/01/28 14:31:59 by lvasanoj         ###   ########.fr        #
+#    Created: 2019/10/24 12:15:04 by lvasanoj          #+#    #+#              #
+#    Updated: 2020/10/22 10:46:43 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-FLAGS = -Wall -Werror -Wextra
-CC := gcc
-
 SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c \
 ft_strncat.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c \
@@ -24,60 +21,34 @@ ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c \
 ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c \
 ft_deletecontent.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
-ft_lstmap.c ft_isupper.c ft_islower.c ft_isspace.c ft_words.c get_next_line.c \
-ft_printf.c \
-		check_letter.c \
-		flags.c \
-		initialize.c \
-		putstrprecision.c \
-		treat_cs.c \
-		ft_itoa_new.c \
-		treat_d.c \
-		treat_o.c \
-		treat_p.c \
-		treat_u.c \
-		treat_x.c \
-		calc_hex.c \
-		treatment.c \
-		calc_octal.c \
-		treat_f.c \
-		calc_f.c \
-		calc_f_helper.c \
-		calc_f_helper2.c \
-		typecast.c \
-		
-INCLUDES_PATH	:= includes/
-INCLUDES		:= -I $(INCLUDES_PATH)
-HEADERS			:= $(addprefix $(INCLUDES_PATH), $(HEADERS_FILES))
-
-
-SOURCES_PATH	:= sources/
-SOURCES			:= $(addprefix $(SOURCES_PATH), $(SRC))
-
-
-OBJS_PATH		:= obj/
-OBJECTS			:= $(addprefix $(OBJS_PATH), $(SRC:.c=.o))
-
-
-
+ft_lstmap.c ft_isupper.c ft_islower.c ft_isspace.c ft_words.c get_next_line.c
+FLAGS = -Wall -Werror -Wextra
+HEADER = includes/libft.h
+ARR = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o ft_memchr.o \
+ft_memcmp.o ft_strlen.o ft_strdup.o ft_strcpy.o ft_strncpy.o ft_strcat.o \
+ft_strncat.o ft_strlcat.o ft_strchr.o ft_strrchr.o ft_strstr.o ft_strnstr.o \
+ft_strcmp.o ft_strncmp.o ft_atoi.o ft_isalpha.o ft_isdigit.o ft_isalnum.o \
+ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_memalloc.o ft_memdel.o \
+ft_strnew.o ft_strdel.o ft_strclr.o ft_striter.o ft_striteri.o ft_strmap.o \
+ft_strmapi.o ft_strequ.o ft_strnequ.o ft_strsub.o ft_strjoin.o ft_strtrim.o \
+ft_strsplit.o ft_itoa.o ft_putchar.o ft_putstr.o ft_putendl.o ft_putnbr.o \
+ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o \
+ft_deletecontent.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o \
+ft_lstmap.o ft_isupper.o ft_islower.o ft_isspace.o ft_words.o get_next_line.o
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(OBJS_PATH)%.o: $(SOURCES_PATH)%.c 
-		@mkdir -p $(OBJS_PATH) 2> /dev/null || true
-		$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
-
-$(NAME): $(OBJECTS)
-	@ar rc $(NAME) $(OBJECTS)
+$(NAME):
+	@gcc $(FLAGS) -I $(HEADER) -c $(SRC)
+	@ar rc $(NAME) $(ARR)
 	@ranlib $(NAME)
 
 clean:
-	@rm -fv $(OBJECTS)
-	@rmdir $(OBJS_PATH) 2> /dev/null || true
+	@rm -f $(ARR)
 
 fclean: clean
-	@rm -fv $(NAME)
+	@rm -f $(NAME)
 
 re:	fclean all

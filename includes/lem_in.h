@@ -1,6 +1,8 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
-# include "../libft/libft.h"
+# include "../libft/include/libft.h"
+# include "../libft/include/ft_printf.h"
+# include "../libft/include/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h> //for reading files from FD
 
