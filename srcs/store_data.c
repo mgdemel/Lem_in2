@@ -13,56 +13,78 @@ void	free_array(char **array)
 	free(array);
 }
 
-t_room		*get_room(char *line, t_room *r_data)
+void 	get_room_data(char *line, t_room *room, int fd)
 {
-	t_room new_room;
-	t_room temp;
 	int		i;
 	char	**coord;
 	i = 0;
 
-	if (r_data->name != NULL) //makes a new room struct in linked list
-	{
-		initialize_room(&new_room);
-		r_data->next = new_room;
-		r_data = new_room;
-		r_data->prev = temp;
-	}
 	if (ft_strstr((char*)line, "##start")) //labels room based on type
-		r_data->roomtype = 1;
-	else if (ft_strstr((char*)line, "##end"))
-		r_data->roomtype = 3;
-	else
-		r_data->roomtype = 2;
-	while (*line != ' ') //stores the name of the room
 	{
-		r_data->name[i] = *line;
+		room->roomtype = 1;
+		ft_strdel(&line);
+		get_next_line(fd, &line);
+	}
+	else if (ft_strstr((char*)line, "##end"))
+	{
+		room->roomtype = 3;
+		ft_strdel(&line);
+		get_next_line(fd, &line);
+	}
+	else
+		room->roomtype = 2;
+	if (!(room->name = (char*)malloc(sizeof(char) * ((int)ft_strlen(line) + 1))))
+		ft_putstr("ERROR. COULD NOT MALLOC ROOM NAME\n");
+	while (line[i] != ' ') //stores the name of the room
+	{
+		room->name[i] = line[i];
 		i++;
-		line++;
-	} 
-	i++;
+	}
+	i++; //moves past next space to get to coords
 	if (!(coord = ft_strsplit(&line[i], ' ')))
-		return (1);
-	r_data->x = ft_atoi(coord[0]);
-	r_data->y = ft_atoi(coord[1]);
+		ft_putstr("ERROR IN FT_STRSPLIT - GET_ROOM FUNCTION");
+	room->x = ft_atoi(coord[0]);
+	room->y = ft_atoi(coord[1]);
 	free_array(coord);
-	return(r_data = r_data->next);
 }
 
-int				store_data(char *line, t_room *r_data, t_lem *lem)
+t_room		*get_room(char *line, t_lem *lem, t_room *room, int fd)
+{
+	ft_putstr("checking for head node\n");
+	t_room *new_room;
+
+	new_room = initialize_room();
+	room->next = new_room;
+	if (room->first == 0)
+	{
+		ft_putstr("here\n");
+		lem->temp = room;
+		room->prev = lem->temp;
+		get_room_data(line, new_room, fd);
+	}
+	get_room_data(line, room, fd);
+	return(new_room);
+}
+
+int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 {
 	int i;
 
 	i = 0;
-	get_next_line(2, &line);
+	get_next_line(fd, &line);
 	lem->ants = ft_atoi(line);
 	ft_strdel(&line);
-	while (get_next_line(2, &line) > 0)
+	if (!(lem->tunnels = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels + 1)))) //allocates tunnels array
+		return (1);
+	while (get_next_line(fd, &line) > 0)
 	{
 		if (!(ft_strstr(line, "-")))
-			r_data = get_room(line, r_data);
+			room = get_room(line, lem, room, fd);
 		else
-			lem-> tunnels[i++] = ft_strdup(line);  // check if it works
+		{
+			lem->tunnels[i] = ft_strdup(line);
+			i++;
+		}
 		ft_strdel(&line);
 	}
 	return (0);

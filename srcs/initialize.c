@@ -1,22 +1,30 @@
 #include "../includes/lem_in.h"
 
-void	initialize_lem(t_lem *lem)
+t_lem	*initialize_lem()
 {
+	t_lem	*lem;
+	if (!(lem = (t_lem *)malloc(sizeof(t_lem))))
+		return (NULL);
 	lem->ants = 0;
+	lem->nbr_tunnels = 0;
+	lem->nbr_rooms = 0;
+	lem->first_room = NULL;
+	lem->temp = initialize_room();
+	lem->tunnels = NULL;
+	return(lem);
 }
 
-void	initialize_room(t_lem *room)
+t_room	*initialize_room()
 {
+	t_room 	*room;
+	if (!(room = (t_room *)malloc(sizeof(t_room))))
+		return (NULL);
 	room->name = NULL;
-	room->y = 0;
 	room->x = 0;
+	room->y = 0;
 	room->roomtype = 0;
+	room->first = 0;
 	room->prev = NULL;
 	room->next = NULL;
+	return (room);
 }
-
-/*
-**		TODO
-**		Count the number of tunnels, save in lem for
-**		mallocing the array of tunnels.
-*/
