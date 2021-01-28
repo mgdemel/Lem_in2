@@ -17,6 +17,7 @@ t_room		*get_room(char *line, t_room *r_data)
 {
 	t_room new_room;
 	t_room temp;
+	
 	int		i;
 	char	**coord;
 	i = 0;
