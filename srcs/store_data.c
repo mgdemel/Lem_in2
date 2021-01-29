@@ -78,17 +78,17 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 		return (1);
 	while (get_next_line(fd, &line) > 0)
 	{
-	//	if (line[0] == '#' && line[1] != '#') nevermind doesn't work, fix this lukas!
-	//	{
+		if (line[0] != '#' && line[1] != '#')
+		{
 			if (!(ft_strstr(line, "-")))
-			room = get_room(line, lem, room, fd);
+				room = get_room(line, lem, room, fd);
 			else
 			{
 				lem->tunnels[i] = ft_strdup(line);
 				i++;
 			}
-			ft_strdel(&line);
-	//	}
+		}
+		ft_strdel(&line);
 	}
 	return (0);
 }

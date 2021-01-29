@@ -36,7 +36,7 @@ void test_structs(t_lem *lem)
    // ********    ROOM:    ********
     
     t_room *room = lem->first_room;
-    while (room != NULL)
+    while (room->next != NULL)
     {
         ft_putstr("name: ");
         ft_putstr(room->name);
@@ -52,6 +52,7 @@ void test_structs(t_lem *lem)
 
         ft_putstr("roomtype: ");
         ft_putnbr(room->roomtype);
+        ft_putchar('\n');
         ft_putchar('\n');
         room = room->next;
     }
