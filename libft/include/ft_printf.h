@@ -6,14 +6,14 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 14:26:21 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 22:07:40 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/01/29 13:48:31 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/includes/libft.h"
+# include "libft.h"
 # include <stdarg.h>
 
 /*

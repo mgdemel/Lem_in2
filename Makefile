@@ -18,6 +18,12 @@ $(NAME):
 	@mkdir objs 
 	@mv $(OBJS) objs 
 
+lib: clean
+	@gcc $(CFLAGS) -g -c $(SRCS) $(INCS)
+	@gcc $(CFLAGS) $(INCS) $(OBJS) $(LIB) -o $(NAME)
+	@mkdir objs
+	@mv $(OBJS) objs 
+
 clean:
 	@rm -rf objs
 	@make -C libft clean

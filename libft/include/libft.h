@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:27:33 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 22:19:51 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/01/29 13:50:49 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_islower(int c);
 int					ft_isupper(int c);
 int					ft_isspace(int c);
+int					ft_isalldigit(char *s);
 
 /*
 **					Get Next Line

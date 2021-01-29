@@ -8,6 +8,8 @@ int file_is_valid(t_lem *lem, int fd)
     //     return (1);
     char	*line;
     get_next_line(fd, &line); //gets rid of ants for now, fix for error handling
+    if (!ft_isalldigit(line))
+        return (1);
     ft_strdel(&line);
 	while (get_next_line(fd, &line) > 0)
 	{
