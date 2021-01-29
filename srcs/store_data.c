@@ -78,8 +78,8 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 		return (1);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (line[0] == '#' && line[1] != '#')
-		{
+	//	if (line[0] == '#' && line[1] != '#') nevermind doesn't work, fix this lukas!
+	//	{
 			if (!(ft_strstr(line, "-")))
 			room = get_room(line, lem, room, fd);
 			else
@@ -88,7 +88,7 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 				i++;
 			}
 			ft_strdel(&line);
-		}
+	//	}
 	}
 	return (0);
 }
