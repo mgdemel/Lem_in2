@@ -11,6 +11,7 @@ t_lem	*initialize_lem()
 	lem->first_room = NULL;
 	lem->temp = initialize_room();
 	lem->tunnels = NULL;
+	lem->found_start_end = 0;
 	return(lem);
 }
 
