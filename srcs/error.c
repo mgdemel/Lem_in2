@@ -52,7 +52,6 @@ int			file_is_valid(t_lem *lem, int fd)
 		}
 		ft_strdel(&line);
 	}
-	while (1);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (check_tunnel_validity(line, lem) == 1 || lem->found_start_end != 2
