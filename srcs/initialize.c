@@ -21,7 +21,7 @@ t_room	*initialize_room()
 	room->name = NULL;
 	room->x = 0;
 	room->y = 0;
-	room->roomtype = 0;
+	room->roomtype = 2; //defaults to type 2, changes in GNL linked list loop
 	room->first = 0;
 	room->prev = NULL;
 	room->next = NULL;

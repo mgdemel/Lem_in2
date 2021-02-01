@@ -13,16 +13,12 @@ void	free_array(char **array)
 	free(array);
 }
 
-void 	get_room_data(char *line, t_room *room, int roomtype)
+void 	get_room_data(char *line, t_room *room)
 {
 	int		i;
 	char	**coord;
-	i = 0;
 
-	ft_putstr("In get room data: ");
-	ft_putstr(line);
-	ft_putchar('\n');
-	room->roomtype = roomtype;
+	i = 0;
 	if (!(room->name = (char*)malloc(sizeof(char) * ((int)ft_strlen(line) + 1))))
 		ft_putstr("ERROR. COULD NOT MALLOC ROOM NAME\n");
 	line[(int)ft_strlen(line) + 1] = '\0';
@@ -39,21 +35,20 @@ void 	get_room_data(char *line, t_room *room, int roomtype)
 	free_array(coord);
 }
 
-t_room		*get_room(char *line, t_room *room, int fd)
+t_room		*get_room(char *line, t_room *room)
 {
 	t_room *new_room;
 
 	new_room = initialize_room();
 	room->next = new_room;
 	new_room->prev = room;
-	get_room_data(line, room, fd);
+	get_room_data(line, room);
 	return(new_room);
 }
 
 int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 {
 	int i;
-	int roomtype;
 
 	i = 0;
 	get_next_line(fd, &line);
@@ -65,18 +60,14 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 	{
 	//	if (line[0] == '#' && line[1] != '#') nevermind doesn't work, fix this lukas!
 	//	{	
-			ft_putstr("In GNL while loop: ");
-			ft_putstr(line);
-			ft_putchar('\n');
-			roomtype = 2;
 			if (!(ft_strstr(line, "-")))
 			{
 				if (ft_strstr((char*)line, "##start"))
-					roomtype = 1;
+					room->roomtype = 1;
 				else if (ft_strstr((char*)line, "##end"))
-					roomtype = 3;
-				else if (!(ft_strstr((char*)line, "##")))
-					room = get_room(line, room, roomtype);
+					room->roomtype = 3;
+				if (!(ft_strstr((char*)line, "##")))
+					room = get_room(line, room);
 			}
 			else
 			{
