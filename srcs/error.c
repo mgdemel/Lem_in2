@@ -35,7 +35,7 @@ int			file_is_valid(t_lem *lem, int fd)
 {
 	char	*line;
 	int		found_start_end;
-	
+
 	found_start_end = 0;
 	get_next_line(fd, &line);
 	if (!ft_isalldigit(line))
