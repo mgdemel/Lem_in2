@@ -39,18 +39,13 @@ void 	get_room_data(char *line, t_room *room, int roomtype)
 	free_array(coord);
 }
 
-t_room		*get_room(char *line, t_lem *lem, t_room *room, int fd)
+t_room		*get_room(char *line, t_room *room, int fd)
 {
 	t_room *new_room;
 
 	new_room = initialize_room();
 	room->next = new_room;
-	if (room->first == 0)
-	{
-		lem->temp = room;
-		room->prev = lem->temp;
-		get_room_data(line, new_room, fd);
-	}
+	new_room->prev = room;
 	get_room_data(line, room, fd);
 	return(new_room);
 }
@@ -74,23 +69,15 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 			ft_putstr(line);
 			ft_putchar('\n');
 			roomtype = 2;
-			if (!(ft_strstr(line, "-") && ft_strstr((char*)line, "##")))
+			if (!(ft_strstr(line, "-")))
 			{
 				if (ft_strstr((char*)line, "##start"))
-				{
 					roomtype = 1;
-					ft_strdel(&line);
-					get_next_line(fd, &line);
-				}
 				else if (ft_strstr((char*)line, "##end"))
-				{
 					roomtype = 3;
-					ft_strdel(&line);
-					get_next_line(fd, &line);
-				}
+				else if (!(ft_strstr((char*)line, "##")))
+					room = get_room(line, room, roomtype);
 			}
-			if (!(ft_strstr(line, "-") && (!(ft_strstr((char*)line, "##")))))
-				room = get_room(line, lem, room, roomtype);
 			else
 			{
 				lem->tunnels[i] = ft_strdup(line);

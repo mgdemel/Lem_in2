@@ -9,7 +9,6 @@ t_lem	*initialize_lem()
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
 	lem->first_room = NULL;
-	lem->temp = initialize_room();
 	lem->tunnels = NULL;
 	return(lem);
 }
