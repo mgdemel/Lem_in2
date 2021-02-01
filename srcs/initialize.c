@@ -10,6 +10,7 @@ t_lem	*initialize_lem()
 	lem->nbr_rooms = 0;
 	lem->first_room = NULL;
 	lem->tunnels = NULL;
+	lem->found_start_end = 0;
 	return(lem);
 }
 

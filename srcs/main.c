@@ -22,5 +22,8 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	else
+	{
+		ft_printf("ERROR\n");
 		return (1);
+	}
 }

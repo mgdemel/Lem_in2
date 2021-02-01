@@ -53,6 +53,7 @@ void test_structs(t_lem *lem)
         ft_putstr("roomtype: ");
         ft_putnbr(room->roomtype);
         ft_putchar('\n');
+        ft_putchar('\n');
         room = room->next;
     }
 }

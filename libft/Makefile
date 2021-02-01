@@ -6,7 +6,7 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/26 11:02:46 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/01/28 14:31:59 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/01/29 13:48:11 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c \
 ft_deletecontent.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 ft_lstmap.c ft_isupper.c ft_islower.c ft_isspace.c ft_words.c get_next_line.c \
+ft_isalldigit.c \
 ft_printf.c \
 		check_letter.c \
 		flags.c \
@@ -46,7 +47,7 @@ ft_printf.c \
 		calc_f_helper2.c \
 		typecast.c \
 		
-INCLUDES_PATH	:= includes/
+INCLUDES_PATH	:= include/
 INCLUDES		:= -I $(INCLUDES_PATH)
 HEADERS			:= $(addprefix $(INCLUDES_PATH), $(HEADERS_FILES))
 
