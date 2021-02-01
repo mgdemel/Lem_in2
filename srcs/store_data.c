@@ -58,23 +58,20 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 		return (1);
 	while (get_next_line(fd, &line) > 0)
 	{
-	//	if (line[0] == '#' && line[1] != '#') nevermind doesn't work, fix this lukas!
-	//	{	
-			if (!(ft_strstr(line, "-")))
-			{
-				if (ft_strstr(line, "##start"))
-					room->roomtype = 1;
-				else if (ft_strstr(line, "##end"))
-					room->roomtype = 3;
-				if (!(ft_strstr(line, "##")))
-					room = get_room(line, room);
-			}
-			else
-			{
-				lem->tunnels[i] = ft_strdup(line);
-				i++;
-			}
-	//	}
+		if (!(ft_strstr(line, "-")))
+		{
+			if (ft_strstr(line, "##start"))
+				room->roomtype = 1;
+			else if (ft_strstr(line, "##end"))
+				room->roomtype = 3;
+			if (!(ft_strstr(line, "#")))
+				room = get_room(line, room);
+		}
+		else
+		{
+			lem->tunnels[i] = ft_strdup(line);
+			i++;
+		}
 	}
 	return (0);
 }

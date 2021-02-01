@@ -1,5 +1,11 @@
 #include "../includes/lem_in.h"
 
+void	error_message(t_lem *lem, t_room *room)
+{
+	free(lem);
+	free(room);
+}
+
 int		main(int argc, char **argv)
 {
 	t_lem	*lem;
@@ -23,6 +29,7 @@ int		main(int argc, char **argv)
 	}
 	else
 	{
+		error_message(lem, room);
 		ft_printf("ERROR\n");
 		return (1);
 	}
