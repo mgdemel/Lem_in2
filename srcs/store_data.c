@@ -62,11 +62,11 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 	//	{	
 			if (!(ft_strstr(line, "-")))
 			{
-				if (ft_strstr((char*)line, "##start"))
+				if (ft_strstr(line, "##start"))
 					room->roomtype = 1;
-				else if (ft_strstr((char*)line, "##end"))
+				else if (ft_strstr(line, "##end"))
 					room->roomtype = 3;
-				if (!(ft_strstr((char*)line, "##")))
+				if (!(ft_strstr(line, "##")))
 					room = get_room(line, room);
 			}
 			else
