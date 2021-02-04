@@ -11,10 +11,21 @@ typedef struct		s_lem
 	int 			ants;
 	int				nbr_tunnels;
 	int				nbr_rooms;
+	int				nbr_paths;
 	int				found_start_end;
-	struct s_room	*first_room;
+	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
+	struct s_path	**all_paths; //all the valid paths we found
 	char			**tunnels;
+	char			*start_room_name;
+	char			*end_room_name;
 }					t_lem;
+
+typedef struct		s_path
+{
+	struct s_room	*start_room; // start
+	struct s_room	**inbetween_rooms; // r1, r2, r3
+	struct s_room	*end_room; // end
+}					t_path;
 
 typedef struct			s_room
 {

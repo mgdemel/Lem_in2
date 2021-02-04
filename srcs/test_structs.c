@@ -29,13 +29,21 @@ void test_structs(t_lem *lem)
     ft_putnbr(lem->nbr_rooms);
     ft_putchar('\n');
 
+    ft_putstr("start room name: \n");
+    ft_putnbr(lem->start_room_name);
+    ft_putchar('\n');
+
+    ft_putstr("end room name: \n");
+    ft_putnbr(lem->end_room_name);
+    ft_putchar('\n');
+
     ft_putstr("tunnels: \n");
     test_array(lem);
     ft_putchar('\n');
 
    // ********    ROOM:    ********
     
-    t_room *room = lem->first_room;
+    t_room *room = lem->all_rooms;
     while (room->next != NULL)
     {
         ft_putstr("name: ");

@@ -13,7 +13,7 @@ void	free_array(char **array)
 	free(array);
 }
 
-void 	get_room_data(char *line, t_room *room)
+void 	get_room_data(char *line, t_room *room, t_lem *lem)
 {
 	int		i;
 	char	**coord;
@@ -27,6 +27,13 @@ void 	get_room_data(char *line, t_room *room)
 		room->name[i] = line[i];
 		i++;
 	}
+	if (room->roomtype == 1 || room->roomtype == 3) //stores start and end names in lem struct
+	{
+		if(room->roomtype == 1)
+			lem->start_room_name = room->name;
+		else
+			lem->end_room_name = room->name;
+	}
 	i++; //moves past next space to get to coords
 	if (!(coord = ft_strsplit(&line[i], ' ')))
 		ft_putstr("ERROR IN FT_STRSPLIT - GET_ROOM FUNCTION");
@@ -35,7 +42,7 @@ void 	get_room_data(char *line, t_room *room)
 	free_array(coord);
 }
 
-t_room		*get_room(char *line, t_room *room)
+t_room		*get_room(char *line, t_room *room, t_room *lem)
 {
 	t_room *new_room;
 
@@ -65,7 +72,7 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 			else if (ft_strstr(line, "##end"))
 				room->roomtype = 3;
 			if (!(ft_strstr(line, "#")))
-				room = get_room(line, room);
+				room = get_room(line, room, lem);
 		}
 		else
 		{

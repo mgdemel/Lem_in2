@@ -18,7 +18,7 @@ $(NAME):
 	@mkdir objs 
 	@mv $(OBJS) objs 
 
-lib: clean
+lem: clean
 	@gcc $(CFLAGS) -g -c $(SRCS) $(INCS)
 	@gcc $(CFLAGS) $(INCS) $(OBJS) $(LIB) -o $(NAME)
 	@mkdir objs

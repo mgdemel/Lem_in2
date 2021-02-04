@@ -18,12 +18,13 @@ int		main(int argc, char **argv)
 	argc = 0; //only because w-flag complains it's unused
 	lem = initialize_lem();
 	room = initialize_room();
-	lem->first_room = room;
+	lem->all_rooms = room;
 	room->first = 1;
 	if (file_is_valid(lem, fd) == 0)
 	{
 		fd = open(argv[1], O_RDONLY); //had to call it again to restart the GNL read
 		store_data(line, lem, room, fd);
+		search_for_all_paths(lem);
 		test_structs(lem);
 		return (0);
 	}

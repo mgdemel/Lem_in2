@@ -8,8 +8,10 @@ t_lem	*initialize_lem()
 	lem->ants = 0;
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
-	lem->first_room = NULL;
+	lem->all_rooms = NULL;
 	lem->tunnels = NULL;
+	lem->start_room_name = NULL;
+	lem->end_room_name = NULL;
 	lem->found_start_end = 0;
 	return(lem);
 }
