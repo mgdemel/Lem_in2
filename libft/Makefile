@@ -6,7 +6,7 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/26 11:02:46 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/01/29 13:48:11 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/02/07 12:19:10 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ ft_printf.c \
 		calc_f_helper.c \
 		calc_f_helper2.c \
 		typecast.c \
+		ft_findchr.c \
 		
 INCLUDES_PATH	:= include/
 INCLUDES		:= -I $(INCLUDES_PATH)

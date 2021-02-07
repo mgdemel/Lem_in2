@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:27:33 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/29 13:50:49 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/02/07 12:18:52 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int					ft_islower(int c);
 int					ft_isupper(int c);
 int					ft_isspace(int c);
 int					ft_isalldigit(char *s);
+int					ft_findchr(char *str, char c);
 
 /*
 **					Get Next Line
