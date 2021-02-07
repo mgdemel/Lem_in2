@@ -25,35 +25,8 @@ void		maximum_paths(t_lem *lem)
 	int	amount;
 
 	amount = 0;
-	amount += roomname_scan(lem, lem->start_room_name, 0);
-	while (lem->all_rooms)
-	{
-		amount += roomname_scan(lem, lem->all_rooms->name, 1);
-		lem->all_rooms = lem->all_rooms->next;
-	}
+	amount += roomname_scan(lem, lem->start_room_name, 0); // finds the paths leading from start room
 	lem->nbr_paths = amount;
-}
-
-t_path *init_path(t_lem *lem)
-{
-    t_path *valid_path;
-	int i;
-
-	i = 0;
-	while (lem->all_rooms->roomtype != 1 || lem->all_rooms->roomtype != 3)
-	{
-		if (lem->all_rooms->roomtype == 1)
-			valid_path->start_room = lem->all_rooms; //set the first room equal to the current room + all it's values after that loop!
-		else if (lem->all_rooms->roomtype == 3)
-			valid_path->end_room = lem->all_rooms; //set the end room equal to the current room + all it's values after that loop!
-		else
-		{
-			valid_path->inbetween_rooms[i] = lem->all_rooms;
-			lem->all_rooms = lem->all_rooms->next;
-			i++;
-		}
-	}
-    return(valid_path);
 }
 
 char		*ft_strjoin_spc(char const *s1, char const *s2)
@@ -87,53 +60,72 @@ char		*ft_strjoin_spc(char const *s1, char const *s2)
 		return (NULL);
 }
 
-char *	find_path(char **tunnels, char *room_name)
-{
-	int 	i;
-	char	*other_room;
-	char *path;
-
-	i = 0;
-	while (!(ft_strstr(tunnels[i], room_name)))
-		i++;
-	if (tunnels[i][0] == room_name)
-		ft_strcpy(other_room, tunnels[i][2]);
-	else
-		ft_strcpy(other_room, tunnels[i][0]);
-	path = ft_strjoin_spc(room_name, other_room);
-	return(path);
-}
-
-int scan_for_path(t_lem *lem, int j) //the outcome of this is an array of strs that are each composed of the names of all the rooms in a valid path, separated by a space
+int	make_path(char *start_point, t_lem *lem)
 {
 	int i;
-
-	i = 1;
-	if (!(lem->paths_found = (char**)malloc(sizeof(char*) * lem->nbr_paths))) //allocates paths_found array
-		return (1);
-	lem->paths_found[0] = find_path(lem->tunnels, lem->start_room_name); // puts the first path in the array
-	while (!(ft_strcmp(lem->end_room_name, lem->paths_found[i]) || i <= lem->nbr_tunnels)) // puts the rest until the end
-	{
-		lem->paths_found[i] = find_path(lem->tunnels, lem->paths_found[i]);
-		i++;
-	}
-	if (i <= lem->nbr_tunnels) 
-	{
-		find_path(lem->tunnels, lem->end_room_name);
-   		lem->all_paths[j] = init_path(lem);
-		return (0);
-	}
-	return (1);
+	
+	i = 0;
+	if (ft_strstr(lem->tunnels[i], start_point))
 }
 
-int pathfinding(t_lem *lem)
-{
-    int j;
-	int nbr;
 
-	nbr = 0;
-    j = -1;
-	maximum_paths(lem);
+
+   r1-r2
+-> start-r1
+   r2-end
+
+
+char	*ft_strstr(const char *haystack, const char *needle)
+{
+	int i;
+	int a;
+
+	i = 0;
+	a = 0;
+	if (needle[0] == '\0')
+		return ((char*)haystack);
+	while (haystack[i] != '\0')
+	{
+		if (needle[a] == '\0')
+			return (NULL);
+		while (haystack[a + i] == needle[a] && haystack[a + i] != '\0')
+		{
+			if (needle[a + 1] == '\0')
+				return ((char*)&haystack[i + ft_strlen(needle) + 1]); // start-r1  needle = start
+			else if ()
+				return ((char*)&haystack[i - ft_strlen(needle)]); // start-r1 needle = r1
+			a++;
+		}
+		a = 0;
+		i++;
+	}
+	return (NULL);
+}
+
+
+
+int pathfinding(t_lem *lem, t_room *room)
+{
+	int i;
+	t_path *new_path;
+	t_path *path;
+	new_path = NULL;
+	path = NULL;
+	i = 0;
+	if (!(lem->all_paths = (s_path**)malloc(sizeof(s_path*)))) //allocates paths array of structs
+		return (1);
+	while (lem->tunnels[i])  // we go through all the tunnels
+	{
+		if (ft_strstr(lem->tunnels[i], lem->start_room_name)) // to find the start room links
+			if(make_path(lem->tunnels[i], lem)) // when we've found a link we make a path
+			{
+				path = initialize_path(room);
+				new_path = initialize_path(room);
+				path->next = new_path;
+				new_path->prev = path;
+			}
+	}
+	/*
     while (j < 1)
     {
 		if (nbr > lem->nbr_paths)
@@ -143,11 +135,21 @@ int pathfinding(t_lem *lem)
 		nbr += scan_for_path(lem, j);
         return (0);
     }
+	*/
 	return (0);
 }
 
-
-path_function(char *path, char *room)
+while (tunnels[i] != NULL)
 {
-
+	if (ft_strstr(tunnel[i], lem->start_room_name))
+		if (make_path(tunnel[i]))
+			lem->all_paths->next;
+		
+	else
+		i++;
+	
 }
+
+   r1-r2
+   start-r1
+-> r2-end

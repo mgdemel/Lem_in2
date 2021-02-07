@@ -40,10 +40,6 @@ void test_structs(t_lem *lem)
     ft_putnbr(lem->found_start_end);
     ft_putchar('\n');
 
-    ft_putstr("paths_found: \n");
-    test_array(lem->paths_found);
-    ft_putchar('\n');
-
     ft_putstr("tunnels: \n");
     test_array(lem->tunnels);
     ft_putchar('\n');
