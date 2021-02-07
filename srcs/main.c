@@ -24,7 +24,7 @@ int		main(int argc, char **argv)
 	{
 		fd = open(argv[1], O_RDONLY); //had to call it again to restart the GNL read
 		store_data(line, lem, room, fd);
-		search_for_all_paths(lem);
+		pathfinding(lem);
 		test_structs(lem);
 		return (0);
 	}

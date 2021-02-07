@@ -42,14 +42,14 @@ void 	get_room_data(char *line, t_room *room, t_lem *lem)
 	free_array(coord);
 }
 
-t_room		*get_room(char *line, t_room *room, t_room *lem)
+t_room		*get_room(char *line, t_room *room, t_lem *lem)
 {
 	t_room *new_room;
 
 	new_room = initialize_room();
 	room->next = new_room;
 	new_room->prev = room;
-	get_room_data(line, room);
+	get_room_data(line, room, lem);
 	return(new_room);
 }
 

@@ -1,14 +1,13 @@
 #include "../includes/lem_in.h"
 
-void test_array(t_lem *lem)
+void test_array(char **array)
 {
     int i;
-    int j;
+
     i = 0;
-    j = 0;
-    while (i < lem->nbr_tunnels)
+    while (array[i] != NULL)
     {
-        ft_putstr(lem->tunnels[i]);
+        ft_putstr(array[i]);
         ft_putchar('\n');
         i++;
     }
@@ -37,19 +36,27 @@ void test_structs(t_lem *lem)
     ft_putnbr(lem->nbr_paths);
     ft_putchar('\n');
 
-    ft_putstr("start room name: \n");
-    ft_putnbr(lem->start_room_name);
+    ft_putstr("found_start_end: ");
+    ft_putnbr(lem->found_start_end);
     ft_putchar('\n');
 
-    ft_putstr("end room name: \n");
-    ft_putnbr(lem->end_room_name);
+    ft_putstr("paths_found: \n");
+    test_array(lem->paths_found);
     ft_putchar('\n');
 
     ft_putstr("tunnels: \n");
-    test_array(lem);
+    test_array(lem->tunnels);
     ft_putchar('\n');
 
-   // ********    ROOM:    ********
+    ft_putstr("start room name: \n");
+    ft_putstr(lem->start_room_name);
+    ft_putchar('\n');
+
+    ft_putstr("end room name: \n");
+    ft_putstr(lem->end_room_name);
+    ft_putchar('\n');
+
+   // ********    ROOM FROM START TO END:    ********
     
     t_room *room = lem->all_rooms;
     while (room->next != NULL)
@@ -70,6 +77,44 @@ void test_structs(t_lem *lem)
         ft_putnbr(room->roomtype);
         ft_putchar('\n');
         ft_putchar('\n');
+
+        ft_putstr("first: ");
+        ft_putnbr(room->first);
+        ft_putchar('\n');
+        ft_putchar('\n');
+
         room = room->next;
+    }
+
+    // ********    ROOM FROM END TO START:    ********
+
+    t_room *room = lem->all_rooms;
+    while (room->next != NULL)
+        room = room->next;
+    while (room->prev != NULL)
+    {
+        ft_putstr("name: ");
+        ft_putstr(room->name);
+        ft_putchar('\n');
+
+        ft_putstr("x: ");
+        ft_putnbr(room->x);
+        ft_putchar('\n');
+
+        ft_putstr("y: ");
+        ft_putnbr(room->y);
+        ft_putchar('\n');
+
+        ft_putstr("roomtype: ");
+        ft_putnbr(room->roomtype);
+        ft_putchar('\n');
+        ft_putchar('\n');
+
+        ft_putstr("first: ");
+        ft_putnbr(room->first);
+        ft_putchar('\n');
+        ft_putchar('\n');
+
+        room = room->prev;
     }
 }
