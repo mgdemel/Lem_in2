@@ -29,6 +29,14 @@ void test_structs(t_lem *lem)
     ft_putnbr(lem->nbr_rooms);
     ft_putchar('\n');
 
+    ft_putstr("nbr_paths: ");
+    ft_putnbr(lem->nbr_paths);
+    ft_putchar('\n');
+
+    ft_putstr("nbr_paths: ");
+    ft_putnbr(lem->nbr_paths);
+    ft_putchar('\n');
+
     ft_putstr("start room name: \n");
     ft_putnbr(lem->start_room_name);
     ft_putchar('\n');

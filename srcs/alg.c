@@ -1,5 +1,7 @@
 #include "../includes/lem_in.h"
 
+
+
 t_path *init_path(char **path, t_lem *lem)
 {
     t_path *valid_path;
@@ -20,7 +22,6 @@ t_path *init_path(char **path, t_lem *lem)
 		}
 	}
     return(valid_path);
-  
 }
 
 char *	find_path(char **tunnels, char *room_name)
@@ -43,8 +44,6 @@ int scan_for_path(t_lem *lem, int j)
 	char	**path;
 
 	i = 1;
-
-
 	path[0] = find_path(lem->tunnels, lem->start_room_name);
 	while (!(ft_strcmp(lem->end_room_name, path[i]) || i <= lem->nbr_tunnels))
 	{
@@ -60,14 +59,14 @@ int scan_for_path(t_lem *lem, int j)
 	return (1);
 }
 
-int search_for_all_paths(lem)
+int search_for_all_paths(t_lem *lem)
 {
     int j;
 	int nbr;
 
 	nbr = 0;
     j = 0;
-    while (we find every possible path)
+    while (j < 1)
     {
 		nbr += scan_for_path(lem, j);
         if (nbr > lem->nbr_paths)
@@ -76,75 +75,5 @@ int search_for_all_paths(lem)
             j++;
         return (0);
     }
-
- 
-
+	return (0);
 }
-
-	/*
-	while (!(ft_strstr(lem->tunnels[i], lem->start_room_name)))
-	{
-		i++;
-	}
-	if (lem->tunnels[i][0] == lem->start_room_name)
-		other_room = lem->tunnels[i][2];
-	else
-		other_room = lem->tunnels[i][0];
-	*/
-	/*
-	while (lem->all_rooms->roomtype != 1)
-        lem->all_rooms = lem->all_rooms->next;
-	while (!(ft_strstr(lem->tunnels[i], lem->all_rooms->name)))
-		i++;
-	if (lem->tunnels[i][0] == lem->all_rooms->name[0])
-		other_room = lem->tunnels[i][2];
-	else
-		other_room = lem->tunnels[i][0];
-	i = 0;
-	while (lem->all_rooms->roomtype != 3)
-	{
-		lem->all_rooms = lem->all_rooms->next;
-		while (!(ft_strstr(lem->tunnels[i], lem->all_rooms->name)))
-			i++;
-		
-	}
-	*/
-	end_room setup
-
-    0-2 <- we are here
-    2-3
-    3-1
-
-	while (lemallrooms node name != strstr end room name)
-		while (tunnel)
-			if (lemallrooms node name == strstr tunnelroom1)
-				add(lemallrooms node name == strstr tunnelroom2) to path
-						room1 -
-					room2 tunnel =
-					node1 = room1
-						node2 = room2 if (lemallrooms node name == strstr tunnelroom2)
-									add(lemallrooms node name == strstr tunnelroom3) to path
-										room2 -
-								room3 tunnel =
-									node1 = room1
-										node2 = room2
-											node3 = room3 if (path includes start and end)
-												init_path(path, lem);
-}
-
-	start room
-
-
-
-
-
-
-
-
-while (tunnels[i]) != ft_strstr(lem->start_room_name) //get's us to the first tunnel in the list that mentions start room
-    i++;
-temp = piece of tunnel str that is the room connected to start room;
-while (temp != name of end room)
-    find from tunnels the first mention of temp.
-    temp = piece of tunnel str that is the room connected to old temp;
-
