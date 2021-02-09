@@ -60,96 +60,94 @@ char		*ft_strjoin_spc(char const *s1, char const *s2)
 		return (NULL);
 }
 
-int	make_path(char *start_point, t_lem *lem)
+int	make_path(char *child_room, char **tunnels, char *parent_room) // , t_path *path)
 {
 	int i;
-	
+	int save_loc;
+	int	room;
+
+	room = 0;
 	i = 0;
-	if (ft_strstr(lem->tunnels[i], start_point))
-}
-
-
-
-   r1-r2
--> start-r1
-   r2-end
-
-
-char	*ft_strstr(const char *haystack, const char *needle)
-{
-	int i;
-	int a;
-
-	i = 0;
-	a = 0;
-	if (needle[0] == '\0')
-		return ((char*)haystack);
-	while (haystack[i] != '\0')
+	save_loc = 0;
+	while (tunnels[i])
 	{
-		if (needle[a] == '\0')
-			return (NULL);
-		while (haystack[a + i] == needle[a] && haystack[a + i] != '\0')
+		if (ft_strstr(tunnels[i], child_room) && (!ft_strstr(tunnels[i], parent_room)))
 		{
-			if (needle[a + 1] == '\0')
-				return ((char*)&haystack[i + ft_strlen(needle) + 1]); // start-r1  needle = start
-			else if ()
-				return ((char*)&haystack[i - ft_strlen(needle)]); // start-r1 needle = r1
-			a++;
+			if (save_loc != 0)
+			{
+				parent_room = child_room;
+				child_room = needle_crop(tunnels[i], child_room);
+				path->start_room = head;
+				make_path(child_room, tunnels, parent_room, path->next);
+				save_loc = 0;
+			}
+			else
+			{
+				parent_room = child_room;
+				child_room = needle_crop(tunnels[i], child_room);
+				save_loc = i;
+			}
 		}
-		a = 0;
 		i++;
 	}
-	return (NULL);
+	return (1);
 }
 
 
 
 int pathfinding(t_lem *lem, t_room *room)
 {
-	int i;
-	t_path *new_path;
-	t_path *path;
+	int		i;
+	char	*new_path;
+	//t_path	*new_path;
+	char	*path;
+	//t_path	*path;
+	char	*other_room;
+
+	other_room = NULL;
 	new_path = NULL;
 	path = NULL;
 	i = 0;
-	if (!(lem->all_paths = (s_path**)malloc(sizeof(s_path*)))) //allocates paths array of structs
+	if (!(lem->all_paths = (t_path**)malloc(sizeof(t_path*)))) //allocates paths array of structs
 		return (1);
 	while (lem->tunnels[i])  // we go through all the tunnels
 	{
 		if (ft_strstr(lem->tunnels[i], lem->start_room_name)) // to find the start room links
-			if(make_path(lem->tunnels[i], lem)) // when we've found a link we make a path
+		{
+			other_room = needle_crop(lem->tunnels[i], lem->start_room_name);
+			if(path = make_path(other_room, lem->tunnels, lem->start_room_name)) //, lem->all_paths)) // when we've found a link we make a path
 			{
-				path = initialize_path(room);
-				new_path = initialize_path(room);
-				path->next = new_path;
-				new_path->prev = path;
+				lem->all_paths[j] == path;
+				j++;
+				//path = initialize_path(room);
+				//new_path = initialize_path(room);
+				//path->next = new_path;
+				//new_path->prev = path;
 			}
+		}
 	}
-	/*
-    while (j < 1)
-    {
-		if (nbr > lem->nbr_paths)
-            return (1);
-        else 
-            j++;
-		nbr += scan_for_path(lem, j);
-        return (0);
-    }
-	*/
 	return (0);
-}
-
-while (tunnels[i] != NULL)
-{
-	if (ft_strstr(tunnel[i], lem->start_room_name))
-		if (make_path(tunnel[i]))
-			lem->all_paths->next;
-		
-	else
-		i++;
-	
 }
 
    r1-r2
    start-r1
 -> r2-end
+
+
+
+	S
+   |  |
+   r2 r1
+    \   |  \
+      - r3 - r4
+	   	|		\
+		r5 ---  end
+
+	s-r1-r4-end
+	s-r1-r3-r4-end
+	s-r2-r3-r4-end
+
+	* r1-r4
+	//r1-r3-r4
+	* r2-r3-r5
+
