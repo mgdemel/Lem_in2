@@ -1,32 +1,55 @@
 #include "../includes/lem_in.h"
 
-int		roomname_scan(t_lem *lem, char *name, int start)
+int		roomname_scan(t_lem *lem, char *name)
 {
 	int i;
-	int j;
 	int	amount;
 
 	i = 0;
 	amount = 0;
-	while (lem->tunnels[i] != '\0')
+	while (lem->tunnels[i] != NULL)
 	{
-		j = 0;
-		while (lem->tunnels[i][j] == name[j] || lem->tunnels[i][j] == '-')
-			j++;
-		if (lem->tunnels[i][j] == '-')
+		ft_printf("tunnels is: %s\n", lem->tunnels[i]);
+		if (ft_strstr(lem->tunnels[i], name))
+		{
 			amount++;
+			ft_printf("Amount inside strstr statement: %i\n", amount);
+		}
 		i++;
 	}
-	return (amount - start);
+	ft_printf("Amount before returning %d\n", amount);
+	if (ft_strcmp(name, lem->start_room_name) && (amount - 2) >= 0)
+	{
+		ft_printf("FIRST\n");
+		return (amount - 2);
+	}
+	else if (amount - 2 < 0 && (!(ft_strcmp(name, lem->start_room_name))))
+	{
+		ft_printf("SECOND\n");
+		return (0);
+	}
+	else
+	{
+		ft_printf("THIRD\n");
+		return (amount);
+		
+	}
 }
 
-void		maximum_paths(t_lem *lem)
+void	maximum_paths(t_lem *lem)
 {
 	int	amount;
 
 	amount = 0;
-	amount += roomname_scan(lem, lem->start_room_name, 0); // finds the paths leading from start room
+	while (lem->all_rooms->next != NULL)
+	{
+		ft_printf("Allroom name is %s, Startroom name is %s\n", lem->all_rooms->name, lem->start_room_name);
+		amount += roomname_scan(lem, lem->all_rooms->name);
+		ft_printf("\n\n");
+		lem->all_rooms = lem->all_rooms->next;
+	}
 	lem->nbr_paths = amount;
+	ft_printf("lem->nbr_paths: %i\n", lem->nbr_paths);
 }
 
 char		*ft_strjoin_spc(char const *s1, char const *s2)
@@ -46,7 +69,7 @@ char		*ft_strjoin_spc(char const *s1, char const *s2)
 			newstr[i] = s1[i];
 			i++;
 		}
-		newstr[i] = " ";
+		newstr[i] = ' ';
 		i++;
 		while (s2[j] != '\0')
 		{
@@ -60,7 +83,7 @@ char		*ft_strjoin_spc(char const *s1, char const *s2)
 		return (NULL);
 }
 
-int	make_path(char *child_room, char **tunnels, char *parent_room) // , t_path *path)
+int	make_path(char *child_room, char *parent_room, t_lem *lem)
 {
 	int i;
 	int save_loc;
@@ -69,85 +92,56 @@ int	make_path(char *child_room, char **tunnels, char *parent_room) // , t_path *
 	room = 0;
 	i = 0;
 	save_loc = 0;
-	while (tunnels[i])
+	while (lem->tunnels[i])
 	{
-		if (ft_strstr(tunnels[i], child_room) && (!ft_strstr(tunnels[i], parent_room)))
+		if (ft_strstr(lem->tunnels[i], child_room) && (!ft_strstr(lem->tunnels[i], parent_room)))
 		{
-			if (save_loc != 0)
+			if (ft_strstr(lem->tunnels[i], needle_crop(lem->tunnels[save_loc], parent_room)))
 			{
 				parent_room = child_room;
-				child_room = needle_crop(tunnels[i], child_room);
-				path->start_room = head;
-				make_path(child_room, tunnels, parent_room, path->next);
+				child_room = needle_crop(lem->tunnels[i], child_room);
+				make_path(child_room, parent_room, lem);
 				save_loc = 0;
 			}
 			else
 			{
 				parent_room = child_room;
-				child_room = needle_crop(tunnels[i], child_room);
+				child_room = needle_crop(lem->tunnels[i], child_room);
+				lem->all_paths[lem->path_index] = ft_strjoin(parent_room, child_room);
 				save_loc = i;
 			}
 		}
 		i++;
 	}
+	lem->path_index++;
 	return (1);
 }
 
 
 
-int pathfinding(t_lem *lem, t_room *room)
+int pathfinding(t_lem *lem)
 {
 	int		i;
-	char	*new_path;
-	//t_path	*new_path;
-	char	*path;
-	//t_path	*path;
+	int		j;
 	char	*other_room;
 
 	other_room = NULL;
-	new_path = NULL;
-	path = NULL;
 	i = 0;
-	if (!(lem->all_paths = (t_path**)malloc(sizeof(t_path*)))) //allocates paths array of structs
+	j = 0;
+	maximum_paths(lem);
+	if (!(lem->all_paths = (char**)malloc(sizeof(char*) * lem->nbr_paths))) //allocates paths array of structs
 		return (1);
 	while (lem->tunnels[i])  // we go through all the tunnels
 	{
 		if (ft_strstr(lem->tunnels[i], lem->start_room_name)) // to find the start room links
 		{
 			other_room = needle_crop(lem->tunnels[i], lem->start_room_name);
-			if(path = make_path(other_room, lem->tunnels, lem->start_room_name)) //, lem->all_paths)) // when we've found a link we make a path
+			if(make_path(other_room, lem->start_room_name, lem)) // when we've found a link we make a path
 			{
-				lem->all_paths[j] == path;
-				j++;
-				//path = initialize_path(room);
-				//new_path = initialize_path(room);
-				//path->next = new_path;
-				//new_path->prev = path;
+
 			}
 		}
 	}
 	return (0);
 }
-
-   r1-r2
-   start-r1
--> r2-end
-
-
-
-	S
-   |  |
-   r2 r1
-    \   |  \
-      - r3 - r4
-	   	|		\
-		r5 ---  end
-
-	s-r1-r4-end
-	s-r1-r3-r4-end
-	s-r2-r3-r4-end
-
-	* r1-r4
-	//r1-r3-r4
-	* r2-r3-r5
 

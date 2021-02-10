@@ -1,0 +1,77 @@
+	S	   			  // GEN 1
+   |  \    
+   r2  r1			 // GEN 2
+    \    | \
+      - r3 - r4	     // GEN 3
+	   	|		\   |
+		r5 ---  end // GEN 4
+
+	s-r1-r4-end
+	s-r1-r3-r4-end
+	s-r2-r3-r4-end
+    s-r2-r3-r5-end
+
+    012345
+
+	* r1-r4
+	//r1-r3-r4
+    //r2-r3-r4
+	* r2-r3-r5
+
+
+index gen = 1
+  s-r1    0  // BLOCK
+  s-r2    1  // BLOCK
+  r2-r3   2 
+  r1-r3   3 // BLOCK
+  r1-r4   4 // BLOCK
+  r3-r5   5 // BLOCK
+  r4-r3   6 // BLOCK
+  r5-e    7
+  e-r4    9
+
+forbidden_index[0] = 0
+forbidden_index[1] = 1
+forbidden_index[2] = 3
+
+
+
+
+
+s 1 0 <-
+e 5 0
+r2 9 0
+r3 13 0
+r1 33 9
+r4 2 43
+r5 2 3
+
+s //tree
+| 
+r1 ----- r2
+|          \
+r3 - r4     r3
+|     |     |
+r5    e     r4 - r5
+|           |     |  
+e           e     e
+
+P = r5
+C = NULL
+S = NULL
+
+P = NULL
+C = r1
+S = NULL
+
+backtracking = while (P != NULL && S != NULL)
+                    backtrack
+                    if (S != NULL)
+                        move to sibling
+                        scan forward
+
+
+scan forward = while (C != NULL && S != NULL)
+                        scan forward
+                        fill in all the data for family members
+               backtracks

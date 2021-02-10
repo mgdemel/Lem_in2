@@ -63,6 +63,7 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 	ft_strdel(&line);
 	if (!(lem->tunnels = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels)))) //allocates tunnels array
 		return (1);
+	lem->tunnels[lem->nbr_tunnels] = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!(ft_strstr(line, "-")))

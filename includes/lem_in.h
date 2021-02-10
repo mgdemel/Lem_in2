@@ -5,6 +5,7 @@
 # include "../libft/include/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h> //for reading files from FD
+# include <stdio.h> //REMOVE THIS DUMBASS (Melissa)!!! 
 
 typedef struct		s_lem
 {
@@ -13,21 +14,26 @@ typedef struct		s_lem
 	int				nbr_rooms;
 	int				nbr_paths;
 	int				found_start_end;
+	int				path_index;
+	int				trigger;
+	int				*forbidden_array;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
-	struct s_path	**all_paths; //all the valid paths we found
-	char			**paths_found;
+	char			**all_paths;
 	char			**tunnels;
 	char			*start_room_name;
 	char			*end_room_name;
+	struct t_tree	*tree; //head branch
 }					t_lem;
 
-typedef struct		s_path
+typedef struct 		s_tree
 {
-	struct s_room	*start_room; // start
-	struct s_room	**inbetween_rooms; // r1, r2, r3
-	struct s_room	*end_room; // end
-	int				length;
-}					t_path;
+	char			*name;  //or int name?
+	struct s_tree	*parent;
+	struct s_tree	*child;
+	struct s_tree	*sibling;
+	int				used;
+}					t_tree;
+
 
 typedef struct			s_room
 {
@@ -35,7 +41,6 @@ typedef struct			s_room
 	int					x;
 	int					y;
 	int					roomtype; //1=start, 2=normal, 3=end
-	int					first;
 	struct s_room		*prev;
 	struct s_room		*next;	
 }						t_room;
@@ -46,5 +51,7 @@ int			store_data(char *line, t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
+int 		pathfinding(t_lem *lem);
+char		*needle_crop(const char *haystack, const char *needle);
 
 #endif

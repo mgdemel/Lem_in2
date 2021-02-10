@@ -4,46 +4,71 @@
 #include "../libft/include/libft.h"
 #include <stdio.h>
 
-char	*needle_crop(const char *haystack, const char *needle)
+int		*add_elem_int_array(int nbr, t_lem *lem)
 {
+	int	*new;
 	int i;
-	int a;
-	char *temp;
+	int j;
 
 	i = 0;
-	a = 0;
-	temp = ft_strnew(ft_strlen(haystack) - ft_strlen(needle) - 1);
-	if (needle[0] == '\0')
-		return ((char*)haystack);
-	while (haystack[i] != '\0')
+	j = 0;
+	while (lem->forbidden_array[nbr])
+		nbr++;
+	new = malloc(sizeof(int) * nbr + 1);
+	while (j < nbr)
 	{
-		if (needle[a] == '\0')
-			return (NULL);
-		while (haystack[a + i] == needle[a] && haystack[a + i] != '\0')
+		new[j] = lem->forbidden_array[j];
+		j++;
+	}
+	new[j] = nbr;
+	return (new);
+}
+
+int		scan_forbidden(int *array, int i)
+{
+	int j;
+
+	j = 0;
+	while (array[j])
+	{
+		if (array[j] == i)
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
+
+int		find_parent_links(char **tunnels, char *parent) //returns the amount of hits of a room name found in tunnels
+{
+	int i;
+	int c;
+	int **forbidden_indexes; // 0 and 1 and etc...
+	
+	forbidden_indexes[j][d] = 3
+	c = 0;
+	i = 0;
+	j = ft(forbidden_indexes);
+	while (tunnels[i])
+	{
+		if (scan_forbidden(lem->forbidden_array, i))
+			i++;
+		else if (ft_strstr(tunnels, parent))
 		{
-			if (needle[a + 1] == '\0' && haystack[a + i + 1] != '\0')
-				return ((char*)&haystack[i + ft_strlen(needle) + 1]); // start-r1  needle = start
-			else if (needle[a + 1] == '\0' && haystack[a + i + 1] == '\0')
-				return ((char*)temp); // start-r1 needle = r1
-			a++;
+			c++;
+			lem->forbidden_array = add_elem_int_array(i, lem);
 		}
-		if (haystack[i] != '-')
-			temp[i] = haystack[i];
-		a = 0;
 		i++;
 	}
-	return (NULL);
+	return (c);
 }
 
 
 int	main(void)
 {
-	char *haystack;
-	char *needle;
+	char **tunnels;
+	char *parent;
 
-
-	haystack = "hello-  r1";
-	needle = "";
 	printf("%s@\n", ft_strstr2(haystack, needle));
 	return (0);
 }

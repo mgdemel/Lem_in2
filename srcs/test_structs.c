@@ -32,12 +32,12 @@ void test_structs(t_lem *lem)
     ft_putnbr(lem->nbr_paths);
     ft_putchar('\n');
 
-    ft_putstr("nbr_paths: ");
-    ft_putnbr(lem->nbr_paths);
-    ft_putchar('\n');
-
     ft_putstr("found_start_end: ");
     ft_putnbr(lem->found_start_end);
+    ft_putchar('\n');
+
+    ft_putstr("all_paths: \n");
+    test_array(lem->all_paths);
     ft_putchar('\n');
 
     ft_putstr("tunnels: \n");
@@ -74,43 +74,33 @@ void test_structs(t_lem *lem)
         ft_putchar('\n');
         ft_putchar('\n');
 
-        ft_putstr("first: ");
-        ft_putnbr(room->first);
-        ft_putchar('\n');
-        ft_putchar('\n');
-
         room = room->next;
     }
 
     // ********    ROOM FROM END TO START:    ********
 
-    t_room *room = lem->all_rooms;
-    while (room->next != NULL)
-        room = room->next;
-    while (room->prev != NULL)
+    t_room *room2 = lem->all_rooms;
+    while (room2->next != NULL)
+        room2 = room2->next;
+    while (room2->prev != NULL)
     {
         ft_putstr("name: ");
-        ft_putstr(room->name);
+        ft_putstr(room2->name);
         ft_putchar('\n');
 
         ft_putstr("x: ");
-        ft_putnbr(room->x);
+        ft_putnbr(room2->x);
         ft_putchar('\n');
 
         ft_putstr("y: ");
-        ft_putnbr(room->y);
+        ft_putnbr(room2->y);
         ft_putchar('\n');
 
-        ft_putstr("roomtype: ");
-        ft_putnbr(room->roomtype);
-        ft_putchar('\n');
-        ft_putchar('\n');
-
-        ft_putstr("first: ");
-        ft_putnbr(room->first);
+        ft_putstr("room2type: ");
+        ft_putnbr(room2->roomtype);
         ft_putchar('\n');
         ft_putchar('\n');
 
-        room = room->prev;
+        room2 = room2->prev;
     }
 }
