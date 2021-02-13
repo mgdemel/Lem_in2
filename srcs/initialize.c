@@ -18,6 +18,7 @@ t_lem	*initialize_lem()
 	lem->start_room_name = NULL;
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
+	lem->forbidden_array = NULL;
 	return(lem);
 }
 
@@ -41,7 +42,7 @@ t_tree	*tree_init(char *name)
 
 	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
 		return (NULL);
-    tree->name = name;
+    tree->name = ft_strdup(name);
     tree->parent = NULL;
     tree->child = NULL;
     tree->sibling = NULL;

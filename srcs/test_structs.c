@@ -103,4 +103,12 @@ void test_structs(t_lem *lem)
 
         room2 = room2->prev;
     }
+
+     // ********   PATH FROM START TO END:    ********
+    
+    t_tree *tree = lem->tree;
+    ft_putstr("name of head node of tree: ");
+    ft_putstr(tree->name);
+    ft_putchar('\n');
+    
 }

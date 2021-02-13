@@ -22,7 +22,7 @@ typedef struct		s_lem
 	char			**tunnels;
 	char			*start_room_name;
 	char			*end_room_name;
-	struct t_tree	*tree; //head branch
+	struct s_tree	*tree; //head branch
 }					t_lem;
 
 typedef struct 		s_tree
@@ -51,8 +51,11 @@ int			store_data(char *line, t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
-int 		pathfinding(t_lem *lem);
+//int 		pathfinding(t_lem *lem);
 char		*needle_crop(const char *haystack, const char *needle);
 int			find_parent_links(char **tunnels, char *parent, t_lem *lem);
+int			tree_creation(t_lem *lem);
+t_tree		*tree_init(char *name);
+void 		make_child(t_tree *parent, char **tunnels, t_lem *lem);
 
 #endif

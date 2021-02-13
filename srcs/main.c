@@ -22,8 +22,8 @@ int		main(int argc, char **argv)
 	if (file_is_valid(lem, fd) == 0)
 	{
 		fd = open(argv[1], O_RDONLY); //had to call it again to restart the GNL read
-		store_data(line, lem, room, fd);
-		pathfinding(lem);
+		if (store_data(line, lem, room, fd) == 1 || tree_creation(lem) == 1)
+			return(1);
 		test_structs(lem);
 		return (0);
 	}
