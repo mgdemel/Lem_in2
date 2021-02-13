@@ -32,6 +32,7 @@ void	make_sibling(t_tree *child, char **tunnels, t_tree *parent, t_lem *lem)
 	forbidden = 0;
 	j = 0;
 	i = 0;
+	sleep(1);
     sibling = tree_init(parent->name);
 	sibling->sibling = child;
 	while (tunnels[j])
@@ -76,8 +77,13 @@ void	make_sibling(t_tree *child, char **tunnels, t_tree *parent, t_lem *lem)
 	}
 	if (lem->trigger > 0)
 		make_sibling(sibling, tunnels, parent, lem);
-	if (child->name != NULL)
-		make_child(sibling, tunnels, lem);
+	i = 0;
+	while (i < lem->nbr_tunnels)
+	{
+		if (lem->forbidden_array[i] != -1)
+			make_child(child, tunnels, lem);
+		i++;
+	}
 }
 
 void make_child(t_tree *parent, char **tunnels, t_lem *lem)  // TODO tunnels double char probably?
@@ -85,19 +91,32 @@ void make_child(t_tree *parent, char **tunnels, t_lem *lem)  // TODO tunnels dou
     t_tree  *child;
 	int i;
 	int j;
+	int	forbidden;
 
+	forbidden = 0;
 	j = 0;
 	i = 0;
+	sleep(1);
 	child = tree_init(parent->name);
 	while (tunnels[j])
 	{
-		i = 0;
-		j += check_tunnel_validity(lem);
-		if (j != -1 && ft_strstr(tunnels[j], parent->name)) //if we find name of parent in tunnels and it's not forbidden, it's a sibling
+		if (ft_strstr(tunnels[j], parent->name))
 		{
-			child->name = needle_crop(tunnels[j], parent->name);
-			child->parent = parent;
-			lem->trigger += find_parent_links(lem->tunnels, parent->name, lem); //checks for cases where there are more than one sibling
+			i = 0;
+			while (i < lem->nbr_tunnels)
+			{
+				if (j == lem->forbidden_array[i])
+					forbidden = 1;
+				i++;
+			}
+			if (forbidden == 0)
+			{
+				child->name = needle_crop(tunnels[j], parent->name);
+				child->parent = parent;
+				lem->trigger += find_parent_links(lem->tunnels, child->name, lem); //checks for cases where there are more than one sibling
+				lem->trigger--;
+			}
+			forbidden = 0;
 		}
 		j++;
 	}
@@ -107,13 +126,18 @@ void make_child(t_tree *parent, char **tunnels, t_lem *lem)  // TODO tunnels dou
 	i = 0;
 	while (i < lem->nbr_tunnels)
 	{
-		ft_printf("array: %d\n", lem->forbidden_array[i]);
+		ft_printf("array in make_child: %d\n", lem->forbidden_array[i]);
 		i++;
 	}
 	if (lem->trigger > 0)
 		make_sibling(child, tunnels, parent, lem);
-	if (child->name != NULL)				// TODO continue the cycle of making children until end, make													
-		make_child(child, tunnels, lem);
+	i = 0;
+	while (i < lem->nbr_tunnels)
+	{
+		if (lem->forbidden_array[i] != -1)
+			make_child(child, tunnels, lem);
+		i++;
+	}
 }
 
 int	tree_creation(t_lem *lem)
@@ -137,7 +161,7 @@ int	tree_creation(t_lem *lem)
 	i = 0;
 	while (i < lem->nbr_tunnels)
 	{
-		ft_printf("array: %d\n", lem->forbidden_array[i]);
+		ft_printf("array in tree: %d\n", lem->forbidden_array[i]);
 		i++;
 	}
 	ft_printf("tunnels last %s\n", lem->tunnels[8]);
