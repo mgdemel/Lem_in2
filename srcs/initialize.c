@@ -35,6 +35,20 @@ t_room	*initialize_room()
 	return (room);
 }
 
+t_tree	*tree_init(char *name)
+{
+	t_tree	*tree;
+
+	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
+		return (NULL);
+    tree->name = name;
+    tree->parent = NULL;
+    tree->child = NULL;
+    tree->sibling = NULL;
+	tree->used = 0;
+    return(tree);
+}
+
 // t_path	*initialize_path(t_room *room, t_lem *lem)
 // {
 // 	t_path *path;

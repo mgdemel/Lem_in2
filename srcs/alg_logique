@@ -6,19 +6,6 @@
 	   	|		\   |
 		r5 ---  end // GEN 4
 
-	s-r1-r4-end
-	s-r1-r3-r4-end
-	s-r2-r3-r4-end
-    s-r2-r3-r5-end
-
-    012345
-
-	* r1-r4
-	//r1-r3-r4
-    //r2-r3-r4
-	* r2-r3-r5
-
-
 index gen = 1
   s-r1    0  // BLOCK
   s-r2    1  // BLOCK
@@ -34,17 +21,32 @@ forbidden_index[0] = 0
 forbidden_index[1] = 1
 forbidden_index[2] = 3
 
+	s-r1-r4-end
+	s-r1-r3-r4-end
+	s-r2-r3-r4-end
+  s-r2-r3-r5-end
 
+	* r1-r4
+	//r1-r3-r4
+    //r2-r3-r4
+	* r2-r3-r5
 
+"sibling" = anything tha has the same parent
+  s-r1                    s
+  s-r2*              r1             r2
+  r2-r3*        r3        r4         r3
+  r1-r3*   r5   r4  r2            r5  r4  r2
+  r1-r4    e  r1 e s              e  r1 e  s
+  r3-r5*   
+  r4-r3*  
+  r5-e    
+  e-r4 
 
-
-s 1 0 <-
-e 5 0
-r2 9 0
-r3 13 0
-r1 33 9
-r4 2 43
-r5 2 3
+  s 
+   \
+    r1 -- r2
+            \
+              r3 -- 
 
 s //tree
 | 

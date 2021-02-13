@@ -53,5 +53,6 @@ int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
 int 		pathfinding(t_lem *lem);
 char		*needle_crop(const char *haystack, const char *needle);
+int			find_parent_links(char **tunnels, char *parent, t_lem *lem);
 
 #endif

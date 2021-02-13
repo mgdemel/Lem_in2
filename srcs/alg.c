@@ -117,8 +117,6 @@ int	make_path(char *child_room, char *parent_room, t_lem *lem)
 	return (1);
 }
 
-
-
 int pathfinding(t_lem *lem)
 {
 	int		i;
