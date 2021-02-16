@@ -131,6 +131,7 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 		t = 0;
 		sibling_name = make_sibling(child, parent, lem, new);
 	}
+	// don't need NEW maybe test without it, next child needs forbidden links to previous sibling
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
