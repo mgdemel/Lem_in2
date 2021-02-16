@@ -3,7 +3,7 @@
 /*
 **	Scans the array if the number i exists, MOVE TO UTILS
 */
-int		scan_forbidden(int *array, int i, t_lem *lem)
+int scan_forbidden(int *array, int i, t_lem *lem)
 {
 	int j;
 
@@ -11,10 +11,7 @@ int		scan_forbidden(int *array, int i, t_lem *lem)
 	while (j < lem->nbr_tunnels)
 	{
 		if (array[j] == i)
-		{
-			ft_printf("we found a forbiddden one\n\n");
 			return (1);
-		}
 		j++;
 	}
 	return (0);
@@ -23,44 +20,65 @@ int		scan_forbidden(int *array, int i, t_lem *lem)
 /*
 ** Adds an element onto the int array, UTILS FUNCTION
 */
-void		add_elem_int_array(int nbr, t_lem *lem)
+
+int *add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent)
 {
 	int i;
+	int j;
+	int *new;
 
+	j = 0;
 	i = 0;
-	/*
-	while (lem->forbidden_array[nbr])
-		nbr++;
-	new = malloc(sizeof(int) * nbr + 1);
-	*/
-	while (lem->forbidden_array[i] > -1)
+	//ft_printf("parent is %s\nsibling is %s\n", parent, sibling);
+	if (!(new = (int*)malloc(sizeof(int) * (lem->nbr_tunnels))))
+		return (NULL);
+	while (i < (lem->nbr_tunnels))
+	{
+		new[i] = forbidden_array[i];
 		i++;
-	lem->forbidden_array[i] = nbr;
+	}
+	i = 0;
+	while (lem->tunnels[i])
+	{
+		if (scan_forbidden(new, i, lem) == 1) // moves forward in the index if it's forbidden
+			i++;
+		else if (ft_strstr(lem->tunnels[i], block_name))
+		{
+			while (new[j] > -1)
+				j++;
+			new[j] = i;
+			i++;
+			if (parent == 1)
+				return (new);
+		}
+		else
+			i++;
+		
+	}
+	return (new);
 }
 
-
-int		find_parent_links(char **tunnels, char *parent, t_lem *lem) //returns the amount of hits of a room name found in tunnels
+int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns the amount of hits of a room name found in tunnels
 {
 	int i;
-	
+	int t;
+
+	t = 0;
 	i = 0;
-	ft_printf("Find_parent_links ACTIVATED\n");
-	ft_printf("parent in find parent links: %s\n", parent);
-	ft_printf("trigger before we start %d\n", lem->trigger);
-	while (tunnels[i])
+	while (lem->tunnels[i])
 	{
-		if (scan_forbidden(lem->forbidden_array, i, lem) == 1) // moves forward in the index if it's forbidden
+		if (scan_forbidden(forbidden_array, i, lem) == 1) // moves forward in the index if it's forbidden
 			i++;
-		else if (ft_strstr(tunnels[i], parent))
+		else if (ft_strstr(lem->tunnels[i], parent))
 		{
-			ft_printf("FOUND SOMETHING :o\n");
-			add_elem_int_array(i, lem); // add the current index in tunnels so we don't reuse it
-			return (1);
+			t++;
+			i++;
 		}
 		else
 			i++;
 	}
-	ft_printf("DIDNT FIND ANYTHING\n");
+	if (t > 1)
+		return (1);
 	return (0);
 }
 
@@ -70,7 +88,7 @@ int		find_parent_links(char **tunnels, char *parent, t_lem *lem) //returns the a
 **	dividing them.
 */
 
-char	*needle_crop(const char *haystack, const char *needle)
+char *needle_crop(const char *haystack, const char *needle)
 {
 	int i;
 	int a;
@@ -86,9 +104,9 @@ char	*needle_crop(const char *haystack, const char *needle)
 		while (haystack[a + i] == needle[a] && haystack[a + i] != '\0')
 		{
 			if (needle[a + 1] == '\0' && haystack[a + i + 1] != '\0')
-				return ((char*)&haystack[i + ft_strlen(needle) + 1]);
+				return ((char *)&haystack[i + ft_strlen(needle) + 1]);
 			else if (needle[a + 1] == '\0' && haystack[a + i + 1] == '\0')
-				return ((char*)temp);
+				return ((char *)temp);
 			a++;
 		}
 		if (haystack[i] != '-')

@@ -1,21 +1,20 @@
-	S	   			  // GEN 1
+	S	   
    |  \    
-   r2  r1			 // GEN 2
+   r2  r1		
     \    | \
-      - r3 - r4	     // GEN 3
+      - r3 - r4	  
 	   	|		\   |
-		r5 ---  end // GEN 4
+		r5 ---  end 
 
-index gen = 1
-  s-r1    0  // BLOCK
-  s-r2    1  // BLOCK
-  r2-r3   2 
-  r1-r3   3 // BLOCK
-  r1-r4   4 // BLOCK
-  r3-r5   5 // BLOCK
-  r4-r3   6 // BLOCK
-  r5-e    7
-  e-r4    9
+s-r1  // 0
+s-r2  // 1
+r2-r3
+r1-r3 // 3
+r1-r4 // 4
+r3-r5
+r4-r3
+r5-e
+e-r4
 
 forbidden_index[0] = 0
 forbidden_index[1] = 1
@@ -28,35 +27,14 @@ forbidden_index[2] = 3
 
 	* r1-r4
 	//r1-r3-r4
-    //r2-r3-r4
+  //r2-r3-r4
 	* r2-r3-r5
 
-"sibling" = anything tha has the same parent
-  s-r1                    s
-  s-r2*              r1             r2
-  r2-r3*        r3        r4         r3
-  r1-r3*   r5   r4  r2            r5  r4  r2
-  r1-r4    e  r1 e s              e  r1 e  s
-  r3-r5*   
-  r4-r3*  
-  r5-e    
-  e-r4 
-
   s 
-   \
-    r1 -- r2
-            \
-              r3 -- 
-
-s //tree
-| 
-r1 ----- r2
-|          \
-r3 - r4     r3
-|     |     |
-r5    e     r4 - r5
-|           |     |  
-e           e     e
+  |
+  r1 -- r2
+  |      |
+        r3 -- r4 -- r5
 
 P = r5
 C = NULL
@@ -66,14 +44,20 @@ P = NULL
 C = r1
 S = NULL
 
-backtracking = while (P != NULL && S != NULL)
-                    backtrack
-                    if (S != NULL)
-                        move to sibling
-                        scan forward
 
 
-scan forward = while (C != NULL && S != NULL)
-                        scan forward
-                        fill in all the data for family members
-               backtracks
+                    
+                       -- s(1)------------
+                      |                    \
+                    r1(2)------------------- r2(3)
+                      |                          |
+                    r3(9) --------  r4(10)        r3(4)
+                      |               |           |
+          r4(14) - r5(13) - r2(12)  e(11)       r5(5) -- r4(6)
+            |                                    |          |
+           r1(15)                                e(8)      e(7)
+
+
+s-r2-r3-r5-end
+s-r2-r3-r4-end
+s-r1-r3-r4-end

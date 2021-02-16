@@ -11,14 +11,12 @@ t_lem	*initialize_lem()
 	lem->nbr_paths = 0;
 	lem->found_start_end = 0;
 	lem->path_index = 0;
-	lem->trigger = 0;
 	lem->all_rooms = NULL;
 	lem->all_paths = NULL;
 	lem->tunnels = NULL;
 	lem->start_room_name = NULL;
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
-	lem->forbidden_array = NULL;
 	return(lem);
 }
 

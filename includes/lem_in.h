@@ -15,8 +15,6 @@ typedef struct		s_lem
 	int				nbr_paths;
 	int				found_start_end;
 	int				path_index;
-	int				trigger;
-	int				*forbidden_array;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	char			**all_paths;
 	char			**tunnels;
@@ -53,9 +51,11 @@ int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
 //int 		pathfinding(t_lem *lem);
 char		*needle_crop(const char *haystack, const char *needle);
-int			find_parent_links(char **tunnels, char *parent, t_lem *lem);
+int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(char *name);
-void 		make_child(t_tree *parent, char **tunnels, t_lem *lem);
+void 		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
+int 		*add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent);
+int 		scan_forbidden(int *array, int i, t_lem *lem);
 
 #endif
