@@ -17,6 +17,7 @@ t_lem	*initialize_lem()
 	lem->start_room_name = NULL;
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
+	lem->test_index = 1;
 	return(lem);
 }
 

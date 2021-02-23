@@ -5,7 +5,6 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
     t_tree  *sibling;
 	int i;
 	int j;
-	int t;
 	int	forbidden;
 	int *new;
 	char	*sibling_name;
@@ -13,15 +12,9 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 	forbidden = 0;
 	j = 0;
 	i = 0;
-	t = 0;
 	sleep(1);
     sibling = tree_init(parent->name);
 	sibling->sibling = child;
-	while (i < lem->nbr_tunnels)
-	{
-		ft_printf("forbidden array: %d\n", forbidden_array[i]);
-		i++;
-	}
 	i = 0;
 	while (lem->tunnels[j])
 	{
@@ -45,33 +38,21 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 		j++;
 	}
 
+	ft_printf("SIBLING: child name is %s\n", child->name);
 	ft_printf("SIBLING: sibling name is %s\n", sibling->name);
 	ft_printf("SIBLING: parent name is %s\n", parent->name);
 	ft_printf("\n");
-	
+
+
 	if (find_parent_links(parent->name, lem, forbidden_array))
 	{
 		new = add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		new = add_elem_int_array(new, lem, child->name, 0);
-		while (t < lem->nbr_tunnels)
-		{
-			ft_printf("array before make sibling in make sibling: %d\n", new[t]);
-			t++;
-		}
-		t = 0;
 		sibling_name = make_sibling(child, parent, lem, new);
 	}
 	if (ft_strcmp(sibling->name, lem->end_room_name))
 	{
-		ft_printf("fuck\n");
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
-		ft_printf("fuck1.5\n");
-		while (t < lem->nbr_tunnels)
-		{
-			ft_printf("before make child in make sibling: %d\n", forbidden_array[t]);
-			t++;
-		}
-		t = 0;
 		make_child(sibling, lem, forbidden_array);
 	}
 	return (sibling->name);
@@ -82,7 +63,6 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
     t_tree  *child;
 	int i;
 	int j;
-	int t;
 	int	forbidden;
 	int *new;
 	char	*sibling_name;
@@ -90,8 +70,6 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	forbidden = 0;
 	j = 0;
 	i = 0;
-	t = 0;
-	sleep(1);
 	child = tree_init(parent->name);
 	while (lem->tunnels[j])
 	{
@@ -119,28 +97,17 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	ft_printf("CHILD: parent name is %s\n", parent->name);
 	ft_printf("\n");
 	
+
 	if (find_parent_links(parent->name, lem, forbidden_array))
 	{
 		new = add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		new = add_elem_int_array(new, lem, child->name, 0);
-		while (t < lem->nbr_tunnels)
-		{
-			ft_printf("array before make sib in make child: %d\n", new[t]);
-			t++;
-		}
-		t = 0;
 		sibling_name = make_sibling(child, parent, lem, new);
+		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
 	}
-	// don't need NEW maybe test without it, next child needs forbidden links to previous sibling
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
-		while (t < lem->nbr_tunnels)
-		{
-			ft_printf("array before child make child: %d\n", forbidden_array[t]);
-			t++;
-		}
-		t = 0;
 		make_child(child, lem, forbidden_array);
 	}
 }
@@ -165,10 +132,7 @@ int	tree_creation(t_lem *lem)
     lem->tree = current_child; //saves head branch
 	i = 0;
 	while (i < lem->nbr_tunnels)
-	{
-		ft_printf("array in tree: %d\n", forbidden_array[i]);
 		i++;
-	}
 	make_child(current_child, lem, forbidden_array);
 	return (0);
 }
