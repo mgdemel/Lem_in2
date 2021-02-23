@@ -46,7 +46,7 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 	j = 0;
 	i = 0;
     sibling = tree_init(parent);
-	sibling->sibling = child;
+	child->sibling = sibling;
 	i = 0;
 	ft_printf("step: %d\n", lem->test_index);
 	lem->test_index++;
@@ -80,6 +80,7 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	j = 0;
 	i = 0;
 	child = tree_init(parent);
+	parent->child = child;
 	ft_printf("step: %d\n", lem->test_index);
 	lem->test_index++;
 	while (lem->tunnels[j]) // we go through tunnels to find the child to the parent

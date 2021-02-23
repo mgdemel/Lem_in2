@@ -41,10 +41,10 @@ t_tree	*tree_init(t_tree *parent)
 
 	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
 		return (NULL);
-    parent->child = tree;
+	tree->name = NULL;
     tree->parent = parent;
+	tree->child = NULL;
     tree->sibling = NULL;
-	tree->used = 0; // remove maybe
     return(tree);
 }
 
@@ -58,7 +58,6 @@ t_tree	*head_tree_init(char *name)
     tree->parent = NULL;
     tree->child = NULL;
     tree->sibling = NULL;
-	tree->used = 0;
     return(tree);
 
 }

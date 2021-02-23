@@ -26,11 +26,10 @@ typedef struct		s_lem
 
 typedef struct 		s_tree
 {
-	char			*name;  //or int name?
+	char			*name;
 	struct s_tree	*parent;
 	struct s_tree	*child;
 	struct s_tree	*sibling;
-	int				used;
 }					t_tree;
 
 

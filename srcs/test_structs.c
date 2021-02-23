@@ -13,7 +13,7 @@ void test_array(char **array)
     }
 }
 
-void    scan_tree(t_tree *start)
+void    scan_tree(t_tree *start, t_lem *lem)
 {
     t_tree *tree;
 
@@ -21,8 +21,9 @@ void    scan_tree(t_tree *start)
 
     ft_printf("name %s\n", tree->name);
     ft_printf("child name %s\n", tree->child->name);
+    ft_printf("sibling pointer address %p\n", tree->sibling);
 
-    while (tree->child->name != NULL)
+    while (tree->child->name != lem->end_room_name)
     {
         ft_putstr("name of head node of tree: ");
         ft_putstr(tree->name);
@@ -30,8 +31,12 @@ void    scan_tree(t_tree *start)
 
         tree = tree->child;
         ft_putendl("Hello");
-   //     if (tree->sibling != NULL)
-     //       scan_tree(tree);
+        ft_printf("sibling pointer address %p\n", tree->sibling);
+        if (tree->sibling != NULL)
+        {
+            ft_printf("WENT INTO SIBLING PATH\n");
+            scan_tree(tree->sibling, lem);
+        }
     }
 }
 
@@ -107,6 +112,26 @@ void test_structs(t_lem *lem)
     
     scan_rooms(lem);
 
+    // ********   PATH FROM START TO END:    ********
+    t_tree *start = lem->tree;
+
+    scan_tree(start, lem);
+
+    // ft_putstr("name of parent: ");
+    // ft_putstr(tree->parent->name);
+    // ft_putchar('\n');
+
+    // ft_putstr("name of child: ");
+    // ft_putstr(tree->child->name);
+    // ft_putchar('\n');
+
+    // ft_putstr("name of sibling: ");
+    // ft_putstr(tree->sibling->name);
+    // ft_putchar('\n');
+    
+}
+
+
     // // ********    ROOM FROM END TO START:    ********    //prev may not be working. Check this later
     // ft_printf("check\n");
     // t_room *room2 = lem->all_rooms;
@@ -135,22 +160,3 @@ void test_structs(t_lem *lem)
 
     //     room2 = room2->prev;
     // }
-
-    // ********   PATH FROM START TO END:    ********
-    t_tree *start = lem->tree;
-
-    scan_tree(start);
-
-    // ft_putstr("name of parent: ");
-    // ft_putstr(tree->parent->name);
-    // ft_putchar('\n');
-
-    // ft_putstr("name of child: ");
-    // ft_putstr(tree->child->name);
-    // ft_putchar('\n');
-
-    // ft_putstr("name of sibling: ");
-    // ft_putstr(tree->sibling->name);
-    // ft_putchar('\n');
-    
-}
