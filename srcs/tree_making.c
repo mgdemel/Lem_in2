@@ -21,6 +21,22 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 	}
 }
 
+int	ft_blocked_index(int tunnels, int *forbidden_array, int j)			
+{
+	int i;
+	int forbidden;
+
+	i = 0;
+	forbidden = 0;
+	while (i < tunnels)
+	{
+		if (j == forbidden_array[i])
+			forbidden = 1;
+		i++;
+	}
+	return(forbidden);
+}
+
 char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array)
 {
     t_tree  *sibling;
@@ -80,18 +96,19 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	child = tree_init(parent->name);
 	ft_printf("step: %d\n", lem->test_index);
 	lem->test_index++;
-	while (lem->tunnels[j])
+	while (lem->tunnels[j]) // we go through tunnels to find the child to the parent
 	{
 		if (ft_strstr(lem->tunnels[j], parent->name))
 		{
-			i = 0;
-			while (i < lem->nbr_tunnels)
-			{
-				if (j == forbidden_array[i])
-					forbidden = 1;
-				i++;
-			}
-			if (forbidden == 0)
+			// make utils function i = ft_blocked_index
+			// i = 0;
+			// while (i < lem->nbr_tunnels)
+			// {
+			// 	if (j == forbidden_array[i])
+			// 		forbidden = 1;
+			// 	i++;
+			// }
+			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
 				child->name = needle_crop(lem->tunnels[j], parent->name);
 				child->parent = parent;
