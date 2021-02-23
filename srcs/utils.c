@@ -77,7 +77,6 @@ int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns 
 		else
 			i++;
 	}
-	ft_printf("t is: %d\n", t);
 	if (t > 1)
 		return (1);
 	return (0);
