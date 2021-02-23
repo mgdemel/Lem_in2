@@ -54,11 +54,12 @@ int			search_for_all_paths(t_lem *lem);
 char		*needle_crop(const char *haystack, const char *needle);
 int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array);
 int			tree_creation(t_lem *lem);
-t_tree		*tree_init(char *name);
+t_tree		*tree_init(t_tree *parent);
 void 		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
 int 		*add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent);
 int 		scan_forbidden(int *array, int i, t_lem *lem);
 void		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
 char		*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
+t_tree		*head_tree_init(char *name);
 
 #endif

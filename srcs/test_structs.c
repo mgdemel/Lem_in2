@@ -13,6 +13,54 @@ void test_array(char **array)
     }
 }
 
+void    scan_tree(t_tree *start)
+{
+    t_tree *tree;
+
+    tree = start;
+
+    ft_printf("name %s\n", tree->name);
+    ft_printf("child name %s\n", tree->child->name);
+
+    while (tree->child->name != NULL)
+    {
+        ft_putstr("name of head node of tree: ");
+        ft_putstr(tree->name);
+        ft_putchar('\n');
+
+        tree = tree->child;
+        ft_putendl("Hello");
+   //     if (tree->sibling != NULL)
+     //       scan_tree(tree);
+    }
+}
+
+void  scan_rooms(t_lem *lem)
+{
+    t_room *room = lem->all_rooms;
+    while (room->next != NULL)
+    {
+        ft_putstr("name: ");
+        ft_putstr(room->name);
+        ft_putchar('\n');
+
+        ft_putstr("x: ");
+        ft_putnbr(room->x);
+        ft_putchar('\n');
+
+        ft_putstr("y: ");
+        ft_putnbr(room->y);
+        ft_putchar('\n');
+
+        ft_putstr("roomtype: ");
+        ft_putnbr(room->roomtype);
+        ft_putchar('\n');
+        ft_putchar('\n');
+
+        room = room->next;
+    }
+}
+
 void test_structs(t_lem *lem)
 {
     ft_putchar('\n');
@@ -57,28 +105,7 @@ void test_structs(t_lem *lem)
 
    // ********    ROOM FROM START TO END:    ********
     
-    t_room *room = lem->all_rooms;
-    while (room->next != NULL)
-    {
-        ft_putstr("name: ");
-        ft_putstr(room->name);
-        ft_putchar('\n');
-
-        ft_putstr("x: ");
-        ft_putnbr(room->x);
-        ft_putchar('\n');
-
-        ft_putstr("y: ");
-        ft_putnbr(room->y);
-        ft_putchar('\n');
-
-        ft_putstr("roomtype: ");
-        ft_putnbr(room->roomtype);
-        ft_putchar('\n');
-        ft_putchar('\n');
-
-        room = room->next;
-    }
+    scan_rooms(lem);
 
     // // ********    ROOM FROM END TO START:    ********    //prev may not be working. Check this later
     // ft_printf("check\n");
@@ -109,17 +136,10 @@ void test_structs(t_lem *lem)
     //     room2 = room2->prev;
     // }
 
-     // ********   PATH FROM START TO END:    ********
-    
-    t_tree *tree = lem->tree;
-    while (tree->name != NULL)
-    {
-        ft_putstr("name of head node of tree: ");
-        ft_putstr(tree->name);
-        ft_putchar('\n');
+    // ********   PATH FROM START TO END:    ********
+    t_tree *start = lem->tree;
 
-        tree = tree->sibling;
-    }
+    scan_tree(start);
 
     // ft_putstr("name of parent: ");
     // ft_putstr(tree->parent->name);
