@@ -19,22 +19,22 @@ void    scan_tree(t_tree *start, t_lem *lem)
 
     tree = start;
 
-    ft_printf("name %s\n", tree->name);
-    ft_printf("child name %s\n", tree->child->name);
-    ft_printf("sibling pointer address %p\n", tree->sibling);
-
+  //  ft_printf("name %s\n", tree->name);
+  //  ft_printf("child name %s\n", tree->child->name);
+  //  ft_printf("sibling pointer address %p\n", tree->sibling);
     while (tree->child->name != lem->end_room_name)
     {
-        ft_putstr("name of head node of tree: ");
-        ft_putstr(tree->name);
         ft_putchar('\n');
-
+        ft_printf("name of current room %s\n", tree->name);
+        ft_printf("child is %s\n", tree->child->name);
         tree = tree->child;
-        ft_putendl("Hello");
-        ft_printf("sibling pointer address %p\n", tree->sibling);
+        ft_printf("AFTER TREE IS SWITCHED TO CHILD\n");
+        ft_printf("name of current room %s\n", tree->name);
+        ft_printf("child is %s\n", tree->child->name);
         if (tree->sibling != NULL)
         {
             ft_printf("WENT INTO SIBLING PATH\n");
+            ft_printf("sibling pointer address %p\n", tree->sibling);
             scan_tree(tree->sibling, lem);
         }
     }
