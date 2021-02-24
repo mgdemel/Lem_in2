@@ -6,14 +6,17 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 	char	*sibling_name;
 
 	sibling_name = NULL;
+	ft_printf("Started find child or sibling\n");
 	if (find_parent_links(parent->name, lem, forbidden_array))
 	{
+		ft_printf("started sibling\n");
 		new = add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		new = add_elem_int_array(new, lem, child->name, 0);
 		sibling_name = make_sibling(child, parent, lem, new);
 		ft_printf("sibling_name: %s\n", sibling_name);
 		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
 	}
+	ft_printf("went here\n");
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
