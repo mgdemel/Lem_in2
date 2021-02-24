@@ -53,7 +53,7 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 	i = 0;
 	ft_printf("step: %d\n", lem->test_index);
 	lem->test_index++;
-	while (lem->tunnels[j])
+	while (j < lem->nbr_tunnels)
 	{
 		if (ft_strstr(lem->tunnels[j], parent->name))
 		{
@@ -86,7 +86,7 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	parent->child = child;
 	ft_printf("step: %d\n", lem->test_index);
 	lem->test_index++;
-	while (lem->tunnels[j]) // we go through tunnels to find the child to the parent
+	while (j < lem->nbr_tunnels) // we go through tunnels to find the child to the parent
 	{
 		if (ft_strstr(lem->tunnels[j], parent->name))
 		{
@@ -102,9 +102,8 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	ft_printf("CHILD: child name is %s\n", child->name);
 	ft_printf("CHILD: parent name is %s\n", parent->name);
 	ft_printf("\n");
-
-	find_child_or_sibling(lem, forbidden_array, parent, child);
-
+	if (child->name != NULL)
+		find_child_or_sibling(lem, forbidden_array, parent, child);
 }
 
 int	tree_creation(t_lem *lem)

@@ -1,16 +1,16 @@
 #include "../includes/lem_in.h"
 
-void test_array(char **array)
+void test_array(t_lem *lem)
 {
     int i;
 
     i = 0;
-    while (array[i] != NULL)
+    while (i < lem->nbr_tunnels)
     {
-        ft_putstr(array[i]);
-        ft_putchar('\n');
+        ft_printf("%s\n", lem->tunnels[i]);
         i++;
     }
+    ft_printf("SUCCESS!");
 }
 
 void scan_tree(t_tree *start, t_lem *lem, int i)
@@ -91,7 +91,7 @@ void print_lem(t_lem *lem)
     // ft_putchar('\n');
 
     ft_putstr("tunnels: \n");
-    test_array(lem->tunnels);
+    test_array(lem);
     ft_putchar('\n');
 
     ft_putstr("start room name: \n");
@@ -111,13 +111,17 @@ void test_structs(t_lem *lem)
     ft_putchar('\n');
 
     // ********    LEM:    ********
+    ft_printf("********    LEM TESTING:    ********\n");
+    ft_printf("********    PRINT INFO:    ********\n\n");
     print_lem(lem);
 
     // ********    ROOM FROM START TO END:    ********
+    ft_printf("********    SCAN ROOMS:    ********\n\n");
 
     scan_rooms(lem);
 
     // ********   PATH FROM START TO END:    ********
+    ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 
     scan_tree(start, lem, 1);
 }
