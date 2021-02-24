@@ -38,7 +38,7 @@ int *add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int 
 		i++;
 	}
 	i = 0;
-	while (lem->tunnels[i])
+	while (i < lem->nbr_tunnels)
 	{
 		if (scan_forbidden(new, i, lem) == 1) // moves forward in the index if it's forbidden
 			i++;
