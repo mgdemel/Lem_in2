@@ -69,6 +69,8 @@ int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns 
 	{
 		if (scan_forbidden(forbidden_array, i, lem) == 1) // moves forward in the index if it's forbidden
 			i++;
+		//if (lem->sibling_array == child/parent)
+			// make sibling (7.b)
 		else if (ft_strstr(lem->tunnels[i], parent))
 		{
 			t++;

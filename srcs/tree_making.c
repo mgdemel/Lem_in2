@@ -14,6 +14,7 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 		new = add_elem_int_array(new, lem, child->name, 0);
 		sibling_name = make_sibling(child, parent, lem, new);
 		ft_printf("sibling_name: %s\n", sibling_name);
+		// lem->sibling_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
 		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
 	}
 	ft_printf("went here\n");
@@ -21,6 +22,7 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 	{
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		make_child(child, lem, forbidden_array);
+		// free(lem->sibling_array);
 	}
 }
 
