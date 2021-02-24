@@ -10,7 +10,6 @@ void test_array(t_lem *lem)
         ft_printf("%s\n", lem->tunnels[i]);
         i++;
     }
-    ft_printf("SUCCESS!");
 }
 
 void scan_tree(t_tree *start, t_lem *lem, int i)
@@ -18,6 +17,7 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
     t_tree *tree;
 
     tree = start;
+    i = 0;
     //  ft_printf("name %s\n", tree->name);
     //  ft_printf("child name %s\n", tree->child->name);
     //  ft_printf("sibling pointer address %p\n", tree->sibling);
@@ -25,14 +25,15 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
     {
         ft_putchar('\n');
         sleep(1);
-        ft_printf("Path: %d\n", i);
+        ft_printf("Step %d\n", lem->path);
         ft_printf("name of current room %s|\n", tree->name);
         ft_printf("child is %s\n", tree->child->name);
+        lem->path++;
         if (tree->sibling != NULL)
         {
-            ft_printf("sibling pointer address %p\n", tree->sibling);
-            scan_tree(tree->sibling, lem, i + lem->path);
-            lem->path++;
+            ft_printf("Changing PATH, found sibling\n");
+            ft_printf("parent is %s\n", tree->parent->name);
+            scan_tree(tree->sibling, lem, lem->path);
         }
         tree = tree->child;
     }
