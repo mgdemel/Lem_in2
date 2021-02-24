@@ -16,6 +16,7 @@ typedef struct		s_lem
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after
+	int				path; // remove
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	char			**all_paths;
 	char			**tunnels;
