@@ -59,6 +59,10 @@ void scan_rooms(t_lem *lem)
         ft_putstr("roomtype: ");
         ft_putnbr(room->roomtype);
         ft_putchar('\n');
+
+        ft_putstr("roomnum: ");
+        ft_putnbr(room->roomnum);
+        ft_putchar('\n');
         ft_putchar('\n');
 
         room = room->next;
@@ -124,6 +128,7 @@ void test_structs(t_lem *lem)
     // ********   PATH FROM START TO END:    ********
     ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 
+    create_path_arr(lem);
     scan_tree(start, lem, 1);
 }
 // // ********    ROOM FROM END TO START:    ********    //prev may not be working. Check this later

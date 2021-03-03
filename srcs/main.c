@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	argc = 0; //only because w-flag complains it's unused
 	lem = initialize_lem();
-	room = initialize_room();
+	room = initialize_room(lem);
 	lem->all_rooms = room;
 	if (file_is_valid(lem, fd) == 0)
 	{

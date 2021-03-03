@@ -9,6 +9,7 @@ t_lem	*initialize_lem()
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
 	lem->nbr_paths = 0;
+	lem->current_roomnum = 0;
 	lem->found_start_end = 0;
 	lem->path_index = 0;
 	lem->all_rooms = NULL;
@@ -22,7 +23,7 @@ t_lem	*initialize_lem()
 	return(lem);
 }
 
-t_room	*initialize_room()
+t_room	*initialize_room(t_lem *lem)
 {
 	t_room 	*room;
 	if (!(room = (t_room *)malloc(sizeof(t_room))))
@@ -31,6 +32,8 @@ t_room	*initialize_room()
 	room->x = 0;
 	room->y = 0;
 	room->roomtype = 2; //defaults to type 2, changes in GNL linked list loop
+	lem->current_roomnum++;
+	room->roomnum = lem->current_roomnum;
 	room->prev = NULL;
 	room->next = NULL;
 	return (room);

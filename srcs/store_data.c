@@ -46,7 +46,7 @@ t_room		*get_room(char *line, t_room *room, t_lem *lem)
 {
 	t_room *new_room;
 
-	new_room = initialize_room();
+	new_room = initialize_room(lem);
 	room->next = new_room;
 	new_room->prev = room;
 	get_room_data(line, room, lem);

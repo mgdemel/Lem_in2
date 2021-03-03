@@ -82,6 +82,8 @@ s-r1-r4-r3-r5-e
      \ /           [2]/____/
      [7]___________/
 
+
+
 1
 |
 3(1)---------------2
@@ -97,3 +99,54 @@ s-r1-r4-r3-r5-e
 
 // Need to have a condition where if only one ant, send it thru the best path right away.
 // If more than one ant, prefer multi-paths even if one or two step longer.
+
+
+        
+         [s] 
+      /   |
+  [r1]   [r2]---[r3]
+    |     |      |
+  [r4]---[r5]   [r6]
+          |   /
+         [e]
+
+              Path 1             Path 2             Path 3       
+            s-r2-r5-e         s-r1-r4-r5-e      s-r2-r3-r6-e
+Length          2                   3                 3
+ANTS           Single                     Both
+1               3                          
+2               4                          4
+3               5                          5
+4               6                          5
+
+if (ants < 4)
+    use path 1
+
+Int path 1 s-r2-r5-e
+
+int path 2
+int path 3
+
+
+ANTS   STEPS MIDDLE | ALL
+
+1              1
+2              2        2
+3              3        2
+4              
+
+
+
+
+
+
+
+s r3  r2 r4 r1 e
+1  2  3  4   5 9
+
+int arr = [ 1, 2, 8, 9]
+          [ 1, 6, 2, 9]
+          [ 1, 5, 4, 2, 9]
+
+          [ 1, 5, 9]
+          [ 1, 4, 2, 9]

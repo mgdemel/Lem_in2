@@ -13,12 +13,13 @@ typedef struct		s_lem
 	int				nbr_tunnels;
 	int				nbr_rooms;
 	int				nbr_paths;
+	int				current_roomnum;
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after
 	int				path; // remove
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
-	char			**all_paths;
+	int				**all_paths;
 	char			**tunnels;
 	char			*start_room_name;
 	char			*end_room_name;
@@ -40,6 +41,7 @@ typedef struct			s_room
 	int					x;
 	int					y;
 	int					roomtype; //1=start, 2=normal, 3=end
+	int					roomnum; //assigns a numeric 'name' to the room for pathfinding array
 	struct s_room		*prev;
 	struct s_room		*next;	
 }						t_room;
@@ -50,7 +52,6 @@ int			store_data(char *line, t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
-//int 		pathfinding(t_lem *lem);
 char		*needle_crop(const char *haystack, const char *needle);
 int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array);
 int			tree_creation(t_lem *lem);
@@ -61,5 +62,6 @@ int 		scan_forbidden(int *array, int i, t_lem *lem);
 void		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
 char		*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
 t_tree		*head_tree_init(char *name);
+int 		create_path_arr(t_lem *lem);
 
 #endif
