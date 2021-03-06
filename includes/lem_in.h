@@ -17,7 +17,8 @@ typedef struct		s_lem
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after
-	int				path; // remove
+	int				path;
+	int				max_paths;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths;
 	char			**tunnels;
