@@ -19,7 +19,7 @@ t_lem	*initialize_lem()
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
 	lem->test_index = 1;
-	lem->path = 1;
+	lem->path = 0;
 	return(lem);
 }
 

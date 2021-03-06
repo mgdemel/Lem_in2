@@ -18,13 +18,13 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
 
     tree = start;
     i = 0;
+    sleep(2);
     //  ft_printf("name %s\n", tree->name);
     //  ft_printf("child name %s\n", tree->child->name);
     //  ft_printf("sibling pointer address %p\n", tree->sibling);
     while (ft_strcmp(tree->name, lem->end_room_name) != 0)
     {
         ft_putchar('\n');
-        sleep(1);
         ft_printf("Step %d\n", lem->path);
         ft_printf("name of current room %s|\n", tree->name);
         ft_printf("child is %s\n", tree->child->name);
