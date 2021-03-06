@@ -1,22 +1,36 @@
 #include "../includes/lem_in.h"
 
-void copy_previous_path(t_lem *lem, int r, int i)
+void copy_previous_path(t_lem *lem, int r, int path, int i)
 {
-    ft_printf("i:%d\nr:%d\n", i, r);
-    ft_printf("lem->allpaths[i - 1][0]:%d\n", lem->all_paths[i - 1][0]);
-    if (lem->all_paths[i - 1][0] <= 0)
+ //   ft_printf("i:%d\nr:%d\n", i, r);
+   // ft_printf("lem->allpaths[i - 1][0]:%d\n", lem->all_paths[i - 1][0]);
+   ft_printf("i is: %d\n", i);
+   ft_printf("path is: %d\n", lem->path);
+    if (i != 0)
     {
-        while (r >= 0)
+        ft_printf("all paths %d\n", lem->all_paths[i - 1][0]);
+        if (lem->all_paths[i - 1][0] <= 0)
         {
-            lem->all_paths[i][r] = lem->all_paths[i - 1][r + 1];
-            r--;
+            while (r >= 0)
+            {
+                lem->all_paths[path][r] = lem->all_paths[i - 1][r + 1];
+                r--;
+            }
+        }
+        else
+        {
+            while (r >= 0)
+            {
+                lem->all_paths[path][r] = lem->all_paths[path - 1][r];
+                r--;
+            }
         }
     }
     else
     {
         while (r >= 0)
         {
-            lem->all_paths[i][r] = lem->all_paths[i - 1][r];
+            lem->all_paths[path][r] = lem->all_paths[i][r];
             r--;
         }
     }
@@ -35,7 +49,7 @@ int    *copy_col(int r, int *arr)
   //  ft_printf("r is %d\n", r);
     if (!(new = (int*)malloc(sizeof(int) * r + 1)))
 			return (NULL);
-    ft_printf("test r:%d\n", ((r + 1) * -1));
+  //  ft_printf("test r:%d\n", ((r + 1) * -1));
     new[i] = ((r + 1) * -1);
     i++;
     while (i < (r + 1))
@@ -43,17 +57,17 @@ int    *copy_col(int r, int *arr)
         new[i] = arr[i - 1];
         i++;
     }
-    ft_printf("NEW PATH HAS BEEN MADE\n");
+   // ft_printf("NEW PATH HAS BEEN MADE\n");
    // ft_printf("New[0] is %d\n", new[0]);
-    while (new[0] < 0)
-    {
-        ft_putnbr(new[k]);
-        ft_putchar('|');
-        new[0]++;
-        k++;
-    }
-    ft_putchar('\n');
-    ft_putchar('\n');
+    // while (new[0] < 0)
+    // {
+    //     ft_putnbr(new[k]);
+    //     ft_putchar('|');
+    //     new[0]++;
+    //     k++;
+    // }
+    // ft_putchar('\n');
+    // ft_putchar('\n');
     return (new);
 }
 
@@ -65,7 +79,7 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
 
     k = 0;
     tree = start;
-    room  = lem->all_rooms;
+    room = lem->all_rooms;
  //   ft_printf("r is at the start of scan_paths: %d\n", r);
   //  ft_printf("path: %d\n", lem->path);
     //ft_printf("i : %d\nr : %d\n", i, r);
@@ -78,10 +92,10 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
         lem->all_paths[i][r] = room->roomnum;
         if (tree->sibling != NULL)
         {
-            ft_printf("Found Sibling name is %s\n", tree->sibling->name);
-            ft_printf("Path when sibling was found is %d\n", i);
+        //    ft_printf("Found Sibling name is %s\n", tree->sibling->name);
+          //  ft_printf("Path when sibling was found is %d\n", i);
             lem->path++;
-            copy_previous_path(lem, r, lem->path);
+            copy_previous_path(lem, r, lem->path, i);
             scan_paths(tree->sibling, lem, lem->path, r);
         }
         r++;
@@ -92,6 +106,7 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
     // while(room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
     //     room = room->next;
     // lem->all_paths[i][r] = room->roomnum;
+    k = 0;
     ft_printf("ALL PATHS BEFORE COPY_COL\n");
     while (k < 10)
     {
@@ -144,7 +159,8 @@ int create_path_arr(t_lem *lem)
     ft_putstr("all_paths:\n");
     while (j < lem->max_paths)
     {
-        while (k < 10)
+        ft_printf("First index:");
+        while (k < (lem->all_paths[j][0] * -1))
         {
             ft_putnbr(lem->all_paths[j][k]);
             ft_putchar('|');
