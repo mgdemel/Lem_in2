@@ -147,7 +147,7 @@ int create_path_arr(t_lem *lem)
     start = lem->tree;
     arr_row_size(start, lem);
     ft_printf("paths after search: %d\n", lem->max_paths);
-    if (!(lem->all_paths = (int**)malloc(sizeof(int*) * lem->max_paths)))
+    if (!(lem->all_paths = (int**)malloc(sizeof(int*) * lem->max_paths + 1)))
 		return (1);
     while (i < lem->max_paths)
 	{

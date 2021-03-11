@@ -27,6 +27,8 @@ void 	get_room_data(char *line, t_room *room, t_lem *lem)
 		room->name[i] = line[i];
 		i++;
 	}
+	lem->room_directory[lem->index] = room->name;
+	lem->index++;
 	if (room->roomtype == 1 || room->roomtype == 3) //stores start and end names in lem struct
 	{
 		if(room->roomtype == 1)
@@ -61,9 +63,12 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 	get_next_line(fd, &line);
 	lem->ants = ft_atoi(line);
 	ft_strdel(&line);
-	if (!(lem->tunnels = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels)))) //allocates tunnels array
+	if (!(lem->tunnels = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels))))
+		return (1);
+	if (!(lem->room_directory = (char**)malloc(sizeof(char*) * (lem->nbr_rooms))))
 		return (1);
 	lem->tunnels[lem->nbr_tunnels] = NULL;
+	lem->room_directory[lem->nbr_rooms] = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!(ft_strstr(line, "-")))

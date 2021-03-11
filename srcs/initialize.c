@@ -15,12 +15,14 @@ t_lem	*initialize_lem()
 	lem->all_rooms = NULL;
 	lem->all_paths = NULL;
 	lem->tunnels = NULL;
+	lem->room_directory = NULL;
 	lem->start_room_name = NULL;
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
 	lem->test_index = 1;
 	lem->max_paths = 1;
 	lem->path = 0;
+	lem->index = 0;
 	return(lem);
 }
 

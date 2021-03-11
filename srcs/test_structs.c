@@ -12,6 +12,18 @@ void test_array(t_lem *lem)
     }
 }
 
+void test_array2(t_lem *lem)
+{
+    int i;
+
+    i = 0;
+    while (i < lem->nbr_rooms)
+    {
+        ft_printf("%s\n", lem->room_directory[i]);
+        i++;
+    }
+}
+
 void scan_tree(t_tree *start, t_lem *lem, int i)
 {
     t_tree *tree;
@@ -97,6 +109,10 @@ void print_lem(t_lem *lem)
 
     ft_putstr("tunnels: \n");
     test_array(lem);
+    ft_putchar('\n');
+
+    ft_putstr("room directory: \n");
+    test_array2(lem);
     ft_putchar('\n');
 
     ft_putstr("start room name: \n");

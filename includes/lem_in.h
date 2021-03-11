@@ -5,7 +5,6 @@
 # include "../libft/include/get_next_line.h"
 # include <stdlib.h>
 # include <fcntl.h> //for reading files from FD
-# include <stdio.h> //REMOVE THIS DUMBASS (Melissa)!!! 
 
 typedef struct		s_lem
 {
@@ -20,10 +19,12 @@ typedef struct		s_lem
 	int				path;
 	int				max_paths;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
-	int				**all_paths;
+	int				**all_paths; //a 2d int array of all the paths found by our alg
 	char			**tunnels;
+	char			**room_directory;
 	char			*start_room_name;
 	char			*end_room_name;
+	int 			index;
 	struct s_tree	*tree; //head branch
 }					t_lem;
 
@@ -34,7 +35,6 @@ typedef struct 		s_tree
 	struct s_tree	*child;
 	struct s_tree	*sibling;
 }					t_tree;
-
 
 typedef struct			s_room
 {
