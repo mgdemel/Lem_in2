@@ -13,23 +13,23 @@ void	free_array(char **array)
 	free(array);
 }
 
-void 	get_room_data(char *line, t_room *room, t_lem *lem)
+int 	get_room_data(char *line, t_room *room, t_lem *lem)
 {
 	int		i;
 	char	**coord;
 
 	i = 0;
 	if (!(room->name = (char*)malloc(sizeof(char) * ((int)ft_strlen(line) + 1))))
-		ft_putstr("ERROR. COULD NOT MALLOC ROOM NAME\n");
+		return (1);
 	line[(int)ft_strlen(line) + 1] = '\0';
 	while (line[i] != ' ') //stores the name of the room
 	{
 		room->name[i] = line[i];
 		i++;
 	}
-	lem->room_directory[lem->index] = room->name;
-	lem->index++;
-	if (room->roomtype == 1 || room->roomtype == 3) //stores start and end names in lem struct
+	lem->room_directory[lem->room_dir_index] = room->name;
+	lem->room_dir_index++;
+	if (room->roomtype == 1 || room->roomtype == 3)
 	{
 		if(room->roomtype == 1)
 			lem->start_room_name = room->name;
@@ -38,10 +38,11 @@ void 	get_room_data(char *line, t_room *room, t_lem *lem)
 	}
 	i++; //moves past next space to get to coords
 	if (!(coord = ft_strsplit(&line[i], ' ')))
-		ft_putstr("ERROR IN FT_STRSPLIT - GET_ROOM FUNCTION");
+		return (1);
 	room->x = ft_atoi(coord[0]);
 	room->y = ft_atoi(coord[1]);
 	free_array(coord);
+	return (0);
 }
 
 t_room		*get_room(char *line, t_room *room, t_lem *lem)

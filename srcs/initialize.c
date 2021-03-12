@@ -19,10 +19,10 @@ t_lem	*initialize_lem()
 	lem->start_room_name = NULL;
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
-	lem->test_index = 1;
+	lem->test_index = 1; //remove when tests in tree making are removed
 	lem->max_paths = 1;
 	lem->path = 0;
-	lem->index = 0;
+	lem->room_dir_index = 0;
 	return(lem);
 }
 

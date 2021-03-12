@@ -24,7 +24,7 @@ typedef struct		s_lem
 	char			**room_directory;
 	char			*start_room_name;
 	char			*end_room_name;
-	int 			index;
+	int 			room_dir_index;
 	struct s_tree	*tree; //head branch
 }					t_lem;
 

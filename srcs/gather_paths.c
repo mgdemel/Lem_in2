@@ -2,7 +2,7 @@
 
 void copy_previous_path(t_lem *lem, int r, int path, int i)
 {
- //   ft_printf("i:%d\nr:%d\n", i, r);
+    // ft_printf("i:%d\nr:%d\n", i, r);
    // ft_printf("lem->allpaths[i - 1][0]:%d\n", lem->all_paths[i - 1][0]);
    ft_printf("i is: %d\n", i);
    ft_printf("path is: %d\n", lem->path);
@@ -172,8 +172,3 @@ int create_path_arr(t_lem *lem)
     }
     return(0);
 }
-
-
-
-
-
