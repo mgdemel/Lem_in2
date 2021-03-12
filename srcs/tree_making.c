@@ -27,7 +27,6 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 		make_child(child, lem, forbidden_array);
 		// free(lem->sibling_array);
 	}
-	ft_printf("maybe free?\n");
 }
 
 int	ft_blocked_index(int tunnels, int *forbidden_array, int j)			
@@ -51,9 +50,11 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
     t_tree  *sibling;
 	int i;
 	int j;
+	char *tmp;
 
 	j = 0;
 	i = 0;
+	tmp = NULL;
     sibling = tree_init(parent);
 	child->sibling = sibling;
 	i = 0;
@@ -65,8 +66,10 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 		{
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
-				sibling->name = needle_crop(lem->tunnels[j], parent->name);
+				tmp = ft_strdup(lem->tunnels[j]);
+				sibling->name = needle_crop(tmp, parent->name);
 				sibling->parent = parent;
+				free(tmp);
 				break ;
 			}
 		}
@@ -85,9 +88,11 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
     t_tree  *child;
 	int i;
 	int j;
+	char *tmp;
 
 	j = 0;
 	i = 0;
+	tmp = NULL;
 	child = tree_init(parent);
 	parent->child = child;
 	ft_printf("step: %d\n", lem->test_index);
@@ -98,8 +103,10 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 		{
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
-				child->name = needle_crop(lem->tunnels[j], parent->name);
+				tmp = ft_strdup(lem->tunnels[j]);
+				child->name = needle_crop(tmp, parent->name);
 				child->parent = parent;
+				//free(tmp);
 				break ;
 			}
 		}
@@ -108,10 +115,8 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	ft_printf("CHILD: child name is %s\n", child->name);
 	ft_printf("CHILD: parent name is %s\n", parent->name);
 	ft_printf("\n");
-	ft_printf("tunnels %d\n", lem->nbr_tunnels);
 	if (child->name != NULL)
 		find_child_or_sibling(lem, forbidden_array, parent, child);
-	ft_printf("TEST\n");
 }
 
 int	tree_creation(t_lem *lem)
@@ -123,7 +128,6 @@ int	tree_creation(t_lem *lem)
 
 	c = 0;
 	i = 0;
-	ft_printf("tunnels\n", lem->tunnels);
 	if (!(forbidden_array = (int*)malloc(sizeof(int) * (lem->nbr_tunnels))))
 		return (1);
 	while (i < (lem->nbr_tunnels))
@@ -137,7 +141,6 @@ int	tree_creation(t_lem *lem)
 	while (i < lem->nbr_tunnels)
 		i++;
 	make_child(current_child, lem, forbidden_array);
-	ft_printf("END\n");
 	//free forbidden_array
 	return (0);
 }

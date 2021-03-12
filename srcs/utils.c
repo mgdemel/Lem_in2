@@ -1,11 +1,6 @@
 #include "../includes/lem_in.h"
 
 
-void	free_tree(t_tree *tree)
-{
-	
-}
-
 
 /*
 **	Scans the array if the number i exists, MOVE TO UTILS
@@ -61,7 +56,7 @@ int *add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int 
 		else
 			i++;
 	}
-	/free_int_array(forbidden_array, lem->nbr_tunnels);
+	//free_int_array(forbidden_array, lem->nbr_tunnels);
 	return (new);
 }
 
@@ -113,9 +108,16 @@ char *needle_crop(const char *haystack, const char *needle)
 		while (haystack[a + i] == needle[a] && haystack[a + i] != '\0')
 		{
 			if (needle[a + 1] == '\0' && haystack[a + i + 1] != '\0')
+			{
+				free(temp);
+				ft_printf("test1\n");
 				return ((char *)&haystack[i + ft_strlen(needle) + 1]);
+			}
 			else if (needle[a + 1] == '\0' && haystack[a + i + 1] == '\0')
+			{
+				ft_printf("test2\n");
 				return ((char *)temp);
+			}
 			a++;
 		}
 		if (haystack[i] != '-')

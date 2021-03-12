@@ -174,7 +174,7 @@ int create_path_arr(t_lem *lem)
     }
 //	ft_printf("going into scan_paths\n");
     scan_paths(start, lem, 0, 0);
-	free_tree(start);
+//	free_tree(start);
 //	ft_printf("exiting scan_paths\n");
    ft_putstr("all_paths:\n");
    while (j < lem->max_paths)

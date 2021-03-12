@@ -64,6 +64,6 @@ void		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
 char		*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
 t_tree		*head_tree_init(char *name);
 int 		create_path_arr(t_lem *lem);
-void		free_int_array(int *arr, int len);
+void		free_tree(t_tree *start, t_lem *lem);
 
 #endif
