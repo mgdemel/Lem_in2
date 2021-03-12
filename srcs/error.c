@@ -27,7 +27,10 @@ int	check_rooms_validity(char *line, t_lem *lem)
 		{
 			new = ft_strtrim(line);
 			if (ft_isalldigit(new))
+			{
+				free(new);
 				return (1);
+			}
 			lem->nbr_rooms++;
 			free(new);
 		}

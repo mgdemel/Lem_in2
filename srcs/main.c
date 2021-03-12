@@ -24,6 +24,10 @@ int		main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY); //had to call it again to restart the GNL read
 		if (store_data(line, lem, room, fd) == 1 || tree_creation(lem) == 1)
 			return(1);
+		free(line);
+		ft_printf("SEG?\n");
+   		create_path_arr(lem);
+		ft_printf("NOT FAULT :)\n");
 		test_structs(lem);
 		return (0);
 	}

@@ -1,14 +1,15 @@
 #include "../includes/lem_in.h"
+#include <stdio.h>
 
 void copy_previous_path(t_lem *lem, int r, int path, int i)
 {
     // ft_printf("i:%d\nr:%d\n", i, r);
    // ft_printf("lem->allpaths[i - 1][0]:%d\n", lem->all_paths[i - 1][0]);
-   ft_printf("i is: %d\n", i);
-   ft_printf("path is: %d\n", lem->path);
+  // ft_printf("i is: %d\n", i);
+  // ft_printf("path is: %d\n", lem->path);
     if (i != 0)
     {
-        ft_printf("all paths %d\n", lem->all_paths[i - 1][0]);
+    //    ft_printf("all paths %d\n", lem->all_paths[i - 1][0]);
         if (lem->all_paths[i - 1][0] <= 0)
         {
             while (r >= 0)
@@ -101,20 +102,22 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
         r++;
         tree = tree->child;
         room = lem->all_rooms;
+		if (tree->name == NULL)
+			break ;
         // ft_printf("r = %d\n", r);
     }
     // while(room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
     //     room = room->next;
     // lem->all_paths[i][r] = room->roomnum;
     k = 0;
-    ft_printf("ALL PATHS BEFORE COPY_COL\n");
-    while (k < 10)
-    {
-        ft_putnbr(lem->all_paths[i][k]);
-        ft_putchar('|');
-        k++;
-    }
-    ft_putchar('\n');
+   // ft_printf("ALL PATHS BEFORE COPY_COL\n");
+   // while (k < 10)
+    //{
+     //   ft_putnbr(lem->all_paths[i][k]);
+      //  ft_putchar('|');
+      //  k++;
+   // }
+   // ft_putchar('\n');
     lem->all_paths[i] = copy_col(r, lem->all_paths[i]);
 }
 
@@ -123,14 +126,24 @@ void arr_row_size(t_tree *start, t_lem *lem)
     t_tree *tree;
 
     tree = start;
+//	ft_printf("START\n");
+//	ft_printf("tree name: %s\n", tree->child->name);
     while (ft_strcmp(tree->name, lem->end_room_name) != 0)
     {
+//		ft_printf("TOP OF WHILE\n");
         if (tree->sibling != NULL)
         {
             lem->max_paths++;
+//			ft_printf("Inside IF\n");
             arr_row_size(tree->sibling, lem);
         }
+//		ft_printf("SNEAKY\n");
         tree = tree->child;
+//		ft_printf("tree name: %s\n", tree->name);
+		if (tree->name == NULL)
+			break ;
+//		ft_printf("Step: %d\n", lem->test_index);
+//		lem->test_index++;
     }
 }
 
@@ -140,13 +153,17 @@ int create_path_arr(t_lem *lem)
     int j;
     int k;
     t_tree *start;
+	int test_index;
 
     i = 0;
     j = 0;
     k = 0;
+	test_index = 0;
+	lem->test_index = 0;
     start = lem->tree;
+//	ft_printf("%s\n", lem->room_directory[0]);
     arr_row_size(start, lem);
-    ft_printf("paths after search: %d\n", lem->max_paths);
+ //   ft_printf("paths after search: %d\n", lem->max_paths);
     if (!(lem->all_paths = (int**)malloc(sizeof(int*) * lem->max_paths + 1)))
 		return (1);
     while (i < lem->max_paths)
@@ -155,11 +172,14 @@ int create_path_arr(t_lem *lem)
 			return (1);
         i++;
     }
+//	ft_printf("going into scan_paths\n");
     scan_paths(start, lem, 0, 0);
-    ft_putstr("all_paths:\n");
-    while (j < lem->max_paths)
-    {
-        ft_printf("First index:");
+	free_tree(start);
+//	ft_printf("exiting scan_paths\n");
+   ft_putstr("all_paths:\n");
+   while (j < lem->max_paths)
+   {
+       ft_printf("Index %d:", test_index);
         while (k < (lem->all_paths[j][0] * -1))
         {
             ft_putnbr(lem->all_paths[j][k]);
@@ -169,6 +189,11 @@ int create_path_arr(t_lem *lem)
         ft_putchar('\n');
         j++;
         k = 0;
+		test_index++;
     }
+	while (1)
+	{
+		
+	}
     return(0);
 }

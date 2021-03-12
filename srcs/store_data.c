@@ -86,6 +86,7 @@ int				store_data(char *line, t_lem *lem, t_room *room, int fd)
 			lem->tunnels[i] = ft_strdup(line);
 			i++;
 		}
+		free(line);
 	}
 	return (0);
 }

@@ -102,6 +102,14 @@ void	first_path(t_lem *lem)
 	lem->all_paths[i][1] = find_low_int_array(lem, 1);
 }
 
+void	add_into_allpaths(t_lem *lem, int *forbidden)
+{
+	while (i < forbidden[0])
+	{
+		
+	}
+}
+
 void	flow_management(t_lem *lem)
 {
 	int i;
@@ -127,7 +135,7 @@ void	flow_management(t_lem *lem)
 			j++;
 		}
 		if (forbidden != NULL)
-			add_into_lem_allpaths_with_negative_forbidden(); // count 0 and negative for malloc, adding
+			add_into_allpaths(lem, forbidden); // count 0 and negative for malloc, adding 
 		i++;
 	}
 }
