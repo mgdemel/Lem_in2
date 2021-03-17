@@ -109,7 +109,7 @@ char *needle_crop(const char *haystack, const char *needle)
 		{
 			if (needle[a + 1] == '\0' && haystack[a + i + 1] != '\0')
 			{
-				free(temp);
+			//	free(temp);
 				ft_printf("test1\n");
 				return ((char *)&haystack[i + ft_strlen(needle) + 1]);
 			}

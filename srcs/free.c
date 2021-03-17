@@ -1,5 +1,6 @@
 #include "../includes/lem_in.h"
 
+
 void free_tree(t_tree *start, t_lem *lem)
 {
     t_tree *tmp;
@@ -12,13 +13,15 @@ void free_tree(t_tree *start, t_lem *lem)
 		if (start->sibling != NULL)
 			free_tree(start->sibling, lem);
 		ft_printf("name: %s\n", start->name);
-		free(start->name);
-		free(start);	
+		ft_printf("\nFREEING1\n");
+	//	free(start->name);
+		ft_printf("FREEING2\n");
+		free(start);
 		start = tmp;
 		if (start->name == NULL)
 			break ;
 	}
-	free(start->name);
+	ft_printf("Freeing last room %s\n", start->name);
 	free(start);
 
 //     typedef struct 		s_tree

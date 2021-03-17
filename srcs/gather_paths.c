@@ -191,9 +191,5 @@ int create_path_arr(t_lem *lem)
         k = 0;
 		test_index++;
     }
-	while (1)
-	{
-		
-	}
     return(0);
 }

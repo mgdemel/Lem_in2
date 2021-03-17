@@ -26,9 +26,11 @@ int		main(int argc, char **argv)
 			return(1);
 		free(line);
 		lem->test_index = 1;
-		free_tree(lem->tree, lem);
    		create_path_arr(lem);
 		test_structs(lem);
+		ft_printf("\n\nFREE\n");
+		free_tree(lem->tree, lem);
+		while (1);
 		return (0);
 	}
 	else

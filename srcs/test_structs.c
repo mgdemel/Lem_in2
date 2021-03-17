@@ -31,7 +31,6 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
 	ft_printf("STARTED SCAN_TREE\n");
     tree = start;
     i = 0;
-    sleep(2);
 	ft_printf("name %s\n", tree->name);
     //  ft_printf("child name %s\n", tree->child->name);
     //  ft_printf("sibling pointer address %p\n", tree->sibling);
@@ -127,7 +126,7 @@ void print_lem(t_lem *lem)
 
 void test_structs(t_lem *lem)
 {
-    // t_tree *start = lem->tree;
+    t_tree *start = lem->tree;
 	lem->max_paths = lem->max_paths;
     ft_putchar('\n');
     ft_putchar('\n');
@@ -140,12 +139,12 @@ void test_structs(t_lem *lem)
     // ********    ROOM FROM START TO END:    ********
     ft_printf("********    SCAN ROOMS:    ********\n\n");
 
-  //  scan_rooms(lem);
+	//scan_rooms(lem);
 
     // ********   PATH FROM START TO END:    ********
     // ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 	// ft_printf("BEFORE STARTING SCAN_TREE\n");
-    // scan_tree(start, lem, 1);
+    scan_tree(start, lem, 1);
 }
 // // ********    ROOM FROM END TO START:    ********    //prev may not be working. Check this later
 // ft_printf("check\n");

@@ -50,11 +50,9 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
     t_tree  *sibling;
 	int i;
 	int j;
-	char *tmp;
 
 	j = 0;
 	i = 0;
-	tmp = NULL;
     sibling = tree_init(parent);
 	child->sibling = sibling;
 	i = 0;
@@ -66,10 +64,8 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 		{
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
-				tmp = ft_strdup(lem->tunnels[j]);
-				sibling->name = needle_crop(tmp, parent->name);
+				sibling->name = needle_crop(lem->tunnels[j], parent->name);
 				sibling->parent = parent;
-				free(tmp);
 				break ;
 			}
 		}
@@ -88,11 +84,9 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
     t_tree  *child;
 	int i;
 	int j;
-	char *tmp;
 
 	j = 0;
 	i = 0;
-	tmp = NULL;
 	child = tree_init(parent);
 	parent->child = child;
 	ft_printf("step: %d\n", lem->test_index);
@@ -103,10 +97,8 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 		{
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
-				tmp = ft_strdup(lem->tunnels[j]);
-				child->name = needle_crop(tmp, parent->name);
+				child->name = needle_crop(lem->tunnels[j], parent->name);
 				child->parent = parent;
-				//free(tmp);
 				break ;
 			}
 		}
