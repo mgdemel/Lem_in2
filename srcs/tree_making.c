@@ -1,5 +1,10 @@
 #include "../includes/lem_in.h"
 
+
+/*
+** TODO CHANGE THIS SO ITS NOT SHIT, it's breaking and leaking with int *new
+*/
+
 void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_tree *child)
 {
 	int 	*new;
@@ -15,18 +20,19 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 		new = add_elem_int_array(new, lem, child->name, 0);
 		sibling_name = make_sibling(child, parent, lem, new);
 	//	ft_printf("sibling_name: %s\n", sibling_name);
-		// lem->sibling_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
 		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
 	//	ft_printf("new:%d\n", new[0]);
-		free(new);
+	//	free(new);
+	//	free(sibling_name);
 	}
 //	ft_printf("went here\n");
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		make_child(child, lem, forbidden_array);
-		// free(lem->sibling_array);
 	}
+//	free(sibling_name);
+//	free(new);
 }
 
 int	ft_blocked_index(int tunnels, int *forbidden_array, int j)			
@@ -113,13 +119,14 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 
 int	tree_creation(t_lem *lem)
 {
-    t_tree  *current_child;
 	int *forbidden_array;
 	int i;
 	int c;
+	char *tmp;
 
 	c = 0;
 	i = 0;
+	tmp = ft_strdup(lem->start_room_name);
 	if (!(forbidden_array = (int*)malloc(sizeof(int) * (lem->nbr_tunnels))))
 		return (1);
 	while (i < (lem->nbr_tunnels))
@@ -127,12 +134,12 @@ int	tree_creation(t_lem *lem)
 		forbidden_array[i] = -1;
 		i++;
 	}
-    current_child = head_tree_init(lem->start_room_name);
-    lem->tree = current_child; //saves head branch
+    lem->tree = head_tree_init(tmp); //saves head branch
 	i = 0;
 	while (i < lem->nbr_tunnels)
 		i++;
-	make_child(current_child, lem, forbidden_array);
-	//free forbidden_array
+	make_child(lem->tree, lem, forbidden_array);
+	free(forbidden_array);
+	free(tmp);
 	return (0);
 }

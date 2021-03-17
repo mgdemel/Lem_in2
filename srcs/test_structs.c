@@ -139,38 +139,10 @@ void test_structs(t_lem *lem)
     // ********    ROOM FROM START TO END:    ********
     ft_printf("********    SCAN ROOMS:    ********\n\n");
 
-	//scan_rooms(lem);
+	scan_rooms(lem);
 
     // ********   PATH FROM START TO END:    ********
     // ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 	// ft_printf("BEFORE STARTING SCAN_TREE\n");
     scan_tree(start, lem, 1);
 }
-// // ********    ROOM FROM END TO START:    ********    //prev may not be working. Check this later
-// ft_printf("check\n");
-// t_room *room2 = lem->all_rooms;
-// ft_printf("check\n");
-// while (room2->next != NULL)
-//     room2 = room2->next;
-// ft_printf("check\n");
-// while (room2->prev != NULL)
-// {
-//     ft_putstr("name: ");
-//     ft_putstr(room2->name);
-//     ft_putchar('\n');
-
-//     ft_putstr("x: ");
-//     ft_putnbr(room2->x);
-//     ft_putchar('\n');
-
-//     ft_putstr("y: ");
-//     ft_putnbr(room2->y);
-//     ft_putchar('\n');
-
-//     ft_putstr("room2type: ");
-//     ft_putnbr(room2->roomtype);
-//     ft_putchar('\n');
-//     ft_putchar('\n');
-
-//     room2 = room2->prev;
-// }

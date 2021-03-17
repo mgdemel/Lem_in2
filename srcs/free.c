@@ -1,5 +1,60 @@
 #include "../includes/lem_in.h"
 
+void	free_array(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void	free_int_array(int **array, int max_paths)
+{
+	int i;
+
+	i = 0;
+	while (i < max_paths)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void free_lem(t_lem *lem)
+{
+	free_array(lem->tunnels);
+	ft_printf("4\n");
+	free(lem->room_directory);
+	ft_printf("5\n");
+
+	free_int_array(lem->all_paths, lem->max_paths);
+	
+}
+
+void free_room(t_room *room)
+{
+	t_room *tmp;
+	t_room *current;
+
+	current = room;
+	while (current->next != NULL)
+	{
+		ft_printf("name: %s\n", current->name);
+	//	ft_printf("type: %s\n", room->roomtype);
+		tmp = current->next;
+		free(current->name);
+		free(current);
+		current = tmp;
+	}
+	free(current->name);
+	free(current);
+}
 
 void free_tree(t_tree *start, t_lem *lem)
 {
@@ -14,34 +69,13 @@ void free_tree(t_tree *start, t_lem *lem)
 			free_tree(start->sibling, lem);
 		ft_printf("name: %s\n", start->name);
 		ft_printf("\nFREEING1\n");
-	//	free(start->name);
-		ft_printf("FREEING2\n");
+		free(start->name);
 		free(start);
 		start = tmp;
 		if (start->name == NULL)
 			break ;
 	}
 	ft_printf("Freeing last room %s\n", start->name);
+	free(start->name);
 	free(start);
-
-//     typedef struct 		s_tree
-// {
-// 	char			*name;
-// 	struct s_tree	*parent;
-// 	struct s_tree	*child;
-// 	struct s_tree	*sibling;
-// }					t_tree;
-/*
-    while (ft_strcmp(tree->name, lem->end_room_name) != 0)
-    {
-        if (tree->sibling != NULL)
-        {
-            lem->max_paths++;
-            arr_row_size(tree->sibling, lem);
-        }
-        tree = tree->child;
-		if (tree->name == NULL)
-			break ;
-    }
-	*/
 }

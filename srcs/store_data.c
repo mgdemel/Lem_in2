@@ -1,18 +1,5 @@
 #include "../includes/lem_in.h"
 
-void	free_array(char **array)
-{
-	int i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 int 	get_room_data(char *line, t_room *room, t_lem *lem)
 {
 	int		i;
@@ -32,9 +19,9 @@ int 	get_room_data(char *line, t_room *room, t_lem *lem)
 	if (room->roomtype == 1 || room->roomtype == 3)
 	{
 		if(room->roomtype == 1)
-			lem->start_room_name = room->name;
+			lem->start_room_name = ft_strdup(room->name);
 		else
-			lem->end_room_name = room->name;
+			lem->end_room_name = ft_strdup(room->name);
 	}
 	i++; //moves past next space to get to coords
 	if (!(coord = ft_strsplit(&line[i], ' ')))
@@ -47,13 +34,9 @@ int 	get_room_data(char *line, t_room *room, t_lem *lem)
 
 t_room		*get_room(char *line, t_room *room, t_lem *lem)
 {
-	t_room *new_room;
-
-	new_room = initialize_room(lem);
-	room->next = new_room;
-	new_room->prev = room;
+	room->next = initialize_room(lem);
 	get_room_data(line, room, lem);
-	return(new_room);
+	return(room->next);
 }
 
 int				store_data(char *line, t_lem *lem, t_room *room, int fd)

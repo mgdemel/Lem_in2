@@ -3,6 +3,7 @@
 t_lem	*initialize_lem()
 {
 	t_lem	*lem;
+
 	if (!(lem = (t_lem *)malloc(sizeof(t_lem))))
 		return (NULL);
 	lem->ants = 0;
@@ -29,6 +30,7 @@ t_lem	*initialize_lem()
 t_room	*initialize_room(t_lem *lem)
 {
 	t_room 	*room;
+
 	if (!(room = (t_room *)malloc(sizeof(t_room))))
 		return (NULL);
 	room->name = NULL;
@@ -37,7 +39,6 @@ t_room	*initialize_room(t_lem *lem)
 	room->roomtype = 2; //defaults to type 2, changes in GNL linked list loop
 	lem->current_roomnum++;
 	room->roomnum = lem->current_roomnum;
-	room->prev = NULL;
 	room->next = NULL;
 	return (room);
 }

@@ -43,12 +43,11 @@ typedef struct			s_room
 	int					y;
 	int					roomtype; //1=start, 2=normal, 3=end
 	int					roomnum; //assigns a numeric 'name' to the room for pathfinding array
-	struct s_room		*prev;
 	struct s_room		*next;	
 }						t_room;
 
-t_lem 		*initialize_lem();
-t_room		*initialize_room();
+t_lem		*initialize_lem();
+t_room		*initialize_room(t_lem *lem);
 int			store_data(char *line, t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
@@ -65,5 +64,9 @@ char		*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_ar
 t_tree		*head_tree_init(char *name);
 int 		create_path_arr(t_lem *lem);
 void		free_tree(t_tree *start, t_lem *lem);
+void		free_room(t_room *room);
+void 		free_lem(t_lem *lem);
+void		free_array(char **array);
+//
 
 #endif

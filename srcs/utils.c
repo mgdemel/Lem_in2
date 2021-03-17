@@ -1,7 +1,5 @@
 #include "../includes/lem_in.h"
 
-
-
 /*
 **	Scans the array if the number i exists, MOVE TO UTILS
 */
@@ -71,8 +69,6 @@ int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns 
 	{
 		if (scan_forbidden(forbidden_array, i, lem) == 1) // moves forward in the index if it's forbidden
 			i++;
-		//if (lem->sibling_array == child/parent)
-			// make sibling (7.b)
 		else if (ft_strstr(lem->tunnels[i], parent))
 		{
 			t++;
@@ -109,14 +105,12 @@ char *needle_crop(const char *haystack, const char *needle)
 		{
 			if (needle[a + 1] == '\0' && haystack[a + i + 1] != '\0')
 			{
-			//	free(temp);
-				ft_printf("test1\n");
-				return ((char *)&haystack[i + ft_strlen(needle) + 1]);
+				temp = ft_strdup(&haystack[i + ft_strlen(needle) + 1]);
+				return (temp);
 			}
 			else if (needle[a + 1] == '\0' && haystack[a + i + 1] == '\0')
 			{
-				ft_printf("test2\n");
-				return ((char *)temp);
+				return (temp);
 			}
 			a++;
 		}
