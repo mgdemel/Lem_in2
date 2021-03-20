@@ -1,5 +1,36 @@
 #include "../includes/lem_in.h"
 
+char **add_tunnel(char *line, t_lem *lem)
+{
+	int i;
+	char **new;
+	ft_printf("\n***START OF FUNCTION***\n");
+	ft_printf("nbr_tunnels %d\n", lem->nbr_tunnels);
+	ft_printf("line:%s\n\n", line);
+	if (!(new = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels))))
+			return (NULL);
+	i = 0;
+	if (lem->nbr_tunnels != 1)
+	{
+		ft_printf("INSIDE THE IF\n");
+		while (i < lem->nbr_tunnels - 1)
+		{
+			ft_printf("prev tunnels %s\n", lem->tunnels[i]);
+			new[i] = ft_strdup(lem->tunnels[i]);
+			free(lem->tunnels[i]);
+			i++;
+		}
+	}
+	ft_printf("i is %d\n", i);
+	ft_printf("line:%s\n\n", line);
+	new[i] = ft_strdup(line);
+	ft_printf("new is %s\ntunnels is %s\n", new[i], line);
+	if (lem->tunnels != NULL)
+		free(lem->tunnels);
+	return(new);
+}
+
+
 static int	check_tunnel_validity(char *line, t_lem *lem)
 {
 	if (ft_strstr(line, "-") || ft_strstr(line, "#"))
@@ -7,8 +38,6 @@ static int	check_tunnel_validity(char *line, t_lem *lem)
 		if (ft_strstr(line, "#"))
 			return (0);
 		lem->nbr_tunnels++;
-		if (!(lem->tunnels = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels))))
-			return (1);
 	}
 	else
 		return (1);
@@ -95,7 +124,6 @@ int				store_data(t_lem *lem, t_room *room, int fd)
 	char *line;
 
 	i = 0;
-//	line = NULL;
 	get_next_line(fd, &line);
 	if (!ft_isalldigit(line))
 		return (1);
@@ -103,7 +131,6 @@ int				store_data(t_lem *lem, t_room *room, int fd)
 	ft_strdel(&line);
 	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
 	
-	lem->tunnels[lem->nbr_tunnels] = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!(ft_strstr(line, "-")))
@@ -121,14 +148,12 @@ int				store_data(t_lem *lem, t_room *room, int fd)
 		{
 			if (check_tunnel_validity(line, lem) == 1 || lem->found_start_end != 2 || lem->nbr_rooms == 0)
 				return (1);
-			ft_printf("i = %d\n", i);
-			lem->tunnels[i] = ft_strdup(line);
+			lem->tunnels = add_tunnel(line, lem);
 			i++;
 			ft_printf("Went in tunnel checking\n");
 		}
 		ft_strdel(&line);
 	}
 	ft_printf("ended store data\n");
-	while (1);
 	return (0);
 }

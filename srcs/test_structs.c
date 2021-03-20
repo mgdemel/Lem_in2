@@ -111,10 +111,6 @@ void print_lem(t_lem *lem)
     test_array(lem);
     ft_putchar('\n');
 
-    ft_putstr("room directory: \n");
-    test_array(lem);
-    ft_putchar('\n');
-
     ft_putstr("start room name: \n");
     ft_putstr(lem->start_room_name);
     ft_putchar('\n');
@@ -134,7 +130,7 @@ void test_structs(t_lem *lem)
     // ********    LEM:    ********
     ft_printf("********    LEM TESTING:    ********\n");
     ft_printf("********    PRINT INFO:    ********\n\n");
-  //  print_lem(lem);
+	print_lem(lem);
 
     // ********    ROOM FROM START TO END:    ********
     ft_printf("********    SCAN ROOMS:    ********\n\n");

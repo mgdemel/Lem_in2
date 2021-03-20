@@ -16,7 +16,7 @@ int main(void)
 	lem->all_rooms = initialize_room(lem);
 	ft_printf("allroomname %d\n", lem->all_rooms->roomtype);
 	if (store_data(lem, lem->all_rooms, fd) == 0)
-	{
+	{ // no leaks at this point!
 		if (tree_creation(lem) == 1)
 			return (1);
 		ft_printf("STORED DATA\n");
@@ -24,13 +24,14 @@ int main(void)
 		create_path_arr(lem);
 		ft_printf("Created path arr\n");
 
-		//	test_structs(lem);
+		test_structs(lem);
 		free_tree(lem->tree, lem);
 		ft_printf("FREED TREE\n");
 		free_room(lem->all_rooms);
 		ft_printf("FREED ROOM\n");
-		//	free_lem(lem);
-		//	ft_printf("\n\nFREE LEM\n");
+		//free_lem(lem);
+		while (1);
+		ft_printf("\n\nFREE LEM\n");
 	}
 	else
 	{

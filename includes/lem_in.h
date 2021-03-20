@@ -51,7 +51,7 @@ int			store_data(t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
-char		*needle_crop(const char *haystack, const char *needle);
+char		*needle_crop(char *haystack, char *needle);
 int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
