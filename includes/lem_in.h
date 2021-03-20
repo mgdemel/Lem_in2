@@ -21,7 +21,6 @@ typedef struct		s_lem
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
 	char			**tunnels;
-	char			**room_directory;
 	char			*start_room_name;
 	char			*end_room_name;
 	int 			room_dir_index;
@@ -48,7 +47,7 @@ typedef struct			s_room
 
 t_lem		*initialize_lem();
 t_room		*initialize_room(t_lem *lem);
-int			store_data(char *line, t_lem *lem, t_room *room, int fd);
+int			store_data(t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
@@ -67,6 +66,5 @@ void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
 void 		free_lem(t_lem *lem);
 void		free_array(char **array);
-//
 
 #endif

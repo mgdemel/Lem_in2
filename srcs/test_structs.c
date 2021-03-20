@@ -12,17 +12,17 @@ void test_array(t_lem *lem)
     }
 }
 
-void test_array2(t_lem *lem)
-{
-    int i;
+// void test_array2(t_lem *lem)
+// {
+//     int i;
 
-    i = 0;
-    while (i < lem->nbr_rooms)
-    {
-        ft_printf("%s\n", lem->room_directory[i]);
-        i++;
-    }
-}
+//     i = 0;
+//     while (i < lem->nbr_rooms)
+//     {
+//         ft_printf("%s\n", lem->room_directory[i]);
+//         i++;
+//     }
+// }
 
 void scan_tree(t_tree *start, t_lem *lem, int i)
 {

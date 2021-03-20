@@ -16,7 +16,6 @@ t_lem	*initialize_lem()
 	lem->all_rooms = NULL;
 	lem->all_paths = NULL;
 	lem->tunnels = NULL;
-	lem->room_directory = NULL;
 	lem->start_room_name = NULL;
 	lem->end_room_name = NULL;
 	lem->tree = NULL;
@@ -62,7 +61,8 @@ t_tree	*head_tree_init(char *name)
 
 	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
 		return (NULL);
-	tree->name = name;
+	ft_printf("treename in head_tree_init %s\n", name);
+	tree->name = ft_strdup(name);
     tree->parent = NULL;
     tree->child = NULL;
     tree->sibling = NULL;

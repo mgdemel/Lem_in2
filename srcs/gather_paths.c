@@ -126,11 +126,11 @@ void arr_row_size(t_tree *start, t_lem *lem)
     t_tree *tree;
 
     tree = start;
-//	ft_printf("START\n");
-//	ft_printf("tree name: %s\n", tree->child->name);
+	ft_printf("START\n");
+	ft_printf("tree name: %s\n", tree->name);
     while (ft_strcmp(tree->name, lem->end_room_name) != 0)
     {
-//		ft_printf("TOP OF WHILE\n");
+		ft_printf("TOP OF WHILE\n");
         if (tree->sibling != NULL)
         {
             lem->max_paths++;
@@ -161,9 +161,9 @@ int create_path_arr(t_lem *lem)
 	test_index = 0;
 	lem->test_index = 0;
     start = lem->tree;
-//	ft_printf("%s\n", lem->room_directory[0]);
+	ft_printf("tewt nbr of rooms %d\n", lem->nbr_rooms);
     arr_row_size(start, lem);
- //   ft_printf("paths after search: %d\n", lem->max_paths);
+	ft_printf("tewt\n");
     if (!(lem->all_paths = (int**)malloc(sizeof(int*) * lem->max_paths + 1)))
 		return (1);
     while (i < lem->max_paths)

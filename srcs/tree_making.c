@@ -126,6 +126,7 @@ int	tree_creation(t_lem *lem)
 
 	c = 0;
 	i = 0;
+	ft_printf("startroomname: %s\nnbr_tunnels:%d\n", lem->start_room_name, lem->nbr_tunnels);
 	tmp = ft_strdup(lem->start_room_name);
 	if (!(forbidden_array = (int*)malloc(sizeof(int) * (lem->nbr_tunnels))))
 		return (1);

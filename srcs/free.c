@@ -30,7 +30,6 @@ void free_lem(t_lem *lem)
 {
 	free_array(lem->tunnels);
 	ft_printf("4\n");
-	free(lem->room_directory);
 	ft_printf("5\n");
 
 	free_int_array(lem->all_paths, lem->max_paths);

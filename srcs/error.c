@@ -44,10 +44,10 @@ int			file_is_valid(t_lem *lem, int fd)
 	int		found_start_end;
 
 	found_start_end = 0;
-	get_next_line(fd, &line);
-	if (!ft_isalldigit(line))
-		return (1);
-	ft_strdel(&line);
+	// get_next_line(fd, &line);
+	// if (!ft_isalldigit(line))
+	// 	return (1);
+	// ft_strdel(&line);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (check_rooms_validity(line, lem) == 1 || lem->found_start_end > 2)
