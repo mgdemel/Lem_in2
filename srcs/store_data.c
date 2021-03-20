@@ -4,27 +4,19 @@ char **add_tunnel(char *line, t_lem *lem)
 {
 	int i;
 	char **new;
-	ft_printf("\n***START OF FUNCTION***\n");
-	ft_printf("nbr_tunnels %d\n", lem->nbr_tunnels);
-	ft_printf("line:%s\n\n", line);
 	if (!(new = (char**)malloc(sizeof(char*) * (lem->nbr_tunnels))))
 			return (NULL);
 	i = 0;
 	if (lem->nbr_tunnels != 1)
 	{
-		ft_printf("INSIDE THE IF\n");
 		while (i < lem->nbr_tunnels - 1)
 		{
-			ft_printf("prev tunnels %s\n", lem->tunnels[i]);
 			new[i] = ft_strdup(lem->tunnels[i]);
 			free(lem->tunnels[i]);
 			i++;
 		}
 	}
-	ft_printf("i is %d\n", i);
-	ft_printf("line:%s\n\n", line);
 	new[i] = ft_strdup(line);
-	ft_printf("new is %s\ntunnels is %s\n", new[i], line);
 	if (lem->tunnels != NULL)
 		free(lem->tunnels);
 	return(new);
@@ -93,8 +85,6 @@ int 	get_room_data(char *line, t_room *room, t_lem *lem)
 		len--;
 		room->name[len] = line[len];
 	}
-	ft_printf("room->name: %s\n", room->name);
-	ft_printf("roomtype: %d\n", room->roomtype);
 	if (room->roomtype == 1 || room->roomtype == 3)
 	{
 		if(room->roomtype == 1)
@@ -107,7 +97,6 @@ int 	get_room_data(char *line, t_room *room, t_lem *lem)
 	while (line[i] != ' ')
 		i++;
 	room->y = ft_atoi(&line[i]);
-	ft_printf("x: %d\ny: %d\n", room->x, room->y);
 	return (0);
 }
 
@@ -129,8 +118,6 @@ int				store_data(t_lem *lem, t_room *room, int fd)
 		return (1);
 	lem->ants = ft_atoi(line);
 	ft_strdel(&line);
-	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-	
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!(ft_strstr(line, "-")))
@@ -150,10 +137,8 @@ int				store_data(t_lem *lem, t_room *room, int fd)
 				return (1);
 			lem->tunnels = add_tunnel(line, lem);
 			i++;
-			ft_printf("Went in tunnel checking\n");
 		}
 		ft_strdel(&line);
 	}
-	ft_printf("ended store data\n");
 	return (0);
 }

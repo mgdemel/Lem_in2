@@ -30,7 +30,6 @@ int main(void)
 		free_room(lem->all_rooms);
 		ft_printf("FREED ROOM\n");
 		//free_lem(lem);
-		while (1);
 		ft_printf("\n\nFREE LEM\n");
 	}
 	else

@@ -130,12 +130,12 @@ void test_structs(t_lem *lem)
     // ********    LEM:    ********
     ft_printf("********    LEM TESTING:    ********\n");
     ft_printf("********    PRINT INFO:    ********\n\n");
-	print_lem(lem);
+	//print_lem(lem);
 
     // ********    ROOM FROM START TO END:    ********
     ft_printf("********    SCAN ROOMS:    ********\n\n");
 
-	scan_rooms(lem);
+	//scan_rooms(lem);
 
     // ********   PATH FROM START TO END:    ********
     // ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
