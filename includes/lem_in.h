@@ -23,6 +23,7 @@ typedef struct		s_lem
 	char			**tunnels;
 	char			*start_room_name;
 	char			*end_room_name;
+	char			*sibling_name;
 	struct s_tree	*tree; //head branch
 }					t_lem;
 

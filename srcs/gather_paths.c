@@ -77,8 +77,10 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
     t_tree *tree;
     t_room *room;
     int k;
+    int tmp;                                                                                 //       <---- Melissa changed this
 
     k = 0;
+    tmp = 0;                                                                                 //       <---- Melissa changed this
     tree = start;
     room = lem->all_rooms;
  //   ft_printf("r is at the start of scan_paths: %d\n", r);
@@ -90,7 +92,8 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
             room = room->next;
    //     ft_printf("tree->name here: %s\n", tree->name);
      //   ft_printf("room->name here: %s,room->num %d\n", room->name, room->roomnum);
-        lem->all_paths[i][r] = room->roomnum;
+        tmp = room->roomnum;                                                                 //       <---- Melissa changed this
+        lem->all_paths[i][r] = tmp;                                                          //       <---- Melissa changed this
         if (tree->sibling != NULL)
         {
         //    ft_printf("Found Sibling name is %s\n", tree->sibling->name);
@@ -126,14 +129,14 @@ void arr_row_size(t_tree *start, t_lem *lem)
     t_tree *tree;
 
     tree = start;
-	// ft_printf("START\n");
-	// ft_printf("tree name: %s\n", tree->name);
+	ft_printf("START ARR ROW SIZE\n");
+	ft_printf("tree name: %s\n", tree->name);
     while (ft_strcmp(tree->name, lem->end_room_name) != 0)
     {
         if (tree->sibling != NULL)
         {
             lem->max_paths++;
-//			ft_printf("Inside IF\n");
+			ft_printf("Inside sibling IF\n");
             arr_row_size(tree->sibling, lem);
         }
 //		ft_printf("SNEAKY\n");
@@ -167,7 +170,7 @@ int create_path_arr(t_lem *lem)
     ft_printf("\n\nseg test\n\n");
     while (i < lem->max_paths)
 	{
-		if (!(lem->all_paths[i] = (int*)malloc(sizeof(int) * lem->nbr_rooms))) //the most it could be is all of the rooms connected to one anohter
+		if (!(lem->all_paths[i] = (int*)malloc(sizeof(int) * lem->nbr_rooms))) //the most it could be is all of the rooms connected to one another
 			return (1);
         i++;
     }

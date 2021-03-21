@@ -54,7 +54,6 @@ int *add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int 
 		else
 			i++;
 	}
-	//free_int_array(forbidden_array, lem->nbr_tunnels);
 	return (new);
 }
 
@@ -64,12 +63,6 @@ int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns 
 	int t;
 
 	t = 0;
-	i = 0;
-	while (i < lem->nbr_tunnels)
-	{
-		ft_printf("forbidden %d\n", forbidden_array[i]);
-		i++;
-	}
 	i = 0;
 	while (i < lem->nbr_tunnels)
 	{
