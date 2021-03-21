@@ -126,11 +126,10 @@ void arr_row_size(t_tree *start, t_lem *lem)
     t_tree *tree;
 
     tree = start;
-	ft_printf("START\n");
-	ft_printf("tree name: %s\n", tree->name);
+	// ft_printf("START\n");
+	// ft_printf("tree name: %s\n", tree->name);
     while (ft_strcmp(tree->name, lem->end_room_name) != 0)
     {
-		ft_printf("TOP OF WHILE\n");
         if (tree->sibling != NULL)
         {
             lem->max_paths++;
@@ -163,9 +162,9 @@ int create_path_arr(t_lem *lem)
     start = lem->tree;
 	ft_printf("tewt nbr of rooms %d\n", lem->nbr_rooms);
     arr_row_size(start, lem);
-	ft_printf("tewt\n");
     if (!(lem->all_paths = (int**)malloc(sizeof(int*) * lem->max_paths + 1)))
 		return (1);
+    ft_printf("\n\nseg test\n\n");
     while (i < lem->max_paths)
 	{
 		if (!(lem->all_paths[i] = (int*)malloc(sizeof(int) * lem->nbr_rooms))) //the most it could be is all of the rooms connected to one anohter

@@ -1,5 +1,20 @@
 #include "../includes/lem_in.h"
 
+void	find_sibling(int *forbidden_array, t_lem *lem, t_tree *parent, t_tree *child)
+{
+	int 	*w_parent;
+	int		*w_child;
+	char	*sibling_name;
+
+	w_parent = add_elem_int_array(forbidden_array, lem, parent->name, 1);
+	w_child = add_elem_int_array(w_parent, lem, child->name, 0);
+	sibling_name = make_sibling(child, parent, lem, w_child);
+	forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
+	free(w_parent);
+	free(forbidden_array);
+	free(sibling_name);
+}
+
 
 /*
 ** TODO CHANGE THIS SO ITS NOT SHIT, it's breaking and leaking with int *new
@@ -7,30 +22,10 @@
 
 void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_tree *child)
 {
-	int 	*w_parent;
-	int		*w_child;
-	char	*sibling_name;
-
-	w_parent = NULL;
-	w_child = NULL;
-	sibling_name = NULL;
-	
-	ft_printf("Started find child or sibling\n\n");
-	
 	if (find_parent_links(parent->name, lem, forbidden_array))
 	{
-//		ft_printf("started sibling\n");
-		
-		w_parent = add_elem_int_array(forbidden_array, lem, parent->name, 1);
-		w_child = add_elem_int_array(w_parent, lem, child->name, 0);
-		sibling_name = make_sibling(child, parent, lem, w_child);
-	//	ft_printf("sibling_name: %s\n", sibling_name);
-		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
-		free(w_parent);
-		free(w_child);
-		free(sibling_name);
+		find_sibling(forbidden_array, lem, parent, child);
 	}
-//	ft_printf("went here\n");
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
@@ -80,16 +75,12 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 		}
 		j++;
 	}
-	
 	find_child_or_sibling(lem, forbidden_array, parent, sibling);
-	// while (lem->test_index == 2)
-	// 	{
-
-	// 	}
+	free(forbidden_array);
 	return (sibling->name);
 }
 
-void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunnels double char probably?
+void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 {
     t_tree  *child;
 	int i;
@@ -115,7 +106,12 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)  // TODO tunne
 	ft_printf("CHILD: child name is %s\n", child->name);
 	ft_printf("CHILD: parent name is %s\n\n", parent->name);
 	if (child->name != NULL)
+	{
 		find_child_or_sibling(lem, forbidden_array, parent, child);
+		free(forbidden_array);
+	}
+	else
+		free(forbidden_array);
 }
 
 int	tree_creation(t_lem *lem)
@@ -138,11 +134,8 @@ int	tree_creation(t_lem *lem)
 		i++;
 	}
     lem->tree = head_tree_init(tmp); //saves head branch
-	// i = 0;
-	// while (i < lem->nbr_tunnels)                          <------ what's going on here? :D
-	// 	i++;
 	make_child(lem->tree, lem, forbidden_array);
-	free(forbidden_array);
+//	free(forbidden_array);
 	free(tmp);
 	return (0);
 }
