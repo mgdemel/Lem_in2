@@ -14,7 +14,6 @@ int main(void)
 	fd = 0;
 	lem = initialize_lem();
 	lem->all_rooms = initialize_room(lem);
-	ft_printf("allroomname %d\n", lem->all_rooms->roomtype);
 	if (store_data(lem, lem->all_rooms, fd) == 0)
 	{ // no leaks at this point!
 		if (tree_creation(lem) == 1)

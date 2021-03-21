@@ -12,18 +12,6 @@ void test_array(t_lem *lem)
     }
 }
 
-// void test_array2(t_lem *lem)
-// {
-//     int i;
-
-//     i = 0;
-//     while (i < lem->nbr_rooms)
-//     {
-//         ft_printf("%s\n", lem->room_directory[i]);
-//         i++;
-//     }
-// }
-
 void scan_tree(t_tree *start, t_lem *lem, int i)
 {
     t_tree *tree;
@@ -126,18 +114,14 @@ void test_structs(t_lem *lem)
 	lem->max_paths = lem->max_paths;
     ft_putchar('\n');
     ft_putchar('\n');
-
-    // ********    LEM:    ********
     ft_printf("********    LEM TESTING:    ********\n");
+
     ft_printf("********    PRINT INFO:    ********\n\n");
 	//print_lem(lem);
 
-    // ********    ROOM FROM START TO END:    ********
     ft_printf("********    SCAN ROOMS:    ********\n\n");
-
 	//scan_rooms(lem);
 
-    // ********   PATH FROM START TO END:    ********
     // ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 	// ft_printf("BEFORE STARTING SCAN_TREE\n");
     scan_tree(start, lem, 1);

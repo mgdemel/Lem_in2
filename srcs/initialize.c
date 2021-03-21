@@ -22,7 +22,6 @@ t_lem	*initialize_lem()
 	lem->test_index = 1; //remove when tests in tree making are removed
 	lem->max_paths = 1;
 	lem->path = 0;
-	lem->room_dir_index = 0;
 	return(lem);
 }
 
@@ -61,7 +60,6 @@ t_tree	*head_tree_init(char *name)
 
 	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
 		return (NULL);
-	ft_printf("treename in head_tree_init %s\n", name);
 	tree->name = ft_strdup(name);
     tree->parent = NULL;
     tree->child = NULL;
