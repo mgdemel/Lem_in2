@@ -54,6 +54,7 @@ int *add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int 
 		else
 			i++;
 	}
+	free(forbidden_array);
 	return (new);
 }
 

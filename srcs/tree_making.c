@@ -2,20 +2,13 @@
 
 void find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_tree *child)
 {
-	int i;
-	int *w_parent;
-	int *w_child;
-
-	i = 0;
 	if (find_parent_links(parent->name, lem, forbidden_array))
 	{
-		w_parent = add_elem_int_array(forbidden_array, lem, parent->name, 1);
-		w_child = add_elem_int_array(w_parent, lem, child->name, 0);
-		lem->sibling_name = make_sibling(child, parent, lem, w_child);
+		lem->w_parent = add_elem_int_array(forbidden_array, lem, parent->name, 1);
+		lem->w_child = add_elem_int_array(lem->w_parent, lem, child->name, 0);
+		lem->sibling_name = make_sibling(child, parent, lem, lem->w_child);
 		forbidden_array = add_elem_int_array(forbidden_array, lem, lem->sibling_name, 0);
 		//forbidden_array = find_sibling(forbidden_array, lem, parent, child);
-		free(w_parent);
-		free(w_child);
 	}
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{

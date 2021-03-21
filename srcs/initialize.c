@@ -22,6 +22,8 @@ t_lem	*initialize_lem()
 	lem->test_index = 1; //remove when tests in tree making are removed
 	lem->max_paths = 1;
 	lem->path = 0;
+	lem->w_parent = NULL;
+	lem->w_child = NULL;
 	return(lem);
 }
 

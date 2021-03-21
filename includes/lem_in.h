@@ -18,6 +18,8 @@ typedef struct		s_lem
 	int				test_index; // remove after
 	int				path;
 	int				max_paths;
+	int				*w_child;
+	int				*w_parent;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
 	char			**tunnels;
