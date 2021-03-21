@@ -65,5 +65,6 @@ void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
 void 		free_lem(t_lem *lem);
 void		free_array(char **array);
+void 		output(t_lem *lem);
 
 #endif

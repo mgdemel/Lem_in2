@@ -7,10 +7,12 @@
 
 void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_tree *child)
 {
-	int 	*new;
+	int 	*w_parent;
+	int		*w_child;
 	char	*sibling_name;
 
-	new = NULL;
+	w_parent = NULL;
+	w_child = NULL;
 	sibling_name = NULL;
 	
 	ft_printf("Started find child or sibling\n\n");
@@ -19,13 +21,14 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 	{
 //		ft_printf("started sibling\n");
 		
-		new = add_elem_int_array(forbidden_array, lem, parent->name, 1);
-		new = add_elem_int_array(new, lem, child->name, 0);
-		sibling_name = make_sibling(child, parent, lem, new);
+		w_parent = add_elem_int_array(forbidden_array, lem, parent->name, 1);
+		w_child = add_elem_int_array(w_parent, lem, child->name, 0);
+		sibling_name = make_sibling(child, parent, lem, w_child);
 	//	ft_printf("sibling_name: %s\n", sibling_name);
 		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
-	//	ft_printf("new:%d\n", new[0]);
-		//free(new);
+		free(w_parent);
+		free(w_child);
+		free(sibling_name);
 	}
 //	ft_printf("went here\n");
 	if (ft_strcmp(child->name, lem->end_room_name))
@@ -33,8 +36,6 @@ void	find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_t
 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		make_child(child, lem, forbidden_array);
 	}
-//	free(sibling_name);
-	//free(new);
 }
 
 int	ft_blocked_index(int tunnels, int *forbidden_array, int j)			
@@ -81,10 +82,10 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 	}
 	
 	find_child_or_sibling(lem, forbidden_array, parent, sibling);
-	while (lem->test_index == 2)
-		{
+	// while (lem->test_index == 2)
+	// 	{
 
-		}
+	// 	}
 	return (sibling->name);
 }
 
