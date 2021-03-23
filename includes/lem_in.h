@@ -57,7 +57,7 @@ char		*needle_crop(char *haystack, char *needle);
 int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
-int 		*add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent);
+int 		add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent);
 int 		scan_forbidden(int *array, int i, t_lem *lem);
 void		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
 char		*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
