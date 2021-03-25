@@ -68,5 +68,6 @@ void		free_room(t_room *room);
 void 		free_lem(t_lem *lem);
 void		free_array(char **array);
 void 		output(t_lem *lem);
+void	print_int_arr(int *arr, int len, char *str);
 
 #endif

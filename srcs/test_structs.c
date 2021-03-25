@@ -1,5 +1,19 @@
 #include "../includes/lem_in.h"
 
+void	print_int_arr(int *arr, int len, char *str)
+{
+	int i;
+	
+	i = 0;
+	ft_printf("\n***---STARTING PRINT ARR---***\n");
+	while (i < len)
+	{
+		ft_printf("%s:%d\n", str, arr[i]);
+		i++;
+	}
+}
+
+
 void test_array(t_lem *lem)
 {
     int i;
@@ -22,21 +36,24 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
 	ft_printf("name %s\n", tree->name);
     //  ft_printf("child name %s\n", tree->child->name);
     //  ft_printf("sibling pointer address %p\n", tree->sibling);
-    while (ft_strcmp(tree->name, lem->end_room_name) != 0)
-    {
-        ft_putchar('\n');
-        ft_printf("Step %d\n", lem->path);
-        ft_printf("name of current room %s|\n", tree->name);
-        ft_printf("child is %s\n", tree->child->name);
-        lem->path++;
-        if (tree->sibling != NULL)
-        {
-            ft_printf("Changing PATH, found sibling\n");
-            ft_printf("parent is %s\n", tree->parent->name);
-            scan_tree(tree->sibling, lem, lem->path);
-        }
-        tree = tree->child;
-    }
+	if (tree->child->name != NULL)
+	{
+		while (ft_strcmp(tree->name, lem->end_room_name) != 0)
+		{
+			ft_putchar('\n');
+			ft_printf("Step %d\n", lem->path);
+			ft_printf("name of current room %s|\n", tree->name);
+			ft_printf("child is %s\n", tree->child->name);
+			lem->path++;
+			if (tree->sibling != NULL)
+			{
+				ft_printf("Changing PATH, found sibling\n");
+				ft_printf("parent is %s\n", tree->parent->name);
+				scan_tree(tree->sibling, lem, lem->path);
+			}
+			tree = tree->child;
+		}
+	}
 }
 
 void scan_rooms(t_lem *lem)

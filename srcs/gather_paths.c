@@ -86,29 +86,34 @@ void scan_paths(t_tree *start, t_lem *lem, int i, int r)
  //   ft_printf("r is at the start of scan_paths: %d\n", r);
   //  ft_printf("path: %d\n", lem->path);
     //ft_printf("i : %d\nr : %d\n", i, r);
-    while (ft_strcmp(tree->name, lem->end_room_name) != 0)
-    {
-        while(room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
-            room = room->next;
-   //     ft_printf("tree->name here: %s\n", tree->name);
-     //   ft_printf("room->name here: %s,room->num %d\n", room->name, room->roomnum);
-        tmp = room->roomnum;                                                                 //       <---- Melissa changed this
-        lem->all_paths[i][r] = tmp;                                                          //       <---- Melissa changed this
-        if (tree->sibling != NULL)
-        {
-        //    ft_printf("Found Sibling name is %s\n", tree->sibling->name);
-          //  ft_printf("Path when sibling was found is %d\n", i);
-            lem->path++;
-            copy_previous_path(lem, r, lem->path, i);
-            scan_paths(tree->sibling, lem, lem->path, r);
-        }
-        r++;
-        tree = tree->child;
-        room = lem->all_rooms;
-		if (tree->name == NULL)
-			break ;
-        // ft_printf("r = %d\n", r);
-    }
+    ft_printf("\n\nseg test tree->name:%s\n\n", tree->name);
+	if (tree->name != NULL)
+	{
+		while (ft_strcmp(tree->name, lem->end_room_name) != 0)
+		{
+			while (room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
+				room = room->next;
+			//     ft_printf("tree->name here: %s\n", tree->name);
+			//   ft_printf("room->name here: %s,room->num %d\n", room->name, room->roomnum);
+			tmp = room->roomnum;		//       <---- Melissa changed this
+			lem->all_paths[i][r] = tmp; //       <---- Melissa changed this
+			if (tree->sibling != NULL)
+			{
+				//    ft_printf("Found Sibling name is %s\n", tree->sibling->name);
+				//  ft_printf("Path when sibling was found is %d\n", i);
+				lem->path++;
+				copy_previous_path(lem, r, lem->path, i);
+				scan_paths(tree->sibling, lem, lem->path, r);
+			}
+			r++;
+			tree = tree->child;
+			room = lem->all_rooms;
+			if (tree->name == NULL)
+				break;
+			// ft_printf("r = %d\n", r);
+		}
+	}
+    
     // while(room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
     //     room = room->next;
     // lem->all_paths[i][r] = room->roomnum;
@@ -131,22 +136,21 @@ void arr_row_size(t_tree *start, t_lem *lem)
     tree = start;
 	ft_printf("START ARR ROW SIZE\n");
 	ft_printf("tree name: %s\n", tree->name);
-    while (ft_strcmp(tree->name, lem->end_room_name) != 0)
-    {
-        if (tree->sibling != NULL)
-        {
-            lem->max_paths++;
-			ft_printf("Inside sibling IF\n");
-            arr_row_size(tree->sibling, lem);
-        }
-//		ft_printf("SNEAKY\n");
-        tree = tree->child;
-//		ft_printf("tree name: %s\n", tree->name);
-		if (tree->name == NULL)
-			break ;
-//		ft_printf("Step: %d\n", lem->test_index);
-//		lem->test_index++;
-    }
+	if (tree->name != NULL)
+	{
+		while (ft_strcmp(tree->name, lem->end_room_name) != 0)
+		{
+			if (tree->sibling != NULL)
+			{
+				lem->max_paths++;
+				ft_printf("Inside sibling IF\n");
+				arr_row_size(tree->sibling, lem);
+			}
+			tree = tree->child;
+			if (tree->name == NULL)
+				break;
+		}
+	}
 }
 
 int create_path_arr(t_lem *lem)
@@ -167,7 +171,6 @@ int create_path_arr(t_lem *lem)
     arr_row_size(start, lem);
     if (!(lem->all_paths = (int**)malloc(sizeof(int*) * lem->max_paths + 1)))
 		return (1);
-    ft_printf("\n\nseg test\n\n");
     while (i < lem->max_paths)
 	{
 		if (!(lem->all_paths[i] = (int*)malloc(sizeof(int) * lem->nbr_rooms))) //the most it could be is all of the rooms connected to one another

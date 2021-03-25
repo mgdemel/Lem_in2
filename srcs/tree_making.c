@@ -4,18 +4,6 @@
 **	In logique it moves to step 9, but then traces back to r2, because that isn't blocked in this forbidden_array
 */
 
-void	print_int_arr(int *arr, int len, char *str)
-{
-	int i;
-	
-	i = 0;
-	ft_printf("\n***---STARTING PRINT ARR---***\n");
-	while (i < len)
-	{
-		ft_printf("%s:%d\n", str, arr[i]);
-		i++;
-	}
-}
 
 int *ft_newintarr(int *forbidden_array, int i)
 {
@@ -34,26 +22,38 @@ int *ft_newintarr(int *forbidden_array, int i)
 	return(new);
 }
 
+// if (find_parent_links(parent->name, lem, forbidden_array))
+// 	{
+// 		new = add_elem_int_array(forbidden_array, lem, parent->name, 1);
+// 		new = add_elem_int_array(new, lem, child->name, 0);
+// 		sibling_name = make_sibling(child, parent, lem, new);
+// 		forbidden_array = add_elem_int_array(forbidden_array, lem, sibling_name, 0);
+// 	}
+// 	if (ft_strcmp(child->name, lem->end_room_name))
+// 	{
+// 		forbidden_array = add_elem_int_array(forbidden_array, lem, parent->name, 1);
+// 		make_child(child, lem, forbidden_array);
+// 	}
+
 void find_child_or_sibling(t_lem *lem, int *forbidden_array, t_tree *parent, t_tree *child)
 {
 	int *tmp;
-	int i;
 
-	i = 0;
 	tmp = NULL;
 	if (find_parent_links(parent->name, lem, forbidden_array))
 	{
-		add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		tmp = ft_newintarr(forbidden_array, lem->nbr_tunnels); //must allocate space internally
+		add_elem_int_array(tmp, lem, parent->name, 1);
 		add_elem_int_array(tmp, lem, child->name, 0);
 		lem->sibling_name = make_sibling(child, parent, lem, tmp);
+		if (lem->sibling_name != NULL)
+			add_elem_int_array(forbidden_array, lem, lem->sibling_name, 0);
+		lem->sibling_name = NULL;
 		free(tmp);
-		i = 1;
 	}
 	if (ft_strcmp(child->name, lem->end_room_name))
 	{
-		if (i == 0)
-			add_elem_int_array(forbidden_array, lem, parent->name, 1);
+		add_elem_int_array(forbidden_array, lem, parent->name, 1);
 		make_child(child, lem, forbidden_array);
 	}
 }
@@ -82,17 +82,19 @@ char *make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 
 	j = 0;
 	i = 0;
-	ft_printf("MAKE SIBLING\n");
-	print_int_arr(forbidden_array, lem->nbr_tunnels, parent->name);
-	ft_printf("\n");
 	lem->test_index++;
 	sibling = tree_init(parent);
 	child->sibling = sibling;
 	i = 0;
+	ft_printf("parent name:%s\n", parent->name);
+	ft_printf("nbr_tunnels:%d\n", lem->nbr_tunnels);
 	while (j < lem->nbr_tunnels - 1)
 	{
 		if (ft_strstr(lem->tunnels[j], parent->name))
 		{
+		//	if (ft_strstr(parent->name, "Xii9"))
+		//		print_int_arr(forbidden_array, lem->nbr_tunnels, "Parent is Xii9");
+		//	ft_printf("PRINTED ARRAY DONE\n");
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
 				sibling->name = needle_crop(lem->tunnels[j], parent->name);
@@ -103,7 +105,9 @@ char *make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_arr
 		}
 		j++;
 	}
-	find_child_or_sibling(lem, forbidden_array, parent, sibling);
+	if (sibling->name != NULL)
+		find_child_or_sibling(lem, forbidden_array, parent, sibling);
+	ft_printf("end\n");
 //	free(forbidden_array);
 	return (sibling->name);
 }
@@ -116,16 +120,12 @@ void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 
 	j = 0;
 	i = 0;
-	ft_printf("MAKE CHILD\n");
-	print_int_arr(forbidden_array, lem->nbr_tunnels, parent->name);
-	ft_printf("\n");
 	child = tree_init(parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels) // we go through tunnels to find the child to the parent
 	{
 		if (ft_strstr(lem->tunnels[j], parent->name))
 		{
-			ft_printf("j = %d\n", j);
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
 				child->name = needle_crop(lem->tunnels[j], parent->name);
