@@ -68,6 +68,10 @@ void		free_room(t_room *room);
 void 		free_lem(t_lem *lem);
 void		free_array(char **array);
 void 		output(t_lem *lem);
-void	print_int_arr(int *arr, int len, char *str);
+void		print_int_arr(int *arr, int len, char *str);
+int			check_tunnel_validity(char *line, t_lem *lem);
+t_room		*get_room(char *line, t_room *room, t_lem *lem);
+int			check_rooms_validity(char *line, t_lem *lem);
+
 
 #endif

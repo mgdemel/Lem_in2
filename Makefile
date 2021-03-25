@@ -1,9 +1,9 @@
 
 NAME = lem-in
 
-SRCS = 	srcs/main.c srcs/initialize.c srcs/store_data.c srcs/test_structs.c srcs/utils.c srcs/tree_making.c srcs/gather_paths.c srcs/free.c srcs/output.c \
+SRCS = 	srcs/main.c srcs/initialize.c srcs/store_data.c srcs/test_structs.c srcs/utils.c srcs/tree_making.c srcs/gather_paths.c srcs/free.c srcs/store_data_utils.c\
 
-OBJS = 	main.o initialize.o store_data.o test_structs.o utils.o tree_making.o gather_paths.o free.o output.o \
+OBJS = 	main.o initialize.o store_data.o test_structs.o utils.o tree_making.o gather_paths.o free.o store_data_utils.o\
 
 INCS = -I includes/lem_in.h
 CFLAGS = -Wall -Wextra -Werror
