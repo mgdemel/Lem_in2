@@ -1,4 +1,4 @@
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 int *add_to_forbidden_array(t_lem *lem, int src, int to_add, int *forbidden)
 {

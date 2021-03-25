@@ -1,4 +1,4 @@
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	free_array(char **array)
 {

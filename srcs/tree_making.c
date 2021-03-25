@@ -1,4 +1,4 @@
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 /*
 **	In logique it moves to step 9, but then traces back to r2, because that isn't blocked in this forbidden_array

@@ -1,0 +1,138 @@
+12
+##start
+s 1 0
+##end
+e 5 0
+# small comment
+r2 9 0
+r3 13 0
+r1 33 9
+r4 2 43
+r5 2 3
+s-r1
+s-r2
+r2-r3
+r1-r3
+r1-r4
+r3-r5
+r4-r3
+r5-e
+e-r4
+MADE CHILD WITH NAME r1
+parent name:s
+nbr_tunnels:9
+MADE SIBLING WITH NAME r2
+MADE CHILD WITH NAME r3
+MADE CHILD WITH NAME r5
+parent name:r3
+nbr_tunnels:9
+MADE SIBLING WITH NAME r4
+MADE CHILD WITH NAME e
+end
+MADE CHILD WITH NAME e
+end
+MADE CHILD WITH NAME r3
+parent name:r1
+nbr_tunnels:9
+MADE SIBLING WITH NAME r4
+MADE CHILD WITH NAME e
+end
+MADE CHILD WITH NAME r5
+MADE CHILD WITH NAME e
+tewt nbr of rooms 7
+START ARR ROW SIZE
+tree name: s
+Inside sibling IF
+START ARR ROW SIZE
+tree name: r2
+Inside sibling IF
+START ARR ROW SIZE
+tree name: r4
+Inside sibling IF
+START ARR ROW SIZE
+tree name: r4
+
+
+seg test tree->name:s
+
+
+
+seg test tree->name:r2
+
+
+
+seg test tree->name:r4
+
+
+
+seg test tree->name:r4
+
+all_paths:
+Index 0:-5|1|5|4|7|
+Index 1:-5|1|3|4|7|
+Index 2:-5|1|3|4|6|
+Index 3:-4|1|5|6|
+
+
+********    LEM TESTING:    ********
+********    PRINT INFO:    ********
+
+********    SCAN ROOMS:    ********
+
+STARTED SCAN_TREE
+name s
+
+Step 3
+name of current room s|
+child is r1
+
+Step 4
+name of current room r1|
+child is r3
+Changing PATH, found sibling
+parent is s
+STARTED SCAN_TREE
+name r2
+
+Step 5
+name of current room r2|
+child is r3
+
+Step 6
+name of current room r3|
+child is r5
+
+Step 7
+name of current room r5|
+child is e
+Changing PATH, found sibling
+parent is r3
+STARTED SCAN_TREE
+name r4
+
+Step 8
+name of current room r4|
+child is e
+
+Step 9
+name of current room r3|
+child is r5
+Changing PATH, found sibling
+parent is r1
+STARTED SCAN_TREE
+name r4
+
+Step 10
+name of current room r4|
+child is e
+
+Step 11
+name of current room r5|
+child is e
+name: s
+name: e
+name: r2
+name: r3
+name: r1
+name: r4
+name: r5

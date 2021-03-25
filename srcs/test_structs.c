@@ -1,4 +1,4 @@
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 void	print_int_arr(int *arr, int len, char *str)
 {
@@ -137,7 +137,7 @@ void test_structs(t_lem *lem)
 	//print_lem(lem);
 
     ft_printf("********    SCAN ROOMS:    ********\n\n");
-	//scan_rooms(lem);
+	scan_rooms(lem);
 
     // ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 	// ft_printf("BEFORE STARTING SCAN_TREE\n");

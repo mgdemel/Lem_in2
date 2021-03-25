@@ -1,8 +1,9 @@
-#include "../includes/lem_in.h"
+#include "lem_in.h"
 
 /*
 **	Scans the array if the number i exists, MOVE TO UTILS
 */
+
 int scan_forbidden(int *array, int i, t_lem *lem)
 {
 	int j;

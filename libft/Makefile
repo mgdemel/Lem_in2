@@ -6,7 +6,7 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/26 11:02:46 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/03/11 12:33:53 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/03/25 15:25:06 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ ft_printf.c \
 		calc_f_helper2.c \
 		typecast.c \
 		ft_findchr.c \
-		
+
 INCLUDES_PATH	:= include/
 INCLUDES		:= -I $(INCLUDES_PATH)
 HEADERS			:= $(addprefix $(INCLUDES_PATH), $(HEADERS_FILES))
@@ -68,18 +68,18 @@ OBJECTS			:= $(addprefix $(OBJS_PATH), $(SRC:.c=.o))
 all: $(NAME)
 
 $(OBJS_PATH)%.o: $(SOURCES_PATH)%.c 
-		@mkdir -p $(OBJS_PATH) 2> /dev/null || true
-		$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
+	@mkdir -p $(OBJS_PATH) 2> /dev/null || true
+	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(NAME): $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 
 clean:
-	@rm -fv $(OBJECTS)
+	@rm -rf $(OBJECTS)
 	@rmdir $(OBJS_PATH) 2> /dev/null || true
 
 fclean: clean
-	@rm -fv $(NAME)
+	@rm -rf $(NAME)
 
 re:	fclean all
