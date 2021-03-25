@@ -69,6 +69,7 @@ int    *copy_col(int r, int *arr)
     // }
     // ft_putchar('\n');
     // ft_putchar('\n');
+    free(arr);
     return (new);
 }
 
@@ -195,5 +196,6 @@ int create_path_arr(t_lem *lem)
         k = 0;
 		test_index++;
     }
+
     return(0);
 }

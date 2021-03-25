@@ -171,5 +171,6 @@ int tree_creation(t_lem *lem)
 	}
 	lem->tree = head_tree_init(lem->start_room_name); //saves head branch 
 	make_child(lem->tree, lem, forbidden_array);
+	free(forbidden_array);
 	return (0);
 }

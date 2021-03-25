@@ -22,6 +22,7 @@ int main(void)
 		lem->test_index = 1;
 		create_path_arr(lem);
 		ft_printf("Created path arr\n");
+		while (1);
 		test_structs(lem);
 		//output(lem);
 		//free_tree(lem->tree, lem);
