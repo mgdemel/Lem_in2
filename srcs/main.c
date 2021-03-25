@@ -15,22 +15,15 @@ int main(void)
 	lem = initialize_lem();
 	lem->all_rooms = initialize_room(lem);
 	if (store_data(lem, lem->all_rooms, fd) == 0)
-	{ // no leaks at this point!
+	{
 		if (tree_creation(lem) == 1)
-			return (1);
-		ft_printf("STORED DATA\n");
 		lem->test_index = 1;
 		create_path_arr(lem);
-		ft_printf("Created path arr\n");
-		while (1);
 		test_structs(lem);
 		//output(lem);
 		//free_tree(lem->tree, lem);
-		ft_printf("FREED TREE\n");
 		free_room(lem->all_rooms);
-		ft_printf("FREED ROOM\n");
 		//free_lem(lem);
-		ft_printf("\n\nFREE LEM\n");
 	}
 	else
 	{
