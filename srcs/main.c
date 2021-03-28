@@ -24,7 +24,8 @@ int main(void)
 		}
 		lem->test_index = 1;
 		create_path_arr(lem);
-		test_structs(lem);
+		lem->test_index = 0;
+	//	test_structs(lem);
 		//free_tree(lem->tree, lem);
 		free_room(lem->all_rooms);
 		//free_lem(lem);
