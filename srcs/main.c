@@ -26,9 +26,13 @@ int main(void)
 		create_path_arr(lem);
 		lem->test_index = 0;
 		test_structs(lem);
-	//	free_tree(lem->tree, lem);
+		ft_printf("TESTED STRUCTS\n");
+		free_tree(lem->tree, lem);
+		ft_printf("FREED TREE\n");
 	//	free_room(lem->all_rooms);
+		ft_printf("FREED ROOM\n");
 		//free_lem(lem);
+		//ft_printf("FREED LEM\n");
 	}
 	else
 	{

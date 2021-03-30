@@ -1,76 +1,24 @@
 #include "lem_in.h"
 
 /*
-**	Scans the array if the number i exists, MOVE TO UTILS
+**	Takes an int array and returns the copy.
 */
 
-int scan_forbidden(int *array, int i, t_lem *lem)
+int		*ft_newintarr(int *forbidden_array, int i)
 {
+	int *new;
 	int j;
 
-	j = 0;
-	while (j < lem->nbr_tunnels)
+	j = i;
+	if (!(new = (int *)malloc(sizeof(int) * (i))))
+		return (NULL);
+	i--;
+	while (i >= 0)
 	{
-		if (array[j] == i)
-			return (1);
-		j++;
+		new[i] = forbidden_array[i];
+		i--;
 	}
-	return (0);
-}
-
-/*
-** Adds an element onto the int array, UTILS FUNCTION
-*/
-
-int add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while (i < lem->nbr_tunnels)
-	{
-		if (scan_forbidden(forbidden_array, i, lem) == 1) // moves forward in the index if it's forbidden
-			i++;
-		else if (ft_strstr(lem->tunnels[i], block_name))
-		{
-			while (forbidden_array[j] > -1)
-				j++;
-			forbidden_array[j] = i;
-			i++;
-			if (parent == 1)
-				return (1);
-		}
-		else
-			i++;
-	}
-	return (0);
-}
-
-int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns the amount of hits of a room name found in tunnels
-{
-	int i;
-	int t;
-
-	t = 0;
-	i = 0;
-	while (i < lem->nbr_tunnels)
-	{
-		if (scan_forbidden(forbidden_array, i, lem) == 1) // moves forward in the index if it's forbidden
-			i++;
-		else if (ft_strstr(lem->tunnels[i], parent))
-		{
-			t++;
-			i++;
-		}
-		else
-			i++;
-	}
-	if (t > 1)
-		return (1);
-
-	return (0);
+	return (new);
 }
 
 /*
@@ -79,7 +27,7 @@ int find_parent_links(char *parent, t_lem *lem, int *forbidden_array) //returns 
 **	dividing them.
 */
 
-char *needle_crop(char *haystack, char *needle)
+char	*needle_crop(char *haystack, char *needle)
 {
 	char **new;
 	char *ret;
@@ -93,4 +41,18 @@ char *needle_crop(char *haystack, char *needle)
 	free(new[1]);
 	free(new);
 	return (ret);
+}
+
+/*
+**	A util of scan_paths in gater_paths
+*/
+
+void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)
+{
+	t_room	*room;
+
+	room = lem->all_rooms;
+	while (room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
+		room = room->next;
+	lem->all_paths[i][r] = room->roomnum;
 }

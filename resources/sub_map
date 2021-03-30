@@ -1,23 +1,23 @@
 3
 ##start
-1 23 3
-2 16 7
-3 16 3
-4 16 5
-5 9 3
-6 1 5
-7 4 8
+one 4 3
+two 1 4
+three 1 1
+four 1 1
+five 9 1
+six 1 1
+seven 4 8
 ##end
-8 9 5
-8-4
-8-6
-1-3
-4-3
-5-2
-3-5
-4-2
-2-1
-7-6
-7-2
-7-4
-6-5
+eight 9 5
+eight-four
+eight-six
+one-three
+four-three
+five-two
+three-five
+four-two
+two-one
+seven-six
+seven-two
+seven-four
+six-five

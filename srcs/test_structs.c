@@ -32,29 +32,28 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
 	ft_printf("STARTED SCAN_TREE\n");
 	tree = start;
 	i = 0;
-	ft_printf("name %s\n", tree->name);
-	//  ft_printf("sibling pointer address %p\n", tree->sibling);
+	//  ft_printf("sibling pointer address %p\n", tree->sib);
 	if (tree->name != NULL)
 	{
-		while (tree->child->name != NULL && (ft_strcmp(tree->name, lem->end_room_name) != 0))
+		while (ft_strcmp(tree->name, lem->e_room_name) != 0)
 		{
 			ft_putchar('\n');
 			ft_printf("Step %d\n", lem->test_index);
 			ft_printf("name of current room %s|\n", tree->name);
-			ft_printf("child is %s\n", tree->child->name);
 			lem->test_index++;
-			if (tree->sibling != NULL)
+			if (tree->sib != NULL)
 			{
 				ft_printf("Changing PATH, found sibling\n");
 				ft_printf("parent is %s\n", tree->parent->name);
-				scan_tree(tree->sibling, lem, lem->path);
+				scan_tree(tree->sib, lem, lem->path);
 			}
 			if (tree->child->name != NULL)
 				tree = tree->child;
+			else
+				break ;
 		}
 	}
-
-	ft_printf("name of end room %s|\n\n", tree->name);
+	ft_printf("name of end room %s\nwith parent %s\n", tree->name, tree->parent->name);
 }
 
 void scan_rooms(t_lem *lem)
@@ -122,7 +121,7 @@ void print_lem(t_lem *lem)
 	ft_putchar('\n');
 
 	ft_putstr("end room name: \n");
-	ft_putstr(lem->end_room_name);
+	ft_putstr(lem->e_room_name);
 	ft_putchar('\n');
 }
 
@@ -160,20 +159,26 @@ void scan_arrays(t_lem *lem)
 
 void test_structs(t_lem *lem)
 {
+	int i;
+
+	i = 0;
 	t_tree *start = lem->tree;
 	lem->max_paths = lem->max_paths;
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_printf("********    LEM TESTING:    ********\n");
-
 	ft_printf("********    PRINT INFO:    ********\n\n");
 	//print_lem(lem);
-
 	ft_printf("********    SCAN ROOMS:    ********\n\n");
 	scan_rooms(lem);
-
 	ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
 	scan_tree(start, lem, 1);
 	ft_printf("********    SCAN THE ARRAY:     *********\n\n");
 	scan_arrays(lem);
+	ft_putchar('\n');
+	while (i < lem->max_paths)
+	{
+		ft_printf("Last index of %d is :%d\n", i, lem->all_paths[i][lem->all_paths[i][0] * -1]);
+		i++;
+	}
 }

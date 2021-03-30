@@ -17,13 +17,14 @@ t_lem	*initialize_lem(void)
 	lem->all_paths = NULL;
 	lem->tunnels = NULL;
 	lem->start_room_name = NULL;
-	lem->end_room_name = NULL;
+	lem->e_room_name = NULL;
 	lem->tree = NULL;
 	lem->test_index = 1;
 	lem->max_paths = 1;
 	lem->path = 0;
 	lem->w_parent = NULL;
 	lem->w_child = NULL;
+	lem->sib_name = NULL;
 	return (lem);
 }
 
@@ -52,7 +53,7 @@ t_tree	*tree_init(t_tree *parent)
 	tree->name = NULL;
 	tree->parent = parent;
 	tree->child = NULL;
-	tree->sibling = NULL;
+	tree->sib = NULL;
 	return (tree);
 }
 
@@ -65,6 +66,6 @@ t_tree	*head_tree_init(char *name)
 	tree->name = ft_strdup(name);
 	tree->parent = NULL;
 	tree->child = NULL;
-	tree->sibling = NULL;
+	tree->sib = NULL;
 	return (tree);
 }
