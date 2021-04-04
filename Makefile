@@ -6,7 +6,7 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/03/30 16:30:39 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/04/04 12:06:48 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS = 	main.c \
 		store_data_utils.c \
 		get_room.c \
 		tree_making_utils.c \
+		flow_management.c \
 
 INCLUDES := -I $(INCL_PATH)
 

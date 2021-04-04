@@ -1,6 +1,34 @@
 #include "lem_in.h"
 
 /*
+**	An int** array is sent in to be increased by one, so we add one in
+**	tmp and copy over all content to the tmp and return that.
+*/
+
+int		**append_array(int **arr, int max)
+{
+	int **tmp;
+	int i;
+	int j;
+	
+	i = 0;
+	if (!(tmp = (int **)malloc(sizeof(int *) * max + 1)))
+		return (NULL);
+	while (i < max)
+	{
+		j = 0;
+		while (j < arr[i][0] * -1)
+		{
+			tmp[i][j] = arr[i][j];
+			j++;
+		}
+		i++;
+	}
+	free(arr);
+	return (tmp);
+}
+
+/*
 **	Takes an int array and returns the copy.
 */
 

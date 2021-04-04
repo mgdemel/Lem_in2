@@ -27,6 +27,7 @@ int		main(void)
 		lem->test_index = 0;
 		test_structs(lem);
 		ft_printf("TESTED STRUCTS\n");
+		flow_management(lem);
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);
 		ft_printf("FREED TREE\n");

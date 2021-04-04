@@ -18,8 +18,11 @@ typedef struct		s_lem
 	int				test_index; // remove after
 	int				path;
 	int				max_paths;
+	int				malloc_len;
 	int				*w_child;
 	int				*w_parent;
+	int				max_valid_path;
+	int				i_placeholder;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
 	char			**tunnels;
@@ -72,6 +75,8 @@ t_room		*get_room(char *line, t_room *room, t_lem *lem);
 int			check_rooms_validity(char *line, t_lem *lem);
 int			*ft_newintarr(int *forbidden_array, int i);
 void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
+int			flow_management(t_lem *lem);
+int			**append_array(int **arr, int max);
 
 
 #endif
