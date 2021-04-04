@@ -91,7 +91,7 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 		}
 		j++;
 	}
-	if (child->name != NULL)
+	if (child->name != NULL && ft_strcmp(child->name, lem->e_room_name) != 0)
 		find_family(lem, forbidden_array, parent, child);
 }
 

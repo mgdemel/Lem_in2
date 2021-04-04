@@ -1,5 +1,4 @@
 #include "lem_in.h"
-#include <stdio.h>
 
 void	copy_previous_path(t_lem *lem, int r, int path, int i)
 {
@@ -116,6 +115,7 @@ int		create_path_arr(t_lem *lem)
 		return (1);
 	if (!(lem->all_paths[i] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
 		return (1);
-	scan_paths(start, lem, 0, 0);
+	if (!(scan_paths(start, lem, 0, 0)))
+		return (1);
 	return (0);
 }

@@ -1,16 +1,16 @@
 #include "lem_in.h"
 
-void error_message(t_lem *lem, t_room *room)
+void	error_message(t_lem *lem, t_room *room)
 {
 	free(lem);
 	free(room);
 	ft_printf("ERROR\n");
 }
 
-int main(void)
+int		main(void)
 {
-	t_lem *lem;
-	int fd;
+	t_lem	*lem;
+	int		fd;
 
 	fd = 0;
 	lem = initialize_lem();
@@ -27,10 +27,12 @@ int main(void)
 		lem->test_index = 0;
 		test_structs(lem);
 		ft_printf("TESTED STRUCTS\n");
+		lem->test_index = 0;
 		free_tree(lem->tree, lem);
 		ft_printf("FREED TREE\n");
 	//	free_room(lem->all_rooms);
 		ft_printf("FREED ROOM\n");
+		//while (1);
 		//free_lem(lem);
 		//ft_printf("FREED LEM\n");
 	}
