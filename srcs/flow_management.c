@@ -48,7 +48,7 @@ int *add_to_forbidden_array(t_lem *lem, int src, int to_add, int *forbidden)
 }
 //next up, just test this!
 
-int	compare(int *all_paths, int *other_path)
+int compare(int *all_paths, int *other_path)
 {
 	int i;
 	int j;
@@ -66,21 +66,6 @@ int	compare(int *all_paths, int *other_path)
 		i++;
 	}
 	return (0);
-}
-
-int scan_similar(t_lem *lem, int *valid_path)
-{
-	int j;
-	int i;
-
-	i = 2;
-	while (i < ((valid_path[0] * -1)))
-	{
-		if (compare(lem->all_paths[lem->i_placeholder + 1], lem->all_paths[valid_path[i]]) == 1)
-			return (1);
-		i++;
-	}
-	return (1);
 }
 
 int find_low_int_array(t_lem *lem, int result)
@@ -111,78 +96,92 @@ int find_low_int_array(t_lem *lem, int result)
 
 int add_path(int **valid_paths, t_lem *lem, int len)
 {
-	int i;
 	int j;
 
-	i = 0;
 	j = 0;
-	while (i < lem->max_valid_path)
-		i++;
-	if (!(valid_paths[i] = (int *)malloc(sizeof(int) * len)))
+	if (!(valid_paths[lem->max_valid_path] = (int *)malloc(sizeof(int) * len)))
 		return (1);
-	valid_paths[i][0] = len * -1;
-	valid_paths[i][1] = find_low_int_array(lem, 0);
+	valid_paths[lem->max_valid_path][0] = len * -1;
+	valid_paths[lem->max_valid_path][1] = find_low_int_array(lem, 0);
 	while (len >= 3)
 	{
-		valid_paths[i][j] = find_low_int_array(lem, 1);
+		valid_paths[lem->max_valid_path][j] = find_low_int_array(lem, 1);
 		j++;
 		len--;
 	}
-	ft_printf("valid_paths first index: %d valid_paths second index: %d\n", valid_paths[i][0], valid_paths[i][1]);
+	ft_printf("valid_paths first index: %d valid_paths second index: %d\n", valid_paths[lem->max_valid_path][0], valid_paths[lem->max_valid_path][1]);
 	return (0);
-
-	//valid_paths[0] = -3|steps(ants+shortest/longest)|index
 }
-// void	add_into_allpaths(t_lem *lem, int *forbidden)
-// {
-// 	while (i < forbidden[0])
-// 	{
 
-// 	}
-// }
+int scan_similar(t_lem *lem, int *valid_path)
+{
+	int j;
+	int i;
+
+	i = 2;
+	j = 1;
+	while (i <= ((valid_path[0] * -1))) // MIG?HT HAVE TO BE < not <=
+	{
+		if (compare(lem->all_paths[valid_path[i]], lem->all_paths[lem->i_placeholder + 1]) == 1)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int recursion_adding(t_lem *lem, int i, int **valid_paths)
 {
 	int compare;
+	int possibilities; //can be max the same number of ants - 13 ants with 13 possibilites means one ant per possibility!
 
 	// i represents the length of a single int array ex. i = 3 = [1][2][3]
 
 	compare = i;
-	if (compare + 1 < lem->nbr_paths)
+	possibilities = 0;
+	while (possibilities < lem->ants)
 	{
 		while (i < lem->nbr_paths)
 		{
-			if (scan_similar(lem, valid_paths[lem->i_placeholder], 0)) // finds if the two indexes has any rooms that are similar
+			if (i >= lem->ants)
+				break ;
+			if (scan_similar(lem, valid_paths[compare])) // finds if the two indexes has any rooms that are similar
 			{
+
+				// only add if it's a good path
+				// good path = low steps
+				// steps = ants + length of path
 				lem->malloc_len++;
-				lem->i_placeholder++;
-				valid_paths = append_array(valid_paths, lem->max_valid_path);
+				valid_paths = append_array(valid_paths, lem->max_valid_path); // adding a malloced space for a valid path
 				lem->max_valid_path++;
 				ft_printf("malloc len:%d max valid path:%d\n", lem->malloc_len, lem->max_valid_path);
 				add_path(valid_paths, lem, lem->malloc_len);
 				recursion_adding(lem, i + 1, valid_paths);
+				compare++;
 			}
+			lem->i_placeholder++;
 			i++;
-			compare++;
 		}
 		lem->malloc_len = 3;
+		possibilities++;
 		// 	add_into_allpaths(lem, forbidden); // count 0 and negative for malloc, adding
 	}
+	return(0);
 }
 
-0: -2|6|0
-1: -3|4|0|1  
-2: -4|4|0|1|2 // how do we get index 2 to find the two indexes to compare to 2
-3: -3|4|0|2
-4: -2|5|3
+
+// 0: -2|6|0
+// 1: -3|4|0|1
+// 2: -4|4|0|1|2 // how do we get index 2 to find the two indexes to compare to 2
+// 3: -3|4|0|2
+// 4: -2|5|3
 
 int flow_management(t_lem *lem)
 {
 	int **valid_paths;
-	
+
 	if (!(valid_paths = (int **)malloc(sizeof(int *) * lem->max_valid_path)))
 		return (1);
-	if (!(first_path(valid_paths, lem, 3)))
+	if (!(add_path(valid_paths, lem, 3)))
 		return (1);
 	recursion_adding(lem, 0, valid_paths);
 	return (0);

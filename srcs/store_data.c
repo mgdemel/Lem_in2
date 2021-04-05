@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-char		**add_tunnel(char *line, t_lem *lem)
+static char	**add_tunnel(char *line, t_lem *lem)
 {
 	int		i;
 	char	**new;
@@ -34,7 +34,7 @@ static int	get_ants(int fd, char *line, t_lem *lem)
 	return (0);
 }
 
-int			get_tunnel(char *line, t_lem *lem)
+static int	get_tunnel(char *line, t_lem *lem)
 {
 	int i;
 
@@ -47,7 +47,7 @@ int			get_tunnel(char *line, t_lem *lem)
 	return (0);
 }
 
-int			get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
+static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 {
 	while (get_next_line(fd, &line) > 0)
 	{

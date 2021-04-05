@@ -27,6 +27,8 @@ int		main(void)
 		lem->test_index = 0;
 		test_structs(lem);
 		ft_printf("TESTED STRUCTS\n");
+		count_valid_paths(lem);
+		sort_paths(lem);
 		flow_management(lem);
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);

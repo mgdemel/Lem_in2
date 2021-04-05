@@ -29,11 +29,12 @@ int			add_elem_int_array(int *forb, t_lem *lem, char *block, int parent)
 
 	j = 0;
 	i = 0;
+	ft_printf("add_elem_int_array info:\nblock:%s\nparent:%d\n", block, parent);
 	while (i < lem->nbr_tunnels)
 	{
 		if (scan_forbidden(forb, i, lem) == 1)
 			i++;
-		else if (ft_strstr(lem->tunnels[i], block))
+		else if (ft_strword(lem->tunnels[i], block))
 		{
 			while (forb[j] > -1)
 				j++;
@@ -63,7 +64,7 @@ int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array)
 	{
 		if (scan_forbidden(forbidden_array, i, lem) == 1)
 			i++;
-		else if (ft_strstr(lem->tunnels[i], parent))
+		else if (ft_strword(lem->tunnels[i], parent))
 		{
 			t++;
 			i++;

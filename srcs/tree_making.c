@@ -52,7 +52,7 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 	child->sib = sibling;
 	while (j < lem->nbr_tunnels - 1)
 	{
-		if (ft_strstr(lem->tunnels[j], parent->name))
+		if (ft_strword(lem->tunnels[j], parent->name))
 		{
 			if (ft_blocked_index(lem->nbr_tunnels, forb, j) == 0)
 			{
@@ -73,18 +73,29 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	t_tree	*child;
 	int		i;
 	int		j;
+	int		test_delete;
 
+	test_delete = 0;
 	j = 0;
 	i = 0;
 	child = tree_init(parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
-		if (ft_strstr(lem->tunnels[j], parent->name))
+		if (ft_strword(lem->tunnels[j], parent->name))
 		{
+			ft_printf("Found a match in tunnels: %s and parent: %s, j:%d\n", lem->tunnels[j], parent->name, j);
+			// while (test_delete < 10)
+			// {
+			// 	ft_printf("%d\n", forbidden_array[test_delete]);
+			// 	test_delete++;
+			// }
+			// test_delete = 0;
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
+				ft_printf("needle cropping %s and %s\n", lem->tunnels[j], parent->name);
 				child->name = needle_crop(lem->tunnels[j], parent->name);
+				ft_printf("result child name: %s\n", child->name);
 				child->parent = parent;
 				break ;
 			}

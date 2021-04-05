@@ -23,6 +23,7 @@ typedef struct		s_lem
 	int				*w_parent;
 	int				max_valid_path;
 	int				i_placeholder;
+	int				negative_one;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
 	char			**tunnels;
@@ -50,8 +51,21 @@ typedef struct			s_room
 	struct s_room		*next;	
 }						t_room;
 
+/*
+**	PROTOTYPES
+*/
+
+/*
+**	INITIALIZE
+*/
+
 t_lem		*initialize_lem();
 t_room		*initialize_room(t_lem *lem);
+
+/*
+**	STORE_DATA.C
+*/
+
 int			store_data(t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
@@ -77,6 +91,8 @@ int			*ft_newintarr(int *forbidden_array, int i);
 void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
 int			flow_management(t_lem *lem);
 int			**append_array(int **arr, int max);
-
+void		sort_paths(t_lem *lem);
+void		count_valid_paths(t_lem *lem);
+int			ft_strword(char *haystack, char *needle);
 
 #endif

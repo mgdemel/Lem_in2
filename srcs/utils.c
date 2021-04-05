@@ -1,6 +1,41 @@
 #include "lem_in.h"
 
 /*
+**	Returns a 1 if it finds the exact word in haystack that was in needle before or 
+** 	after a '-' character.
+*/
+
+int		ft_strword(char *haystack, char *needle)
+{
+	int j;
+	char **new;
+	int word;
+
+	word = 0;
+	new = ft_strsplit(haystack, '-');
+	while (word < 2)
+	{
+		j = 0;
+		while (new[word][j] == needle[j])
+		{
+			if (needle[j] == '\0' && new[word][j] == '\0')
+			{
+				free(new[0]);
+				free(new[1]);
+				free(new);
+				return (1);
+			}
+			j++;
+		}
+		word++;
+	}
+	free(new[0]);
+	free(new[1]);
+	free(new);
+	return (0);
+}
+
+/*
 **	An int** array is sent in to be increased by one, so we add one in
 **	tmp and copy over all content to the tmp and return that.
 */
@@ -26,6 +61,62 @@ int		**append_array(int **arr, int max)
 	}
 	free(arr);
 	return (tmp);
+}
+
+/*
+**	Discards dead ends from all_paths and sorts paths from short to long
+*/
+void	sort_paths(t_lem *lem)
+{
+	int **sorted; //sorted array of paths without dead ends    !store into struct!
+	int *tmp;
+	int i;
+	int j;
+	int x = 0;
+	int t = 0;
+	int tt = 0;
+
+	i = 0;
+	j = 0;
+	if (!(sorted = (int **)malloc(sizeof(int *) * lem->negative_one + 1)))
+		ft_printf("ERROR in sort_paths");
+	while (i < lem->max_paths)
+	{
+		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
+		{
+			sorted[j] = lem->all_paths[i];
+			j++;
+		}
+		i++;
+	}
+	while (x + 1 < lem->negative_one)
+	{
+		if (sorted[x][0] * -1 > sorted[x + 1][0] * -1)
+		{
+			//ft_printf("pre-sorted: %d\npre-tmp: %d\n", sorted[x][0], tmp[0]);
+			tmp = sorted[x];
+			sorted[x] = sorted[x + 1];
+			sorted[x + 1] = tmp;
+			x = 0;
+			//ft_printf("sorted: %d\ntmp: %d\n", sorted[x][0], tmp[0]);
+		}
+		else
+			x++;
+		while(t < lem->negative_one)
+		{
+			tt = 0;
+			while (sorted[t][tt] != -1)
+			{
+				ft_printf(" %d |", sorted[t][tt]);
+				tt++;
+			}
+			ft_printf(" %d |", sorted[t][tt]);
+			ft_printf("\n");
+			t++;
+		}
+		t = 0;
+		ft_printf("\n");
+	}
 }
 
 /*
@@ -60,6 +151,10 @@ char	*needle_crop(char *haystack, char *needle)
 	char **new;
 	char *ret;
 
+	ft_printf("needle cropping haystack:%s\n", haystack);
+	ft_printf("needle cropping needle:%s\n", needle);
+
+
 	new = ft_strsplit(haystack, '-');
 	if (ft_strcmp(new[0], needle))
 		ret = ft_strdup(new[0]);
@@ -68,6 +163,7 @@ char	*needle_crop(char *haystack, char *needle)
 	free(new[0]);
 	free(new[1]);
 	free(new);
+	ft_printf("returning ret:%s\n", ret);
 	return (ret);
 }
 
@@ -83,4 +179,18 @@ void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)
 	while (room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
 		room = room->next;
 	lem->all_paths[i][r] = room->roomnum;
+}
+
+void	count_valid_paths(t_lem *lem)
+{
+	int i;
+
+	i = 0;
+	lem->negative_one = 0;
+	while (i < lem->max_paths)
+	{
+		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
+			lem->negative_one++;
+		i++;
+	}
 }

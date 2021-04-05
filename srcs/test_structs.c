@@ -53,7 +53,7 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
 				break ;
 		}
 	}
-	ft_printf("name of end room %s\nwith parent %s\n", tree->name, tree->parent->name);
+	ft_printf("name last room %s\nwith parent %s\n", tree->name, tree->parent->name);
 }
 
 void scan_rooms(t_lem *lem)
@@ -168,7 +168,7 @@ void test_structs(t_lem *lem)
 	ft_putchar('\n');
 	ft_printf("********    LEM TESTING:    ********\n");
 	ft_printf("********    PRINT INFO:    ********\n\n");
-	//print_lem(lem);
+	print_lem(lem);
 	ft_printf("********    SCAN ROOMS:    ********\n\n");
 	scan_rooms(lem);
 	ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
