@@ -21,11 +21,12 @@ typedef struct		s_lem
 	int				malloc_len;
 	int				*w_child;
 	int				*w_parent;
-	int				max_valid_path;
+	int				max_options;
 	int				i_placeholder;
 	int				negative_one;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
+	int				**final_paths;
 	char			**tunnels;
 	char			*start_room_name;
 	char			*e_room_name;

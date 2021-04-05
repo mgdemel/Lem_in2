@@ -29,7 +29,6 @@ int			add_elem_int_array(int *forb, t_lem *lem, char *block, int parent)
 
 	j = 0;
 	i = 0;
-	ft_printf("add_elem_int_array info:\nblock:%s\nparent:%d\n", block, parent);
 	while (i < lem->nbr_tunnels)
 	{
 		if (scan_forbidden(forb, i, lem) == 1)

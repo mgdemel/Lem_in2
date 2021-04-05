@@ -84,18 +84,9 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	{
 		if (ft_strword(lem->tunnels[j], parent->name))
 		{
-			ft_printf("Found a match in tunnels: %s and parent: %s, j:%d\n", lem->tunnels[j], parent->name, j);
-			// while (test_delete < 10)
-			// {
-			// 	ft_printf("%d\n", forbidden_array[test_delete]);
-			// 	test_delete++;
-			// }
-			// test_delete = 0;
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
-				ft_printf("needle cropping %s and %s\n", lem->tunnels[j], parent->name);
 				child->name = needle_crop(lem->tunnels[j], parent->name);
-				ft_printf("result child name: %s\n", child->name);
 				child->parent = parent;
 				break ;
 			}

@@ -1,5 +1,26 @@
 #include "lem_in.h"
 
+void print_final_path_arr(int **arr, int max)
+{
+	int t = 0;
+	int tt = 0;
+
+	while(t < max)
+	{
+		tt = 0;
+		while (arr[t][tt] != -1)
+		{
+			ft_printf(" %d |", arr[t][tt]);
+			tt++;
+		}
+		ft_printf(" %d |", arr[t][tt]);
+		ft_printf("\n");
+		t++;
+	}
+	t = 0;
+	ft_printf("\n");
+}
+
 void print_int_arr(int *arr, int len, char *str)
 {
 	int i;
@@ -159,26 +180,28 @@ void scan_arrays(t_lem *lem)
 
 void test_structs(t_lem *lem)
 {
-	int i;
+	// int i;
 
-	i = 0;
-	t_tree *start = lem->tree;
-	lem->max_paths = lem->max_paths;
-	ft_putchar('\n');
-	ft_putchar('\n');
-	ft_printf("********    LEM TESTING:    ********\n");
-	ft_printf("********    PRINT INFO:    ********\n\n");
-	print_lem(lem);
-	ft_printf("********    SCAN ROOMS:    ********\n\n");
-	scan_rooms(lem);
-	ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
-	scan_tree(start, lem, 1);
-	ft_printf("********    SCAN THE ARRAY:     *********\n\n");
-	scan_arrays(lem);
-	ft_putchar('\n');
-	while (i < lem->max_paths)
-	{
-		ft_printf("Last index of %d is :%d\n", i, lem->all_paths[i][lem->all_paths[i][0] * -1]);
-		i++;
-	}
+	// i = 0;
+	// t_tree *start = lem->tree;
+	// lem->max_paths = lem->max_paths;
+	// ft_putchar('\n');
+	// ft_putchar('\n');
+	// ft_printf("TESTED STRUCTS\n");
+	// ft_printf("********    LEM TESTING:    ********\n");
+	// ft_printf("********    PRINT INFO:    ********\n\n");
+	// print_lem(lem);
+	// ft_printf("********    SCAN ROOMS:    ********\n\n");
+	// scan_rooms(lem);
+	// ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
+	// scan_tree(start, lem, 1);
+	// ft_printf("********    SCAN THE ARRAY:     *********\n\n");
+	// scan_arrays(lem);
+	// ft_putchar('\n');
+	// while (i < lem->max_paths)
+	// {
+	// 	ft_printf("Last index of %d is :%d\n", i, lem->all_paths[i][lem->all_paths[i][0] * -1]);
+	// 	i++;
+	// }
+	print_final_path_arr(lem->final_paths, lem->negative_one);
 }

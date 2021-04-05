@@ -79,9 +79,9 @@ int find_low_int_array(t_lem *lem, int result)
 	placeholder = 0;
 	while (i < lem->max_paths)
 	{
-		if (lowest < (lem->all_paths[i][0] * -1))
+		if (lowest < (lem->final_paths[i][0] * -1))
 		{
-			lowest = lem->all_paths[i][0] * -1;
+			lowest = lem->final_paths[i][0] * -1;
 			placeholder = i;
 		}
 		i++;
@@ -94,24 +94,62 @@ int find_low_int_array(t_lem *lem, int result)
 		return (placeholder);
 }
 
-int add_path(int **valid_paths, t_lem *lem, int len)
+
+void	set_steps(int *path)
+{
+	int i;
+	int steps;
+
+	i = 2;
+	steps = 0;
+	while (i < path[0] * -1)
+	{
+		i++;
+	}
+}
+//add_path(options, lem, 3)
+int **add_path(int **options, t_lem *lem, int len)
 {
 	int j;
 
 	j = 0;
-	if (!(valid_paths[lem->max_valid_path] = (int *)malloc(sizeof(int) * len)))
-		return (1);
-	valid_paths[lem->max_valid_path][0] = len * -1;
-	valid_paths[lem->max_valid_path][1] = find_low_int_array(lem, 0);
+	if (!(options[lem->max_options] = (int *)malloc(sizeof(int) * len)))
+		ft_printf("ERRRRRRRRORRRRROORRR");
+	options[lem->max_options][0] = len * -1; //sets the len (index0) to a negative number
+	options[lem->max_options][1] = 0;    //set_steps(lem, options[lem->max_options]); //should set the steps (index1) to # of steps 
 	while (len >= 3)
 	{
-		valid_paths[lem->max_valid_path][j] = find_low_int_array(lem, 1);
+		options[lem->max_options][j] = find_low_int_array(lem, 1);
 		j++;
 		len--;
 	}
-	ft_printf("valid_paths first index: %d valid_paths second index: %d\n", valid_paths[lem->max_valid_path][0], valid_paths[lem->max_valid_path][1]);
-	return (0);
+	ft_printf("options len (index0): %d options steps (index1): %d\n", options[lem->max_options][0], options[lem->max_options][1]);
+	return (options);
 }
+// I  STEPS ROOMS
+// 0: 1 2 3
+// 1: 4 5 6
+// 2: 7 8 9
+// ants: 3
+// 			I  LEN  STEPS   PATHS
+// options  0: -2   6       0
+// 			1: -3   5       0 1
+// 			2: -4   4       0 1 2
+// 			3: -2   6       1
+// 			4: -3   5       1 2
+// 			5: -2   6       2
+// 			// ... as many as there are possible combinations
+// 			// find situation with the lowest steps!
+// steps = 9       
+// 			1     2
+// 			a     3
+// 			a	  4
+// 			a	  5
+// 			a	  6
+// 			a	  7
+// 			a	  8
+// 			a     a
+// 			a     a
 
 int scan_similar(t_lem *lem, int *valid_path)
 {
@@ -129,7 +167,7 @@ int scan_similar(t_lem *lem, int *valid_path)
 	return (0);
 }
 
-int recursion_adding(t_lem *lem, int i, int **valid_paths)
+int recursion_adding(t_lem *lem, int i, int **options)
 {
 	int compare;
 	int possibilities; //can be max the same number of ants - 13 ants with 13 possibilites means one ant per possibility!
@@ -144,18 +182,18 @@ int recursion_adding(t_lem *lem, int i, int **valid_paths)
 		{
 			if (i >= lem->ants)
 				break ;
-			if (scan_similar(lem, valid_paths[compare])) // finds if the two indexes has any rooms that are similar
+			if (scan_similar(lem, options[compare])) // finds if the two indexes has any rooms that are similar
 			{
 
 				// only add if it's a good path
 				// good path = low steps
 				// steps = ants + length of path
 				lem->malloc_len++;
-				valid_paths = append_array(valid_paths, lem->max_valid_path); // adding a malloced space for a valid path
-				lem->max_valid_path++;
-				ft_printf("malloc len:%d max valid path:%d\n", lem->malloc_len, lem->max_valid_path);
-				add_path(valid_paths, lem, lem->malloc_len);
-				recursion_adding(lem, i + 1, valid_paths);
+				options = append_array(options, lem->max_options); // adding a malloced space for a valid path
+				lem->max_options++;
+				ft_printf("malloc len:%d max valid path:%d\n", lem->malloc_len, lem->max_options);
+				add_path(options, lem, lem->malloc_len);
+				recursion_adding(lem, i + 1, options);
 				compare++;
 			}
 			lem->i_placeholder++;
@@ -168,21 +206,22 @@ int recursion_adding(t_lem *lem, int i, int **valid_paths)
 	return(0);
 }
 
-
-// 0: -2|6|0
-// 1: -3|4|0|1
-// 2: -4|4|0|1|2 // how do we get index 2 to find the two indexes to compare to 2
-// 3: -3|4|0|2
-// 4: -2|5|3
-
 int flow_management(t_lem *lem)
 {
-	int **valid_paths;
+	int **options;
+	int i;
 
-	if (!(valid_paths = (int **)malloc(sizeof(int *) * lem->max_valid_path)))
+	i = 0;
+	if (!(options = (int **)malloc(sizeof(int *) * lem->max_options)))
 		return (1);
-	if (!(add_path(valid_paths, lem, 3)))
-		return (1);
-	recursion_adding(lem, 0, valid_paths);
+	options = add_path(options, lem, 3);
+	ft_printf("ADDED PATH\n");
+	ft_printf("options[0][0]: %d\n", options[0][0]);
+	while (i < (options[0][0] * -1))
+	{
+		ft_printf("option:%d\n", options[0][i]);
+		i++;
+	}
+	recursion_adding(lem, 0, options);
 	return (0);
 }
