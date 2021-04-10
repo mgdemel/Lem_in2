@@ -27,9 +27,9 @@ int		main(void)
 		lem->test_index = 0;
 		count_valid_paths(lem);
 		sort_paths(lem);
+		test_structs(lem);
 		flow_management(lem);
 		lem->test_index = 0;
-		test_structs(lem);
 		free_tree(lem->tree, lem);
 		ft_printf("FREED TREE\n");
 	//	free_room(lem->all_rooms);

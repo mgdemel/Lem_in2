@@ -11,7 +11,6 @@ typedef struct		s_lem
 	int 			ants;
 	int				nbr_tunnels;
 	int				nbr_rooms;
-	int				nbr_paths;
 	int				current_roomnum;
 	int				found_start_end;
 	int				path_index;
@@ -95,5 +94,6 @@ int			**append_array(int **arr, int max);
 void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
 int			ft_strword(char *haystack, char *needle);
+void		arr_row_size(t_tree *start, t_lem *lem);
 
 #endif

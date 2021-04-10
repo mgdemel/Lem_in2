@@ -47,11 +47,13 @@ int		**append_array(int **arr, int max)
 	int j;
 	
 	i = 0;
-	if (!(tmp = (int **)malloc(sizeof(int *) * max + 1)))
+	if (!(tmp = (int **)malloc(sizeof(int *) * max + 2)))
 		return (NULL);
-	while (i < max)
+	while (i < max + 1)
 	{
 		j = 0;
+		if (!(tmp[i] = (int *)malloc(sizeof(int) * arr[i][0] * -1)))
+			return (NULL);
 		while (j < arr[i][0] * -1)
 		{
 			tmp[i][j] = arr[i][j];
@@ -144,20 +146,6 @@ char	*needle_crop(char *haystack, char *needle)
 	free(new[1]);
 	free(new);
 	return (ret);
-}
-
-/*
-**	A util of scan_paths in gater_paths
-*/
-
-void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)
-{
-	t_room	*room;
-
-	room = lem->all_rooms;
-	while (room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
-		room = room->next;
-	lem->all_paths[i][r] = room->roomnum;
 }
 
 void	count_valid_paths(t_lem *lem)

@@ -9,7 +9,6 @@ t_lem	*initialize_lem(void)
 	lem->ants = 0;
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
-	lem->nbr_paths = 0;
 	lem->current_roomnum = 0;
 	lem->found_start_end = 0;
 	lem->path_index = 0;
@@ -25,7 +24,7 @@ t_lem	*initialize_lem(void)
 	lem->w_parent = NULL;
 	lem->w_child = NULL;
 	lem->sib_name = NULL;
-	lem->max_options = 1;
+	lem->max_options = 0;
 	lem->malloc_len = 3;
 	lem->i_placeholder = 0;
 	lem->final_paths = NULL;

@@ -121,10 +121,6 @@ void print_lem(t_lem *lem)
 	ft_putnbr(lem->nbr_rooms);
 	ft_putchar('\n');
 
-	ft_putstr("nbr_paths: ");
-	ft_putnbr(lem->nbr_paths);
-	ft_putchar('\n');
-
 	ft_putstr("found_start_end: ");
 	ft_putnbr(lem->found_start_end);
 	ft_putchar('\n');

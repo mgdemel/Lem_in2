@@ -46,6 +46,8 @@ int		copy_col(int r, t_lem *lem, int array, char *name)
 	return (0);
 }
 
+
+
 int		scan_paths(t_tree *start, t_lem *lem, int i, int r)
 {
 	t_tree	*tree;
@@ -77,27 +79,6 @@ int		scan_paths(t_tree *start, t_lem *lem, int i, int r)
 	if (tree->name == NULL || ft_strcmp(tree->name, lem->e_room_name) == 0)
 		copy_col(r, lem, i, tree->name);
 	return (0);
-}
-
-void	arr_row_size(t_tree *start, t_lem *lem)
-{
-	t_tree *tree;
-
-	tree = start;
-	if (tree->name != NULL)
-	{
-		while (ft_strcmp(tree->name, lem->e_room_name) != 0)
-		{
-			if (tree->sib != NULL)
-			{
-				lem->max_paths++;
-				arr_row_size(tree->sib, lem);
-			}
-			tree = tree->child;
-			if (tree->name == NULL)
-				break ;
-		}
-	}
 }
 
 int		create_path_arr(t_lem *lem)
