@@ -20,7 +20,7 @@ int compare(int *all_paths, int *other_path)
 	return (0);
 }
 
-int		set_steps(int *path, t_lem *lem, int ants)
+int		set_steps(int **path, t_lem *lem, int ants)
 {
 	int i;
 	int steps;
@@ -32,7 +32,7 @@ int		set_steps(int *path, t_lem *lem, int ants)
 	ants = lem->ants;
 	if (ants == lem->ants)
 		return (steps);
-	while (i < path[0] * -1)
+	while (i < path[0][0] * -1)
 	{
 		// find the actual path stored at this index from the other array
 		// take the value of that path's first index * -1
@@ -54,9 +54,7 @@ int **add_option(int **options, t_lem *lem, int len)
 	if (!(options[lem->max_options] = (int *)malloc(sizeof(int) * len)))
 		ft_printf("ERRRRRRRRORRRRROORRR");
 	options[lem->max_options][0] = len * -1; //sets the len (index0) to a negative number
-	options[lem->max_options][1] = set_steps(options[lem->max_options - 1], lem,  lem->ants); //
 	ft_printf("options:%d\n", options[lem->max_options][0]);
-	ft_printf("options:%d\n", options[lem->max_options][1]);
 	//options[0] = -3 | 10 | 0 |
 	//options[1] = -4 | 10 | 0 | 1
 	//options[2] = -5 | 10 | 0 | 1 | lem->i_placeholder + 1;
@@ -69,6 +67,7 @@ int **add_option(int **options, t_lem *lem, int len)
 		len--;
 	}
 	options[lem->max_options][j] = lem->i_placeholder + i;
+	options[lem->max_options][1] = set_steps(options, lem,  lem->ants);
 	ft_printf("options:%d\n", lem->i_placeholder + i);
 //	lem->max_options++;
 	return (options);
@@ -98,6 +97,29 @@ int **add_option(int **options, t_lem *lem, int len)
 // 			a     a
 // 			a     a
 
+/*
+
+	SUB_MAP
+	all_paths:
+	i       len         rooms
+	0                   1 3 4 8
+	1                   1 2 4 8
+	2                   1 2 5 6 8
+	3                   1 2 7 6 8
+	4                   1 3 5 6 8
+
+    Options:
+	i       len     steps       paths
+	0       -3      x           0
+	1       -4      x           0 2
+	2       -3      x           1                           
+	3       -4      x           1 4
+	4       -3      x           2
+	5       -3      x           3
+	6       -3      x           4
+
+*/
+
 int scan_similar(t_lem *lem, int *valid_path)
 {
 	int i;
@@ -112,27 +134,34 @@ int scan_similar(t_lem *lem, int *valid_path)
 	return (0);
 }
 
-int recursion_adding(t_lem *lem, int i, int **options)
+int recursion_adding(t_lem *lem, int **options)
 {
-	int compare;
 	int possibilities; //can be max the same number of ants: 13 ants with 13 possibilites means one ant per possibility!
-
+	int i;
 	// i represents the length of a single int array ex. i = 3 = [1][2][3]
 
-	compare = i;
+	i = 0;
 	possibilities = 1;
-	while (possibilities < 5 && possibilities != lem->max_paths && i <= lem->ants)
-	{
-		ft_printf("i: %d\n", i);
-		ft_printf("nbr_paths:%d\n", lem->max_paths);
-		while (i < lem->max_paths) //itterates thru allpaths array
+
+
+	/*
+	**	Malloc_len as a stopping point for while loop?
+	**	TODO: Do we need outermost while?
+	**	Once one while loop goes through, make sure the next options[x] is filled with the next path (example options[0] = allpaths[0], options[1] = allpaths[1])
+	*/
+	// while (possibilities < 5 && possibilities != lem->max_paths && i <= lem->ants)
+	// {
+	// 	ft_printf("i: %d\n", i);
+	// 	ft_printf("nbr_paths:%d\n", lem->max_paths);
+	 	while (i < lem->max_paths && lem->malloc_len - 2 < lem->max_paths) //itterates thru allpaths array       <------- this loop is finding and adding onto the option too many times. Should exit once we find the last index of allpaths, at least
 		{
 			/*
 			**	Assumes we are comparing a "x | y | path" int array, adding onto paths as long as possible.
 			**	Have to exit once it's not possible, and add next path as a single option.
 			*/
+			ft_printf("compare:%d\n", lem->compare);
 			ft_printf("going into scan_similar\n");
-			if (scan_similar(lem, options[compare])) // finds if the two indexes has any rooms that are similar
+			if (scan_similar(lem, options[lem->compare])) // finds if the two indexes has any rooms that are similar
 			{
 				// steps = ants + length of path
 				ft_printf("scan_similar succeeded\n");
@@ -141,17 +170,17 @@ int recursion_adding(t_lem *lem, int i, int **options)
 				ft_printf("append_array succeeded\n");
 				lem->max_options++;
 				ft_printf("malloc len:%d max valid path:%d\n", lem->malloc_len, lem->max_options);
-				options = add_option(options, lem, lem->malloc_len); // NEEDS TO BE FIXED
+				options = add_option(options, lem, lem->malloc_len); // NEEDS TO BE FIXEDfd
 				lem->i_placeholder++;
-				recursion_adding(lem, i + 1, options);
-				compare++;
+				lem->compare++; // index of options[compare] should go linearly
+				recursion_adding(lem, options);
 			}
 			i++;
 		}
 		lem->malloc_len = 3;
-		possibilities++;
+		//possibilities++;
 		// 	add_into_allpaths(lem, forbidden); // count 0 and negative for malloc, adding
-	}
+//	}
 	return(0);
 }
 
@@ -206,6 +235,6 @@ int flow_management(t_lem *lem)
 		j++;
 	}
 	ft_printf("\n");
-	recursion_adding(lem, 0, options);
+	recursion_adding(lem, options);
 	return (0);
 }

@@ -30,6 +30,7 @@ typedef struct		s_lem
 	char			*start_room_name;
 	char			*e_room_name;
 	char			*sib_name;
+	int 			compare;
 	struct s_tree	*tree; //head branch
 }					t_lem;
 

@@ -47,6 +47,20 @@ int		**append_array(int **arr, int max)
 	int j;
 	
 	i = 0;
+	ft_printf("STARTING APPEND ARRAY\n\n");
+	while (i < max + 1)
+	{
+		j = 0;
+		while (j < arr[i][0] * -1)
+		{
+			ft_printf("arr[%d]:%d\n", i, arr[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+	i = 0;
+	j = 0;
 	if (!(tmp = (int **)malloc(sizeof(int *) * max + 2)))
 		return (NULL);
 	while (i < max + 1)
@@ -76,7 +90,6 @@ void	sort_paths(t_lem *lem)
 	int j;
 	int x = 0;
 
-
 	i = 0;
 	j = 0;
 	if (!(sorted = (int **)malloc(sizeof(int *) * lem->negative_one)))
@@ -88,6 +101,8 @@ void	sort_paths(t_lem *lem)
 			sorted[j] = lem->all_paths[i];
 			j++;
 		}
+		else
+			lem->max_paths--;
 		i++;
 	}
 	while (x + 1 < lem->negative_one)

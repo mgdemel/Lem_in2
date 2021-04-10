@@ -28,6 +28,7 @@ t_lem	*initialize_lem(void)
 	lem->malloc_len = 3;
 	lem->i_placeholder = 0;
 	lem->final_paths = NULL;
+	lem->compare = 0;
 	return (lem);
 }
 
