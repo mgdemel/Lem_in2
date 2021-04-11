@@ -20,35 +20,6 @@ int compare(int *final_paths, int *other_path)
 	return (0);
 }
 
-/*
-	If we have 0 and 2 combined, how do we get the steps.
-	
-	final_paths[0][0] = -5
-	final_paths[2][0] = -6
-
-	Convert to positive and -3.
-
-	2
-	3
-	
-	Ants = 20
-
-	Count inserted ants and the len together, and see how long first path gets.
-	Ants: 
-		
-	    11 10
-__________________
-        ,,
-	    2       3
-__________________
-        ,,      ,
-        2       3
-
-Total:  4       4
-Steps:  4
-
-*/
-
 int		set_steps(int *options, t_lem *lem)
 {
 	int	*ants_and_len;
@@ -69,16 +40,13 @@ int		set_steps(int *options, t_lem *lem)
 	i = 0;
 	while (ants_cpy > 0)
 	{
-		while (ants_and_len[i] > ants_and_len[i + 1])
-		{
-			if (i == tab)
-				break ;
+		while (i + 1 < tab && ants_and_len[i] > ants_and_len[i + 1])
 			i++;
-		}
 		ants_and_len[i]++;
 		ants_cpy--;
 		i = 0;
 	}
+	print_int_arr(ants_and_len, tab, "Ants_len");
 	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);

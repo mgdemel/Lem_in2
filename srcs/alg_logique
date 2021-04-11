@@ -247,3 +247,33 @@ small map 2
 	6       -3      x           4
 
 */
+
+
+/*
+	If we have 0 and 2 combined, how do we get the steps.
+	
+	final_paths[0][0] = -5
+	final_paths[2][0] = -6
+
+	Convert to positive and -3.
+
+	2
+	3
+	
+	Ants = 20
+
+	Count inserted ants and the len together, and see how long first path gets.
+	Ants: 
+		
+	    11 10
+__________________
+        ,,
+	    2       3
+__________________
+        ,,      ,
+        2       3
+
+Total:  4       4
+Steps:  4
+
+*/
