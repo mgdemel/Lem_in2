@@ -51,12 +51,10 @@ int		**append_array(int **arr, int max)
 	**	arr[1] = -4|5|0|2
 	*/
 	i = 0;
-	ft_printf("\nSTARTING APPEND ARRAY\n");
 	if (!(tmp = (int **)malloc(sizeof(int *) * (max + 1))))
 		return (NULL);
 	while (i < max)
 	{
-		ft_printf("Copying inside append array\n");
 		j = 0;
 		if (!(tmp[i] = (int *)malloc(sizeof(int) * arr[i][0] * -1)))
 			return (NULL);
@@ -68,7 +66,6 @@ int		**append_array(int **arr, int max)
 		i++;
 	}
 	free(arr);
-	ft_printf("COMPLETED APPEND ARRAY\n\n");
 	return (tmp);
 }
 
@@ -77,21 +74,25 @@ int		**append_array(int **arr, int max)
 */
 void	sort_paths(t_lem *lem)
 {
-	int **sorted;
 	int *tmp;
 	int i;
 	int j;
-	int x = 0;
+	int x;
+	int tab;
 
 	i = 0;
 	j = 0;
-	if (!(sorted = (int **)malloc(sizeof(int *) * lem->negative_one)))
+	x = 0;
+	tab = lem->max_paths;
+	ft_printf("negative_one:%d\n", lem->negative_one);
+	ft_printf("max_paths:%d\n", lem->max_paths);
+	if (!(lem->final_paths = (int **)malloc(sizeof(int *) * lem->negative_one)))
 		ft_printf("ERROR in sort_paths");
-	while (i < lem->max_paths)
+	while (i < tab)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
 		{
-			sorted[j] = lem->all_paths[i];
+			lem->final_paths[j] = lem->all_paths[i];
 			j++;
 		}
 		else
@@ -100,17 +101,16 @@ void	sort_paths(t_lem *lem)
 	}
 	while (x + 1 < lem->negative_one)
 	{
-		if (sorted[x][0] * -1 > sorted[x + 1][0] * -1)
+		if (lem->final_paths[x][0] * -1 > lem->final_paths[x + 1][0] * -1)
 		{
-			tmp = sorted[x];
-			sorted[x] = sorted[x + 1];
-			sorted[x + 1] = tmp;
+			tmp = lem->final_paths[x];
+			lem->final_paths[x] = lem->final_paths[x + 1];
+			lem->final_paths[x + 1] = tmp;
 			x = 0;
 		}
 		else
 			x++;
 	}
-	lem->final_paths = sorted;
 }
 
 /*

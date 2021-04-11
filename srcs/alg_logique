@@ -150,13 +150,6 @@ ANTS   STEPS MIDDLE | ALL
 4              
 
 
-
-
-
-
-
-
-
 s r3  r2 r4 r1 e
 1  2  3  4   5 9
 
@@ -204,3 +197,53 @@ small map 2
 6
 7
 8
+
+
+
+// I  STEPS ROOMS
+// 0: 1 2 3
+// 1: 4 5 6
+// 2: 7 8 9
+// ants: 3
+// 			I  LEN  STEPS   PATHS
+// options  0: -2   6       0
+// 			1: -3   5       0 1
+// 			2: -4   4       0 1 2
+// 			3: -2   6       1
+// 			4: -3   5       1 2
+// 			5: -2   6       2
+// 			// ... as many as there are possible combinations
+// 			// find situation with the lowest steps!
+// steps = 9       
+// 			1     2
+// 			a     3
+// 			a	  4
+// 			a	  5
+// 			a	  6
+// 			a	  7
+// 			a	  8
+// 			a     a
+// 			a     a
+
+/*
+
+	SUB_MAP
+	final_paths:
+	i       len         rooms
+	0                   1 3 4 8
+	1                   1 2 4 8
+	2                   1 2 5 6 8
+	3                   1 2 7 6 8
+	4                   1 3 5 6 8
+
+    Options:
+	i       len     steps       paths
+	0       -3      x           0     | while
+	1       -4      x           0 2
+	2       -3      x           1     | while               
+	3       -4      x           1 4
+	4       -3      x           2     
+	5       -3      x           3
+	6       -3      x           4
+
+*/
