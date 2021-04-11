@@ -1,5 +1,26 @@
 #include "lem_in.h"
 
+int	*get_result(int **options, t_lem *lem)
+{
+	int i;
+	int lowest;
+	int tab;
+
+	i = 0;
+	tab = 0;
+	lowest = options[0][1];
+	while(i < lem->i_placeholder)
+	{
+		if (options[i][1] < lowest)
+		{
+			lowest = options[i][1];
+			tab = i;
+		}
+		i++;
+	}
+	return(options[tab]);
+}
+
 int compare(int *final_paths, int *other_path)
 {
 	int i;
@@ -46,7 +67,7 @@ int		set_steps(int *options, t_lem *lem)
 		ants_cpy--;
 		i = 0;
 	}
-	print_int_arr(ants_and_len, tab, "Ants_len");
+	//print_int_arr(ants_and_len, tab, "Ants_len");
 	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);
@@ -155,5 +176,7 @@ int flow_management(t_lem *lem)
 		options = recursion_adding(lem, options, compare);
 	}
 	print_double_arr(options, lem->i_placeholder);
+	lem->result = get_result(options, lem);
+	ft_printf("result: %d\n", lem->result[1]);
 	return (0);
 }

@@ -1,18 +1,37 @@
 #include "lem_in.h"
 
+char	*get_room_name(t_lem *lem, int moves)
+{
+
+}
+
+int	get_moves(t_lem *lem)
+{
+	int moves;
+	moves = 0;
+
+	return(moves);
+}
+
 void	output(t_lem *lem)
 {
-	t_room *room;
+	int ant;
+	int moves;
+	char *room_name;
+	int	*result;
 
-	room = lem->all_rooms;
-	ft_printf("%d\n", lem->ants);
-	while (room->next != NULL)
+	ant = 1;
+	moves = 0;
+	room_name = NULL;
+	while (ant <= lem->ants)
 	{
-		if (room->roomtype == 1)
-			ft_printf("##start\n");
-		if (room->roomtype == 3)
-			ft_printf("##end\n");
-		ft_printf("%s %d %d\n", room->name, room->x, room->y);
-		room = room->next;
+		moves = get_moves(lem);
+		while (moves > 0)
+		{
+			room_name = get_room_name(lem, moves);
+			ft_printf("L%d-%s ", ant, room_name);
+			ant--;
+		}
+		moves--;
 	}
 }

@@ -27,11 +27,12 @@ int		main(void)
 		lem->test_index = 0;
 		count_valid_paths(lem);
 		sort_paths(lem);
-		test_structs(lem);
+		//test_structs(lem);
 		flow_management(lem);
+		//output(lem);
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);
-		ft_printf("FREED TREE\n");
+		//ft_printf("FREED TREE\n");
 	//	free_room(lem->all_rooms);
 	//	ft_printf("FREED ROOM\n");
 		//free_lem(lem);

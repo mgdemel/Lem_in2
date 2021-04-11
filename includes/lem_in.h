@@ -32,6 +32,7 @@ typedef struct		s_lem
 	char			*sib_name;
 	int 			compare;
 	struct s_tree	*tree; //head branch
+	int				*result;
 }					t_lem;
 
 typedef struct 		s_tree
