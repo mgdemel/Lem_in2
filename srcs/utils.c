@@ -46,25 +46,17 @@ int		**append_array(int **arr, int max)
 	int i;
 	int j;
 	
+	/*
+	**  arr[0] = -3|4|0
+	**	arr[1] = -4|5|0|2
+	*/
 	i = 0;
-	ft_printf("STARTING APPEND ARRAY\n\n");
-	while (i < max + 1)
-	{
-		j = 0;
-		while (j < arr[i][0] * -1)
-		{
-			ft_printf("arr[%d]:%d\n", i, arr[i][j]);
-			j++;
-		}
-		ft_printf("\n");
-		i++;
-	}
-	i = 0;
-	j = 0;
-	if (!(tmp = (int **)malloc(sizeof(int *) * max + 2)))
+	ft_printf("\nSTARTING APPEND ARRAY\n");
+	if (!(tmp = (int **)malloc(sizeof(int *) * (max + 1))))
 		return (NULL);
-	while (i < max + 1)
+	while (i < max)
 	{
+		ft_printf("Copying inside append array\n");
 		j = 0;
 		if (!(tmp[i] = (int *)malloc(sizeof(int) * arr[i][0] * -1)))
 			return (NULL);
@@ -76,6 +68,7 @@ int		**append_array(int **arr, int max)
 		i++;
 	}
 	free(arr);
+	ft_printf("COMPLETED APPEND ARRAY\n\n");
 	return (tmp);
 }
 

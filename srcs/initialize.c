@@ -24,7 +24,7 @@ t_lem	*initialize_lem(void)
 	lem->w_parent = NULL;
 	lem->w_child = NULL;
 	lem->sib_name = NULL;
-	lem->max_options = 0;
+	lem->index_options = 0;
 	lem->malloc_len = 3;
 	lem->i_placeholder = 0;
 	lem->final_paths = NULL;

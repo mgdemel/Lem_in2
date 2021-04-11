@@ -20,7 +20,7 @@ typedef struct		s_lem
 	int				malloc_len;
 	int				*w_child;
 	int				*w_parent;
-	int				max_options;
+	int				index_options;
 	int				i_placeholder;
 	int				negative_one;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
@@ -84,7 +84,7 @@ void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
 void 		free_lem(t_lem *lem);
 void		free_array(char **array);
-void		print_int_arr(int *arr, int len, char *str);
+void		print_int_arr(int *arr, int len, char *str); //remove later!
 int			check_tunnel_validity(char *line, t_lem *lem);
 t_room		*get_room(char *line, t_room *room, t_lem *lem);
 int			check_rooms_validity(char *line, t_lem *lem);
@@ -96,5 +96,6 @@ void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
 int			ft_strword(char *haystack, char *needle);
 void		arr_row_size(t_tree *start, t_lem *lem);
+void 		print_double_arr(int **arr, int max); //remove later!
 
 #endif

@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-void print_final_path_arr(int **arr, int max)
+void print_double_arr(int **arr, int max)
 {
 	int t = 0;
 	int tt = 0;
@@ -8,7 +8,7 @@ void print_final_path_arr(int **arr, int max)
 	while(t < max)
 	{
 		tt = 0;
-		while (arr[t][tt] != -1)
+		while (tt < (arr[t][0] * -1) - 1)
 		{
 			ft_printf(" %d |", arr[t][tt]);
 			tt++;
@@ -32,6 +32,7 @@ void print_int_arr(int *arr, int len, char *str)
 		ft_printf("%s:%d\n", str, arr[i]);
 		i++;
 	}
+	ft_printf("\n");
 }
 
 void test_array(t_lem *lem)
@@ -199,5 +200,5 @@ void test_structs(t_lem *lem)
 	// 	ft_printf("Last index of %d is :%d\n", i, lem->all_paths[i][lem->all_paths[i][0] * -1]);
 	// 	i++;
 	// }
-	print_final_path_arr(lem->final_paths, lem->negative_one);
+	print_double_arr(lem->final_paths, lem->negative_one);
 }
