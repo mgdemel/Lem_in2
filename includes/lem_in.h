@@ -98,5 +98,6 @@ void		count_valid_paths(t_lem *lem);
 int			ft_strword(char *haystack, char *needle);
 void		arr_row_size(t_tree *start, t_lem *lem);
 void 		print_double_arr(int **arr, int max); //remove later!
+void		output(t_lem *lem);
 
 #endif

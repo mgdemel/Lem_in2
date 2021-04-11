@@ -38,6 +38,7 @@ SRCS = 	main.c \
 		tree_making_utils.c \
 		flow_management.c \
 		gather_paths_utils.c \
+		output.c \
 
 INCLUDES := -I $(INCL_PATH)
 

@@ -29,7 +29,7 @@ int		main(void)
 		sort_paths(lem);
 		//test_structs(lem);
 		flow_management(lem);
-		//output(lem);
+		output(lem);
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);
 		//ft_printf("FREED TREE\n");
