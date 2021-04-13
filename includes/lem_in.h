@@ -24,6 +24,7 @@ typedef struct		s_lem
 	int				index_options;
 	int				i_placeholder;
 	int				negative_one;
+	int				total_paths;
 	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
 	int				**final_paths;

@@ -26,17 +26,15 @@ void	find_family(t_lem *lem, int *forb, t_tree *parent, t_tree *child)
 int		ft_blocked_index(int tunnels, int *forbidden_array, int j)
 {
 	int i;
-	int forbidden;
 
 	i = 0;
-	forbidden = 0;
 	while (i < tunnels)
 	{
 		if (j == forbidden_array[i])
-			forbidden = 1;
+			return (1);
 		i++;
 	}
-	return (forbidden);
+	return (0);
 }
 
 char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
@@ -47,17 +45,18 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 
 	j = 0;
 	i = 0;
+	ft_printf("making child nr:%d\n", lem->test_index);
 	lem->test_index++;
+	if (lem->test_index == 500)
+		exit(1);
 	sibling = tree_init(parent);
 	child->sib = sibling;
-	while (j < lem->nbr_tunnels - 1)
+	while (j < lem->nbr_tunnels - 1 && lem->total_paths <= 1)
 	{
 		if (ft_strword(lem->tunnels[j], parent->name))
 		{
-			ft_printf("6\n");
 			if (ft_blocked_index(lem->nbr_tunnels, forb, j) == 0)
 			{
-				ft_printf("7\n");
 				sibling->name = needle_crop(lem->tunnels[j], parent->name);
 				sibling->parent = parent;
 				break ;
@@ -77,12 +76,16 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	int		j;
 	int		test_delete;
 
+	ft_printf("making child nr:%d\n", lem->test_index);
+	lem->test_index++;
+	if (lem->test_index == 500)
+		exit(1);
 	test_delete = 0;
 	j = 0;
 	i = 0;
 	child = tree_init(parent);
 	parent->child = child;
-	while (j < lem->nbr_tunnels)
+	while (j < lem->nbr_tunnels && lem->total_paths <= 1)
 	{
 		if (ft_strword(lem->tunnels[j], parent->name))
 		{
@@ -101,11 +104,12 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	// 	exit(1);
 	// }
 	if (child->name != NULL && ft_strcmp(child->name, lem->e_room_name) != 0)
-	{
 		find_family(lem, forbidden_array, parent, child);
-	}
-	ft_printf("found end with name:%s\n", child->name);
-	ft_printf("WANBDHAWKJFAKJFAKJFSAJKDJW:AK:DWAK:DWJKDJWKA:KADJWJKDWAJDWAJKDWJKDAWJK:WJ\n");
+	if (child->name != NULL && ft_strcmp(child->name, lem->e_room_name) == 0)
+		lem->total_paths++;
+//	child->child = tree_init(child);
+	//ft_printf("found end with name:%s\n", child->name);
+	//ft_printf("WANBDHAWKJFAKJFAKJFSAJKDJW:AK:DWAK:DWJKDJWKA:KADJWJKDWAJDWAJKDWJKDAWJK:WJ\n");
 }
 
 int		tree_creation(t_lem *lem)
@@ -117,6 +121,8 @@ int		tree_creation(t_lem *lem)
 	c = 0;
 	i = 0;
 	lem->test_index = 0;
+	ft_printf("rooms:%d\n", lem->nbr_rooms);
+	ft_printf("tunnels:%d\n", lem->nbr_tunnels);
 	if (!(forbidden_array = (int *)malloc(sizeof(int) * (lem->nbr_tunnels))))
 		return (1);
 	while (i < (lem->nbr_tunnels))

@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-void	copy_previous_path(t_lem *lem, int r, int path, int i)
+void copy_previous_path(t_lem *lem, int r, int path, int i)
 {
 	if (i != 0 && lem->all_paths[i - 1][0] <= 0)
 	{
@@ -20,7 +20,7 @@ void	copy_previous_path(t_lem *lem, int r, int path, int i)
 	}
 }
 
-int		copy_col(int r, t_lem *lem, int array, char *name)
+int copy_col(int r, t_lem *lem, int array, char *name)
 {
 	int new[r + 2];
 	int i;
@@ -46,10 +46,10 @@ int		copy_col(int r, t_lem *lem, int array, char *name)
 	return (0);
 }
 
-int		scan_paths(t_tree *start, t_lem *lem, int i, int r)
+int scan_paths(t_tree *start, t_lem *lem, int i, int r)
 {
-	t_tree	*tree;
-	int		prev_index;
+	t_tree *tree;
+	int prev_index;
 
 	prev_index = r;
 	tree = start;
@@ -66,33 +66,43 @@ int		scan_paths(t_tree *start, t_lem *lem, int i, int r)
 			scan_paths(tree->sib, lem, lem->path, r);
 		}
 		r++;
+		ft_printf("tree->name:%s\n", tree->name);
+		ft_printf("tree->child->name:%s\n", tree->child->name);
 		tree = tree->child;
+		ft_printf("here10\n");
 		if (tree->name != NULL && ft_strcmp(tree->name, lem->e_room_name) == 0)
 		{
+			ft_printf("here7\n");
 			get_room_num(tree, lem, r, i);
+			ft_printf("here8\n");
 			r++;
-			break ;
+			break;
 		}
+		ft_printf("here11\n");
 	}
 	if (tree->name == NULL || ft_strcmp(tree->name, lem->e_room_name) == 0)
 		copy_col(r, lem, i, tree->name);
 	return (0);
 }
 
-int		create_path_arr(t_lem *lem)
+int create_path_arr(t_lem *lem)
 {
-	int		i;
-	t_tree	*start;
+	int i;
+	t_tree *start;
 
 	i = 0;
 	lem->test_index = 0;
 	start = lem->tree;
+	ft_printf("Popple\n");
 	arr_row_size(start, lem);
+	ft_printf("Papple\n");
 	if (!(lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths)))
 		return (1);
 	if (!(lem->all_paths[i] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
 		return (1);
+	ft_printf("Bing\n");
 	if (!(scan_paths(start, lem, 0, 0)))
 		return (1);
+	ft_printf("Bong\n");
 	return (0);
 }

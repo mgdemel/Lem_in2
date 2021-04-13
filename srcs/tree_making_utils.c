@@ -63,6 +63,8 @@ int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array)
 	{
 		if (scan_forbidden(forbidden_array, i, lem) == 1)
 			i++;
+		else if (ft_strword(lem->tunnels[i], lem->e_room_name))
+			i++;
 		else if (ft_strword(lem->tunnels[i], parent))
 		{
 			t++;

@@ -31,6 +31,7 @@ t_lem	*initialize_lem(void)
 	lem->final_paths = NULL;
 	lem->compare = 0;
 	lem->result = NULL;
+	lem->total_paths = 0;
 	return (lem);
 }
 
