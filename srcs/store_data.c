@@ -77,12 +77,25 @@ static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 
 int			store_data(t_lem *lem, t_room *room, int fd)
 {
-	char *line;
+	char 	*line;
+	int 	i;
+	t_room 	*tmp;
 
 	line = NULL;
+	i = 1;
 	if (get_ants(fd, line, lem))
 		return (1);
 	if (get_room_and_tunnel(lem, room, line, fd))
 		return (1);
+	if (!(lem->directory = (char**)malloc(sizeof(char *) * lem->current_roomnum)))
+		return (1);
+	tmp = lem->all_rooms;
+	lem->directory[0] = ft_strdup("START");
+	while (room->next != NULL)
+	{
+		lem->directory[i] = ft_strdup(room->name);
+		room = room->next;
+		i++;
+	}
 	return (0);
 }

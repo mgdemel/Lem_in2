@@ -17,19 +17,31 @@ int		main(void)
 	lem->all_rooms = initialize_room(lem);
 	if (store_data(lem, lem->all_rooms, fd) == 0)
 	{
+		ft_printf("Starting tree_creation\n");
 		if (tree_creation(lem))
 		{
 			error_message(lem, lem->all_rooms);
 			return (1);
 		}
+		ft_printf("Ending tree_creation\n");
 		lem->test_index = 1;
+		ft_printf("Started Create path arr\n");
 		create_path_arr(lem);
+		ft_printf("Completed Create path arr\n");
 		lem->test_index = 0;
+		ft_printf("Started count_valid_paths\n");
 		count_valid_paths(lem);
+		ft_printf("completed count_valid_paths\n");
+		ft_printf("Started sort_paths\n");
 		sort_paths(lem);
+		ft_printf("completed sort_paths\n");
 		//test_structs(lem);
+		ft_printf("Started flow_management\n");
 		flow_management(lem);
+		ft_printf("completed flow_management\n");
+		ft_printf("Started output\n");
 		output(lem);
+		ft_printf("completed output\n");
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);
 		//ft_printf("FREED TREE\n");

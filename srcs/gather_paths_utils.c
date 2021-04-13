@@ -27,10 +27,10 @@ void	arr_row_size(t_tree *start, t_lem *lem)
 
 void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)
 {
-	t_room	*room;
+	int x;
 
-	room = lem->all_rooms;
-	while (room->next != NULL && (ft_strcmp(room->name, tree->name) != 0))
-		room = room->next;
-	lem->all_paths[i][r] = room->roomnum;
+	x = 0;
+	while (x < lem->current_roomnum && (ft_strcmp(lem->directory[x], tree->name) != 0))
+		x++;
+	lem->all_paths[i][r] = x;
 }

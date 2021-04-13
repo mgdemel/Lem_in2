@@ -6,11 +6,11 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/04/10 08:51:48 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/04/13 11:32:13 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem-in
+NAME = lem-in2
 ARCHIVE = libftlemin.a
 CC := gcc
 CFLAGS = -Wall -Wextra -Werror

@@ -10,6 +10,7 @@ t_lem	*initialize_lem(void)
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
 	lem->current_roomnum = 0;
+	lem->directory = NULL;
 	lem->found_start_end = 0;
 	lem->path_index = 0;
 	lem->all_rooms = NULL;
@@ -19,7 +20,7 @@ t_lem	*initialize_lem(void)
 	lem->e_room_name = NULL;
 	lem->tree = NULL;
 	lem->test_index = 1;
-	lem->max_paths = 1;
+	lem->max_paths = 1; //there will always be one path
 	lem->path = 0;
 	lem->w_parent = NULL;
 	lem->w_child = NULL;

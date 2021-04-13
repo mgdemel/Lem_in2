@@ -54,8 +54,10 @@ char	*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 	{
 		if (ft_strword(lem->tunnels[j], parent->name))
 		{
+			ft_printf("6\n");
 			if (ft_blocked_index(lem->nbr_tunnels, forb, j) == 0)
 			{
+				ft_printf("7\n");
 				sibling->name = needle_crop(lem->tunnels[j], parent->name);
 				sibling->parent = parent;
 				break ;
@@ -93,8 +95,17 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 		}
 		j++;
 	}
+	// if (child->name == NULL || ft_strcmp(child->name, lem->e_room_name) == 0)
+	// {
+	// 	ft_printf("FOUND END ROOM\n");
+	// 	exit(1);
+	// }
 	if (child->name != NULL && ft_strcmp(child->name, lem->e_room_name) != 0)
+	{
 		find_family(lem, forbidden_array, parent, child);
+	}
+	ft_printf("found end with name:%s\n", child->name);
+	ft_printf("WANBDHAWKJFAKJFAKJFSAJKDJW:AK:DWAK:DWJKDJWKA:KADJWJKDWAJDWAJKDWJKDAWJK:WJ\n");
 }
 
 int		tree_creation(t_lem *lem)

@@ -12,6 +12,7 @@ typedef struct		s_lem
 	int				nbr_tunnels;
 	int				nbr_rooms;
 	int				current_roomnum;
+	char			**directory;
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after

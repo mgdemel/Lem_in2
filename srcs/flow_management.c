@@ -67,7 +67,6 @@ int		set_steps(int *options, t_lem *lem)
 		ants_cpy--;
 		i = 0;
 	}
-	//print_int_arr(ants_and_len, tab, "Ants_len");
 	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);
@@ -142,7 +141,7 @@ int **add_major_option(int **options, t_lem *lem, int index, int num)
 	if (!(options[index] = (int *)malloc(sizeof(int) * 3)))
 		ft_printf("ERRRRRRRRORRRRROORRR");
 	options[index][0] = -3; //sets the len (index0) to a negative number
-	options[index][1] = lem->ants + (lem->final_paths[num][0] * -1) - 3; //set_steps(options[0], lem->ants); //should set the steps (index1) to # of steps 
+	options[index][1] = lem->ants + (lem->final_paths[num][0] * -1) - 4; //set_steps(options[0], lem->ants); //should set the steps (index1) to # of steps 
 	options[index][2] = num;
 	return (options);
 }
@@ -162,7 +161,9 @@ int flow_management(t_lem *lem)
 	lem->i_placeholder = 0;
 	if (!(options = (int **)malloc(sizeof(int *) * 1)))
 		return (1);
+	ft_printf("poop\n");
 	options = add_major_option(options, lem, lem->i_placeholder, 0);
+	ft_printf("poop\n");
 	while (major_index <= lem->max_paths - 1)
 	{
 		if (lem->i_placeholder != 0)
@@ -175,6 +176,8 @@ int flow_management(t_lem *lem)
 		compare++;
 		options = recursion_adding(lem, options, compare);
 	}
+	ft_printf("poop\n");
+
 	print_double_arr(options, lem->i_placeholder);
 	lem->result = get_result(options, lem);
 	ft_printf("result: %d\n", lem->result[1]);

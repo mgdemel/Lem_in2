@@ -46,8 +46,6 @@ int		copy_col(int r, t_lem *lem, int array, char *name)
 	return (0);
 }
 
-
-
 int		scan_paths(t_tree *start, t_lem *lem, int i, int r)
 {
 	t_tree	*tree;
@@ -85,10 +83,8 @@ int		create_path_arr(t_lem *lem)
 {
 	int		i;
 	t_tree	*start;
-	int		test_index;
 
 	i = 0;
-	test_index = 0;
 	lem->test_index = 0;
 	start = lem->tree;
 	arr_row_size(start, lem);
