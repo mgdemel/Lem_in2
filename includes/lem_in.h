@@ -12,7 +12,8 @@ typedef struct		s_lem
 	int				nbr_tunnels;
 	int				nbr_rooms;
 	int				current_roomnum;
-	char			**directory;
+	int				**tunnel_directory;
+	char			**room_directory;
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after
@@ -25,21 +26,23 @@ typedef struct		s_lem
 	int				i_placeholder;
 	int				negative_one;
 	int				total_paths;
-	struct s_room	*all_rooms; // an unordered list of all rooms found in init scan
+	struct s_room	*all_rooms; // an unordered linked list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
-	int				**final_paths;
+	int				**final_paths; //the paths we will actually use for our solution (sorted and reduced to only valid paths)
 	char			**tunnels;
 	char			*start_room_name;
 	char			*e_room_name;
-	char			*sib_name;
+	int				start_room_index;
+	int				e_room_index;
+	int				sib_name;
 	int 			compare;
 	struct s_tree	*tree; //head branch
-	int				*result;
+	int				*result; //the result of our program to output!
 }					t_lem;
 
 typedef struct 		s_tree
 {
-	char			*name;
+	int				name;
 	struct s_tree	*parent;
 	struct s_tree	*child;
 	struct s_tree	*sib;
@@ -48,9 +51,9 @@ typedef struct 		s_tree
 typedef struct			s_room
 {
 	char				*name;
-	int					x;
-	int					y;
-	int					roomtype; //1=start, 2=normal, 3=end
+	int					x; //never used
+	int					y;  //never used
+	int					roomtype; //1=start, 2=normal, 3=end //used, but maybe not needed after all?
 	int					roomnum; //assigns a numeric 'name' to the room for pathfinding array
 	struct s_room		*next;	
 }						t_room;
@@ -74,14 +77,14 @@ int			store_data(t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
 int 		file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
-char		*needle_crop(char *haystack, char *needle);
-int			find_parent_links(char *parent, t_lem *lem, int *forbidden_array);
+int			needle_crop(int *haystack, int needle);
+int			find_parent_links(int parent, t_lem *lem, int *forbidden_array);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
-int 		add_elem_int_array(int *forbidden_array, t_lem *lem, char *block_name, int parent);
+int 		add_elem_int_array(int *forbidden_array, t_lem *lem, int block, int parent);
 void		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
-char		*make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
-t_tree		*head_tree_init(char *name);
+int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
+t_tree		*head_tree_init(int name);
 int 		create_path_arr(t_lem *lem);
 void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
@@ -97,9 +100,11 @@ int			flow_management(t_lem *lem);
 int			**append_array(int **arr, int max);
 void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
-int			ft_strword(char *haystack, char *needle);
+int			ft_strword(int *haystack, int needle);
 void		arr_row_size(t_tree *start, t_lem *lem);
 void 		print_double_arr(int **arr, int max); //remove later!
+void 		print_tunnel_dir(int **arr, int max); // remove later!
 void		output(t_lem *lem);
+void 		get_tunnel_int_arr(t_lem *lem);
 
 #endif

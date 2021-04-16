@@ -56,20 +56,18 @@ void	free_tree(t_tree *start, t_lem *lem)
 	int		n;
 
 	n = 0;
-	if (start->name != NULL)
+	if (start->name != 0)
 	{
-		while (ft_strcmp(start->name, lem->e_room_name) != 0)
+		while (start->name != lem->e_room_index)
 		{
 			tmp = start->child;
 			if (start->sib != NULL)
 				free_tree(start->sib, lem);
-			free(start->name);
 			free(start);
 			start = tmp;
-			if (start->name == NULL)
+			if (start->name == 0)
 				break ;
 		}
 	}
-	free(start->name);
 	free(start);
 }

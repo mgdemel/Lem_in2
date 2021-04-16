@@ -29,7 +29,7 @@ static int	get_ants(int fd, char *line, t_lem *lem)
 	if (!ft_isalldigit(line))
 		return (1);
 	lem->ants = ft_atoi(line);
-	ft_printf("%s\n", line); // <---- part of the program!!
+	ft_putendl(line); // <---- part of the program!!
 	ft_strdel(&line);
 	return (0);
 }
@@ -62,13 +62,13 @@ static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 				room->roomtype = 3;
 			if (!(ft_strstr(line, "#")))
 				room = get_room(line, room, lem);
-			ft_printf("%s\n", line); // <--------- part of the program!!
+			ft_putendl(line); // <--------- part of the program!!
 		}
 		else
 		{
 			if (get_tunnel(line, lem))
 				return (1);
-			ft_printf("%s\n", line); // <--------- part of the program!!
+			ft_putendl(line); // <--------- part of the program!!
 		}
 		ft_strdel(&line);
 	}
@@ -87,13 +87,17 @@ int			store_data(t_lem *lem, t_room *room, int fd)
 		return (1);
 	if (get_room_and_tunnel(lem, room, line, fd))
 		return (1);
-	if (!(lem->directory = (char**)malloc(sizeof(char *) * lem->current_roomnum)))
+	if (!(lem->room_directory = (char**)malloc(sizeof(char *) * lem->current_roomnum)))
 		return (1);
 	tmp = lem->all_rooms;
-	lem->directory[0] = ft_strdup("START");
+	lem->room_directory[0] = ft_strdup("START");
 	while (room->next != NULL)
 	{
-		lem->directory[i] = ft_strdup(room->name);
+		if (ft_strcmp(room->name, lem->e_room_name) == 0)
+			lem->e_room_index = i;
+		if (ft_strcmp(room->name, lem->start_room_name) == 0)
+			lem->start_room_index = i;
+		lem->room_directory[i] = ft_strdup(room->name);
 		room = room->next;
 		i++;
 	}

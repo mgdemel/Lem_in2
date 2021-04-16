@@ -11,12 +11,31 @@ int		main(void)
 {
 	t_lem	*lem;
 	int		fd;
+	int		i;
+
+	i = 0;//delete
 
 	fd = 0;
 	lem = initialize_lem();
 	lem->all_rooms = initialize_room(lem);
 	if (store_data(lem, lem->all_rooms, fd) == 0)
 	{
+		ft_printf("Starting get_tunnel_int_arr\n");
+		get_tunnel_int_arr(lem);
+		ft_printf("ENDING get_tunnel_int_arr\n");
+		ft_printf("PRINTING Tunnel_directory\n");
+		print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+		while (i < lem->nbr_rooms + 1)
+		{
+			ft_printf("room:%s\n", lem->room_directory[i]);
+			i++;
+		}
+		i = 0;
+		while (i < lem->nbr_tunnels)
+		{
+			ft_printf("tunnel:%s\n", lem->tunnels[i]);
+			i++;
+		}
 		ft_printf("Starting tree_creation\n");
 		if (tree_creation(lem))
 		{
@@ -35,7 +54,7 @@ int		main(void)
 		ft_printf("Started sort_paths\n");
 		sort_paths(lem);
 		ft_printf("completed sort_paths\n");
-		//test_structs(lem);
+		test_structs(lem);
 		ft_printf("Started flow_management\n");
 		flow_management(lem);
 		ft_printf("completed flow_management\n");

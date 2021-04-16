@@ -1,5 +1,26 @@
 #include "lem_in.h"
 
+void print_tunnel_dir(int **arr, int max)
+{
+	int t = 0;
+	int tt = 0;
+
+	while(t < max)
+	{
+		tt = 0;
+		while (tt < 2)
+		{
+			ft_printf(" %d |", arr[t][tt]);
+			tt++;
+		}
+		ft_printf("\n");
+		t++;
+	}
+	t = 0;
+	ft_printf("\n");
+}
+
+
 void print_double_arr(int **arr, int max)
 {
 	int t = 0;
@@ -55,21 +76,21 @@ void scan_tree(t_tree *start, t_lem *lem, int i)
 	tree = start;
 	i = 0;
 	//  ft_printf("sibling pointer address %p\n", tree->sib);
-	if (tree->name != NULL)
+	if (tree->name != 0)
 	{
-		while (ft_strcmp(tree->name, lem->e_room_name) != 0)
+		while (tree->name != lem->e_room_index)
 		{
 			ft_putchar('\n');
 			ft_printf("Step %d\n", lem->test_index);
-			ft_printf("name of current room %s|\n", tree->name);
+			ft_printf("name of current room %d|\n", tree->name);
 			lem->test_index++;
 			if (tree->sib != NULL)
 			{
 				ft_printf("Changing PATH, found sibling\n");
-				ft_printf("parent is %s\n", tree->parent->name);
+				ft_printf("parent is %d\n", tree->parent->name);
 				scan_tree(tree->sib, lem, lem->path);
 			}
-			if (tree->child->name != NULL)
+			if (tree->child->name != 0)
 				tree = tree->child;
 			else
 				break ;
@@ -177,21 +198,23 @@ void scan_arrays(t_lem *lem)
 
 void test_structs(t_lem *lem)
 {
+	t_tree *start;
 	// int i;
 
+	start = lem->tree;
 	// i = 0;
 	// t_tree *start = lem->tree;
 	// lem->max_paths = lem->max_paths;
 	// ft_putchar('\n');
 	// ft_putchar('\n');
-	// ft_printf("TESTED STRUCTS\n");
+	ft_printf("TESTED STRUCTS\n");
 	// ft_printf("********    LEM TESTING:    ********\n");
 	// ft_printf("********    PRINT INFO:    ********\n\n");
 	// print_lem(lem);
-	// ft_printf("********    SCAN ROOMS:    ********\n\n");
-	// scan_rooms(lem);
-	// ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
-	// scan_tree(start, lem, 1);
+	ft_printf("********    SCAN ROOMS:    ********\n\n");
+	scan_rooms(lem);
+	ft_printf("********    SCAN THE TREE OF ROOMS:    ********\n\n");
+	scan_tree(start, lem, 1);
 	// ft_printf("********    SCAN THE ARRAY:     *********\n\n");
 	// scan_arrays(lem);
 	// ft_putchar('\n');

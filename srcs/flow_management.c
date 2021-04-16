@@ -161,9 +161,7 @@ int flow_management(t_lem *lem)
 	lem->i_placeholder = 0;
 	if (!(options = (int **)malloc(sizeof(int *) * 1)))
 		return (1);
-	ft_printf("poop\n");
 	options = add_major_option(options, lem, lem->i_placeholder, 0);
-	ft_printf("poop\n");
 	while (major_index <= lem->max_paths - 1)
 	{
 		if (lem->i_placeholder != 0)
@@ -176,10 +174,7 @@ int flow_management(t_lem *lem)
 		compare++;
 		options = recursion_adding(lem, options, compare);
 	}
-	ft_printf("poop\n");
-
 	print_double_arr(options, lem->i_placeholder);
 	lem->result = get_result(options, lem);
-	ft_printf("result: %d\n", lem->result[1]);
 	return (0);
 }

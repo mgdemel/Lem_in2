@@ -5,33 +5,13 @@
 ** 	after a '-' character.
 */
 
-int		ft_strword(char *haystack, char *needle)
+// CHANGE THE NAME OF THIS FUNCTION YOU DINGUS
+int		ft_strword(int *haystack, int needle)
 {
-	int j;
-	char **new;
-	int word;
-
-	word = 0;
-	new = ft_strsplit(haystack, '-');
-	while (word < 2)
-	{
-		j = 0;
-		while (new[word][j] == needle[j])
-		{
-			if (needle[j] == '\0' && new[word][j] == '\0')
-			{
-				free(new[0]);
-				free(new[1]);
-				free(new);
-				return (1);
-			}
-			j++;
-		}
-		word++;
-	}
-	free(new[0]);
-	free(new[1]);
-	free(new);
+	if (haystack[0] == needle)
+		return (1);
+	else if (haystack[1] == needle)
+		return (1);
 	return (0);
 }
 
@@ -110,6 +90,7 @@ void	sort_paths(t_lem *lem)
 		else
 			x++;
 	}
+	print_double_arr(lem->final_paths, lem->max_paths);
 }
 
 /*
@@ -139,20 +120,13 @@ int		*ft_newintarr(int *forbidden_array, int i)
 **	dividing them.
 */
 
-char	*needle_crop(char *haystack, char *needle)
+int		needle_crop(int *haystack, int needle)
 {
-	char **new;
-	char *ret;
-
-	new = ft_strsplit(haystack, '-');
-	if (ft_strcmp(new[0], needle))
-		ret = ft_strdup(new[0]);
-	else
-		ret = ft_strdup(new[1]);
-	free(new[0]);
-	free(new[1]);
-	free(new);
-	return (ret);
+	if (haystack[0] == needle)
+		return (haystack[1]);
+	else if (haystack[1] == needle)
+		return (haystack[0]);
+	return (0);
 }
 
 void	count_valid_paths(t_lem *lem)

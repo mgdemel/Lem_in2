@@ -28,8 +28,8 @@ void	output(t_lem *lem)
 */	
 	ft_printf("OUTPUT TESTING\n");
 	ft_printf("\nALL FINAL PATHS:\n");
-	print_double_arr(lem->final_paths, lem->max_paths);
-	print_int_arr(lem->result, lem->result[0] * -1, "result");
+	//print_double_arr(lem->final_paths, lem->max_paths);
+	//print_int_arr(lem->result, lem->result[0] * -1, "result");
 	ft_printf("lem->result[0] * -1) -2:%d\n", (lem->result[0] * -1));
 	ft_printf("RESULT:\n");
 	while (i < (lem->result[0] * -1))
@@ -37,13 +37,13 @@ void	output(t_lem *lem)
 		j = 1;
 		while (j < (lem->final_paths[lem->result[i]][0] * -1))
 		{
-			ft_printf("Final path num: %d\n", lem->final_paths[lem->result[i]][j]);
-			ft_printf("Name:%s\n", lem->directory[lem->final_paths[lem->result[i]][j]]);
+		//	ft_printf("Final path num: %d\n", lem->final_paths[lem->result[i]][j]);
+		//	ft_printf("Name:%s\n", lem->room_directory[lem->final_paths[lem->result[i]][j]]);
 			j++;
 		}
 		i++;
 		if (i < (lem->result[0] * -1))
-		ft_printf("\nCHAINGING PATH\n");
+			ft_printf("\nCHAINGING PATH\n");
 	}
 
 	// Testing stops

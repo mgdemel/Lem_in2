@@ -309,3 +309,17 @@ while tunnel_dir is empty
 
 
 i{roomnum}  name
+
+
+room_dir
+
+i	room name in str
+0	start
+1	r3
+2	r2
+
+tunnels_dir
+i	roomnum1	roomnum2
+0 = {0		, 	1}       <------- start-r3
+1
+2
