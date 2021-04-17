@@ -35,7 +35,6 @@ int			add_elem_int_array(int *forb, t_lem *lem, int block, int parent)
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], block))
 		{
-			ft_printf("/HWAFHFAWHFAHFHAHFHFWAHFAW");
 			while (forb[j] > -1)
 				j++;
 			forb[j] = i;
@@ -53,7 +52,6 @@ int			add_elem_int_array(int *forb, t_lem *lem, int block, int parent)
 **	Searching for parent links, taking any forbidden into account.
 */
 
-// change parent to int
 int			find_parent_links(int parent, t_lem *lem, int *forbidden_array)
 {
 	int i;
@@ -65,7 +63,7 @@ int			find_parent_links(int parent, t_lem *lem, int *forbidden_array)
 	{
 		if (scan_forbidden(forbidden_array, i, lem) == 1)
 			i++;
-		else if (ft_strword(lem->tunnel_directory[i], lem->e_room_index)) // change to e_room_name_num or something
+		else if (ft_strword(lem->tunnel_directory[i], lem->e_room_index))
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], parent))
 		{

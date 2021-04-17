@@ -5,10 +5,12 @@ void	find_family(t_lem *lem, int *forb, t_tree *parent, t_tree *child)
 	int *tmp;
 
 	tmp = NULL;
-	if (find_parent_links(parent->name, lem, forb))
+	if (find_parent_links(parent->name, lem, forb)) // if this find the tunnel 777-775
 	{
+		lem->test_index++;
+		ft_printf("--");
 		tmp = ft_newintarr(forb, lem->nbr_tunnels);
-		add_elem_int_array(tmp, lem, parent->name, 1);
+		add_elem_int_array(tmp, lem, parent->name, 1); // blocks it here
 		add_elem_int_array(tmp, lem, child->name, 0);
 		lem->sib_name = make_sibling(child, parent, lem, tmp);
 		if (lem->sib_name != 0)
@@ -19,6 +21,7 @@ void	find_family(t_lem *lem, int *forb, t_tree *parent, t_tree *child)
 	if (child->name != lem->e_room_index)
 	{
 		add_elem_int_array(forb, lem, parent->name, 1);
+			ft_printf("\n");
 		make_child(child, lem, forb);
 	}
 }
@@ -43,6 +46,7 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 	int		i;
 	int		j;
 
+	lem->making_sibling = 1;
 	j = 0;
 	i = 0;
 	sibling = tree_init(parent);
@@ -54,17 +58,7 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 			if (ft_blocked_index(lem->nbr_tunnels, forb, j) == 0)
 			{
 				sibling->name = needle_crop(lem->tunnel_directory[j], parent->name);
-				if (sibling->name > lem->nbr_rooms)
-				{
-					ft_printf("ERROR\n");
-					exit(1);
-				}
-				ft_printf("made sibling:%d\n", sibling->name);
-				if (sibling->name == 777)
-				{
-					print_int_arr(forb, lem->nbr_tunnels, "Forb:");
-					sleep(1);
-				}
+				ft_printf("%d", sibling->name);
 				sibling->parent = parent;
 				break ;
 			}
@@ -83,9 +77,21 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	int		j;
 	int		test_delete;
 
-	test_delete = 0;
+	test_delete = lem->test_index;
 	j = 0;
 	i = 0;
+	while (test_delete > 1)
+	{
+		ft_printf("|  ");
+		test_delete--;
+	}
+	ft_printf("|\n");
+	while (test_delete < lem->test_index)
+	{
+		ft_printf("|  ");
+		test_delete++;
+	}
+	lem->making_sibling = 0;
 	child = tree_init(parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
@@ -95,17 +101,7 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 			if (ft_blocked_index(lem->nbr_tunnels, forbidden_array, j) == 0)
 			{
 				child->name = needle_crop(lem->tunnel_directory[j], parent->name);
-				if (child->name > lem->nbr_rooms)
-				{
-					ft_printf("ERROR\n");
-					exit(1);
-				}
-				ft_printf("made child:%d\n", child->name);
-				if (child->name == 777)
-				{
-					print_int_arr(forbidden_array, lem->nbr_tunnels, "Forb:");
-					sleep(1);
-				}
+				ft_printf("%d", child->name);
 				child->parent = parent;
 				break ;
 			}
@@ -120,7 +116,10 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	if (child->name != 0 && child->name != lem->e_room_index)
 		find_family(lem, forbidden_array, parent, child);
 	if (child->name != 0 && child->name == lem->e_room_index)
+	{
+		lem->test_index--;
 		lem->total_paths++;
+	}
 //	child->child = tree_init(child);
 	//ft_printf("found end with name:%s\n", child->name);
 	//ft_printf("WANBDHAWKJFAKJFAKJFSAJKDJW:AK:DWAK:DWJKDJWKA:KADJWJKDWAJDWAJKDWJKDAWJK:WJ\n");
@@ -134,9 +133,11 @@ int		tree_creation(t_lem *lem)
 
 	c = 0;
 	i = 0;
-	lem->test_index = 0;
+	lem->making_sibling = 0;
+	lem->test_index = 1;
+	ft_printf("\n\n<--****STARTING TREE MAKING****-->\n\n");
 	ft_printf("Total of tunnels:%d\n", lem->nbr_tunnels);
-	ft_printf("Total of rooms:%d\n", lem->nbr_rooms);
+	ft_printf("Total of rooms:%d\n\n", lem->nbr_rooms);
 	if (!(forbidden_array = (int *)malloc(sizeof(int) * (lem->nbr_tunnels))))
 		return (1);
 	while (i < (lem->nbr_tunnels))
@@ -145,7 +146,9 @@ int		tree_creation(t_lem *lem)
 		i++;
 	}
 	lem->tree = head_tree_init(lem->start_room_index);
+	ft_printf("%d\n", lem->start_room_index);
 	make_child(lem->tree, lem, forbidden_array);
 	free(forbidden_array);
+	ft_printf("\n\n");
 	return (0);
 }

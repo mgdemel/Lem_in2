@@ -17,6 +17,7 @@ typedef struct		s_lem
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after
+	int				making_sibling; // remove
 	int				path;
 	int				max_paths;
 	int				malloc_len;
@@ -38,6 +39,7 @@ typedef struct		s_lem
 	int 			compare;
 	struct s_tree	*tree; //head branch
 	int				*result; //the result of our program to output!
+	int				set;
 }					t_lem;
 
 typedef struct 		s_tree
