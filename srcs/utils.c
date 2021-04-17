@@ -64,8 +64,6 @@ void	sort_paths(t_lem *lem)
 	j = 0;
 	x = 0;
 	tab = lem->max_paths;
-	ft_putstr("ALL VALID PATHS\n");
-	//print_double_arr(lem->all_paths, lem->max_paths);
 	if (!(lem->final_paths = (int **)malloc(sizeof(int *) * lem->negative_one)))
 		ft_printf("ERROR in sort_paths");
 	while (i < tab)
@@ -91,6 +89,8 @@ void	sort_paths(t_lem *lem)
 		else
 			x++;
 	}
+	ft_putstr("\n\nALL VALID PATHS - SORTED: \n");
+	ft_printf("total:%d\n", lem->total_paths);
 	print_double_arr(lem->final_paths, lem->max_paths);
 }
 

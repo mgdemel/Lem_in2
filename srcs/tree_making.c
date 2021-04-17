@@ -60,6 +60,11 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 					exit(1);
 				}
 				ft_printf("made sibling:%d\n", sibling->name);
+				if (sibling->name == 777)
+				{
+					print_int_arr(forb, lem->nbr_tunnels, "Forb:");
+					sleep(1);
+				}
 				sibling->parent = parent;
 				break ;
 			}
@@ -96,6 +101,11 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 					exit(1);
 				}
 				ft_printf("made child:%d\n", child->name);
+				if (child->name == 777)
+				{
+					print_int_arr(forbidden_array, lem->nbr_tunnels, "Forb:");
+					sleep(1);
+				}
 				child->parent = parent;
 				break ;
 			}

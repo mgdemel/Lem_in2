@@ -6,7 +6,7 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/04/17 10:26:28 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/04/17 11:13:17 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(ARCHIVE)
 	@make -C libft fclean
 
 re: fclean all

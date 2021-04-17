@@ -97,6 +97,11 @@ int			store_data(t_lem *lem, t_room *room, int fd)
 			lem->e_room_index = i;
 		if (ft_strcmp(room->name, lem->start_room_name) == 0)
 			lem->start_room_index = i;
+		if (ft_strcmp(room->name, "Sac7") == 0)
+		{
+			ft_printf("room name:%s\n", room->name);
+			ft_printf("i:%d\n", i);
+		}
 		lem->room_directory[i] = ft_strdup(room->name);
 		room = room->next;
 		i++;

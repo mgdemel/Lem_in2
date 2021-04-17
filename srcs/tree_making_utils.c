@@ -24,10 +24,6 @@ static int	scan_forbidden(int *array, int i, t_lem *lem)
 
 int			add_elem_int_array(int *forb, t_lem *lem, int block, int parent)
 {
-
-	/*
-	** CHANGE BLOCK TO BE INT, AND CHANGE FT_STRWORD TO TAKE LEM->DIRECTORY TO COMPARE THE ROOM NUMBER
-	*/
 	int i;
 	int j;
 
@@ -39,6 +35,7 @@ int			add_elem_int_array(int *forb, t_lem *lem, int block, int parent)
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], block))
 		{
+			ft_printf("/HWAFHFAWHFAHFHAHFHFWAHFAW");
 			while (forb[j] > -1)
 				j++;
 			forb[j] = i;
