@@ -6,7 +6,7 @@
 #    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/04/13 12:43:09 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/04/17 10:26:28 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS = 	main.c \
 		gather_paths.c \
 		free.c \
 		store_data_utils.c \
-		get_room.c \
 		tree_making_utils.c \
 		flow_management.c \
 		gather_paths_utils.c \

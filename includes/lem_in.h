@@ -51,8 +51,6 @@ typedef struct 		s_tree
 typedef struct			s_room
 {
 	char				*name;
-	int					x; //never used
-	int					y;  //never used
 	int					roomtype; //1=start, 2=normal, 3=end //used, but maybe not needed after all?
 	int					roomnum; //assigns a numeric 'name' to the room for pathfinding array
 	struct s_room		*next;	

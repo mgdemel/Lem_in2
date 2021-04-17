@@ -2,21 +2,10 @@
 
 void copy_previous_path(t_lem *lem, int r, int path, int i)
 {
-	if (i != 0 && lem->all_paths[i - 1][0] <= 0)
+	while (r >= 0)
 	{
-		while (r >= 0)
-		{
-			lem->all_paths[path][r] = lem->all_paths[i][r + 1];
-			r--;
-		}
-	}
-	else
-	{
-		while (r >= 0)
-		{
-			lem->all_paths[path][r] = lem->all_paths[i][r];
-			r--;
-		}
+		lem->all_paths[path][r] = lem->all_paths[i][r];
+		r--;
 	}
 }
 
@@ -81,16 +70,13 @@ int scan_paths(t_tree *start, t_lem *lem, int i, int r)
 
 int create_path_arr(t_lem *lem)
 {
-	int i;
 	t_tree *start;
 
-	i = 0;
-	lem->test_index = 0;
 	start = lem->tree;
 	arr_row_size(start, lem);
 	if (!(lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths)))
 		return (1);
-	if (!(lem->all_paths[i] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
+	if (!(lem->all_paths[0] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
 		return (1);
 	if (!(scan_paths(start, lem, 0, 0)))
 		return (1);

@@ -29,7 +29,7 @@ void print_double_arr(int **arr, int max)
 	while(t < max)
 	{
 		tt = 0;
-		while (tt < (arr[t][0] * -1) - 1)
+		while (tt < (arr[t][0] * -1))
 		{
 			ft_printf(" %d |", arr[t][tt]);
 			tt++;
@@ -106,14 +106,6 @@ void scan_rooms(t_lem *lem)
 	{
 		ft_putstr("name: ");
 		ft_putstr(room->name);
-		ft_putchar('\n');
-
-		ft_putstr("x: ");
-		ft_putnbr(room->x);
-		ft_putchar('\n');
-
-		ft_putstr("y: ");
-		ft_putnbr(room->y);
 		ft_putchar('\n');
 
 		ft_putstr("roomtype: ");

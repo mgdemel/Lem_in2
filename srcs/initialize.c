@@ -45,8 +45,6 @@ t_room	*initialize_room(t_lem *lem)
 	if (!(room = (t_room *)malloc(sizeof(t_room))))
 		return (NULL);
 	room->name = NULL;
-	room->x = 0;
-	room->y = 0;
 	room->roomtype = 2;
 	lem->current_roomnum++;
 	room->roomnum = lem->current_roomnum;
