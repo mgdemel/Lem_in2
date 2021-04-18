@@ -18,6 +18,7 @@ typedef struct		s_lem
 	int				path_index;
 	int				test_index; // remove after
 	int				making_sibling; // remove
+	int				ended; //remove
 	int				path;
 	int				max_paths;
 	int				malloc_len;
@@ -40,6 +41,7 @@ typedef struct		s_lem
 	struct s_tree	*tree; //head branch
 	int				*result; //the result of our program to output!
 	int				set;
+	int 			stopper;
 }					t_lem;
 
 typedef struct 		s_tree
@@ -83,7 +85,7 @@ int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
 int 		add_elem_int_array(int *forbidden_array, t_lem *lem, int block, int parent);
 void		make_child(t_tree *parent, t_lem *lem, int *forbidden_array);
-int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forbidden_array);
+int			make_sibling(t_tree *parent, t_lem *lem, int *forb);
 t_tree		*head_tree_init(int name);
 int 		create_path_arr(t_lem *lem);
 void		free_tree(t_tree *start, t_lem *lem);
@@ -106,5 +108,6 @@ void 		print_double_arr(int **arr, int max); //remove later!
 void 		print_tunnel_dir(int **arr, int max); // remove later!
 void		output(t_lem *lem);
 void 		get_tunnel_int_arr(t_lem *lem);
+void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent);
 
 #endif

@@ -1,36 +1,6 @@
 #include "lem_in.h"
 
-void	find_family(t_lem *lem, int *forb, t_tree *parent, t_tree *child, int delete2)
-{
-	int *tmp;
-
-	tmp = NULL;
-	if (find_parent_links(parent->name, lem, forb))
-	{
-		lem->test_index++;
-		while (delete2 <= 5)
-		{
-	//		ft_printf("-");
-			delete2++;
-		}
-		tmp = ft_newintarr(forb, lem->nbr_tunnels);
-		add_elem_int_array(tmp, lem, parent->name, 1);
-		add_elem_int_array(tmp, lem, child->name, 0);
-		lem->sib_name = make_sibling(child, parent, lem, tmp);
-		if (lem->sib_name != 0)
-			add_elem_int_array(forb, lem, lem->sib_name, 0);
-		lem->sib_name = 0;
-		free(tmp);
-	}
-	if (child->name != lem->e_room_index)
-	{
-		add_elem_int_array(forb, lem, parent->name, 1);
-	//	ft_printf("\n");
-		make_child(child, lem, forb);
-	}
-}
-
-int		ft_blocked_index(int tunnels, int *forbidden_array, int j)
+int ft_blocked_index(int tunnels, int *forbidden_array, int j)
 {
 	int i;
 
@@ -44,20 +14,108 @@ int		ft_blocked_index(int tunnels, int *forbidden_array, int j)
 	return (0);
 }
 
-int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
+
+int		sibling_name(t_tree *parent, t_lem *lem, int *forb)
 {
-	t_tree	*sibling;
-	int		i;
-	int		j;
-	int		delete;
-	int		delete2;
+	int j;
+
+	j = 0;
+	while (j < lem->nbr_tunnels)
+	{
+		if (ft_strword(lem->tunnel_directory[j], parent->name))
+		{
+			if (ft_blocked_index(lem->nbr_tunnels, forb, j) == 0)
+				return (needle_crop(lem->tunnel_directory[j], parent->name));
+		}
+		j++;
+	}
+	return (0);
+}
+
+void find_family(t_lem *lem, int *forb, t_tree *parent, t_tree *child, int delete2)
+{
+	//int *tmp;
+	int	found_sibling;
+
+	found_sibling = 0;
+	//tmp = NULL;
+
+
+	if (find_parent_links(parent->name, lem, forb))
+	{
+		lem->test_index++;
+		while (delete2 <= 5)
+		{
+	//		ft_printf("-");
+			delete2++;
+		}
+		print_int_arr(forb, lem->nbr_tunnels, "forb:");
+		add_elem_int_array(forb, lem, parent->name, 1);
+		add_elem_int_array(forb, lem, child->name, 0);
+		ft_printf("MAKE SIBLING WITH PARENT %d\n", parent->name);
+		lem->sib_name = make_sibling(parent, lem, forb);
+		if (lem->sib_name != 0)
+			add_elem_int_array(forb, lem, lem->sib_name, 0);
+		lem->sib_name = 0;
+		print_int_arr(forb, lem->nbr_tunnels, "forb2:");
+		remove_elem_int_array(forb, lem, child->name, parent->name); // remove child->name out of forb
+		print_int_arr(forb, lem->nbr_tunnels, "forb3:");
+	}
+	if (child->name != lem->e_room_index)
+	{
+		add_elem_int_array(forb, lem, parent->name, 1);
+	//	ft_printf("\n");
+		ft_printf("MAKE CHILD WITH PARENT %d\n", parent->name);
+		make_child(child, lem, forb);
+		remove_elem_int_array(forb, lem, parent->name, 0); // remove parent->name out of forb
+	}
+
+	// if (find_parent_links(parent->name, lem, forb))
+	// {
+	// 	lem->test_index++;
+	// 	while (delete2 <= 5)
+	// 	{
+	// 		ft_printf("-");
+	// 		delete2++;
+	// 	}
+	// //	found_sibling = 1;
+	// 	tmp = ft_newintarr(forb, lem->nbr_tunnels);
+	// 	add_elem_int_array(forb, lem, parent->name, 1);
+	// 	add_elem_int_array(forb, lem, child->name, 0);
+	// 	add_elem_int_array(forb, lem, make_sibling(child, parent, lem, forb), 0); // lem->sib_name = sibling_name(parent, lem, tmp);
+	// 	if (lem->sib_name != 0)
+	// 		add_elem_int_array(tmp, lem, lem->sib_name, 0);
+	// 	lem->sib_name = 0;
+	// }
+	// if (child->name != lem->e_room_index)
+	// {
+	// 	add_elem_int_array(tmp, lem, parent->name, 1);
+	// 	ft_printf("\n");
+	// 	make_child(child, lem, tmp);
+	// 	// if (found_sibling == 1)
+	// 	// {
+	// 	// 	lem->sib_name = make_sibling(child, parent, lem, tmp);
+	// 	// 	free(tmp);
+
+	// 	// }
+	// }
+}
+
+
+int make_sibling(t_tree *parent, t_lem *lem, int *forb)
+{
+	t_tree *sibling;
+	int i;
+	int j;
+	int delete;
+	int delete2;
 
 	delete2 = 0;
 	lem->making_sibling = 1;
 	j = 0;
 	i = 0;
 	sibling = tree_init(parent);
-	child->sib = sibling;
+	parent->child->sib = sibling;
 	while (j < lem->nbr_tunnels)
 	{
 		if (ft_strword(lem->tunnel_directory[j], parent->name))
@@ -71,40 +129,42 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int *forb)
 					delete = delete / 10;
 					delete2++;
 				}
-			//	ft_printf("%d", sibling->name);
+				ft_printf("%d", sibling->name);
 				sibling->parent = parent;
-				break ;
+				break;
 			}
 		}
 		j++;
 	}
-	if (sibling->name != 0)
+	if (sibling->name != 0 && lem->total_paths < lem->stopper)
 		find_family(lem, forb, parent, sibling, delete2);
+	lem->test_index--;
 	return (sibling->name);
 }
 
-void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
+void make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 {
-	t_tree	*child;
-	int		i;
-	int		j;
-	int		test_delete;
-	int		delete;
-	int		delete2 = 0;
+	t_tree *child;
+	int i;
+	int j;
+	int test_delete;
+	int delete;
+	int delete2 = 0;
 
+	lem->ended = 0;
 	test_delete = lem->test_index;
 	j = 0;
 	i = 0;
 	delete = 0;
 	while (test_delete > 1)
 	{
-	//	ft_printf("|     ");
+		ft_printf("|     ");
 		test_delete--;
 	}
-	//ft_printf("|\n");
+	ft_printf("|\n");
 	while (test_delete < lem->test_index)
 	{
-	//	ft_printf("|     ");
+		ft_printf("|     ");
 		test_delete++;
 	}
 	lem->making_sibling = 0;
@@ -123,9 +183,9 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 					delete = delete / 10;
 					delete2++;
 				}
-			//	ft_printf("%d", child->name);
+				ft_printf("%d", child->name);
 				child->parent = parent;
-				break ;
+				break;
 			}
 		}
 		j++;
@@ -135,20 +195,32 @@ void	make_child(t_tree *parent, t_lem *lem, int *forbidden_array)
 	// 	ft_printf("FOUND END ROOM\n");
 	// 	exit(1);
 	// }
-	if (child->name != 0 && child->name != lem->e_room_index)
+	if (child->name != 0 && child->name != lem->e_room_index && lem->total_paths < lem->stopper)
 		find_family(lem, forbidden_array, parent, child, delete2);
 	if (child->name != 0 && child->name == lem->e_room_index)
 	{
 		lem->total_paths++;
 	}
-//	ft_printf("(%d)", child->name);
-	lem->test_index--;
-//	child->child = tree_init(child);
+//	if (lem->ended == 1)
+//	{
+///		ft_printf("\n");
+	//	while (test_delete > 1)
+	//	{
+	//		ft_printf("|     ");
+	//		test_delete--;
+	//	}
+//	}
+	if (child->name == 0 || child->name == lem->e_room_index)
+	{
+		lem->ended = 1;
+		ft_printf("E");
+	}
+	//	child->child = tree_init(child);
 	//ft_printf("found end with name:%s\n", child->name);
 	//ft_printf("WANBDHAWKJFAKJFAKJFSAJKDJW:AK:DWAK:DWJKDJWKA:KADJWJKDWAJDWAJKDWJKDAWJK:WJ\n");
 }
 
-int		tree_creation(t_lem *lem)
+int tree_creation(t_lem *lem)
 {
 	int *forbidden_array;
 	int i;
@@ -169,9 +241,9 @@ int		tree_creation(t_lem *lem)
 		i++;
 	}
 	lem->tree = head_tree_init(lem->start_room_index);
-//	ft_printf("%d\n", lem->start_room_index);
+	ft_printf("%d\n", lem->start_room_index);
 	make_child(lem->tree, lem, forbidden_array);
 	free(forbidden_array);
-//	ft_printf("\n\n");
+	ft_printf("\n\n");
 	return (0);
 }

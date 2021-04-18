@@ -18,6 +18,44 @@ static int	scan_forbidden(int *array, int i, t_lem *lem)
 	return (0);
 }
 
+void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent)
+{
+	int i;
+
+	i = 0;
+	ft_printf("\n\n");
+	ft_printf("block %d\n", block);
+	ft_printf("parent %d\n", parent);
+	print_int_arr(forb, lem->nbr_tunnels, "REMOVE FORB:");
+	while (i < lem->nbr_tunnels)
+	{
+		if (scan_forbidden(forb, i, lem) == 0)
+			i++;
+		else
+		{
+			ft_printf("FOUNDT THIS:forb:%d, t_1:%d, t_2:%d\n", forb[i], lem->tunnel_directory[i][0], lem->tunnel_directory[i][1]);
+			exit (1);
+		}
+
+
+
+			// if (lem->tunnel_directory[forb[i]][0] == parent)
+			// 	i++;
+			// else if (lem->tunnel_directory[forb[i]][1] == parent)
+			// 	i++;
+			// else
+			// {
+			// 	ft_printf("forb[i]:%d\n", forb[i]);
+			// 	forb[i] = -1;
+			// 	i++;
+			// }
+		//else
+		//	i++;
+	}
+	print_int_arr(forb, lem->nbr_tunnels, "REMOVE FORB2:");
+}
+
+
 /*
 ** Adds an element onto the int array
 */
