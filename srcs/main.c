@@ -45,7 +45,7 @@ int		main(void)
 		flow_management(lem);
 		ft_printf("completed flow_management\n");
 		ft_printf("Started output\n");
-		// output(lem);
+		output(lem);
 		ft_printf("completed output\n");
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);

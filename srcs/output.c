@@ -1,10 +1,5 @@
 #include "lem_in.h"
 
-// char	*get_room_name(t_lem *lem, int moves)
-// {
-
-// }
-
 void	output(t_lem *lem)
 {
 	int ant;
@@ -13,13 +8,13 @@ void	output(t_lem *lem)
 	char *room_name;
 	int i;
 	int j;
-	int set;
 
 	i = 2;
 	ant = 1;
 	moves_per_round = (lem->result[0] * -1) - 2;
 	moves = moves_per_round;
 	room_name = NULL;
+	lem->set = lem->result[1];
 
 /*
 	options 2 = [-4,        9,        0,       				2]
@@ -33,45 +28,37 @@ void	output(t_lem *lem)
 		j = 1;
 		while (j < (lem->final_paths[lem->result[i]][0] * -1))
 		{
-		//	ft_printf("Final path num: %d\n", lem->final_paths[lem->result[i]][j]);
-		//	ft_printf("Name:%s\n", lem->room_directory[lem->final_paths[lem->result[i]][j]]);
+			ft_printf("Final path num: %d\n", lem->final_paths[lem->result[i]][j]);
+			ft_printf("Name:%s\n", lem->room_directory[lem->final_paths[lem->result[i]][j]]);
 			j++;
 		}
 		i++;
 		if (i < (lem->result[0] * -1))
 			ft_printf("\nCHAINGING PATH\n");
 	}
-
-//
-//	while (moves < lem->result[1])
-//	{
-//
-//		moves++;
-//	}
-
+	i = 2;
+	j = 1;
 
 	while (ant < lem->ants && moves < lem->result[1])
 	{
-	//	ft_printf("moves:%d, mpr:%d, ant:%d\n", moves, moves_per_round, ant);
+		ft_printf("moves:%d, mpr:%d, ant:%d\n", moves, moves_per_round, ant);
 		moves_per_round = (lem->result[0] * -1) - 2;
-		while (lem->set <= (ant / moves_per_round))
+		while (lem->set > 0)
 		{
-			set = lem->set;
-			while (set > 0)
+			moves_per_round = (lem->result[0] * -1) - 2;
+			while (moves_per_round > 0 && ant < lem->ants)
 			{
-				while (moves_per_round > 0 && ant < lem->ants)
-				{
-					//room_name = get_room_name(lem, moves);
-					//need some kind of recursion that keeps track of how the first round of ants progress while also adding the next round of ants in the next step
-				//	ft_printf("L%d- ", ant);
-					ant++;
-					moves_per_round--;
-				}
-				set--;
+				//room_name = get_room_name(lem, moves);
+				//need some kind of recursion that keeps track of how the first round of ants progress while also adding the next round of ants in the next step
+				ft_printf("L%d-%s ", ant, lem->room_directory[lem->final_paths[lem->result[i]][j]]);
+				ft_printf("L%d-%s ", ant, lem->room_directory[lem->final_paths[lem->result[i]][j]]);
+				ant++;
+				moves_per_round--;
 			}
-			lem->set++;
+			lem->set--;
+			ft_printf("\n");
 		}
-	//	ft_printf("\n");
+		ft_printf("\n");
 		moves += moves_per_round;
 	}
 }
@@ -88,11 +75,11 @@ void	output(t_lem *lem)
 
 
 // L1-1 L2-2 
-// L1-3 L2-4 L3-1 L4-2
-// L1-5 L2-6 L3-3 L4-4 L5-1 L6-2
-// L1-E L2-E L3-5 L4-6 L5-3 L6-4
-// L3-E L4-E L5-5 L6-6
-// L5-E L6-E
+// L1-3 L2-4 	L3-1 L4-2
+// L1-5 L2-6 	L3-3 L4-4 		L5-1 L6-2
+// L1-E L2-E 	L3-5 L4-6 		L5-3 L6-4
+// 				L3-E L4-E 		L5-5 L6-6
+// 								L5-E L6-E
 
 
 // L1-1 L2-2

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
+#    By: Melissa <Melissa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/04/17 12:38:13 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/04/18 08:24:37 by Melissa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = 	main.c \
 		tree_making_utils.c \
 		flow_management.c \
 		gather_paths_utils.c \
+		output.c \
 
 INCLUDES := -I $(INCL_PATH)
 
