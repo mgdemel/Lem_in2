@@ -116,11 +116,18 @@ s-r1-r4-r3-r5-e
 |
 3(1)---------------2
 |                  |
-4(2)---5           5(3)-----4-----7-----x----c-----v----b--f-----g----r
+4(2)---5           5(3)-----4-----7
 |      |             |      |     |
 8(9)  6(10)         6(4)    8(5)  6(6)
         |             |           |
         8(11)        8(8)         8(7)
+
+Each time make_sibling > move right > add positive numbers ++ > add previous child (current childs sibling) +1
+After make_sibling > move left > reduce positive numbers -- > change next sibling (what came out of sibling_name) to -1
+
+Each time make_child > move down > reduce negative numbers -- > find parent 0 and reduce to -1
+After make_child > move up > add negative numbers ++
+
 
 EXAMPLE: We are at  now:
 0   [8, 4, 0]

@@ -17,7 +17,7 @@ int		main(void)
 	lem->all_rooms = initialize_room(lem);
 	if (store_data(lem, lem->all_rooms, fd) == 0)
 	{
-		ft_printf("Starting get_tunnel_int_arr\n");
+		ft_printf("\nStarting get_tunnel_int_arr\n");
 		get_tunnel_int_arr(lem);
 		ft_printf("ENDING get_tunnel_int_arr\n");
 		ft_printf("Starting tree_creation\n");
@@ -40,12 +40,12 @@ int		main(void)
 		ft_printf("Started sort_paths\n");
 		sort_paths(lem);
 		ft_printf("completed sort_paths\n");
-		// test_structs(lem);
+	//	test_structs(lem);
 		ft_printf("Started flow_management\n");
-		flow_management(lem);
+	//	flow_management(lem);
 		ft_printf("completed flow_management\n");
 		ft_printf("Started output\n");
-		output(lem);
+	//	output(lem);
 		ft_printf("completed output\n");
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);

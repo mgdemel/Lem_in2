@@ -145,7 +145,7 @@ void get_tunnel_int_arr(t_lem *lem)
 		ft_putendl("error");
 	while (i < lem->nbr_tunnels)
 	{
-		if (!(lem->tunnel_directory[i] = (int*)malloc(sizeof(int) * 2)))
+		if (!(lem->tunnel_directory[i] = (int*)malloc(sizeof(int) * 3)))
 			ft_putendl("error");
 		i++;
 	}
@@ -154,6 +154,7 @@ void get_tunnel_int_arr(t_lem *lem)
 	{
 		j = 0;
 		rooms = ft_strsplit(lem->tunnels[i], '-');
+		lem->tunnel_directory[i][2] = 0;
 		while (j < 2) //as long as there are rooms to be added to the tunnel directory's row ...
 		{
 			find_room_name(lem, rooms[j], i, j);
@@ -164,4 +165,5 @@ void get_tunnel_int_arr(t_lem *lem)
 		free(rooms);
 		i++;
 	}
+	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 }
