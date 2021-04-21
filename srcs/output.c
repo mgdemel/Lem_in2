@@ -13,83 +13,111 @@
 	// final paths 0 = 					  [-4, 1, 3, 4, 8, -1]	|
 	// final paths 2 = 											[-5, 1, 2, 5, 6, 8, -1]
 
+void move_it(int moves_per_set, int sets, int **ant_flow, t_lem *lem)
+{
+	int i;
+	int j;
+	int k;
+	int flow;
 
+	i = 0;
+	j = 2;
+	k = 2;
+	flow = 1;
 
-
+	while (sets > 0)
+	{
+		moves_per_set *= flow;
+		while (i < (moves_per_set))
+		{
+			if (ant_flow[i][1] == 0)
+				moves_per_set++; //increasing the scope for print!
+			else
+				ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k]]);
+			i++;
+		}
+		ft_printf("\n");
+		flow++;
+		sets--;
+	}
+}
 int	output(t_lem *lem)
 {
 	int moves_per_set;
 	int ant_num;
 	int i;
 	int j;
-	int x;
 	int **ant_flow;
 
-	i = 2;
-	j = 2; //skips over the start room!
-	x = 0;
+	i = 0;
+	j = 2;
 	moves_per_set = (lem->result[0] * -1) - 2;
 	ant_num = 1;
-	lem->sets = lem->result[1];
 
-	if (!(ant_flow = (int **)malloc(sizeof(int *) * moves_per_set))) //makes as many rows as there are paths
+	if (!(ant_flow = (int**)malloc(sizeof(int*) * lem->ants))) //makes as manj rows as there are paths
 		return (1);
-	while(x < moves_per_set)
+	while (i < lem->ants)
 	{
-	//	if (!(ant_flow[x] = (int *)malloc(sizeof(int) * )))
-	//		return (1);
-		x++;
+		if (!(ant_flow[i] = (int*)malloc(sizeof(int) * 2)))
+			return (1);
+		i++;
 	}
-	return (100);
+
 // --------------------------- TESTING START ------------------------------
-	// int x = 2; //remove!
-	// int y = 1; //remove!
+	// i = 2; //remove!
 
 	// print_int_arr(lem->result, lem->result[0] * -1, "result");
 	// ft_printf("rows to print (result[1]): %d\nnumber of paths to use (result[0 - 2]): %d\n\npaths:\n", lem->sets, moves_per_set);
-	// while (x < (lem->result[0] * -1))
+	// while (i < (lem->result[0] * -1))
 	// {
-	// 	y = 1;
-	// 	while (y < (lem->final_paths[lem->result[x]][0] * -1))
+	// 	j = 1;
+	// 	while (j < (lem->final_paths[lem->result[i]][0] * -1))
 	// 	{
-	// 		ft_printf("Final path num: %d\n", lem->final_paths[lem->result[x]][y]);
-	// 		ft_printf("Name:%s\n", lem->room_directory[lem->final_paths[lem->result[x]][y]]);
-	// 		y++;
+	// 		ft_printf("Final path num: %d\n", lem->final_paths[lem->result[i]][j]);
+	// 		ft_printf("Name:%s\n", lem->room_directory[lem->final_paths[lem->result[i]][j]]);
+	// 		j++;
 	// 	}
-	// 	x++;
-	// 	if (x < (lem->result[0] * -1))
+	// 	i++;
+	// 	if (i < (lem->result[0] * -1))
 	// 		ft_printf("\n\n");
 	// }
-	// ft_printf("\nmoves:%d, mpr:%d \n\n", lem->sets, moves_per_round);
 // --------------------------- TESTING DONE ------------------------------
-	while (lem->ants > 0) 
+
+	i = 0;
+	while (i < lem->ants) 
 	{
-		while (lem->sets > 0)
+		moves_per_set = ((lem->result[0] * -1) - 2);
+		j = 2;
+		while (ant_num <= lem->ants && moves_per_set > 0)
 		{
-			moves_per_set = ((lem->result[0] * -1) - 2);
-			i = 2; //first path in result
-			while (moves_per_set > 0 && lem->ants > 0)
-			{
-		//		if (ft_strcmp((lem->room_directory[lem->final_paths[lem->result[i]][j]]), lem->room_directory[lem->e_room_index] != 0))
-		//			ft_printf("L%d-%s ", ant_num, lem->room_directory[lem->final_paths[lem->result[i]][j]]);
-				ant_num++;
-				i++;
-				lem->ants--;
-				moves_per_set--;
-			}
-			//k++;
-			lem->sets--;
-			ft_printf("\n");
+			ant_flow[i][0] = ant_num;
+			ant_flow[i][1] = lem->final_paths[lem->result[j]][0] + 2;
+			ant_num++;
+			moves_per_set--;
+			i++;
+			j++;
 		}
 	}
-}
 
-//sets ant_num:
-//0    | 1 | 2 |
-//1    | 1 | 2 | 3 | 4 |
-//2    | 1 | 2 | 3 | 4 | 5 |
-//3	   | 2 | 3 | 4 | 5 |
-//5    | 4 | 5 |
+	// --------------------------- TESTING START ------------------------------
+	// i = 0;
+	// j = 0;
+	// while(i < lem->ants)
+	// {
+	// 	j = 0;
+	// 	while (j < 2)
+	// 	{
+	// 		ft_printf(" %d |", ant_flow[i][j]);
+	// 		j++;
+	// 	}
+	// 	ft_printf("\n");
+	// 	i++;
+	// }
+	// ft_printf("\n");
+	// --------------------------- TESTING DONE ------------------------------
+	move_it(moves_per_set, lem->result[1], ant_flow, lem);
+	return(0);
+}
 
 // L1-three L2-two 
 // L1-four  L2-five  	L3-three L4-two 
@@ -97,15 +125,8 @@ int	output(t_lem *lem)
 // 			L2-eight 	L3-eight L4-six 		L5-four
 // 								 L4-eight 		L5-eight
 
-
 //ant  |1|0|
 //ant  |2|-2|
 //ant  |3|-2|
 //ant  |4|-3|
 //ant  |5|-3|
-
-
-
-
-
-
