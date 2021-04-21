@@ -42,10 +42,10 @@ int		main(void)
 		ft_printf("completed sort_paths\n");
 	//	test_structs(lem);
 		ft_printf("Started flow_management\n");
-	//	flow_management(lem);
+		flow_management(lem);
 		ft_printf("completed flow_management\n");
 		ft_printf("Started output\n");
-	//	output(lem);
+		output(lem);
 		ft_printf("completed output\n");
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);

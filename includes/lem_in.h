@@ -40,7 +40,7 @@ typedef struct		s_lem
 	int 			compare;
 	struct s_tree	*tree; //head branch
 	int				*result; //the result of our program to output!
-	int				set;
+	int				sets;
 	int 			stopper;
 }					t_lem;
 
