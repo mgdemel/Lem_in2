@@ -1,96 +1,10 @@
 #include "lem_in.h"
 
 /*
-**	Scans the array if the number i exists, MOVE TO UTILS
-*/
-
-static int	scan_forbidden(int *array, int i, t_lem *lem)
-{
-	int j;
-
-	j = 0;
-	while (j < lem->nbr_tunnels)
-	{
-		if (array[j] == i)
-			return (1);
-		j++;
-	}
-	return (0);
-}
-
-void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent)
-{
-	int i;
-
-	i = 0;
-	ft_printf("\n\n");
-	ft_printf("block %d\n", block);
-	ft_printf("parent %d\n", parent);
-	print_int_arr(forb, lem->nbr_tunnels, "REMOVE FORB:");
-	while (i < lem->nbr_tunnels)
-	{
-		if (scan_forbidden(forb, i, lem) == 0)
-			i++;
-		else
-		{
-			ft_printf("FOUNDT THIS:forb:%d, t_1:%d, t_2:%d\n", forb[i], lem->tunnel_directory[i][0], lem->tunnel_directory[i][1]);
-			exit (1);
-		}
-
-
-
-			// if (lem->tunnel_directory[forb[i]][0] == parent)
-			// 	i++;
-			// else if (lem->tunnel_directory[forb[i]][1] == parent)
-			// 	i++;
-			// else
-			// {
-			// 	ft_printf("forb[i]:%d\n", forb[i]);
-			// 	forb[i] = -1;
-			// 	i++;
-			// }
-		//else
-		//	i++;
-	}
-	print_int_arr(forb, lem->nbr_tunnels, "REMOVE FORB2:");
-}
-
-
-/*
-** Adds an element onto the int array
-*/
-
-int			add_elem_int_array(int *forb, t_lem *lem, int block, int parent)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while (i < lem->nbr_tunnels)
-	{
-		if (scan_forbidden(forb, i, lem) == 1)
-			i++;
-		else if (ft_strword(lem->tunnel_directory[i], block))
-		{
-			while (forb[j] > -1)
-				j++;
-			forb[j] = i;
-			i++;
-			if (parent == 1)
-				return (1);
-		}
-		else
-			i++;
-	}
-	return (0);
-}
-
-/*
 **	Searching for parent links, taking any forbidden into account.
 */
 
-int			find_parent_links(int parent, t_lem *lem, int *forbidden_array)
+int			find_parent_links(int parent, t_lem *lem)
 {
 	int i;
 	int t;
@@ -99,9 +13,9 @@ int			find_parent_links(int parent, t_lem *lem, int *forbidden_array)
 	i = 0;
 	while (i < lem->nbr_tunnels)
 	{
-		if (scan_forbidden(forbidden_array, i, lem) == 1)
+		if (lem->tunnel_directory[i][2] != 0)
 			i++;
-		else if (ft_strword(lem->tunnel_directory[i], lem->e_room_index))
+		if (ft_strword(lem->tunnel_directory[i], lem->e_room_index))
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], parent))
 		{
