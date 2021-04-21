@@ -1,23 +1,20 @@
 #include "lem_in.h"
 
-void	arr_row_size(t_tree *start, t_lem *lem)
+void arr_row_size(t_tree *start, t_lem *lem)
 {
 	t_tree *tree;
 
 	tree = start;
-	if (tree->name != 0)
+	while (tree->name != lem->e_room_index && tree->name != 0)
 	{
-		while (tree->name != lem->e_room_index)
+		if (tree->sib != NULL)
 		{
-			if (tree->sib != NULL)
-			{
-				lem->max_paths++;
-				arr_row_size(tree->sib, lem);
-			}
-			tree = tree->child;
-			if (tree->name == 0)
-				break ;
+			lem->max_paths++;
+			arr_row_size(tree->sib, lem);
 		}
+		tree = tree->child;
+		if (tree->name == 0)
+			break;
 	}
 }
 
@@ -25,7 +22,7 @@ void	arr_row_size(t_tree *start, t_lem *lem)
 **	A util of scan_paths in gater_paths
 */
 
-void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)
+void get_room_num(t_tree *tree, t_lem *lem, int r, int i)
 {
 	int x;
 
