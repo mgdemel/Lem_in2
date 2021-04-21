@@ -11,11 +11,13 @@ int			find_parent_links(int parent, t_lem *lem)
 
 	t = 0;
 	i = 0;
+	// if (parent == 2)
+	//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	while (i < lem->nbr_tunnels)
 	{
 		if (lem->tunnel_directory[i][2] != 0)
 			i++;
-		if (ft_strword(lem->tunnel_directory[i], lem->e_room_index))
+		else if (ft_strword(lem->tunnel_directory[i], lem->e_room_index))
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], parent))
 		{
