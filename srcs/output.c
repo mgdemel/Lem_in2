@@ -36,10 +36,11 @@ int	output(t_lem *lem)
 		return (1);
 	while(x < moves_per_set)
 	{
-		if (!(ant_flow[x] = (int *)malloc(sizeof(int) * )))
-			return (1);
+	//	if (!(ant_flow[x] = (int *)malloc(sizeof(int) * )))
+	//		return (1);
 		x++;
 	}
+	return (100);
 // --------------------------- TESTING START ------------------------------
 	// int x = 2; //remove!
 	// int y = 1; //remove!
@@ -69,14 +70,14 @@ int	output(t_lem *lem)
 			i = 2; //first path in result
 			while (moves_per_set > 0 && lem->ants > 0)
 			{
-				if (ft_strcmp((lem->room_directory[lem->final_paths[lem->result[i]][j]]), lem->room_directory[lem->e_room_index] != 0))
-					ft_printf("L%d-%s ", ant_num, lem->room_directory[lem->final_paths[lem->result[i]][j]]);
+		//		if (ft_strcmp((lem->room_directory[lem->final_paths[lem->result[i]][j]]), lem->room_directory[lem->e_room_index] != 0))
+		//			ft_printf("L%d-%s ", ant_num, lem->room_directory[lem->final_paths[lem->result[i]][j]]);
 				ant_num++;
 				i++;
 				lem->ants--;
 				moves_per_set--;
 			}
-			k++;
+			//k++;
 			lem->sets--;
 			ft_printf("\n");
 		}

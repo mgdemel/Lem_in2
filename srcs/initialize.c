@@ -35,14 +35,9 @@ t_lem	*initialize_lem(void)
 	lem->compare = 0;
 	lem->result = NULL;
 	lem->total_paths = 0;
-<<<<<<< Updated upstream
+	lem->making_sibling = 0;
 	lem->sets = 0;
 	lem->stopper = 10;
-=======
-	lem->set = 0;
-	lem->stopper = 50;
-	lem->making_sibling = 0;
->>>>>>> Stashed changes
 	return (lem);
 }
 

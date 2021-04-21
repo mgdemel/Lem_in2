@@ -106,7 +106,7 @@ int			ft_strword(int *haystack, int needle);
 void		arr_row_size(t_tree *start, t_lem *lem);
 void 		print_double_arr(int **arr, int max); //remove later!
 void 		print_tunnel_dir(int **arr, int max); // remove later!
-void		output(t_lem *lem);
+int			output(t_lem *lem);
 void 		get_tunnel_int_arr(t_lem *lem);
 void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent);
 

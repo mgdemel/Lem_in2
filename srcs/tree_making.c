@@ -54,7 +54,7 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2)
 {
 	if (find_parent_links(parent->name, lem) > 1)
 	{
-	//	ft_printf("found sib with parent:%d child:%d\n", parent->name, child->name);
+		//	ft_printf("found sib with parent:%d child:%d\n", parent->name, child->name);
 		lem->test_index++;
 		while (delete2 <= 5)
 		{
@@ -70,7 +70,7 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2)
 	ft_printf("\n");
 	if (child->name != lem->e_room_index)
 	{
-	//	ft_printf("found child with parent:%d child:%d\n", parent->name, child->name);
+		//	ft_printf("found child with parent:%d child:%d\n", parent->name, child->name);
 		distance_handling(lem, -1, parent->name, 1);
 		make_child(child, lem);
 		distance_handling(lem, -1, 0, -1);
@@ -114,7 +114,7 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	if (sibling->name != 0 /*&& lem->total_paths < lem->stopper*/)
 		find_family(lem, parent, sibling, delete2);
 	lem->test_index--;
-//	ft_printf("made sibling:%d\n", sibling->name);
+	//	ft_printf("made sibling:%d\n", sibling->name);
 	return (sibling->name);
 }
 
@@ -148,10 +148,8 @@ void make_child(t_tree *parent, t_lem *lem)
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
-		if (lem->tunnel_directory[j][2] == 0 || lem->tunnel_directory[j][3] == 1)
+		if (lem->tunnel_directory[j][2] == 0)
 		{
-			if (lem->tunnel_directory[j][3] == 1)
-				lem->tunnel_directory[j][3] = 0;
 			if (ft_strword(lem->tunnel_directory[j], parent->name))
 			{
 				child->name = needle_crop(lem->tunnel_directory[j], parent->name);
@@ -168,6 +166,7 @@ void make_child(t_tree *parent, t_lem *lem)
 		}
 		j++;
 	}
+
 	if (child->name != 0 && child->name != lem->e_room_index && lem->total_paths < lem->stopper)
 		find_family(lem, parent, child, delete2);
 	if (child->name != 0 && child->name == lem->e_room_index)
@@ -178,7 +177,7 @@ void make_child(t_tree *parent, t_lem *lem)
 		ft_printf("%dE", child->name);
 	}
 
-//	ft_printf("made child:%d\n", child->name);
+	//	ft_printf("made child:%d\n", child->name);
 }
 
 int tree_creation(t_lem *lem)

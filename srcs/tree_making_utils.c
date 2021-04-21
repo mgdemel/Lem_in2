@@ -80,7 +80,7 @@ void get_tunnel_int_arr(t_lem *lem)
 		ft_putendl("error");
 	while (i < lem->nbr_tunnels)
 	{
-		if (!(lem->tunnel_directory[i] = (int*)malloc(sizeof(int) * 4)))
+		if (!(lem->tunnel_directory[i] = (int*)malloc(sizeof(int) * 3)))
 			ft_putendl("error");
 		i++;
 	}
