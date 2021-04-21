@@ -22,18 +22,24 @@ void move_it(int moves_per_set, int sets, int **ant_flow, t_lem *lem)
 
 	i = 0;
 	j = 2;
-	k = 2;
+	k = 1;
 	flow = 1;
 
 	while (sets > 0)
 	{
 		moves_per_set *= flow;
+		i = 0;
+		j = 2;
 		while (i < (moves_per_set))
 		{
 			if (ant_flow[i][1] == 0)
 				moves_per_set++; //increasing the scope for print!
 			else
-				ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k]]);
+			{
+				ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k + flow]]);
+				ant_flow[i][1] += 1;
+				j++;
+			}
 			i++;
 		}
 		ft_printf("\n");
