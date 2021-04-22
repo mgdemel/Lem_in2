@@ -89,6 +89,7 @@ int **add_minor_option(int **options, t_lem *lem, int len, int num)
 		len--;
 	}
 	options[num][j] = lem->i_placeholder + 1;
+	options[num][j + 1] = '\0';
 	options[num][1] = set_steps(options[num], lem);
 	return (options);
 }
@@ -138,11 +139,12 @@ int **recursion_adding(t_lem *lem, int **options, int compare)
 
 int **add_major_option(int **options, t_lem *lem, int index, int num)
 {
-	if (!(options[index] = (int *)malloc(sizeof(int) * 3)))
+	if (!(options[index] = (int *)malloc(sizeof(int) * 4)))
 		ft_printf("ERRRRRRRRORRRRROORRR");
 	options[index][0] = -3; //sets the len (index0) to a negative number
 	options[index][1] = lem->ants + (lem->final_paths[num][0] * -1) - 4; //set_steps(options[0], lem->ants); //should set the steps (index1) to # of steps 
 	options[index][2] = num;
+	options[index][3] = '\0';
 	return (options);
 }
 
