@@ -9,9 +9,9 @@
 int		ft_strword(int *haystack, int needle)
 {
 	if (haystack[0] == needle)
-		return (1);
+		return (haystack[1]);
 	else if (haystack[1] == needle)
-		return (1);
+		return (haystack[0]);
 	return (0);
 }
 

@@ -10,7 +10,17 @@ int find_parent_links(int parent, t_lem *lem)
 	int t;
 	int delete; //delete
 	int count;
+	int	*tmp;
+	int	tmp_i;
 
+	tmp_i = 0;
+	tmp = malloc(sizeof(int) * lem->nbr_rooms);
+	while (tmp_i < lem->nbr_rooms)
+	{
+		tmp[tmp_i] = 0;
+		tmp_i++;
+	}
+	tmp_i = 0;
 	count = 0;
 	delete = 0;
 	t = 0;
@@ -40,14 +50,28 @@ int find_parent_links(int parent, t_lem *lem)
 				ft_printf("parent:%d\n", parent);
 				ft_printf("tunnel[0]:%d\n", lem->tunnel_directory[i][0]);
 				ft_printf("tunnel[1]:%d\n", lem->tunnel_directory[i][1]);
-				ft_printf("tunnel[2]:%d\n", lem->tunnel_directory[i][2]);
 				ft_printf("\n");
 			}
+			tmp[tmp_i] = ft_strword(lem->tunnel_directory[i], parent);
+			tmp_i++;
 			t++;
 			i++;
 		}
 		else
 			i++;
+	}
+	tmp_i = 0;
+	i = 0;
+	while (tmp[tmp_i] != 0)
+	{
+		i = 0;
+		while (tmp[i] != 0)
+		{
+			if (tmp[tmp_i] == tmp[i] && tmp_i != i)
+				t--;
+			i++;
+		}
+		tmp_i++;
 	}
 	if (t > 1)
 	{
