@@ -1,12 +1,10 @@
 #include "lem_in.h"
 
-
-
 /*
 **	Searching for parent links, taking any forbidden into account.
 */
 
-int			find_parent_links(int parent, t_lem *lem)
+int find_parent_links(int parent, t_lem *lem)
 {
 	int i;
 	int t;
@@ -23,11 +21,11 @@ int			find_parent_links(int parent, t_lem *lem)
 	{
 		if (lem->tunnel_directory[delete][2] != 0)
 			count++;
-		delete++;
+		delete ++;
 	}
-//	ft_printf("count:%d\n", count);
-//	if (count > 1744)
-//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	//	ft_printf("count:%d\n", count);
+
+	//print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	//ft_printf("\nNEXT\n");
 	while (i < lem->nbr_tunnels)
 	{
@@ -37,6 +35,14 @@ int			find_parent_links(int parent, t_lem *lem)
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], parent))
 		{
+			if (count > 1744)
+			{
+				ft_printf("parent:%d\n", parent);
+				ft_printf("tunnel[0]:%d\n", lem->tunnel_directory[i][0]);
+				ft_printf("tunnel[1]:%d\n", lem->tunnel_directory[i][1]);
+				ft_printf("tunnel[2]:%d\n", lem->tunnel_directory[i][2]);
+				ft_printf("\n");
+			}
 			t++;
 			i++;
 		}
@@ -45,7 +51,7 @@ int			find_parent_links(int parent, t_lem *lem)
 	}
 	if (t > 1)
 	{
-	//	ft_printf("found %d siblings\n", t - 1);
+		//	ft_printf("found %d siblings\n", t - 1);
 		return (t);
 	}
 	return (0);
@@ -55,7 +61,7 @@ void find_room_name(t_lem *lem, char *room_name, int row, int column)
 {
 	int i;
 	int j;
-	
+
 	i = 0;
 	j = 1;
 	while (i < (lem->nbr_rooms + 1)) //searching for the index of the room name we are adding to the tunnel directory row
@@ -76,11 +82,11 @@ void get_tunnel_int_arr(t_lem *lem)
 
 	i = 0;
 	j = 0;
-	if (!(lem->tunnel_directory = (int**)malloc(sizeof(int*) * lem->nbr_tunnels)))
+	if (!(lem->tunnel_directory = (int **)malloc(sizeof(int *) * lem->nbr_tunnels)))
 		ft_putendl("error");
 	while (i < lem->nbr_tunnels)
 	{
-		if (!(lem->tunnel_directory[i] = (int*)malloc(sizeof(int) * 3)))
+		if (!(lem->tunnel_directory[i] = (int *)malloc(sizeof(int) * 3)))
 			ft_putendl("error");
 		i++;
 	}

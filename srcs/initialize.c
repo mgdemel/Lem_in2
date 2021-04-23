@@ -38,6 +38,8 @@ t_lem	*initialize_lem(void)
 	lem->making_sibling = 0;
 	lem->sets = 0;
 	lem->stopper = 10;
+	lem->moves_per_set = 0;
+	lem->sibling_trigger = 0;
 	return (lem);
 }
 
