@@ -59,35 +59,35 @@ void move_it(int sets, int **ant_flow, t_lem *lem)
 	{
 		i = 0;
 		j = 2;
-		while (i < lem->ants)
-		{
-			//ft_printf("here with i:%d and ants:%d\n", i, lem->ants)
-			if (lem->room_directory[lem->final_paths[lem->result[j]][k + flow]] != '\0' && ant_flow[i][2] == 0)
-			{
-				ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k + flow]]);
-				// ft_printf("\nj: %d, what's in there before: %d\n", j, lem->result[j]);
-				ant_flow[i][1] += 1;
-				if (ant_flow[i][1] == 0)
-				{
-					ant_flow[i][2] = 1; // closes lock
-					// ft_printf("LOCKED FLOW\n");
-					// print_ant_dir(lem, ant_flow);
-					i++;
-				}
-				else
-					ant_flow[i][2] = 0; // opens lock
-				i++;
-				if (j < (lem->result[0] * -1) -1)
-					j++;
-				else
-					j = 2;
-				// ft_printf("\nj: %d, what's in there after: %d\n", j, lem->result[j]);
-				// ft_printf("\nFLOW\n");
-				// print_ant_dir(lem, ant_flow);
-			}
-			else
-			 i++;
-		}
+		// while (i < lem->ants)
+		// {
+		// 	//ft_printf("here with i:%d and ants:%d\n", i, lem->ants)
+		// 	if (lem->room_directory[lem->final_paths[lem->result[j]][k + flow]] != '\0' && ant_flow[i][2] == 0)
+		// 	{
+		// 		ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k + flow]]);
+		// 		// ft_printf("\nj: %d, what's in there before: %d\n", j, lem->result[j]);
+		// 		ant_flow[i][1] += 1;
+		// 		if (ant_flow[i][1] == 0)
+		// 		{
+		// 			ant_flow[i][2] = 1; // closes lock
+		// 			// ft_printf("LOCKED FLOW\n");
+		// 			// print_ant_dir(lem, ant_flow);
+		// 			i++;
+		// 		}
+		// 		else
+		// 			ant_flow[i][2] = 0; // opens lock
+		// 		i++;
+		// 		if (j < (lem->result[0] * -1) -1)
+		// 			j++;
+		// 		else
+		// 			j = 2;
+		// 		// ft_printf("\nj: %d, what's in there after: %d\n", j, lem->result[j]);
+		// 		// ft_printf("\nFLOW\n");
+		// 		// print_ant_dir(lem, ant_flow);
+		// 	}
+		// 	else
+		// 	 i++;
+		// }
 		// ft_printf("here with flow: %d\n", flow);
 		lem->moves_per_set = ((lem->result[0] * -1) - 2);
 		unlock_flow((lem->moves_per_set * flow), ant_flow, lem->ants,lem->moves_per_set);

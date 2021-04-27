@@ -75,6 +75,20 @@ static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 	return (0);
 }
 
+int		room_duplicates(t_lem *lem, char *r_name, int i)
+{
+	int j;
+
+	j = 0;
+	while (j < i)
+	{
+		if (ft_strcmp(lem->room_directory[j], r_name) == 0)
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
 int			store_data(t_lem *lem, t_room *room, int fd)
 {
 	char 	*line;
@@ -97,7 +111,13 @@ int			store_data(t_lem *lem, t_room *room, int fd)
 			lem->e_room_index = i;
 		if (ft_strcmp(room->name, lem->start_room_name) == 0)
 			lem->start_room_index = i;
-		lem->room_directory[i] = ft_strdup(room->name);
+		if (room_duplicates(lem, room->name, i) == 1)
+		{
+			ft_printf("ERROR\n"); //change to error function
+			exit(1);
+		}
+		else
+			lem->room_directory[i] = ft_strdup(room->name);
 		room = room->next;
 		i++;
 	}

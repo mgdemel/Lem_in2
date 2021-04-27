@@ -395,3 +395,29 @@ i	roomnum1	roomnum2
 0 = {0		, 	1}       <------- start-r3
 1
 2
+
+
+
+
+If douplicate maps on bigger is true, that means in tunnel directory we have two differently named maps
+but same links.
+
+start 1
+end   8
+
+1
+
+2-----3
+      |
+      5----4-----r1-----r2-----r3
+	  |    |                    |
+6     e    5                    r4
+           |
+           e
+7
+
+4
+
+5
+
+8

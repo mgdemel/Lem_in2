@@ -40,6 +40,7 @@ t_lem	*initialize_lem(void)
 	lem->stopper = 10;
 	lem->moves_per_set = 0;
 	lem->sibling_trigger = 0;
+	lem->test_stopper = 0;
 	return (lem);
 }
 

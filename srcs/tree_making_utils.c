@@ -10,17 +10,17 @@ int find_parent_links(int parent, t_lem *lem)
 	int t;
 	int delete; //delete
 	int count;
-	int	*tmp;
-	int	tmp_i;
+//	int	*tmp;
+//	int	tmp_i;
 
-	tmp_i = 0;
-	tmp = malloc(sizeof(int) * lem->nbr_rooms);
-	while (tmp_i < lem->nbr_rooms)
-	{
-		tmp[tmp_i] = 0;
-		tmp_i++;
-	}
-	tmp_i = 0;
+//	tmp_i = 0;
+//	tmp = malloc(sizeof(int) * lem->nbr_rooms);
+	// while (tmp_i < lem->nbr_rooms)
+	// {
+	// 	tmp[tmp_i] = 0;
+	// 	tmp_i++;
+	// }
+//	tmp_i = 0;
 	count = 0;
 	delete = 0;
 	t = 0;
@@ -33,7 +33,7 @@ int find_parent_links(int parent, t_lem *lem)
 			count++;
 		delete ++;
 	}
-	//	ft_printf("count:%d\n", count);
+	//ft_printf("count:%d\n", count);
 
 	//print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	//ft_printf("\nNEXT\n");
@@ -45,34 +45,39 @@ int find_parent_links(int parent, t_lem *lem)
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], parent))
 		{
-			if (count > 1744)
-			{
-				ft_printf("parent:%d\n", parent);
-				ft_printf("tunnel[0]:%d\n", lem->tunnel_directory[i][0]);
-				ft_printf("tunnel[1]:%d\n", lem->tunnel_directory[i][1]);
-				ft_printf("\n");
-			}
-			tmp[tmp_i] = ft_strword(lem->tunnel_directory[i], parent);
-			tmp_i++;
+			// if (count > 1744)
+			// {
+			// 	ft_printf("parent:%d\n", parent);
+			// 	ft_printf("i:%d\n", i);
+			// 	ft_printf("tunnel[0]:%d\n", lem->tunnel_directory[i][0]);
+			// 	ft_printf("tunnel[1]:%d\n", lem->tunnel_directory[i][1]);
+			// //	ft_printf("\n");
+			//}
+		//	else
+		//		ft_printf("count is low\n");
+	//		tmp[tmp_i] = ft_strword(lem->tunnel_directory[i], parent);
+	//		tmp_i++;
+	//		ft_printf("t:%d\n", t);
 			t++;
+	//		ft_printf("increased t:%d\n\n", t);
 			i++;
 		}
 		else
 			i++;
 	}
-	tmp_i = 0;
+//	tmp_i = 0;
 	i = 0;
-	while (tmp[tmp_i] != 0)
-	{
-		i = 0;
-		while (tmp[i] != 0)
-		{
-			if (tmp[tmp_i] == tmp[i] && tmp_i != i)
-				t--;
-			i++;
-		}
-		tmp_i++;
-	}
+	// while (tmp[tmp_i] != 0)
+	// {
+	// 	i = 0;
+	// 	while (tmp[i] != 0)
+	// 	{
+	// 		if (tmp[tmp_i] == tmp[i] && tmp_i != i)
+	// 			t--;
+	// 		i++;
+	// 	}
+	// 	tmp_i++;
+	// }
 	if (t > 1)
 	{
 		//	ft_printf("found %d siblings\n", t - 1);
@@ -98,12 +103,47 @@ void find_room_name(t_lem *lem, char *room_name, int row, int column)
 	}
 }
 
+void	remove_duplicated(t_lem *lem)
+{
+	int i;
+	int j;
+	int save1;
+	int save2;
+
+	i = 0;
+	while (i < lem->nbr_tunnels)
+	{
+		j = 0;
+		save1 = lem->tunnel_directory[i][0];
+		save2 = lem->tunnel_directory[i][1];
+		while (j < lem->nbr_tunnels)
+		{
+			if (j != i && ((lem->tunnel_directory[j][0] == save1 && lem->tunnel_directory[j][1] == save2)
+			|| (lem->tunnel_directory[j][0] == save2 && lem->tunnel_directory[j][1] == save1)) && lem->tunnel_directory[j][2] == 0)
+			{
+				lem->tunnel_directory[i][0] = -1;
+				lem->tunnel_directory[i][1] = -1;
+			}
+			j++;
+		}
+		i++;
+	}
+	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	//exit (1);
+}
+
 void get_tunnel_int_arr(t_lem *lem)
 {
 	int i;
 	int j;
 	char **rooms;
 
+	i = 0;
+	while (i < lem->nbr_tunnels)
+	{
+		ft_printf("tunnel[%d]:%s\n", i, lem->tunnels[i]);
+		i++;
+	}
 	i = 0;
 	j = 0;
 	if (!(lem->tunnel_directory = (int **)malloc(sizeof(int *) * lem->nbr_tunnels)))
@@ -131,5 +171,5 @@ void get_tunnel_int_arr(t_lem *lem)
 		free(rooms);
 		i++;
 	}
-	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	remove_duplicated(lem);
 }

@@ -32,6 +32,8 @@ int copy_col(int r, t_lem *lem, int array, int name)
 		lem->all_paths[array][i] = new[i];
 		i++;
 	}
+	lem->test_stopper++;
+	ft_printf("stopper:%d\n", lem->test_stopper);
 	return (0);
 }
 
@@ -42,29 +44,42 @@ int scan_paths(t_tree *start, t_lem *lem, int i, int r)
 
 	prev_index = r;
 	tree = start;
-	while (tree->name != 0)
+	while (tree->name != 0 && lem->path < 7)
 	{
+		ft_printf("hey\n");
 		get_room_num(tree, lem, r, i);
+		ft_printf("hey2\n");
 		prev_index++;
 		if (tree->sib != NULL && tree->name != lem->e_room_index)
 		{
 			lem->path++;
-			if (!(lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
-				return (1);
-			copy_previous_path(lem, prev_index, lem->path, i);
-			scan_paths(tree->sib, lem, lem->path, r);
+			if (lem->path < 7)
+			{
+				if (!(lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
+					return (1);
+			}
+			ft_printf("hey3 path:%d\n", lem->path);
+			if (lem->test_stopper < 7)
+				copy_previous_path(lem, prev_index, lem->path, i);
+			ft_printf("hey4\n");
+			if (lem->test_stopper < 7)
+				scan_paths(tree->sib, lem, lem->path, r);
 		}
 		r++;
-		tree = tree->child;
-		if (tree->name != 0 && tree->name == lem->e_room_index)
+		if (lem->test_stopper < 7)
+			tree = tree->child;
+		if (tree->name != 0 && tree->name == lem->e_room_index && lem->test_stopper < 7)
 		{
+			ft_printf("hey5\n");
 			get_room_num(tree, lem, r, i);
 			r++;
 			break;
 		}
 	}
-	if (tree->name == 0 || tree->name == lem->e_room_index)
+	ft_printf("hey6\n");
+	if ((tree->name == 0 || tree->name == lem->e_room_index) && lem->test_stopper < 7)
 		copy_col(r, lem, i, tree->name);
+	ft_printf("hey7\n");
 	return (0);
 }
 

@@ -19,6 +19,7 @@ typedef struct		s_lem
 	int				test_index; // remove after
 	int				making_sibling; // remove
 	int				ended; //remove
+	int				test_stopper;
 	int				sibling_trigger;
 	int				path;
 	int				max_paths;
