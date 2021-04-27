@@ -21,6 +21,7 @@ typedef struct		s_lem
 	int				ended; //remove
 	int				test_stopper;
 	int				sibling_trigger;
+	int				sibling_compare;
 	int				path;
 	int				max_paths;
 	int				malloc_len;
@@ -87,8 +88,8 @@ int			find_parent_links(int parent, t_lem *lem);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
 int 		add_elem_int_array(int *forbidden_array, t_lem *lem, int block, int parent);
-void		make_child(t_tree *parent, t_lem *lem);
-int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
+void		make_child(t_tree *parent, t_lem *lem, int compare);
+int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int sib_save);
 t_tree		*head_tree_init(int name);
 int 		create_path_arr(t_lem *lem);
 void		free_tree(t_tree *start, t_lem *lem);

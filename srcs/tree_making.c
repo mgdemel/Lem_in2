@@ -47,11 +47,12 @@ void distance_handling(t_lem *lem, int neg_pos, int object, int add_reduce) //ne
 	}
 }
 
-void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2)
+void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2, int sib_save)
 {
 	int sibling_trigger_save;
 
-	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	ft_printf("trigger:%d compare:%d\n", lem->sibling_trigger, lem->sibling_compare);
+//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	if (lem->total_paths < 7 && find_parent_links(parent->name, lem) > 1)
 	{
 		lem->test_index++;
@@ -62,8 +63,7 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2)
 		}
 		distance_handling(lem, 1, child->name, 1);
 		lem->sibling_trigger++;
-		ft_printf("\nsibling trigger:%d\n", lem->sibling_trigger);
-		lem->sib_name = make_sibling(child, parent, lem);
+		lem->sib_name = make_sibling(child, parent, lem, sib_save);
 		lem->sibling_trigger--;
 		distance_handling(lem, 1, 0, -1);
 		distance_special(lem, lem->sib_name);
@@ -73,16 +73,17 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2)
 //	ft_printf("\n");
 	if (lem->total_paths < 7 && child->name != lem->e_room_index)
 	{
+		lem->sibling_compare++;
 		distance_handling(lem, -1, parent->name, 1);
-		make_child(child, lem);
-		lem->sibling_trigger = sibling_trigger_save;
+		make_child(child, lem, sib_save);
+		lem->sibling_compare--;
 		distance_handling(lem, -1, 0, -1);
 	}
 	else if (lem->total_paths == 7)
 		child->child = tree_init(child);
 }
 
-int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
+int make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int sib_save)
 {
 	t_tree *sibling;
 	int i;
@@ -135,7 +136,7 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 		// j++;
 	}
 	if (sibling->name != 0 /*&& lem->total_paths < lem->stopper*/)
-		find_family(lem, parent, sibling, delete2);
+		find_family(lem, parent, sibling, delete2, sib_save);
 	if (sibling->name == 0)
 	{
 		ft_printf("sibling is 0 with parent: %d\n", parent->name);
@@ -146,16 +147,18 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	return (sibling->name);
 }
 
-void make_child(t_tree *parent, t_lem *lem)
+void make_child(t_tree *parent, t_lem *lem, int compare)
 {
 	t_tree *child;
 	int i;
 	int j;
 //	int test_delete;
 	int delete;
+	int sib_save;
 	int delete2 = 0;
 
 	lem->ended = 0;
+	sib_save = lem->sibling_trigger;
 //	test_delete = lem->test_index;
 	j = 0;
 	i = 0;
@@ -175,11 +178,11 @@ void make_child(t_tree *parent, t_lem *lem)
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
-		if (lem->tunnel_directory[j][2] >= 0 && lem->tunnel_directory[j][2] <= lem->sibling_trigger)
+		if ((lem->tunnel_directory[j][2] > 0 && lem->tunnel_directory[j][2] < compare) || lem->tunnel_directory[j][2] == 0)
 		{
 			if (ft_strword(lem->tunnel_directory[j], parent->name))
 			{
-				ft_printf("went here with: %d, trigger:%d\n", lem->tunnel_directory[j][2], lem->sibling_trigger);
+				ft_printf("went here with: %d, trigger:%d\n", lem->tunnel_directory[j][2], lem->sibling_trigger - lem->sibling_compare);
 				child->name = needle_crop(lem->tunnel_directory[j], parent->name);
 				delete = child->name;
 				while (delete > 0)
@@ -195,7 +198,7 @@ void make_child(t_tree *parent, t_lem *lem)
 		j++;
 	}
 	if (child->name != 0 && child->name != lem->e_room_index)
-		find_family(lem, parent, child, delete2);
+		find_family(lem, parent, child, delete2, sib_save);
 	if (child->name != 0 && child->name == lem->e_room_index)
 	{
 		lem->total_paths++;
@@ -217,13 +220,14 @@ int tree_creation(t_lem *lem)
 {
 	lem->making_sibling = 0;
 	lem->sibling_trigger = 0;
+	lem->sibling_compare = 0;
 	lem->test_index = 1;
 	ft_printf("\n\n<--****STARTING TREE MAKING****-->\n\n");
 	ft_printf("Total of tunnels:%d\n", lem->nbr_tunnels);
 	ft_printf("Total of rooms:%d\n\n", lem->nbr_rooms);
 	lem->tree = head_tree_init(lem->start_room_index);
 	ft_printf("%d\n", lem->start_room_index);
-	make_child(lem->tree, lem);
+	make_child(lem->tree, lem, 0);
 	ft_printf("\n\n");
 	return (0);
 }
