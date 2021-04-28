@@ -64,6 +64,7 @@ void	sort_paths(t_lem *lem)
 	j = 0;
 	x = 0;
 	tab = lem->max_paths;
+	ft_printf("lem->negative_one:%d\n", lem->negative_one);
 	if (!(lem->final_paths = (int **)malloc(sizeof(int *) * lem->negative_one)))
 		ft_printf("ERROR in sort_paths");
 	while (i < tab)

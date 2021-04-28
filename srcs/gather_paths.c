@@ -33,7 +33,6 @@ int copy_col(int r, t_lem *lem, int array, int name)
 		i++;
 	}
 	lem->test_stopper++;
-	ft_printf("stopper:%d\n", lem->test_stopper);
 	return (0);
 }
 
@@ -44,42 +43,29 @@ int scan_paths(t_tree *start, t_lem *lem, int i, int r)
 
 	prev_index = r;
 	tree = start;
-	while (tree->name != 0 && lem->path < 7)
+	while (tree->name != 0)
 	{
-		ft_printf("hey\n");
 		get_room_num(tree, lem, r, i);
-		ft_printf("hey2\n");
 		prev_index++;
 		if (tree->sib != NULL && tree->name != lem->e_room_index)
 		{
 			lem->path++;
-			if (lem->path < 7)
-			{
-				if (!(lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
-					return (1);
-			}
-			ft_printf("hey3 path:%d\n", lem->path);
-			if (lem->test_stopper < 7)
-				copy_previous_path(lem, prev_index, lem->path, i);
-			ft_printf("hey4\n");
-			if (lem->test_stopper < 7)
-				scan_paths(tree->sib, lem, lem->path, r);
+			if (!(lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2)))
+				return (1);
+			copy_previous_path(lem, prev_index, lem->path, i);
+			scan_paths(tree->sib, lem, lem->path, r);
 		}
 		r++;
-		if (lem->test_stopper < 7)
-			tree = tree->child;
-		if (tree->name != 0 && tree->name == lem->e_room_index && lem->test_stopper < 7)
+		tree = tree->child;
+		if (tree->name != 0 && tree->name == lem->e_room_index)
 		{
-			ft_printf("hey5\n");
 			get_room_num(tree, lem, r, i);
 			r++;
 			break;
 		}
 	}
-	ft_printf("hey6\n");
-	if ((tree->name == 0 || tree->name == lem->e_room_index) && lem->test_stopper < 7)
+	if (tree->name == 0 || tree->name == lem->e_room_index)
 		copy_col(r, lem, i, tree->name);
-	ft_printf("hey7\n");
 	return (0);
 }
 
@@ -89,9 +75,10 @@ int create_path_arr(t_lem *lem)
 
 	start = lem->tree;
 	arr_row_size(start, lem);
+	ft_printf("max:%d\nnbr_rooms:%d\n", lem->max_paths, lem->nbr_rooms);
 	if (!(lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths)))
 		return (1);
-	if (!(lem->all_paths[0] = (int *)malloc(sizeof(int) * lem->nbr_rooms)))
+	if (!(lem->all_paths[0] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2)))
 		return (1);
 	if (!(scan_paths(start, lem, 0, 0)))
 		return (1);

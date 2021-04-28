@@ -41,7 +41,7 @@ int compare(int *final_paths, int *other_path)
 	return (0);
 }
 
-int		set_steps(int *options, t_lem *lem)
+int		set_steps(int *options, t_lem *lem) // we have a segfault here when  we test map 3ways.map (someone's lemin)
 {
 	int	*ants_and_len;
 	int i;
@@ -53,7 +53,7 @@ int		set_steps(int *options, t_lem *lem)
 	i = 0;
 	if (!(ants_and_len = (int *)malloc(sizeof(int) * tab)))
 		ft_printf("ERRRROR");
-	while (i < tab)
+	while (i < tab) //somewhere between here
 	{
 		ants_and_len[i] = (lem->final_paths[options[i + 2]][0] * - 1) - 3;
 		i++;
@@ -67,7 +67,7 @@ int		set_steps(int *options, t_lem *lem)
 		ants_cpy--;
 		i = 0;
 	}
-	tab = ants_and_len[0];
+	tab = ants_and_len[0]; // and here
 	free(ants_and_len);
 	return (tab);
 }

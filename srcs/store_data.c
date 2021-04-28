@@ -51,7 +51,7 @@ static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 {
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (!(ft_strstr(line, "-")))
+		if (ft_strstr(line, " ") || ft_strstr(line, "#"))
 		{
 			if (check_rooms_validity(line, lem) == 1 ||
 			lem->found_start_end > 2)
@@ -104,7 +104,7 @@ int			store_data(t_lem *lem, t_room *room, int fd)
 	if (!(lem->room_directory = (char**)malloc(sizeof(char *) * lem->current_roomnum)))
 		return (1);
 	tmp = lem->all_rooms;
-	lem->room_directory[0] = ft_strdup("START");
+	lem->room_directory[0] = ft_strdup("SKIP");
 	while (room->next != NULL)
 	{
 		if (ft_strcmp(room->name, lem->e_room_name) == 0)
@@ -119,6 +119,13 @@ int			store_data(t_lem *lem, t_room *room, int fd)
 		else
 			lem->room_directory[i] = ft_strdup(room->name);
 		room = room->next;
+		i++;
+	}
+	i = 0;
+	ft_printf("nbr_rooms:%d\n", lem->nbr_rooms);
+	while (i < lem->nbr_rooms + 1)
+	{
+		ft_printf("room[%d]:%s\n", i, lem->room_directory[i]);
 		i++;
 	}
 	return (0);

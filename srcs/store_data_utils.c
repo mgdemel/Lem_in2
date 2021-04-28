@@ -51,7 +51,7 @@ int			check_rooms_validity(char *line, t_lem *lem)
 	i = 0;
 	if (find_start_end(line, lem))
 		return (0);
-	else if (!(ft_strstr(line, "-")))
+	else if (ft_strstr(line, " ") || ft_strstr(line, "#"))
 	{
 		if (ft_strstr(line, "#"))
 			return (0);

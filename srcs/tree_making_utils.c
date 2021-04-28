@@ -158,7 +158,7 @@ void get_tunnel_int_arr(t_lem *lem)
 	while (i < lem->nbr_tunnels) //as long as there are tunnels to add to the directory
 	{
 		j = 0;
-		rooms = ft_strsplit(lem->tunnels[i], '-');
+		rooms = ft_strsplit(lem->tunnels[i], '-'); // make scan through thoroughly function for name that includes a dash using lem->tunnels and lem->rooms
 		lem->tunnel_directory[i][2] = 0;
 		lem->tunnel_directory[i][3] = 0;
 		while (j < 2) //as long as there are rooms to be added to the tunnel directory's row ...
@@ -171,5 +171,6 @@ void get_tunnel_int_arr(t_lem *lem)
 		free(rooms);
 		i++;
 	}
+	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	remove_duplicated(lem);
 }
