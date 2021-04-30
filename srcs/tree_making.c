@@ -57,7 +57,7 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2, int sib
 		lem->test_index++;
 		while (delete2 <= 5)
 		{
-			ft_printf("-");
+		//	ft_printf("-");
 			delete2++;
 		}
 		// ft_printf("Before distance handling sibling add:\n");
@@ -81,7 +81,7 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2, int sib
 		lem->sib_name = 0;
 	}
 	sibling_trigger_save = lem->sibling_trigger;
-	ft_printf("\n");
+//	ft_printf("\n");
 	if (child->name != lem->e_room_index)
 	{
 		lem->sibling_compare++;
@@ -130,7 +130,7 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int sib_save)
 				delete = delete / 10;
 				delete2++;
 			}
-			ft_printf("%d", sibling->name);
+		//	ft_printf("%d", sibling->name);
 			sibling->parent = parent;
 			break;
 		}
@@ -185,13 +185,13 @@ void make_child(t_tree *parent, t_lem *lem, int compare)
 	compare = 0;
 	while (test_delete > 1)
 	{
-		ft_printf("|     ");
+	//	ft_printf("|     ");
 		test_delete--;
 	}
-	ft_printf("|\n");
+//	ft_printf("|\n");
 	while (test_delete < lem->test_index)
 	{
-		ft_printf("|     ");
+	//	ft_printf("|     ");
 		test_delete++;
 	}
 	child = tree_init(parent);
@@ -210,7 +210,7 @@ void make_child(t_tree *parent, t_lem *lem, int compare)
 					delete = delete / 10;
 					delete2++;
 				}
-				ft_printf("%d", child->name);
+			//	ft_printf("%d", child->name);
 				child->parent = parent;
 				break;
 			}
@@ -229,7 +229,7 @@ void make_child(t_tree *parent, t_lem *lem, int compare)
 	{
 		lem->ended = 1;
 		lem->making_sibling--;
-		ft_printf("E", child->name);
+	//	ft_printf("E", child->name);
 	//	exit (1);
 	}
 

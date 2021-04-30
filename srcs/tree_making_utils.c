@@ -33,6 +33,11 @@ int find_parent_links(int parent, t_lem *lem)
 			count++;
 		delete ++;
 	}
+	if (count == 587)
+	{
+		ft_printf("\n\n***->TUNNEL<-***\n\n");
+		print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	}
 	//ft_printf("count:%d\n", count);
 
 	//print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);

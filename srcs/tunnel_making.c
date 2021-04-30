@@ -135,4 +135,6 @@ void get_tunnel_int_arr(t_lem *lem)
 	}
 	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	remove_duplicated(lem);
+	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	exit (1);
 }
