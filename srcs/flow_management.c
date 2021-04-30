@@ -125,7 +125,7 @@ int **recursion_adding(t_lem *lem, int **options, int compare)
 			{
 				lem->malloc_len++;
 				options = append_array(options, lem->i_placeholder); // adding a malloced space for a valid path
-				options = add_minor_option(options, lem, lem->malloc_len, lem->i_placeholder); // NEEDS TO BE FIXEDfd
+				options = add_minor_option(options, lem, lem->malloc_len, lem->i_placeholder); // NEEDS TO BE FIXED
 				lem->i_placeholder++;
 				options = recursion_adding(lem, options, compare + 1);
 			}

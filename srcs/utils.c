@@ -98,7 +98,6 @@ void	sort_paths(t_lem *lem)
 /*
 **	Takes an int array and returns the copy.
 */
-
 int		*ft_newintarr(int *forbidden_array, int i)
 {
 	int *new;
@@ -114,21 +113,6 @@ int		*ft_newintarr(int *forbidden_array, int i)
 		i--;
 	}
 	return (new);
-}
-
-/*
-**	This functions will find the needle in the haystack, then return
-**	the other part of the haystack minus the middle character
-**	dividing them.
-*/
-
-int		needle_crop(int *haystack, int needle)
-{
-	if (haystack[0] == needle)
-		return (haystack[1]);
-	else if (haystack[1] == needle)
-		return (haystack[0]);
-	return (0);
 }
 
 void	count_valid_paths(t_lem *lem)

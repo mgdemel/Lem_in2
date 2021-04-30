@@ -17,6 +17,7 @@ typedef struct		s_lem
 	int				found_start_end;
 	int				path_index;
 	int				test_index; // remove after
+	int				tunnel_index;
 	int				making_sibling; // remove
 	int				ended; //remove
 	int				test_stopper;
@@ -113,5 +114,6 @@ void 		print_tunnel_dir(int **arr, int max); // remove later!
 int			output(t_lem *lem);
 void 		get_tunnel_int_arr(t_lem *lem);
 void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent);
+void 		get_tunnel_int_arr(t_lem *lem);
 
 #endif

@@ -123,7 +123,7 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int sib_save)
 			j++;
 		else if (ft_strword(lem->tunnel_directory[j], parent->name))
 		{
-			sibling->name = needle_crop(lem->tunnel_directory[j], parent->name);
+			sibling->name = ft_strword(lem->tunnel_directory[j], parent->name);
 			delete = sibling->name;
 			while (delete != 0)
 			{
@@ -203,7 +203,7 @@ void make_child(t_tree *parent, t_lem *lem, int compare)
 			if (ft_strword(lem->tunnel_directory[j], parent->name))
 			{
 				//ft_printf("went here with: %d, trigger:%d\n", lem->tunnel_directory[j][2], lem->sibling_trigger - lem->sibling_compare);
-				child->name = needle_crop(lem->tunnel_directory[j], parent->name);
+				child->name = ft_strword(lem->tunnel_directory[j], parent->name);
 				delete = child->name;
 				while (delete > 0)
 				{

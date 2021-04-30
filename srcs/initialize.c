@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-t_lem	*initialize_lem(void)
+t_lem	*initialize_lem(void) //if this is too long, move the initializations directly to the places where the indexes begin
 {
 	t_lem *lem;
 
@@ -13,6 +13,7 @@ t_lem	*initialize_lem(void)
 	lem->tunnel_directory = NULL;
 	lem->room_directory = NULL;
 	lem->found_start_end = 0;
+	lem->tunnel_index = 0;
 	lem->path_index = 0;
 	lem->all_rooms = NULL;
 	lem->all_paths = NULL;

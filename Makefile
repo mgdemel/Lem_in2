@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Melissa <Melissa@student.42.fr>            +#+  +:+       +#+         #
+#    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/04/18 08:24:37 by Melissa          ###   ########.fr        #
+#    Updated: 2021/04/30 08:39:34 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = 	main.c \
 		flow_management.c \
 		gather_paths_utils.c \
 		output.c \
+		tunnel_making.c \
 
 INCLUDES := -I $(INCL_PATH)
 
