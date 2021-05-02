@@ -47,6 +47,7 @@ int		main(void)
 		ft_printf("Started output\n");
 	//	output(lem);
 		ft_printf("completed output\n");
+		ft_printf("\nto compare with map:%d\n", lem->result[1]);
 		lem->test_index = 0;
 		free_tree(lem->tree, lem);
 		//ft_printf("FREED TREE\n");

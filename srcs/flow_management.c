@@ -4,6 +4,7 @@ int	*get_result(int **options, t_lem *lem)
 	int i;
 	int lowest;
 	int tab;
+
 	i = 0;
 	tab = 0;
 	lowest = options[0][1];
@@ -121,6 +122,7 @@ int scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_compare)
 	}
 	return (0);
 }
+
 int **recursion_adding(t_lem *lem, int **options, int compare)
 {
 	int i;
