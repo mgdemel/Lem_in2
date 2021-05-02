@@ -90,11 +90,11 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child, int delete2, int sib
 		distance_handling(lem, -1, parent->name, 1);
 		// ft_printf("After distance handling child add:\n");
 		// print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
-		make_child(child, lem, sib_save);
+		if (make_child(child, lem, sib_save) == 0)
+			distance_handling(lem, -1, 0, -1);
 		lem->sibling_compare--;
 		// ft_printf("Before distance handling child reduce:\n");
 		// print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
-		distance_handling(lem, -1, 0, -1);
 		// ft_printf("After distance handling child reduce:\n");
 		// print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	}
@@ -166,7 +166,7 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem, int sib_save)
 	return (sibling->name);
 }
 
-void make_child(t_tree *parent, t_lem *lem, int compare)
+int make_child(t_tree *parent, t_lem *lem, int compare)
 {
 	t_tree *child;
 	int i;
@@ -229,9 +229,12 @@ void make_child(t_tree *parent, t_lem *lem, int compare)
 	{
 		lem->ended = 1;
 		lem->making_sibling--;
+		if (child->name == 0)
+			return (1);
 	//	ft_printf("E", child->name);
 	//	exit (1);
 	}
+	return (0);
 
 	//	ft_printf("made child:%d\n", child->name);
 }
