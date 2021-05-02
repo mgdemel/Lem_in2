@@ -101,12 +101,6 @@ void get_tunnel_int_arr(t_lem *lem)
 	char **rooms;
 
 	i = 0;
-	while (i < lem->nbr_tunnels)
-	{
-		ft_printf("tunnel[%d]:%s\n", i, lem->tunnels[i]);
-		i++;
-	}
-	i = 0;
 	j = 0;
 	if (!(lem->tunnel_directory = (int **)malloc(sizeof(int *) * lem->nbr_tunnels)))
 		ft_putendl("error");

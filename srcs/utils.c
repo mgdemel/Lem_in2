@@ -31,18 +31,25 @@ int		**append_array(int **arr, int max)
 	**	arr[1] = -4|5|0|2
 	*/
 	i = 0;
+	ft_printf("arr[i][0]:%d\n", (arr[i][0] * -1));
 	if (!(tmp = (int **)malloc(sizeof(int *) * (max + 1))))
 		return (NULL);
 	while (i < max)
 	{
 		j = 0;
-		if (!(tmp[i] = (int *)malloc(sizeof(int) * arr[i][0] * -1)))
+		if (!(tmp[i] = (int *)malloc(sizeof(int) * (arr[i][0] * -1))))
 			return (NULL);
-		while (j < arr[i][0] * -1)
+		while (j < (arr[i][0] * -1))
 		{
 			tmp[i][j] = arr[i][j];
 			j++;
 		}
+		i++;
+	}
+	i = 0;
+	while (i < max)
+	{
+		free(arr[i]);
 		i++;
 	}
 	free(arr);

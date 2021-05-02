@@ -8,45 +8,9 @@ int find_parent_links(int parent, t_lem *lem)
 {
 	int i;
 	int t;
-	int delete; //delete
-	int count;
-//	int	*tmp;
-//	int	tmp_i;
 
-//	tmp_i = 0;
-//	tmp = malloc(sizeof(int) * lem->nbr_rooms);
-	// while (tmp_i < lem->nbr_rooms)
-	// {
-	// 	tmp[tmp_i] = 0;
-	// 	tmp_i++;
-	// }
-//	tmp_i = 0;
-	count = 0;
-	delete = 0;
-	t = 0;
 	i = 0;
-	// if (parent == 2)
-	//ft_printf("\n");
-	while (delete < lem->nbr_tunnels)
-	{
-		if (lem->tunnel_directory[delete][2] != 0)
-			count++;
-		delete ++;
-	}
-	if (count >= 587)
-	{
-		ft_printf("\n\n***->TUNNEL<-***\n\n");
-		ft_printf("Count:%d\n\n", count);
-		print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
-	}
-	else 
-		ft_printf("skipped\n");
-	//if (count > 1000)
-	//	exit(1);
-	//ft_printf("count:%d\n", count);
-
-	//print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
-	//ft_printf("\nNEXT\n");
+	t = 0;
 	while (i < lem->nbr_tunnels)
 	{
 		if (lem->tunnel_directory[i][2] != 0)
@@ -55,44 +19,15 @@ int find_parent_links(int parent, t_lem *lem)
 			i++;
 		else if (ft_strword(lem->tunnel_directory[i], parent))
 		{
-			// if (count > 1744)
-			// {
-			// 	ft_printf("parent:%d\n", parent);
-			// 	ft_printf("i:%d\n", i);
-			// 	ft_printf("tunnel[0]:%d\n", lem->tunnel_directory[i][0]);
-			// 	ft_printf("tunnel[1]:%d\n", lem->tunnel_directory[i][1]);
-			// //	ft_printf("\n");
-			//}
-		//	else
-		//		ft_printf("count is low\n");
-	//		tmp[tmp_i] = ft_strword(lem->tunnel_directory[i], parent);
-	//		tmp_i++;
-	//		ft_printf("t:%d\n", t);
 			t++;
-	//		ft_printf("increased t:%d\n\n", t);
 			i++;
 		}
 		else
 			i++;
 	}
-//	tmp_i = 0;
 	i = 0;
-	// while (tmp[tmp_i] != 0)
-	// {
-	// 	i = 0;
-	// 	while (tmp[i] != 0)
-	// 	{
-	// 		if (tmp[tmp_i] == tmp[i] && tmp_i != i)
-	// 			t--;
-	// 		i++;
-	// 	}
-	// 	tmp_i++;
-	// }
 	if (t > 1)
-	{
-		//	ft_printf("found %d siblings\n", t - 1);
 		return (t);
-	}
 	return (0);
 }
 

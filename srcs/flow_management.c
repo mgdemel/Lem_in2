@@ -1,11 +1,9 @@
 #include "lem_in.h"
-
 int	*get_result(int **options, t_lem *lem)
 {
 	int i;
 	int lowest;
 	int tab;
-
 	i = 0;
 	tab = 0;
 	lowest = options[0][1];
@@ -20,12 +18,10 @@ int	*get_result(int **options, t_lem *lem)
 	}
 	return(options[tab]);
 }
-
 int compare(int *final_paths, int *other_path)
 {
 	int i;
 	int j;
-
 	i = 2;
 	while (i < (final_paths[0] * -1) - 1)
 	{
@@ -41,21 +37,31 @@ int compare(int *final_paths, int *other_path)
 	return (0);
 }
 
-int		set_steps(int *options, t_lem *lem) // we have a segfault here when  we test map 3ways.map (someone's lemin)
+int		set_steps(int *option, t_lem *lem)
 {
 	int	*ants_and_len;
 	int i;
 	int ants_cpy;
 	int tab;
 
-	tab = (options[0] * -1) - 2;
+//	-5 | 0 |  |  | -1
+
+	ft_printf("options[0]:%d\n", (option[0] * -1));
+	ft_printf("tab:%d\n", (option[0] * -1) -3);
+	tab = (option[0] * -1) - 3;
+	ft_printf("tab2:%d\n", tab);
 	ants_cpy = lem->ants;
 	i = 0;
 	if (!(ants_and_len = (int *)malloc(sizeof(int) * tab)))
 		ft_printf("ERRRROR");
-	while (i < tab) //somewhere between here
+//	          0   1  2  3   4
+//	option = [-5, 0, 0, 2, -2]
+//	final_paths = [ -5 | 1 | 3 | 4 | 8 | -1 ]
+	print_int_arr(option, option[0] * -1, "option");
+	ft_printf("len of final paths i:%d\n", (lem->final_paths[option[i + 2]][0] * - 1) - 3);
+	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final_paths[options[i + 2]][0] * - 1) - 3;
+		ants_and_len[i] = (lem->final_paths[option[i + 2]][0] * - 1) - 3;
 		i++;
 	}
 	i = 0;
@@ -67,39 +73,47 @@ int		set_steps(int *options, t_lem *lem) // we have a segfault here when  we tes
 		ants_cpy--;
 		i = 0;
 	}
-	tab = ants_and_len[0]; // and here
+	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);
 }
 
-int **add_minor_option(int **options, t_lem *lem, int len, int num)
+int **add_minor_option(int **options, t_lem *lem, int next_path, int num)
 {
 	int i;
 	int j;
-
+	int len;
 	i = 1;
 	j = 2;
+
+	len = lem->malloc_len;
+	ft_printf("len:%d\n", len);
 	if (!(options[num] = (int *)malloc(sizeof(int) * len)))
 		ft_printf("ERRRRRRRRORRRRROORRR");
-	options[num][0] = len * -1;
+	options[num][0] = (len * -1);
 	while (len > 3)
 	{
+		ft_printf("added:%d\n", options[num - 1][j]);
 		options[num][j] = options[num - 1][j];
 		j++;
 		len--;
 	}
-	options[num][j] = lem->i_placeholder + 1;
-	options[num][j + 1] = '\0';
+	j--;
+	ft_printf("exited\n");
+	ft_printf("j:%d\n", j);
+	options[num][j] = next_path;
+	j++;
+	options[num][j] = -1;
+	ft_printf("starting set_steps\n");
+	options[num][1] = 0;
 	options[num][1] = set_steps(options[num], lem);
 	return (options);
 }
-
 int scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_compare)
 {
 	int i;
-
 	i = 2;
-	while (i < (index_of_valid_paths[0] * -1))
+	while (i < (index_of_valid_paths[0] * -1) - 1)
 	{
 		if (compare(lem->final_paths[index_of_valid_paths[i]], to_compare) == 1)
 			return (1);
@@ -107,7 +121,6 @@ int scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_compare)
 	}
 	return (0);
 }
-
 int **recursion_adding(t_lem *lem, int **options, int compare)
 {
 	int i;
@@ -125,15 +138,14 @@ int **recursion_adding(t_lem *lem, int **options, int compare)
 			{
 				lem->malloc_len++;
 				options = append_array(options, lem->i_placeholder); // adding a malloced space for a valid path
-				options = add_minor_option(options, lem, lem->malloc_len, lem->i_placeholder); // NEEDS TO BE FIXED
+				options = add_minor_option(options, lem, compare, lem->i_placeholder); // NEEDS TO BE FIXEDfd
 				lem->i_placeholder++;
 				options = recursion_adding(lem, options, compare + 1);
 			}
 			compare++;
 		}
-	
 	}
-	lem->malloc_len = 3;
+	lem->malloc_len = 4;
 	return(options);
 }
 
@@ -141,10 +153,10 @@ int **add_major_option(int **options, t_lem *lem, int index, int num)
 {
 	if (!(options[index] = (int *)malloc(sizeof(int) * 4)))
 		ft_printf("ERRRRRRRRORRRRROORRR");
-	options[index][0] = -3; //sets the len (index0) to a negative number
+	options[index][0] = -4; //sets the len (index0) to a negative number
 	options[index][1] = lem->ants + (lem->final_paths[num][0] * -1) - 4; //set_steps(options[0], lem->ants); //should set the steps (index1) to # of steps 
 	options[index][2] = num;
-	options[index][3] = '\0';
+	options[index][3] = -1;
 	return (options);
 }
 
@@ -155,7 +167,7 @@ int flow_management(t_lem *lem)
 	int j;
 	int compare;
 	int	major_index;
-
+	
 	i = 0;
 	j = 0;
 	compare = 0;

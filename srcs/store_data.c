@@ -121,12 +121,5 @@ int			store_data(t_lem *lem, t_room *room, int fd)
 		room = room->next;
 		i++;
 	}
-	i = 0;
-	ft_printf("nbr_rooms:%d\n", lem->nbr_rooms);
-	while (i < lem->nbr_rooms + 1)
-	{
-		ft_printf("room[%d]:%s\n", i, lem->room_directory[i]);
-		i++;
-	}
 	return (0);
 }

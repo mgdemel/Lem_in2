@@ -30,17 +30,15 @@ t_lem	*initialize_lem(void) //if this is too long, move the initializations dire
 	lem->w_child = NULL;
 	lem->sib_name = 0;
 	lem->index_options = 0;
-	lem->malloc_len = 3;
+	lem->malloc_len = 4;
 	lem->i_placeholder = 0;
 	lem->final_paths = NULL;
 	lem->compare = 0;
 	lem->result = NULL;
 	lem->total_paths = 0;
-	lem->making_sibling = 0;
 	lem->sets = 0;
 	lem->stopper = 10;
 	lem->moves_per_set = 0;
-	lem->sibling_trigger = 0;
 	lem->test_stopper = 0;
 	return (lem);
 }

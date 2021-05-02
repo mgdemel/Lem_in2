@@ -62,7 +62,7 @@ void move_it(int sets, int **ant_flow, t_lem *lem)
 		// while (i < lem->ants)
 		// {
 		// 	//ft_printf("here with i:%d and ants:%d\n", i, lem->ants)
-		// 	if (lem->room_directory[lem->final_paths[lem->result[j]][k + flow]] != '\0' && ant_flow[i][2] == 0)
+		// 	if (lem->room_directory[lem->final_paths[lem->result[j]][k + flow]] != -1000 && ant_flow[i][2] == 0)
 		// 	{
 		// 		ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k + flow]]);
 		// 		// ft_printf("\nj: %d, what's in there before: %d\n", j, lem->result[j]);
