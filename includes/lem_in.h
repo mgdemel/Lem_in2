@@ -43,6 +43,7 @@ typedef struct		s_lem
 	int				sets;
 	int 			stopper;
 	int				moves_per_set;
+	int 			printed;
 }					t_lem;
 
 typedef struct 		s_tree

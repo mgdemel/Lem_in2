@@ -33,7 +33,7 @@ void print_ant_dir(t_lem *lem, int **ant_flow)
 		while(i < lem->ants)
 		{
 			j = 0;
-			while (j < 3)
+			while (j < 4)
 			{
 				ft_printf(" %d |", ant_flow[i][j]);
 				j++;
@@ -49,57 +49,46 @@ void move_it(int sets, int **ant_flow, t_lem *lem)
 {
 	int i;
 	int j;
-	int k;
 	int flow;
 
-	i = 0;
-	k = 1;
-	flow = 1;
+	flow = 0;
+	lem->printed = 0;
 	while (sets > 0)
 	{
 		i = 0;
 		j = 2;
-		// while (i < lem->ants)
-		// {
-		// 	//ft_printf("here with i:%d and ants:%d\n", i, lem->ants)
-		// 	if (lem->room_directory[lem->final_paths[lem->result[j]][k + flow]] != -1000 && ant_flow[i][2] == 0)
-		// 	{
-		// 		ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][k + flow]]);
-		// 		// ft_printf("\nj: %d, what's in there before: %d\n", j, lem->result[j]);
-		// 		ant_flow[i][1] += 1;
-		// 		if (ant_flow[i][1] == 0)
-		// 		{
-		// 			ant_flow[i][2] = 1; // closes lock
-		// 			// ft_printf("LOCKED FLOW\n");
-		// 			// print_ant_dir(lem, ant_flow);
-		// 			i++;
-		// 		}
-		// 		else
-		// 			ant_flow[i][2] = 0; // opens lock
-		// 		i++;
-		// 		if (j < (lem->result[0] * -1) -1)
-		// 			j++;
-		// 		else
-		// 			j = 2;
-		// 		// ft_printf("\nj: %d, what's in there after: %d\n", j, lem->result[j]);
-		// 		// ft_printf("\nFLOW\n");
-		// 		// print_ant_dir(lem, ant_flow);
-		// 	}
-		// 	else
-		// 	 i++;
-		// }
-		// ft_printf("here with flow: %d\n", flow);
-		lem->moves_per_set = ((lem->result[0] * -1) - 2);
+		while (i < lem->ants)
+		{
+			if (lem->final_paths[lem->result[j]][2 + flow] != -1) //if we still have rooms in the selected path to flow ants thru ...
+			{
+				ft_printf("L%d-%s ", ant_flow[i][0], lem->room_directory[lem->final_paths[lem->result[j]][2 + flow]]);
+				ant_flow[i][1] += 1;
+				if (ant_flow[i][1] == 0)
+				{
+					ant_flow[i][2] = 1; // closes lock
+					// ft_printf("\nLOCKED FLOW\n");
+					// print_ant_dir(lem, ant_flow);
+				}
+				if (j < (lem->result[0] * -1) - 2)
+					j++;
+				else
+					j = 2;
+			}
+			i++;
+		}
+		lem->moves_per_set = ((lem->result[0] * -1) - 3);
 		unlock_flow((lem->moves_per_set * flow), ant_flow, lem->ants,lem->moves_per_set);
 		flow++;
 		sets--;
 		ft_printf("\n");
+		lem->printed++;
 		// ft_printf("END OF SET\n");
 		// print_ant_dir(lem, ant_flow);
 	}
-	// ft_printf("FINAL FLOW\n");
-	// print_ant_dir(lem, ant_flow);
+	ft_printf("FINAL FLOW\n");
+	print_ant_dir(lem, ant_flow);
 }
+
 int	output(t_lem *lem)
 {
 	int ant_num;
@@ -109,7 +98,6 @@ int	output(t_lem *lem)
 
 	i = 0;
 	lem->sets = lem->result[1];
-	lem->moves_per_set = (lem->result[0] * -1) - 2;
 	ant_num = 1;
 	print_int_arr(lem->result, lem->result[0] * -1, "result");
 	if (!(ant_flow = (int**)malloc(sizeof(int*) * lem->ants)))
@@ -129,15 +117,16 @@ int	output(t_lem *lem)
 			ant_flow[i][0] = ant_num;
 			ant_flow[i][1] = lem->final_paths[lem->result[j]][0] + 2;
 			ant_flow[i][2] = 1; //initialized as blocked
+			ant_flow[i][3] = lem->result[j];
 			ant_num++;
 			lem->moves_per_set--;
 			i++;
 			j++;
 		}
-		lem->moves_per_set = ((lem->result[0] * -1) - 2);
+		lem->moves_per_set = ((lem->result[0] * -1) - 3);
 	}
-	// ft_printf("FLOW INIT BEFORE\n");
-	// print_ant_dir(lem, ant_flow);
+	ft_printf("FLOW INIT BEFORE\n");
+	print_ant_dir(lem, ant_flow);
 	unlock_flow(0, ant_flow, lem->ants, lem->moves_per_set);
 
 	// ft_printf("FLOW INIT AFTER\n");
@@ -152,8 +141,8 @@ int	output(t_lem *lem)
 // 			L2-eight 	L3-eight L4-six 		L5-four
 // 								 L4-eight 		L5-eight
 
-//ant  |1|0|1
-//ant  |2|-2|1
-//ant  |3|-2|1
-//ant  |4|-3|1
-//ant  |5|-3|1
+//ant  |1|-3|1|0
+//ant  |2|-4|1|2
+//ant  |3|-3|1|0
+//ant  |4|-4|1|2
+//ant  |5|-3|1|0
