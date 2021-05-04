@@ -16,7 +16,7 @@ void distance_special(t_lem *lem, int sibling)
 	}
 }
 
-void distance_handling(t_lem *lem, int neg_pos, int object, int add_reduce)
+void distance_sibling(t_lem *lem, int object, int add_reduce)
 {
 	int i;
 
@@ -25,12 +25,10 @@ void distance_handling(t_lem *lem, int neg_pos, int object, int add_reduce)
 	{
 		while (i < lem->nbr_tunnels)
 		{
-			if (neg_pos < 0 && lem->tunnel_directory[i][2] < 0)
-				lem->tunnel_directory[i][2]--;
-			else if (lem->tunnel_directory[i][0] != lem->e_room_index && lem->tunnel_directory[i][1] != lem->e_room_index && neg_pos > 0 && lem->tunnel_directory[i][2] > 0)
+			if (lem->tunnel_directory[i][0] != lem->e_room_index && lem->tunnel_directory[i][1] != lem->e_room_index && lem->tunnel_directory[i][2] > 0)
 				lem->tunnel_directory[i][2]++;
 			else if ((lem->tunnel_directory[i][0] == object || lem->tunnel_directory[i][1] == object) && lem->tunnel_directory[i][2] == 0)
-				lem->tunnel_directory[i][2] += neg_pos;
+				lem->tunnel_directory[i][2] = 1;
 			i++;
 		}
 	}
@@ -38,33 +36,73 @@ void distance_handling(t_lem *lem, int neg_pos, int object, int add_reduce)
 	{
 		while (i < lem->nbr_tunnels)
 		{
-			if (neg_pos < 0 && lem->tunnel_directory[i][2] < 0)
-				lem->tunnel_directory[i][2]++;
-			else if (neg_pos > 0 && lem->tunnel_directory[i][2] > 0)
+			if (lem->tunnel_directory[i][2] > 0)
 				lem->tunnel_directory[i][2]--;
 			i++;
 		}
 	}
 }
 
+void distance_child(t_lem *lem, int object, int add_reduce)
+{
+	int i;
+
+	i = 0;
+	if (add_reduce == 1)
+	{
+		while (i < lem->nbr_tunnels)
+		{
+			if (lem->tunnel_directory[i][2] < 0)
+				lem->tunnel_directory[i][2]--;
+			else if ((lem->tunnel_directory[i][0] == object || lem->tunnel_directory[i][1] == object) && lem->tunnel_directory[i][2] >= 0)
+				lem->tunnel_directory[i][2] = -1;
+			i++;
+		}
+	}
+	else if (add_reduce == -1)
+	{
+		while (i < lem->nbr_tunnels)
+		{
+			if (lem->tunnel_directory[i][2] < 0)
+				lem->tunnel_directory[i][2]++;
+			i++;
+		}
+	}
+}
+
+void distance_special2(t_lem *lem)
+{
+	int i;
+
+	i = 0;
+	while (i < lem->nbr_tunnels)
+	{
+		if (lem->tunnel_directory[i][2] < -1)
+			lem->tunnel_directory[i][2]++;
+		i++;
+	}
+}
+
 void find_family(t_lem *lem, t_tree *parent, t_tree *child)
 {
+//	ft_printf("TUNNELS WITH PARENT: %d\n", parent->name);
+//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	if (find_parent_links(parent->name, lem) > 1)
 	{
-		distance_handling(lem, 1, child->name, 1);
+		distance_sibling(lem, child->name, 1);
 		lem->sib_name = make_sibling(child, parent, lem);
-		distance_handling(lem, 1, 0, -1);
-		distance_special(lem, lem->sib_name);
+		distance_sibling(lem, 0, -1);
+		//distance_special(lem, lem->sib_name);
 		lem->sib_name = 0;
 	}
 	if (child->name != lem->e_room_index)
 	{
-		distance_handling(lem, -1, parent->name, 1);
-		if (make_child(child, lem) == 0)
-			distance_handling(lem, -1, 0, -1);
+		distance_child(lem, parent->name, 1);
+		if (make_child(child, lem) != 0)
+			distance_child(lem, 0, -1);
+	//	else
+	//		distance_special2(lem);
 	}
-	else if (lem->total_paths == 7)
-		child->child = tree_init(child);
 }
 
 int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
@@ -89,6 +127,13 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 		else if (ft_strword(lem->tunnel_directory[j], parent->name))
 		{
 			sibling->name = ft_strword(lem->tunnel_directory[j], parent->name);
+			ft_printf("sibling:%d\n", sibling->name);
+			if (sibling->name == 664)
+			{
+				ft_printf("hello\n");
+				lem->test_index++;
+				
+			}
 			delete = sibling->name;
 			while (delete != 0)
 			{
@@ -123,6 +168,17 @@ int make_child(t_tree *parent, t_lem *lem)
 			if (ft_strword(lem->tunnel_directory[j], parent->name))
 			{
 				child->name = ft_strword(lem->tunnel_directory[j], parent->name);
+				ft_printf("child:%d\n", child->name);
+				if (child->name == 664)
+				{
+					ft_printf("hello\n");
+					lem->test_index++;
+					if (lem->test_index == 4)
+					{
+						print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+						exit(1);
+					}
+				}
 				child->parent = parent;
 				break;
 			}
@@ -133,18 +189,19 @@ int make_child(t_tree *parent, t_lem *lem)
 		find_family(lem, parent, child);
 	if (child->name != 0 && child->name == lem->e_room_index)
 		lem->total_paths++;
-	if (child->name == 0 || child->name == lem->e_room_index)
-	{
-		if (child->name == 0)
-			return (1);
-	}
-	return (0);
+	return (child->name);
 }
 
 int tree_creation(t_lem *lem)
 {
+	int i;
+
+	i = 0;
+	lem->test_index = 0; // delete
 	lem->tree = head_tree_init(lem->start_room_index);
 	make_child(lem->tree, lem);
-//	distance_handling(lem, -1, 0, -1);
+	distance_child(lem, 0, -1);
+	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+//	exit (1);
 	return (0);
 }

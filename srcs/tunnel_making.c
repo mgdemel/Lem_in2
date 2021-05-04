@@ -44,7 +44,7 @@ void remove_duplicated(t_lem *lem)
 		}
 		i++;
 	}
-	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 }
 
 int tunnel_room_scan(t_lem *lem, int i, int b, char *tunnel)
