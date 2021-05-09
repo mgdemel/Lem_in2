@@ -24,16 +24,20 @@ void	print_ant_dir(t_lem *lem, int **ant_flow)
 void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
 {
 	int	flow;
+	int no_flow;
 	int	i;
 	int	j;
 
 	flow = 0;
-	lem->printed = 0;
+	no_flow = 0;
+	lem->printed = 0; //remove later!
 	while (sets > 0)
 	{
 		j = 0;
 		i = 0;
-		mps = (lem->result[0] * -1) - 3 + flow;
+		mps = (lem->result[0] * -1) - 3 + flow + no_flow;
+		flow = 0;
+		no_flow = 0;
 		while (i < mps && i < lem->ants)
 		{
 			if (ant_flow[j][ant_flow[j][1]] != -1)
@@ -42,6 +46,8 @@ void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
 				ant_flow[j][1] += 1;
 				flow++;
 			}
+			else
+				no_flow++;
 			j++;
 			i++;
 		}
