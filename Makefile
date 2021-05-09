@@ -6,7 +6,7 @@
 #    By: Melissa <Melissa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/05/09 10:23:06 by Melissa          ###   ########.fr        #
+#    Updated: 2021/05/09 16:22:53 by Melissa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS = 	main.c \
 		initialize.c \
 		store_data.c \
 		test_structs.c \
-		utils.c \
 		tree_making.c \
 		gather_paths.c \
 		free.c \

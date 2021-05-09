@@ -95,8 +95,8 @@ int	store_data(t_lem *lem, t_room *room, int fd)
 	{
 		if (ft_strcmp(room->name, lem->e_room_name) == 0)
 			lem->e_room_index = i;
-		if (ft_strcmp(room->name, lem->start_room_name) == 0)
-			lem->start_room_index = i;
+		if (ft_strcmp(room->name, lem->s_room_name) == 0)
+			lem->s_room_index = i;
 		if (room_duplicates(lem, room->name, i) == 1)
 		{
 			ft_printf("ERROR\n"); //change to error function

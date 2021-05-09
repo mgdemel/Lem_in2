@@ -200,7 +200,7 @@ int tree_creation(t_lem *lem)
 
 	i = 0;
 	lem->test_index = 0; // delete
-	lem->tree = head_tree_init(lem->start_room_index);
+	lem->tree = head_tree_init(lem->s_room_index);
 	make_child(lem->tree, lem);
 	distance_child(lem, 0, -1);
 	ft_printf("\nPRINTING VALID PATHS\n");

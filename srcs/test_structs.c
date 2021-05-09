@@ -148,7 +148,7 @@ void print_lem(t_lem *lem)
 	ft_putchar('\n');
 
 	ft_putstr("start room name: \n");
-	ft_putstr(lem->start_room_name);
+	ft_putstr(lem->s_room_name);
 	ft_putchar('\n');
 
 	ft_putstr("end room name: \n");

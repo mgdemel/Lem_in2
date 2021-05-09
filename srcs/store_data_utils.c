@@ -31,7 +31,7 @@ static int	get_room_data(char *line, t_room *room, t_lem *lem)
 	if (room->roomtype == 1 || room->roomtype == 3)
 	{
 		if (room->roomtype == 1)
-			lem->start_room_name = ft_strdup(room->name);
+			lem->s_room_name = ft_strdup(room->name);
 		else
 			lem->e_room_name = ft_strdup(room->name);
 	}
