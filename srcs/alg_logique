@@ -491,3 +491,20 @@ If we can block the dead ends it's going to make it faster.
 
 When we reach a dead end (11) through parent 8, we can return a failed number from
 make_child, and if that is returned, then we don't unblock the number after make_child.
+
+
+Small_map3
+
+Expected path:
+1
+|
+2---3
+|   |
+4
+
+What we get
+1
+|
+2---3
+|
+3

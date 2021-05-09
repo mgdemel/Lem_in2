@@ -10,12 +10,10 @@ void print_tunnel_dir(int **arr, int max)
 		tt = 0;
 		while (tt < 4)
 		{
-			if (arr[t][2] < 0)
-				ft_printf(" %d |", arr[t][tt]);
+			ft_printf(" %d |", arr[t][tt]);
 			tt++;
 		}
-		if (arr[t][2] < 0)
-			ft_printf("\n");
+		ft_printf("\n");
 		t++;
 	}
 	t = 0;

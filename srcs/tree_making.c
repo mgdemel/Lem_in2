@@ -85,16 +85,18 @@ void distance_special2(t_lem *lem)
 
 void find_family(t_lem *lem, t_tree *parent, t_tree *child)
 {
-//	ft_printf("TUNNELS WITH PARENT: %d\n", parent->name);
-//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
+	ft_printf("TUNNELS WITH PARENT: %d\n", parent->name);
+//print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	if (find_parent_links(parent->name, lem) > 1)
 	{
 		distance_sibling(lem, child->name, 1);
 		lem->sib_name = make_sibling(child, parent, lem);
 		distance_sibling(lem, 0, -1);
-		//distance_special(lem, lem->sib_name);
+		distance_special(lem, lem->sib_name);
 		lem->sib_name = 0;
 	}
+	ft_printf("TUNNELS BEFORE CHILD\n");
+//	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 	if (child->name != lem->e_room_index)
 	{
 		distance_child(lem, parent->name, 1);
@@ -130,7 +132,7 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 			ft_printf("sibling:%d\n", sibling->name);
 			if (sibling->name == 664)
 			{
-				ft_printf("hello\n");
+			//	ft_printf("hello\n");
 				lem->test_index++;
 				
 			}
@@ -168,10 +170,10 @@ int make_child(t_tree *parent, t_lem *lem)
 			if (ft_strword(lem->tunnel_directory[j], parent->name))
 			{
 				child->name = ft_strword(lem->tunnel_directory[j], parent->name);
-				ft_printf("child:%d\n", child->name);
+				ft_printf("child:%d with parent:%d\n", child->name, parent->name);
 				if (child->name == 664)
 				{
-					ft_printf("hello\n");
+			//		ft_printf("hello\n");
 					lem->test_index++;
 					if (lem->test_index == 4)
 					{
@@ -201,6 +203,8 @@ int tree_creation(t_lem *lem)
 	lem->tree = head_tree_init(lem->start_room_index);
 	make_child(lem->tree, lem);
 	distance_child(lem, 0, -1);
+	ft_printf("\nPRINTING VALID PATHS\n");
+	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
 	print_tunnel_dir(lem->tunnel_directory, lem->nbr_tunnels);
 //	exit (1);
 	return (0);

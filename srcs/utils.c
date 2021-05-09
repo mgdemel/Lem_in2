@@ -31,7 +31,7 @@ int		**append_array(int **arr, int max)
 	**	arr[1] = -4|5|0|2
 	*/
 	i = 0;
-	ft_printf("arr[i][0]:%d\n", (arr[i][0] * -1));
+//	ft_printf("arr[i][0]:%d\n", (arr[i][0] * -1));
 	if (!(tmp = (int **)malloc(sizeof(int *) * (max + 1))))
 		return (NULL);
 	while (i < max)
@@ -66,7 +66,7 @@ void	sort_paths(t_lem *lem)
 	j = 0;
 	x = 0;
 	tab = lem->max_paths;
-	ft_printf("lem->negative_one:%d\n", lem->negative_one);
+//	ft_printf("lem->negative_one:%d\n", lem->negative_one);
 	if (!(lem->final = (int **)malloc(sizeof(int *) * lem->negative_one)))
 		ft_printf("ERROR in sort_paths");
 	while (i < tab)
