@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-void copy_previous_path(t_lem *lem, int r, int path, int i)
+void	copy_previous_path(t_lem *lem, int r, int path, int i)
 {
 	while (r >= 0)
 	{
@@ -9,10 +9,10 @@ void copy_previous_path(t_lem *lem, int r, int path, int i)
 	}
 }
 
-int copy_col(int r, t_lem *lem, int array, int name)
+int	copy_col(int r, t_lem *lem, int array, int name)
 {
-	int new[r + 2];
-	int i;
+	int	new[r + 2]; //gotta do something about this for norm
+	int	i;
 
 	i = 0;
 	new[i] = ((r + 1) * -1);
@@ -36,10 +36,10 @@ int copy_col(int r, t_lem *lem, int array, int name)
 	return (0);
 }
 
-int scan_paths(t_tree *start, t_lem *lem, int i, int r)
+int	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 {
-	t_tree *tree;
-	int prev_index;
+	t_tree	*tree;
+	int		prev_index;
 
 	prev_index = r;
 	tree = start;
@@ -61,7 +61,7 @@ int scan_paths(t_tree *start, t_lem *lem, int i, int r)
 		{
 			get_room_num(tree, lem, r, i);
 			r++;
-			break;
+			break ;
 		}
 	}
 	if (tree->name == 0 || tree->name == lem->e_room_index)
@@ -69,9 +69,9 @@ int scan_paths(t_tree *start, t_lem *lem, int i, int r)
 	return (0);
 }
 
-int create_path_arr(t_lem *lem)
+int	create_path_arr(t_lem *lem)
 {
-	t_tree *start;
+	t_tree	*start;
 
 	start = lem->tree;
 	arr_row_size(start, lem);

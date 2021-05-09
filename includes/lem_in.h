@@ -85,7 +85,7 @@ int			needle_crop(int *haystack, int needle);
 int			find_parent_links(int parent, t_lem *lem);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
-int			add_elem_int_array(int *forbidden_array, t_lem *lem, int block, int parent);
+int			add_elem_int_array(int *forbidden, t_lem *lem, int block, int parent);
 int			make_child(t_tree *parent, t_lem *lem);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
 t_tree		*head_tree_init(int name);
@@ -98,7 +98,7 @@ void		print_int_arr(int *arr, int len, char *str); //remove later!
 int			check_tunnel_validity(char *line, t_lem *lem);
 t_room		*get_room(char *line, t_room *room, t_lem *lem);
 int			check_rooms_validity(char *line, t_lem *lem);
-int			*ft_newintarr(int *forbidden_array, int i);
+int			*ft_newintarr(int *forbidden, int i);
 void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
 int			flow_management(t_lem *lem);
 int			**append_array(int **arr, int max);

@@ -24,7 +24,7 @@ void	print_ant_dir(t_lem *lem, int **ant_flow)
 void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
 {
 	int	flow;
-	int no_flow;
+	int	no_flow;
 	int	i;
 	int	j;
 
@@ -42,7 +42,11 @@ void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
 		{
 			if (ant_flow[j][ant_flow[j][1]] != -1)
 			{
-				ft_printf("L%d-%s ", ant_flow[j][0], lem->room_directory[ant_flow[j][ant_flow[j][1]]]);
+				ft_putchar('L');
+				ft_putnbr(ant_flow[j][0]);
+				ft_putchar('-');
+				ft_putstr(lem->room_directory[ant_flow[j][ant_flow[j][1]]]);
+				ft_putchar(' ');
 				ant_flow[j][1] += 1;
 				flow++;
 			}

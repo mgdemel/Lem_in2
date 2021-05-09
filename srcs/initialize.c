@@ -24,7 +24,7 @@ t_lem	*initialize_lem(void) //if this is too long, move the initializations dire
 	lem->e_room_index = 0;
 	lem->tree = NULL;
 	lem->test_index = 1;
-	lem->max_paths = 1; //there will always be one path
+	lem->max_paths = 1;
 	lem->path = 0;
 	lem->w_parent = NULL;
 	lem->w_child = NULL;
@@ -45,7 +45,7 @@ t_lem	*initialize_lem(void) //if this is too long, move the initializations dire
 
 t_room	*initialize_room(t_lem *lem)
 {
-	t_room *room;
+	t_room	*room;
 
 	if (!(room = (t_room *)malloc(sizeof(t_room))))
 		return (NULL);
@@ -59,7 +59,7 @@ t_room	*initialize_room(t_lem *lem)
 
 t_tree	*tree_init(t_tree *parent)
 {
-	t_tree *tree;
+	t_tree	*tree;
 
 	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
 		return (NULL);
@@ -72,7 +72,7 @@ t_tree	*tree_init(t_tree *parent)
 
 t_tree	*head_tree_init(int name)
 {
-	t_tree *tree;
+	t_tree	*tree;
 
 	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
 		return (NULL);

@@ -100,7 +100,7 @@ void	sort_paths(t_lem *lem)
 /*
 **	Takes an int array and returns the copy.
 */
-int		*ft_newintarr(int *forbidden_array, int i)
+int		*ft_newintarr(int *forbidden, int i)
 {
 	int *new;
 	int j;
@@ -111,7 +111,7 @@ int		*ft_newintarr(int *forbidden_array, int i)
 	i--;
 	while (i >= 0)
 	{
-		new[i] = forbidden_array[i];
+		new[i] = forbidden[i];
 		i--;
 	}
 	return (new);

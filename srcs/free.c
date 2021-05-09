@@ -2,7 +2,7 @@
 
 void	free_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i])
@@ -15,7 +15,7 @@ void	free_array(char **array)
 
 void	free_int_array(int **array, int max_paths)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < max_paths)
@@ -35,8 +35,8 @@ void	free_lem(t_lem *lem)
 
 void	free_room(t_room *room)
 {
-	t_room *tmp;
-	t_room *current;
+	t_room	*tmp;
+	t_room	*current;
 
 	current = room;
 	while (current->next != NULL)
