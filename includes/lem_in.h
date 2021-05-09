@@ -25,19 +25,19 @@ typedef struct		s_lem
 	int				*w_child;
 	int				*w_parent;
 	int				index_options;
-	int				i_placeholder;
+	int				i_pos;
 	int				negative_one;
 	int				total_paths;
 	struct s_room	*all_rooms; // an unordered linked list of all rooms found in init scan
 	int				**all_paths; //a 2d int array of all the paths found by our alg
-	int				**final_paths; //the paths we will actually use for our solution (sorted and reduced to only valid paths)
+	int				**final; //the paths we will actually use for our solution (sorted and reduced to only valid paths)
 	char			**tunnels;
 	char			*start_room_name;
 	char			*e_room_name;
 	int				start_room_index;
 	int				e_room_index;
 	int				sib_name;
-	int 			compare;
+	int 			comp;
 	struct s_tree	*tree; //head branch
 	int				*result; //the result of our program to output!
 	int				sets;

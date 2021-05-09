@@ -30,7 +30,7 @@ void	free_lem(t_lem *lem)
 {
 	free_array(lem->tunnels);
 	free_int_array(lem->all_paths, lem->max_paths);
-	free_int_array(lem->final_paths, lem->negative_one);
+	free_int_array(lem->final, lem->negative_one);
 }
 
 void	free_room(t_room *room)

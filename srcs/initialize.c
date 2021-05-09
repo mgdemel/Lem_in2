@@ -31,9 +31,9 @@ t_lem	*initialize_lem(void) //if this is too long, move the initializations dire
 	lem->sib_name = 0;
 	lem->index_options = 0;
 	lem->malloc_len = 4;
-	lem->i_placeholder = 0;
-	lem->final_paths = NULL;
-	lem->compare = 0;
+	lem->i_pos = 0;
+	lem->final = NULL;
+	lem->comp = 0;
 	lem->result = NULL;
 	lem->total_paths = 0;
 	lem->sets = 0;

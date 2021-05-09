@@ -68,9 +68,9 @@ int	**create_ant_flow(int i, int j, int **ant_flow, t_lem *lem)
 		k = 2;
 		ant_flow[i][0] = ant_num;
 		ant_flow[i][1] = 2;
-		while (k < ((lem->final_paths[lem->result[j]][0] + 2) * -1) + 2)
+		while (k < ((lem->final[lem->result[j]][0] + 2) * -1) + 2)
 		{
-			ant_flow[i][k] = lem->final_paths[lem->result[j]][k];
+			ant_flow[i][k] = lem->final[lem->result[j]][k];
 			k++;
 		}
 		ant_flow[i][k] = -1;
@@ -96,7 +96,7 @@ int	output(t_lem *lem)
 		return (1);
 	while (i < lem->ants)
 	{
-		if (!(ant_flow[i] = (int*)malloc(sizeof(int) * (3 + ((lem->final_paths[lem->result[j]][0]) + 2) * -1))))
+		if (!(ant_flow[i] = (int*)malloc(sizeof(int) * (3 + ((lem->final[lem->result[j]][0]) + 2) * -1))))
 			return (1);
 		if (j < (lem->result[0] * -1) - 2)
 			j++;

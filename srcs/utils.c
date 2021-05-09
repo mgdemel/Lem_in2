@@ -67,13 +67,13 @@ void	sort_paths(t_lem *lem)
 	x = 0;
 	tab = lem->max_paths;
 	ft_printf("lem->negative_one:%d\n", lem->negative_one);
-	if (!(lem->final_paths = (int **)malloc(sizeof(int *) * lem->negative_one)))
+	if (!(lem->final = (int **)malloc(sizeof(int *) * lem->negative_one)))
 		ft_printf("ERROR in sort_paths");
 	while (i < tab)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
 		{
-			lem->final_paths[j] = lem->all_paths[i];
+			lem->final[j] = lem->all_paths[i];
 			j++;
 		}
 		else
@@ -82,11 +82,11 @@ void	sort_paths(t_lem *lem)
 	}
 	while (x + 1 < lem->negative_one)
 	{
-		if (lem->final_paths[x][0] * -1 > lem->final_paths[x + 1][0] * -1)
+		if (lem->final[x][0] * -1 > lem->final[x + 1][0] * -1)
 		{
-			tmp = lem->final_paths[x];
-			lem->final_paths[x] = lem->final_paths[x + 1];
-			lem->final_paths[x + 1] = tmp;
+			tmp = lem->final[x];
+			lem->final[x] = lem->final[x + 1];
+			lem->final[x + 1] = tmp;
 			x = 0;
 		}
 		else
@@ -94,7 +94,7 @@ void	sort_paths(t_lem *lem)
 	}
 	ft_putstr("\n\nALL VALID PATHS - SORTED: \n");
 	ft_printf("total:%d\n", lem->total_paths);
-	print_double_arr(lem->final_paths, lem->max_paths);
+	print_double_arr(lem->final, lem->max_paths);
 }
 
 /*

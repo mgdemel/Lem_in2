@@ -217,5 +217,5 @@ void test_structs(t_lem *lem)
 	// 	ft_printf("Last index of %d is :%d\n", i, lem->all_paths[i][lem->all_paths[i][0] * -1]);
 	// 	i++;
 	// }
-	print_double_arr(lem->final_paths, lem->negative_one);
+	print_double_arr(lem->final, lem->negative_one);
 }
