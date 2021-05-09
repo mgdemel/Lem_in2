@@ -86,7 +86,6 @@ int	output(t_lem *lem)
 
 	i = 0;
 	j = 2;
-	print_int_arr(lem->result, lem->result[0] * -1, "result");
 	if (!(ant_flow = (int**)malloc(sizeof(int*) * lem->ants)))
 		return (1);
 	while (i < lem->ants)
@@ -100,8 +99,7 @@ int	output(t_lem *lem)
 		i++;
 	}
 	ant_flow = create_ant_flow(0, 2, ant_flow, lem);
-	ft_printf("FLOW INIT BEFORE\n");
-	print_ant_dir(lem, ant_flow);
 	flow(ant_flow, lem, lem->result[1], (lem->result[0] * -1) - 3);
+	free_int_array(ant_flow, lem->ants);
 	return (0);
 }

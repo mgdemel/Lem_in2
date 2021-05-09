@@ -47,12 +47,7 @@ int		**append_array(int **arr, int max)
 		i++;
 	}
 	i = 0;
-	while (i < max)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
+	free_int_array(arr, max);
 	return (tmp);
 }
 

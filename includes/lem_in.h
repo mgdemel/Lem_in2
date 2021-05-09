@@ -112,5 +112,6 @@ int			output(t_lem *lem);
 void 		get_tunnel_int_arr(t_lem *lem);
 void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent);
 void 		get_tunnel_int_arr(t_lem *lem);
+void		free_int_array(int **array, int max_paths);
 
 #endif
