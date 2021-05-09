@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
+#    By: Melissa <Melissa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/05/02 09:05:49 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/05/09 10:23:06 by Melissa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS = 	main.c \
 		store_data_utils.c \
 		tree_making_utils.c \
 		flow_management.c \
+		flow_management_utils.c \
 		gather_paths_utils.c \
 		output.c \
 		tunnel_making.c \

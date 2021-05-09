@@ -6,9 +6,9 @@
 # include <stdlib.h>
 # include <fcntl.h> //for reading files from FD
 
-typedef struct		s_lem
+typedef struct s_lem
 {
-	int 			ants;
+	int				ants;
 	int				nbr_tunnels;
 	int				nbr_rooms;
 	int				current_roomnum;
@@ -28,25 +28,25 @@ typedef struct		s_lem
 	int				i_pos;
 	int				negative_one;
 	int				total_paths;
-	struct s_room	*all_rooms; // an unordered linked list of all rooms found in init scan
-	int				**all_paths; //a 2d int array of all the paths found by our alg
-	int				**final; //the paths we will actually use for our solution (sorted and reduced to only valid paths)
+	struct s_room	*all_rooms;
+	int				**all_paths;
+	int				**final;
 	char			**tunnels;
 	char			*start_room_name;
 	char			*e_room_name;
 	int				start_room_index;
 	int				e_room_index;
 	int				sib_name;
-	int 			comp;
-	struct s_tree	*tree; //head branch
-	int				*result; //the result of our program to output!
+	int				comp;
+	struct s_tree	*tree;
+	int				*result;
 	int				sets;
-	int 			stopper;
+	int				stopper;
 	int				moves_per_set;
-	int 			printed;
+	int				printed;
 }					t_lem;
 
-typedef struct 		s_tree
+typedef struct s_tree
 {
 	int				name;
 	struct s_tree	*parent;
@@ -54,11 +54,11 @@ typedef struct 		s_tree
 	struct s_tree	*sib;
 }					t_tree;
 
-typedef struct			s_room
+typedef struct s_room
 {
 	char				*name;
-	int					roomtype; //1=start, 2=normal, 3=end //used, but maybe not needed after all?
-	int					roomnum; //assigns a numeric 'name' to the room for pathfinding array
+	int					roomtype;
+	int					roomnum;
 	struct s_room		*next;	
 }						t_room;
 
@@ -70,7 +70,7 @@ typedef struct			s_room
 **	INITIALIZE
 */
 
-t_lem		*initialize_lem();
+t_lem		*initialize_lem(void);
 t_room		*initialize_room(t_lem *lem);
 
 /*
@@ -79,20 +79,20 @@ t_room		*initialize_room(t_lem *lem);
 
 int			store_data(t_lem *lem, t_room *room, int fd);
 void		test_structs(t_lem *lem);
-int 		file_is_valid(t_lem *lem, int fd);
+int			file_is_valid(t_lem *lem, int fd);
 int			search_for_all_paths(t_lem *lem);
 int			needle_crop(int *haystack, int needle);
 int			find_parent_links(int parent, t_lem *lem);
 int			tree_creation(t_lem *lem);
 t_tree		*tree_init(t_tree *parent);
-int 		add_elem_int_array(int *forbidden_array, t_lem *lem, int block, int parent);
+int			add_elem_int_array(int *forbidden_array, t_lem *lem, int block, int parent);
 int			make_child(t_tree *parent, t_lem *lem);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
 t_tree		*head_tree_init(int name);
-int 		create_path_arr(t_lem *lem);
+int			create_path_arr(t_lem *lem);
 void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
-void 		free_lem(t_lem *lem);
+void		free_lem(t_lem *lem);
 void		free_array(char **array);
 void		print_int_arr(int *arr, int len, char *str); //remove later!
 int			check_tunnel_validity(char *line, t_lem *lem);
@@ -106,12 +106,14 @@ void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
 int			ft_strword(int *haystack, int needle);
 void		arr_row_size(t_tree *start, t_lem *lem);
-void 		print_double_arr(int **arr, int max); //remove later!
-void 		print_tunnel_dir(int **arr, int max); // remove later!
+void		print_double_arr(int **arr, int max); //remove later!
+void		print_tunnel_dir(int **arr, int max); // remove later!
 int			output(t_lem *lem);
-void 		get_tunnel_int_arr(t_lem *lem);
+void		get_tunnel_int_arr(t_lem *lem);
 void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent);
-void 		get_tunnel_int_arr(t_lem *lem);
+void		get_tunnel_int_arr(t_lem *lem);
 void		free_int_array(int **array, int max_paths);
+int			set_steps(int *option, t_lem *lem);
+int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
 
 #endif
