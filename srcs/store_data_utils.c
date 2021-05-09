@@ -1,8 +1,21 @@
 #include "lem_in.h"
+int	room_duplicates(t_lem *lem, char *r_name, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i)
+	{
+		if (ft_strcmp(lem->room_directory[j], r_name) == 0)
+			return (1);
+		j++;
+	}
+	return (0);
+}
 
 static int	get_room_data(char *line, t_room *room, t_lem *lem)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (line[len] != ' ')
@@ -25,32 +38,20 @@ static int	get_room_data(char *line, t_room *room, t_lem *lem)
 	return (0);
 }
 
-t_room		*get_room(char *line, t_room *room, t_lem *lem)
+t_room	*get_room(char *line, t_room *room, t_lem *lem)
 {
 	room->next = initialize_room(lem);
 	get_room_data(line, room, lem);
 	return (room->next);
 }
 
-int			find_start_end(char *line, t_lem *lem)
+int	check_rooms_validity(char *line, t_lem *lem, int i, int space)
 {
 	if (ft_strstr(line, "##start") || ft_strstr(line, "##end"))
 	{
 		lem->found_start_end++;
-		return (1);
-	}
-	return (0);
-}
-
-int			check_rooms_validity(char *line, t_lem *lem)
-{
-	int i;
-	int space;
-
-	space = 0;
-	i = 0;
-	if (find_start_end(line, lem))
 		return (0);
+	}
 	else if (ft_strstr(line, " ") || ft_strstr(line, "#"))
 	{
 		if (ft_strstr(line, "#"))
@@ -71,7 +72,7 @@ int			check_rooms_validity(char *line, t_lem *lem)
 	return (1);
 }
 
-int			check_tunnel_validity(char *line, t_lem *lem)
+int	check_tunnel_validity(char *line, t_lem *lem)
 {
 	if (ft_strstr(line, "-") || ft_strstr(line, "#"))
 	{
