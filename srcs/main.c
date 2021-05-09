@@ -46,9 +46,9 @@ int		main(void)
 		// ft_printf("completed flow_management\n");
 		// ft_printf("Started output\n");
 		output(lem);
-		while (1);
+		//while (1);
 		// ft_printf("completed output\n");
-		// ft_printf("\nto compare with map:%d\n", lem->printed);
+		ft_printf("\nto compare with map:%d, to compare with result:%d\n", lem->printed, lem->result[1]);
 		// lem->test_index = 0;
 		free_tree(lem->tree, lem);
 		//ft_printf("FREED TREE\n");

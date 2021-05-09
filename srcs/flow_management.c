@@ -1,14 +1,14 @@
 #include "lem_in.h"
 int	*get_result(int **options, t_lem *lem)
 {
-	int i;
-	int lowest;
-	int tab;
+	int	i;
+	int	lowest;
+	int	tab;
 
 	i = 0;
 	tab = 0;
 	lowest = options[0][1];
-	while(i < lem->i_placeholder)
+	while (i < lem->i_placeholder)
 	{
 		if (options[i][1] < lowest)
 		{
@@ -17,12 +17,14 @@ int	*get_result(int **options, t_lem *lem)
 		}
 		i++;
 	}
-	return(options[tab]);
+	return (options[tab]);
 }
-int compare(int *final_paths, int *other_path)
+
+int	compare(int *final_paths, int *other_path)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 2;
 	while (i < (final_paths[0] * -1) - 1)
 	{
@@ -38,48 +40,37 @@ int compare(int *final_paths, int *other_path)
 	return (0);
 }
 
-int		set_steps(int *option, t_lem *lem)
+int	set_steps(int *option, t_lem *lem)
 {
 	int	*ants_and_len;
-	int i;
-	int ants_cpy;
-	int tab;
+	int	i;
+	int	ants_cpy;
+	int	tab;
 
-//	-5 | 0 |  |  | -1
-
-	ft_printf("options[0]:%d\n", (option[0] * -1));
-	ft_printf("tab:%d\n", (option[0] * -1) -3);
 	tab = (option[0] * -1) - 3;
-	ft_printf("tab2:%d\n", tab);
 	ants_cpy = lem->ants;
 	i = 0;
 	if (!(ants_and_len = (int *)malloc(sizeof(int) * tab)))
 		ft_printf("ERRRROR");
-//	          0   1  2  3   4
-//	option = [-5, 0, 0, 2, -2]
-//	final_paths = [ -5 | 1 | 3 | 4 | 8 | -1 ]
-	print_int_arr(option, option[0] * -1, "option");
-	ft_printf("len of final paths i:%d\n", (lem->final_paths[option[i + 2]][0] * - 1) - 3);
 	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final_paths[option[i + 2]][0] * - 1) - 3;
+		ants_and_len[i] = (lem->final_paths[option[i + 2]][0] * -1) - 3;
 		i++;
 	}
-	i = 0;
 	while (ants_cpy > 0)
 	{
+		i = 0;
 		while (i + 1 < tab && ants_and_len[i] > ants_and_len[i + 1])
 			i++;
 		ants_and_len[i]++;
 		ants_cpy--;
-		i = 0;
 	}
 	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);
 }
 
-int **add_minor_option(int **options, t_lem *lem, int next_path, int num)
+int	**add_minor_option(int **options, t_lem *lem, int next_path, int num)
 {
 	int i;
 	int j;
