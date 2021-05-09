@@ -98,7 +98,6 @@ int	flow_management(t_lem *lem)
 	j = 0;
 	comp = 0;
 	major_index = 0;
-	lem->i_pos = 0;
 	if (!(options = (int **)malloc(sizeof(int *) * 1)))
 		return (1);
 	options = add_major_option(options, lem, lem->i_pos, 0);

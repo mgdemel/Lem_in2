@@ -33,7 +33,6 @@ typedef struct s_lem
 	int				s_room_index;
 	int				e_room_index;
 	int				sib_name;
-	int				comp;
 	struct s_tree	*tree;
 	int				*result;
 	int				printed;
