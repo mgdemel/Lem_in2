@@ -12,7 +12,7 @@ typedef struct s_lem
 	int				nbr_tunnels;
 	int				nbr_rooms;
 	int				current_roomnum;
-	int				**tunnel_directory;
+	int				**tunnel_dir;
 	char			**room_directory;
 	int				found_start_end;
 	int				test_index; // remove after
@@ -89,7 +89,7 @@ void		count_valid_paths(t_lem *lem);
 /* FLOW_MANAGEMENT */
 int			flow_management(t_lem *lem);
 int			**append_array(int **arr, int max);
-int			set_steps(int *option, t_lem *lem);
+int			set_steps(int *option, t_lem *lem, int i, int ants_cpy);
 int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
 
 /* OUTPUT */

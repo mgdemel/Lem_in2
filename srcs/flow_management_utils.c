@@ -4,18 +4,13 @@
 **	tmp and copy over all content to the tmp and return that.
 */
 
-int		**append_array(int **arr, int max)
+int	**append_array(int **arr, int max)
 {
-	int **tmp;
-	int i;
-	int j;
-	
-	/*
-	**  arr[0] = -3|4|0
-	**	arr[1] = -4|5|0|2
-	*/
+	int	**tmp;
+	int	i;
+	int	j;
+
 	i = 0;
-//	ft_printf("arr[i][0]:%d\n", (arr[i][0] * -1));
 	if (!(tmp = (int **)malloc(sizeof(int *) * (max + 1))))
 		return (NULL);
 	while (i < max)
@@ -35,7 +30,7 @@ int		**append_array(int **arr, int max)
 	return (tmp);
 }
 
-int	comp(int *final, int *other_path)
+int	compare(int *final, int *other_path)
 {
 	int	i;
 	int	j;
@@ -55,16 +50,12 @@ int	comp(int *final, int *other_path)
 	return (0);
 }
 
-int	set_steps(int *option, t_lem *lem) //something a bit off here - sometimes the steps don't include the final steps
+int	set_steps(int *option, t_lem *lem, int i, int ants_cpy) //something a bit off here - sometimes the steps don't include the final steps
 {
 	int	*ants_and_len;
-	int	i;
-	int	ants_cpy;
 	int	tab;
 
 	tab = (option[0] * -1) - 3;
-	ants_cpy = lem->ants;
-	i = 0;
 	if (!(ants_and_len = (int *)malloc(sizeof(int) * tab)))
 		ft_printf("ERRRROR");
 	while (i < tab)
@@ -92,7 +83,7 @@ int	scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp)
 	i = 2;
 	while (i < (index_of_valid_paths[0] * -1) - 1)
 	{
-		if (comp(lem->final[index_of_valid_paths[i]], to_comp) == 1)
+		if (compare(lem->final[index_of_valid_paths[i]], to_comp) == 1)
 			return (1);
 		i++;
 	}
