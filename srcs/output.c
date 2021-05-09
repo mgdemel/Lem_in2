@@ -31,7 +31,7 @@ void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
 	flow = 0;
 	no_flow = 0;
 	lem->printed = 0; //remove later!
-	while (sets > 0)
+	while (sets >= 0)
 	{
 		j = 0;
 		i = 0;

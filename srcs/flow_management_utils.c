@@ -20,7 +20,7 @@ int	comp(int *final, int *other_path)
 	return (0);
 }
 
-int	set_steps(int *option, t_lem *lem)
+int	set_steps(int *option, t_lem *lem) //something a bit off here - sometimes the steps don't include the final steps
 {
 	int	*ants_and_len;
 	int	i;
