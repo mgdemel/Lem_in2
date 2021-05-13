@@ -43,7 +43,7 @@ int	**add_minor_option(int **options, t_lem *lem, int next_path, int num)
 	j++;
 	options[num][j] = -1;
 	options[num][1] = 0;
-	options[num][1] = set_steps(options[num], lem);
+	options[num][1] = set_steps(options[num], lem, 0, lem->ants);
 	return (options);
 }
 
@@ -56,11 +56,7 @@ int	**recursion_adding(t_lem *lem, int **options, int comp)
 	{
 		while (comp < lem->max_paths)
 		{
-			/*
-			**	Assumes we are comparing a "x | y | path" int array, adding onto paths as long as possible.
-			**	Have to exit once it's not possible, and add next path as a single option.
-			*/
-			if (scan_similar(lem, options[lem->i_pos - 1], lem->final[comp]) == 0)
+			if (!(scan_similar(lem, options[lem->i_pos - 1], lem->final[comp])))
 			{
 				lem->malloc_len++;
 				options = append_array(options, lem->i_pos);
@@ -89,16 +85,11 @@ int	**add_major_option(int **options, t_lem *lem, int index, int num)
 int	flow_management(t_lem *lem)
 {
 	int	**options;
-	int	i;
-	int	j;
-	int	comp;
 	int	major_index;
+	int	comp;
 
-	i = 0;
-	j = 0;
-	comp = 0;
 	major_index = 0;
-	lem->i_pos = 0;
+	comp = 0;
 	if (!(options = (int **)malloc(sizeof(int *) * 1)))
 		return (1);
 	options = add_major_option(options, lem, lem->i_pos, 0);

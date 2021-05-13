@@ -1,27 +1,14 @@
 #include "lem_in.h"
-void	print_ant_dir(t_lem *lem, int **ant_flow)
+void	output_ant(int **ant_flow, int j, t_lem *lem)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < lem->ants)
-	{
-		j = 0;
-		while (ant_flow[i][j] != -1)
-		{
-			ft_printf(" %d |", ant_flow[i][j]);
-			j++;
-		}
-		ft_printf(" %d |", ant_flow[i][j]);
-		ft_printf("\n");
-		i++;
-	}
-	ft_printf("\n");
+	ft_putchar('L');
+	ft_putnbr(ant_flow[j][0]);
+	ft_putchar('-');
+	ft_putstr(lem->room_directory[ant_flow[j][ant_flow[j][1]]]);
+	ft_putchar(' ');
 }
 
-void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
+int	output_set(int mps, int **ant_flow, t_lem *lem)
 {
 	int	flow;
 	int	no_flow;
@@ -30,31 +17,34 @@ void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
 
 	flow = 0;
 	no_flow = 0;
+	i = 0;
+	j = 0;
+	while (i < mps && i < lem->ants)
+	{
+		if (ant_flow[j][ant_flow[j][1]] != -1)
+		{
+			output_ant(ant_flow, j, lem);
+			ant_flow[j][1] += 1;
+			flow++;
+		}
+		else
+			no_flow++;
+		j++;
+		i++;
+	}
+	return (flow + no_flow);
+}
+
+void	flow(int **ant_flow, t_lem *lem, int sets, int mps)
+{
+	int	flow;
+
+	flow = 0;
 	lem->printed = 0; //remove later!
 	while (sets >= 0)
 	{
-		j = 0;
-		i = 0;
-		mps = (lem->result[0] * -1) - 3 + flow + no_flow;
-		flow = 0;
-		no_flow = 0;
-		while (i < mps && i < lem->ants)
-		{
-			if (ant_flow[j][ant_flow[j][1]] != -1)
-			{
-				ft_putchar('L');
-				ft_putnbr(ant_flow[j][0]);
-				ft_putchar('-');
-				ft_putstr(lem->room_directory[ant_flow[j][ant_flow[j][1]]]);
-				ft_putchar(' ');
-				ant_flow[j][1] += 1;
-				flow++;
-			}
-			else
-				no_flow++;
-			j++;
-			i++;
-		}
+		mps = (lem->result[0] * -1) - 3 + flow;
+		flow = output_set(mps, ant_flow, lem);
 		ft_printf("\n");
 		sets--;
 		lem->printed++; //remove later!

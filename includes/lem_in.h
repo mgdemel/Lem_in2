@@ -12,37 +12,29 @@ typedef struct s_lem
 	int				nbr_tunnels;
 	int				nbr_rooms;
 	int				current_roomnum;
-	int				**tunnel_directory;
+	int				**tunnel_dir;
 	char			**room_directory;
 	int				found_start_end;
-	int				path_index;
 	int				test_index; // remove after
 	int				tunnel_index;
-	int				test_stopper;
+	int				test_stopper; // remove after
 	int				path;
 	int				max_paths;
 	int				malloc_len;
-	int				*w_child;
-	int				*w_parent;
-	int				index_options;
 	int				i_pos;
 	int				negative_one;
-	int				total_paths;
+	int				total_paths; // remove after
 	struct s_room	*all_rooms;
 	int				**all_paths;
 	int				**final;
 	char			**tunnels;
-	char			*start_room_name;
+	char			*s_room_name;
 	char			*e_room_name;
-	int				start_room_index;
+	int				s_room_index;
 	int				e_room_index;
 	int				sib_name;
-	int				comp;
 	struct s_tree	*tree;
 	int				*result;
-	int				sets;
-	int				stopper;
-	int				moves_per_set;
 	int				printed;
 }					t_lem;
 
@@ -62,58 +54,58 @@ typedef struct s_room
 	struct s_room		*next;	
 }						t_room;
 
-/*
-**	PROTOTYPES
-*/
+/* ERROR */
 
-/*
-**	INITIALIZE
-*/
-
+/* INITIALIZE */
 t_lem		*initialize_lem(void);
 t_room		*initialize_room(t_lem *lem);
+t_tree		*tree_init(t_tree *parent);
+t_tree		*head_tree_init(int name);
 
-/*
-**	STORE_DATA.C
-*/
-
+/* STORE_DATA */
 int			store_data(t_lem *lem, t_room *room, int fd);
-void		test_structs(t_lem *lem);
-int			file_is_valid(t_lem *lem, int fd);
-int			search_for_all_paths(t_lem *lem);
-int			needle_crop(int *haystack, int needle);
+int			check_tunnel_validity(char *line, t_lem *lem);
+t_room		*get_room(char *line, t_room *room, t_lem *lem);
+int			check_rooms_validity(char *line, t_lem *lem, int i, int space);
+int			room_duplicates(t_lem *lem, char *r_name, int i);
+
+/*	TUNNEL_MAKING */
+void		get_tunnel_int_arr(t_lem *lem);
+
+/* TREE_MAKING */
 int			find_parent_links(int parent, t_lem *lem);
 int			tree_creation(t_lem *lem);
-t_tree		*tree_init(t_tree *parent);
-int			add_elem_int_array(int *forbidden, t_lem *lem, int block, int parent);
 int			make_child(t_tree *parent, t_lem *lem);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
-t_tree		*head_tree_init(int name);
+int			ft_strword(int *haystack, int needle);
+
+/* GATHER_PATHS */
 int			create_path_arr(t_lem *lem);
+void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
+void		arr_row_size(t_tree *start, t_lem *lem);
+void		sort_paths(t_lem *lem);
+void		count_valid_paths(t_lem *lem);
+
+/* FLOW_MANAGEMENT */
+int			flow_management(t_lem *lem);
+int			**append_array(int **arr, int max);
+int			set_steps(int *option, t_lem *lem, int i, int ants_cpy);
+int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
+
+/* OUTPUT */
+int			output(t_lem *lem);
+
+/* FREE */
 void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
 void		free_lem(t_lem *lem);
 void		free_array(char **array);
-void		print_int_arr(int *arr, int len, char *str); //remove later!
-int			check_tunnel_validity(char *line, t_lem *lem);
-t_room		*get_room(char *line, t_room *room, t_lem *lem);
-int			check_rooms_validity(char *line, t_lem *lem);
-int			*ft_newintarr(int *forbidden, int i);
-void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
-int			flow_management(t_lem *lem);
-int			**append_array(int **arr, int max);
-void		sort_paths(t_lem *lem);
-void		count_valid_paths(t_lem *lem);
-int			ft_strword(int *haystack, int needle);
-void		arr_row_size(t_tree *start, t_lem *lem);
-void		print_double_arr(int **arr, int max); //remove later!
-void		print_tunnel_dir(int **arr, int max); // remove later!
-int			output(t_lem *lem);
-void		get_tunnel_int_arr(t_lem *lem);
-void		remove_elem_int_array(int *forb, t_lem *lem, int block, int parent);
-void		get_tunnel_int_arr(t_lem *lem);
 void		free_int_array(int **array, int max_paths);
-int			set_steps(int *option, t_lem *lem);
-int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
+
+/* TESTS */
+void		print_int_arr(int *arr, int len, char *str);
+void		print_double_arr(int **arr, int max);
+void		print_tunnel_dir(int **arr, int max);
+void		test_structs(t_lem *lem);
 
 #endif

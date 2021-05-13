@@ -75,7 +75,6 @@ int	create_path_arr(t_lem *lem)
 
 	start = lem->tree;
 	arr_row_size(start, lem);
-//	ft_printf("max:%d\nnbr_rooms:%d\n", lem->max_paths, lem->nbr_rooms);
 	if (!(lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths)))
 		return (1);
 	if (!(lem->all_paths[0] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2)))
