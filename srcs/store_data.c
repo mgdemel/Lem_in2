@@ -27,8 +27,8 @@ static char	**add_tunnel(char *line, t_lem *lem)
 void	get_ants(int fd, char *line, t_lem *lem)
 {
 	get_next_line(fd, &line);
-	if (!ft_isalldigit(line) || line == 0 || ft_atoi(line) == 0
-		|| ft_isspace(ft_atoi(line)) == 1)
+	if (!ft_isalldigit(line) || ft_atoi(line) == 0
+		|| ft_isspace(ft_atoi(&line[0]) == 1))
 		error_message(lem, 2);
 	lem->ants = ft_atoi(line);
 	ft_putendl(line);
