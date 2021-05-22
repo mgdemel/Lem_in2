@@ -124,7 +124,7 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	delete2 = 0;
 	j = 0;
 	i = 0;
-	sibling = tree_init(parent);
+	sibling = tree_init(lem, parent);
 	child->sib = sibling;
 	while (j < lem->nbr_tunnels)
 	{
@@ -163,7 +163,7 @@ int	make_child(t_tree *parent, t_lem *lem)
 
 	j = 0;
 	i = 0;
-	child = tree_init(parent);
+	child = tree_init(lem, parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
@@ -201,7 +201,7 @@ int	tree_creation(t_lem *lem)
 
 	i = 0;
 	lem->test_index = 0; // delete
-	lem->tree = head_tree_init(lem->s_room_index);
+	lem->tree = head_tree_init(lem, lem->s_room_index);
 	make_child(lem->tree, lem);
 	distance_child(lem, 0, -1);
 	ft_printf("\nPRINTING VALID PATHS\n");

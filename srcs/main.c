@@ -1,10 +1,27 @@
 #include "lem_in.h"
 
-void	error_message(t_lem *lem, t_room *room)
+void	error_message(t_lem *lem, int i) //removed free(room) from here, so need to do that where it's needed before this is called
 {
 	free(lem);
-	free(room);
-	ft_printf("ERROR\n");
+	if (i == 1)
+		ft_putstr("ERROR: MALLOC\n");
+	else if (i == 2)
+		ft_putstr("ERROR: NO ANTS\n");
+	else if (i == 3)
+		ft_putstr("ERROR: NO ROOMS\n");
+	else if (i == 4)
+		ft_putstr("ERROR: ROOM INVALID\n");
+	else if (i == 5)
+		ft_putstr("ERROR: DUPLICATE ROOM\n");
+	else if (i == 6)
+		ft_putstr("ERROR: NO START/END ROOM\n");	
+	else if (i == 7)
+		ft_putstr("ERROR: DUPLICATE START/END\n");
+	else if (i == 8)
+		ft_putstr("ERROR: TUNNEL INVALID\n");
+	else if (i == 9)
+		ft_putstr("ERROR: NO SOLUTION\n");
+	exit(1);
 }
 
 int	main(void)
@@ -13,41 +30,20 @@ int	main(void)
 
 	lem = initialize_lem();
 	lem->all_rooms = initialize_room(lem);
-	if (store_data(lem, lem->all_rooms, 0) == 0)
-	{
-		get_tunnel_int_arr(lem);
-		if (tree_creation(lem))
-		{
-			error_message(lem, lem->all_rooms);
-			return (1);
-		}
-		create_path_arr(lem);
-		count_valid_paths(lem);
-		// ft_printf("ALL PATHS:\n");
-		// print_double_arr(lem->all_paths, lem->max_paths);
-		sort_paths(lem);
-		flow_management(lem);
-<<<<<<< HEAD
-		// ft_printf("completed flow_management\n");
-		// ft_printf("Started output\n");
-		output(lem);
-		//while (1);
-		 ft_printf("completed output\n");
-		ft_printf("\nto comp with map:%d, to comp with result:%d\n", lem->printed, lem->result[1]);
-		// lem->test_index = 0;
-=======
-		output(lem);
-		//while (1);
-		ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
->>>>>>> 6c5b6f86cad1f44e8ec679fc4f2d301c4d37d85f
-		free_tree(lem->tree, lem);
-		//free_room(lem->all_rooms);
-		//free_lem(lem);
-	}
-	else
-	{
-		error_message(lem, lem->all_rooms);
-		return (1);
-	}
+	store_data(lem, lem->all_rooms, 0);
+	get_tunnel_int_arr(lem); //do errors!
+	tree_creation(lem);  //do errors!
+	create_path_arr(lem);  //do errors!
+	count_valid_paths(lem);  //do errors!
+	// ft_printf("ALL PATHS:\n");
+	// print_double_arr(lem->all_paths, lem->max_paths);
+	sort_paths(lem);  //do errors!
+	flow_management(lem);  //do errors!
+	output(lem);  //do errors!
+	//while (1);
+	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
+	free_tree(lem->tree, lem);
+	//free_room(lem->all_rooms);
+	//free_lem(lem);
 	return (0);
 }

@@ -55,19 +55,20 @@ typedef struct s_room
 }						t_room;
 
 /* ERROR */
+void	error_message(t_lem *lem, int i);
 
 /* INITIALIZE */
 t_lem		*initialize_lem(void);
 t_room		*initialize_room(t_lem *lem);
-t_tree		*tree_init(t_tree *parent);
-t_tree		*head_tree_init(int name);
+t_tree		*tree_init(t_lem *lem, t_tree *parent);
+t_tree		*head_tree_init(t_lem *lem, int name);
 
 /* STORE_DATA */
-int			store_data(t_lem *lem, t_room *room, int fd);
+void		store_data(t_lem *lem, t_room *room, int fd);
 int			check_tunnel_validity(char *line, t_lem *lem);
 t_room		*get_room(char *line, t_room *room, t_lem *lem);
 int			check_rooms_validity(char *line, t_lem *lem, int i, int space);
-int			room_duplicates(t_lem *lem, char *r_name, int i);
+void		room_duplicates(t_lem *lem, char *r_name, int i);
 
 /*	TUNNEL_MAKING */
 void		get_tunnel_int_arr(t_lem *lem);

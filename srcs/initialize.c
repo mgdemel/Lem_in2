@@ -4,8 +4,9 @@ t_lem	*initialize_lem(void)
 {
 	t_lem *lem;
 
-	if (!(lem = (t_lem *)malloc(sizeof(t_lem))))
-		return (NULL);
+	lem = (t_lem *)malloc(sizeof(t_lem));
+	if (lem == NULL)
+		error_message(lem, 1);
 	lem->nbr_tunnels = 0;
 	lem->nbr_rooms = 0;
 	lem->current_roomnum = 0;
@@ -31,8 +32,9 @@ t_room	*initialize_room(t_lem *lem)
 {
 	t_room	*room;
 
-	if (!(room = (t_room *)malloc(sizeof(t_room))))
-		return (NULL);
+	room = (t_room *)malloc(sizeof(t_room));
+	if (room == NULL)
+		error_message(lem, 1);
 	room->name = NULL;
 	room->roomtype = 2;
 	lem->current_roomnum++;
@@ -41,12 +43,13 @@ t_room	*initialize_room(t_lem *lem)
 	return (room);
 }
 
-t_tree	*tree_init(t_tree *parent)
+t_tree	*tree_init(t_lem *lem, t_tree *parent)
 {
 	t_tree	*tree;
 
-	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
-		return (NULL);
+	tree = (t_tree *)malloc(sizeof(t_tree));
+	if (tree == NULL)
+		error_message(lem, 1);
 	tree->name = 0;
 	tree->parent = parent;
 	tree->child = NULL;
@@ -54,12 +57,13 @@ t_tree	*tree_init(t_tree *parent)
 	return (tree);
 }
 
-t_tree	*head_tree_init(int name)
+t_tree	*head_tree_init(t_lem *lem, int name)
 {
 	t_tree	*tree;
 
-	if (!(tree = (t_tree *)malloc(sizeof(t_tree))))
-		return (NULL);
+	tree = (t_tree *)malloc(sizeof(t_tree));
+	if (tree == NULL)
+		error_message(lem, 1);
 	tree->name = name;
 	tree->parent = NULL;
 	tree->child = NULL;

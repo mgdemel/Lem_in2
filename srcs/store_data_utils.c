@@ -1,5 +1,5 @@
 #include "lem_in.h"
-int	room_duplicates(t_lem *lem, char *r_name, int i)
+void	room_duplicates(t_lem *lem, char *r_name, int i)
 {
 	int	j;
 
@@ -7,21 +7,21 @@ int	room_duplicates(t_lem *lem, char *r_name, int i)
 	while (j < i)
 	{
 		if (ft_strcmp(lem->room_directory[j], r_name) == 0)
-			return (1);
+			error_message(lem, 5);
 		j++;
 	}
-	return (0);
 }
 
-static int	get_room_data(char *line, t_room *room, t_lem *lem)
+void	get_room_data(char *line, t_room *room, t_lem *lem)
 {
 	int	len;
 
 	len = 0;
 	while (line[len] != ' ')
 		len++;
-	if (!(room->name = (char *)malloc(sizeof(char) * len + 1)))
-		return (1);
+	room->name = (char *)malloc(sizeof(char) * len + 1);
+	if (room->name == NULL)
+		error_message(lem, 1);
 	room->name[len] = '\0';
 	while (len > 0)
 	{
@@ -35,7 +35,6 @@ static int	get_room_data(char *line, t_room *room, t_lem *lem)
 		else
 			lem->e_room_name = ft_strdup(room->name);
 	}
-	return (0);
 }
 
 t_room	*get_room(char *line, t_room *room, t_lem *lem)
@@ -69,6 +68,7 @@ int	check_rooms_validity(char *line, t_lem *lem, int i, int space)
 	}
 	if (space == 2)
 		return (0);
+	error_message(lem, 4);
 	return (1);
 }
 
@@ -81,6 +81,6 @@ int	check_tunnel_validity(char *line, t_lem *lem)
 		lem->nbr_tunnels++;
 	}
 	else
-		return (1);
+		error_message(lem, 8);
 	return (0);
 }

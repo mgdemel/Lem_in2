@@ -6,8 +6,9 @@ static char	**add_tunnel(char *line, t_lem *lem)
 	char	**new;
 
 	i = 0;
-	if (!(new = (char **)malloc(sizeof(char *) * (lem->nbr_tunnels))))
-		return (NULL);
+	new = (char **)malloc(sizeof(char *) * lem->nbr_tunnels);
+	if (new == NULL)
+		error_message(lem, 1);
 	if (lem->nbr_tunnels != 1)
 	{
 		while (i < lem->nbr_tunnels - 1)
@@ -23,39 +24,39 @@ static char	**add_tunnel(char *line, t_lem *lem)
 	return (new);
 }
 
-static int	get_ants(int fd, char *line, t_lem *lem)
+void	get_ants(int fd, char *line, t_lem *lem)
 {
 	get_next_line(fd, &line);
 	if (!ft_isalldigit(line))
-		return (1);
+		error_message(lem, 2);
 	lem->ants = ft_atoi(line);
 	ft_putendl(line);
 	ft_strdel(&line);
-	return (0);
 }
 
-static int	get_tunnel(char *line, t_lem *lem)
+void	get_tunnel(char *line, t_lem *lem)
 {
 	int	i;
 
 	i = 0;
-	if (check_tunnel_validity(line, lem) == 1 || lem->found_start_end != 2
-		|| lem->nbr_rooms == 0)
-		return (1);
+	if (lem->found_start_end != 2)
+		error_message(lem, 6);
+	if (lem->nbr_rooms == 0)
+		error_message(lem, 3);
+	check_tunnel_validity(line, lem);
 	lem->tunnels = add_tunnel(line, lem);
 	i++;
-	return (0);
 }
 
-static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
+void	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 {
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (ft_strstr(line, " ") || ft_strstr(line, "#"))
 		{
-			if (check_rooms_validity(line, lem, 0, 0) == 1
-				|| lem->found_start_end > 2)
-				return (1);
+			check_rooms_validity(line, lem, 0, 0);
+			if (lem->found_start_end > 2)
+				error_message(lem, 7);
 			if (ft_strstr(line, "##start"))
 				room->roomtype = 1;
 			else if (ft_strstr(line, "##end"))
@@ -66,16 +67,14 @@ static int	get_room_and_tunnel(t_lem *lem, t_room *room, char *line, int fd)
 		}
 		else
 		{
-			if (get_tunnel(line, lem))
-				return (1);
+			get_tunnel(line, lem);
 			ft_putendl(line);
 		}
 		ft_strdel(&line);
 	}
-	return (0);
 }
 
-int	store_data(t_lem *lem, t_room *room, int fd)
+void	store_data(t_lem *lem, t_room *room, int fd)
 {
 	char	*line;
 	int		i;
@@ -83,12 +82,11 @@ int	store_data(t_lem *lem, t_room *room, int fd)
 
 	line = NULL;
 	i = 1;
-	if (get_ants(fd, line, lem))
-		return (1);
-	if (get_room_and_tunnel(lem, room, line, fd))
-		return (1);
-	if (!(lem->room_directory = (char **)malloc(sizeof(char *) * lem->current_roomnum)))
-		return (1);
+	get_ants(fd, line, lem);
+	get_room_and_tunnel(lem, room, line, fd);
+	lem->room_directory = (char **)malloc(sizeof(char *) * lem->current_roomnum);
+	if (lem->room_directory == NULL)
+		error_message(lem, 1);
 	tmp = lem->all_rooms;
 	lem->room_directory[0] = ft_strdup("SKIP");
 	while (room->next != NULL)
@@ -97,15 +95,9 @@ int	store_data(t_lem *lem, t_room *room, int fd)
 			lem->e_room_index = i;
 		if (ft_strcmp(room->name, lem->s_room_name) == 0)
 			lem->s_room_index = i;
-		if (room_duplicates(lem, room->name, i) == 1)
-		{
-			ft_printf("ERROR\n"); //change to error function
-			exit(1);
-		}
-		else
-			lem->room_directory[i] = ft_strdup(room->name);
+		room_duplicates(lem, room->name, i);
+		lem->room_directory[i] = ft_strdup(room->name);
 		room = room->next;
 		i++;
 	}
-	return (0);
 }
