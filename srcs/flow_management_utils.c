@@ -4,20 +4,22 @@
 **	tmp and copy over all content to the tmp and return that.
 */
 
-int	**append_array(int **arr, int max)
+int	**append_array(t_lem *lem, int **arr, int max)
 {
 	int	**tmp;
 	int	i;
 	int	j;
 
 	i = 0;
-	if (!(tmp = (int **)malloc(sizeof(int *) * (max + 1))))
-		return (NULL);
+	tmp = (int **)malloc(sizeof(int *) * (max + 1));
+	if (tmp == NULL)
+		error_message(lem, 2);
 	while (i < max)
 	{
 		j = 0;
-		if (!(tmp[i] = (int *)malloc(sizeof(int) * (arr[i][0] * -1))))
-			return (NULL);
+		tmp[i] = (int *)malloc(sizeof(int) * (arr[i][0] * -1));
+		if (tmp[i] == NULL)
+			error_message(lem, 1);
 		while (j < (arr[i][0] * -1))
 		{
 			tmp[i][j] = arr[i][j];
@@ -56,8 +58,9 @@ int	set_steps(int *option, t_lem *lem, int i, int ants_cpy) //something a bit of
 	int	tab;
 
 	tab = (option[0] * -1) - 3;
-	if (!(ants_and_len = (int *)malloc(sizeof(int) * tab)))
-		ft_printf("ERRRROR");
+	ants_and_len = (int *)malloc(sizeof(int) * tab);
+	if (ants_and_len == NULL)
+		error_message(lem, 1);
 	while (i < tab)
 	{
 		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 3;

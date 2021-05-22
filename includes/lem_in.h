@@ -88,8 +88,8 @@ void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
 
 /* FLOW_MANAGEMENT */
-int			flow_management(t_lem *lem);
-int			**append_array(int **arr, int max);
+void		flow_management(t_lem *lem);
+int			**append_array(t_lem *lem, int **arr, int max);
 int			set_steps(int *option, t_lem *lem, int i, int ants_cpy);
 int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
 

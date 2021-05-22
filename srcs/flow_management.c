@@ -29,8 +29,9 @@ int	**add_minor_option(int **options, t_lem *lem, int next_path, int num)
 	i = 1;
 	j = 2;
 	len = lem->malloc_len;
-	if (!(options[num] = (int *)malloc(sizeof(int) * len)))
-		ft_printf("ERRRRRRRRORRRRROORRR");
+	options[num] = (int *)malloc(sizeof(int) * len);
+	if (options[num] == NULL)
+		error_message(lem, 1);
 	options[num][0] = (len * -1);
 	while (len > 3)
 	{
@@ -59,7 +60,7 @@ int	**recursion_adding(t_lem *lem, int **options, int comp)
 			if (!(scan_similar(lem, options[lem->i_pos - 1], lem->final[comp])))
 			{
 				lem->malloc_len++;
-				options = append_array(options, lem->i_pos);
+				options = append_array(lem, options, lem->i_pos);
 				options = add_minor_option(options, lem, comp, lem->i_pos);
 				lem->i_pos++;
 				options = recursion_adding(lem, options, comp + 1);
@@ -73,8 +74,9 @@ int	**recursion_adding(t_lem *lem, int **options, int comp)
 
 int	**add_major_option(int **options, t_lem *lem, int index, int num)
 {
-	if (!(options[index] = (int *)malloc(sizeof(int) * 4)))
-		ft_printf("ERRRRRRRRORRRRROORRR");
+	options[index] = (int *)malloc(sizeof(int) * 4);
+	if (options[index] == NULL)
+		error_message(lem, 1);
 	options[index][0] = -4;
 	options[index][1] = lem->ants + (lem->final[num][0] * -1) - 4;
 	options[index][2] = num;
@@ -82,7 +84,7 @@ int	**add_major_option(int **options, t_lem *lem, int index, int num)
 	return (options);
 }
 
-int	flow_management(t_lem *lem)
+void	flow_management(t_lem *lem)
 {
 	int	**options;
 	int	major_index;
@@ -90,14 +92,15 @@ int	flow_management(t_lem *lem)
 
 	major_index = 0;
 	comp = 0;
-	if (!(options = (int **)malloc(sizeof(int *) * 1)))
-		return (1);
+	options = (int **)malloc(sizeof(int *) * 1);
+	if (options == NULL)
+		error_message(lem, 1);
 	options = add_major_option(options, lem, lem->i_pos, 0);
 	while (major_index <= lem->max_paths - 1)
 	{
 		if (lem->i_pos != 0)
 		{
-			options = append_array(options, lem->i_pos);
+			options = append_array(lem, options, lem->i_pos);
 			add_major_option(options, lem, lem->i_pos, major_index);
 		}
 		lem->i_pos++;
@@ -106,5 +109,4 @@ int	flow_management(t_lem *lem)
 		options = recursion_adding(lem, options, comp);
 	}
 	lem->result = get_result(options, lem);
-	return (0);
 }

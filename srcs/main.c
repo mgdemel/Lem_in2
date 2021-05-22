@@ -34,11 +34,11 @@ int	main(void)
 	get_tunnel_int_arr(lem);
 	tree_creation(lem);
 	create_path_arr(lem);
-	count_valid_paths(lem);  //do errors!
+	count_valid_paths(lem);
 	// ft_printf("ALL PATHS:\n");
 	// print_double_arr(lem->all_paths, lem->max_paths);
-	sort_paths(lem);  //do errors!
-	flow_management(lem);  //do errors!
+	sort_paths(lem);
+	flow_management(lem);
 	output(lem);  //do errors!
 	//while (1);
 	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
