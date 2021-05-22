@@ -94,7 +94,7 @@ int			set_steps(int *option, t_lem *lem, int i, int ants_cpy);
 int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
 
 /* OUTPUT */
-int			output(t_lem *lem);
+void		output(t_lem *lem);
 
 /* FREE */
 void		free_tree(t_tree *start, t_lem *lem);

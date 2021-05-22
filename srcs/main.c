@@ -39,7 +39,7 @@ int	main(void)
 	// print_double_arr(lem->all_paths, lem->max_paths);
 	sort_paths(lem);
 	flow_management(lem);
-	output(lem);  //do errors!
+	output(lem);
 	//while (1);
 	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
 	free_tree(lem->tree, lem);

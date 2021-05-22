@@ -78,7 +78,7 @@ int	**create_ant_flow(int i, int j, int **ant_flow, t_lem *lem)
 	return (ant_flow);
 }
 
-int	output(t_lem *lem)
+void	output(t_lem *lem)
 {
 	int	**ant_flow;
 	int	i;
@@ -86,12 +86,14 @@ int	output(t_lem *lem)
 
 	i = 0;
 	j = 2;
-	if (!(ant_flow = (int**)malloc(sizeof(int*) * lem->ants)))
-		return (1);
+	ant_flow = (int**)malloc(sizeof(int*) * lem->ants);
+	if (ant_flow == NULL)
+		error_message(lem, 1);
 	while (i < lem->ants)
 	{
-		if (!(ant_flow[i] = (int*)malloc(sizeof(int) * (3 + ((lem->final[lem->result[j]][0]) + 2) * -1))))
-			return (1);
+		ant_flow[i] = (int*)malloc(sizeof(int) * (3 + ((lem->final[lem->result[j]][0]) + 2) * -1));
+		if (ant_flow[i] == NULL)
+			error_message(lem, 1);
 		if (j < (lem->result[0] * -1) - 2)
 			j++;
 		else
@@ -101,5 +103,4 @@ int	output(t_lem *lem)
 	ant_flow = create_ant_flow(0, 2, ant_flow, lem);
 	flow(ant_flow, lem, lem->result[1], (lem->result[0] * -1) - 3);
 	free_int_array(ant_flow, lem->ants);
-	return (0);
 }
