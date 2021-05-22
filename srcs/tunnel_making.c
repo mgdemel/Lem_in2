@@ -75,8 +75,9 @@ char	**ft_tunnelsplit(char *tunnel, t_lem *lem)
 	int		i;
 
 	y = 0;
-	if (!(rooms = (char **)malloc(sizeof(char *) * 2)))
-		return (NULL);
+	rooms = (char **)malloc(sizeof(char *) * 2);
+	if (rooms == NULL)
+		error_message(lem, 1);
 	while (y < 2)
 	{
 		i = 1;
@@ -104,12 +105,14 @@ void	get_tunnel_int_arr(t_lem *lem)
 
 	i = 0;
 	j = 0;
-	if (!(lem->tunnel_dir = (int **)malloc(sizeof(int *) * lem->nbr_tunnels)))
-		ft_putendl("error");
+	lem->tunnel_dir = (int **)malloc(sizeof(int *) * lem->nbr_tunnels);
+	if (lem->tunnel_dir == NULL)
+		error_message(lem, 1);
 	while (i < lem->nbr_tunnels)
 	{
-		if (!(lem->tunnel_dir[i] = (int *)malloc(sizeof(int) * 3)))
-			ft_putendl("error");
+		lem->tunnel_dir[i] = (int *)malloc(sizeof(int) * 3);
+		if (lem->tunnel_dir[i] == NULL)
+			error_message(lem, 1);
 		i++;
 	}
 	i = 0;

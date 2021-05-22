@@ -89,7 +89,7 @@ void	distance_special2(t_lem *lem)
 	}
 }
 
-void find_family(t_lem *lem, t_tree *parent, t_tree *child)
+void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 {
 	ft_printf("TUNNELS WITH PARENT: %d\n", parent->name);
 //print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
@@ -195,7 +195,7 @@ int	make_child(t_tree *parent, t_lem *lem)
 	return (child->name);
 }
 
-int	tree_creation(t_lem *lem)
+void	tree_creation(t_lem *lem)
 {
 	int	i;
 
@@ -208,5 +208,4 @@ int	tree_creation(t_lem *lem)
 	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
 	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 //	exit (1);
-	return (0);
 }

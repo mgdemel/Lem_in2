@@ -75,13 +75,13 @@ void		get_tunnel_int_arr(t_lem *lem);
 
 /* TREE_MAKING */
 int			find_parent_links(int parent, t_lem *lem);
-int			tree_creation(t_lem *lem);
+void		tree_creation(t_lem *lem);
 int			make_child(t_tree *parent, t_lem *lem);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
 int			ft_strword(int *haystack, int needle);
 
 /* GATHER_PATHS */
-int			create_path_arr(t_lem *lem);
+void		create_path_arr(t_lem *lem);
 void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
 void		arr_row_size(t_tree *start, t_lem *lem);
 void		sort_paths(t_lem *lem);
