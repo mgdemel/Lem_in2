@@ -25,6 +25,7 @@ t_lem	*initialize_lem(void)
 	lem->result = NULL;
 	lem->total_paths = 0; // remove after
 	lem->test_stopper = 0; // remove after
+	lem->end_trigger = 0;
 	return (lem);
 }
 

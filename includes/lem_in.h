@@ -36,6 +36,7 @@ typedef struct s_lem
 	struct s_tree	*tree;
 	int				*result;
 	int				printed;
+	int 			end_trigger;
 }					t_lem;
 
 typedef struct s_tree

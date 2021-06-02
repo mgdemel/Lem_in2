@@ -140,11 +140,56 @@ e	7	6   -1
 |                  |                                 
 4(2)---5           5(3)-----4-----7
 |      |             |      |     |                  
-8(9)  6(10)         6(4)    13(5) 6(6)                 
+8(9)  6(10)         6(4)    8(5) 6(6)                 
         |             |           |
         2             |           |
         |             |           |
-        8(11)        13(8)        13
+        8(11)        8(8)         8
+
+8 | 4 | 0 | 0
+
+Old_sub3
+1
+|
+3------------------2
+|                  |                                 
+4------5           5--------4-----7
+|      |           |        |     |                
+8      6           6        8     6 
+
+
+
+
+8 = end
+
+1
+|
+2---3
+|   |
+|   **GOES DOWN 100 CHILDREN**
+7   5----4----7
+|   |    |    |
+6   10   8    6
+|
+4
+|
+8
+
+
+1-2
+2-3
+3-4 //
+2-e
+3-e
+
+1
+|
+2 _
+|  |
+e  3 - 4
+   |
+   e
+
 
 Each time make_sibling > move right > add positive numbers ++ > add previous child (current childs sibling) +1
 After make_sibling > move left > reduce positive numbers -- > change next sibling (what came out of sibling_name) to -1
@@ -154,7 +199,12 @@ After make_child > move up > add negative numbers ++
 
 
 EXAMPLE: We are at  now:
-0   [8, 4, 0]
+
+j = lem->nbr_tunnels
+
+11 = 12
+
+0   [8, 4, 0]  <- row == tunnel, each column x & y == roomnum
 1   [8, 6, 0]
 2   [1, 3, -2]
 3   [4, 3, -1]
@@ -407,10 +457,11 @@ i{roomnum}  name
 
 room_dir
 
-i	room name in str
-0	start
-1	r3
-2	r2
+i	| room name str | nbr of mentions
+-----------------------------------
+0	| skip          | skip
+1	| r3            | "5"
+2	| r2            | "1"
 
 tunnels_dir
 i	roomnum1	roomnum2

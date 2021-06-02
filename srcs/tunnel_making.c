@@ -47,6 +47,48 @@ void	remove_duplicated(t_lem *lem)
 	}
 }
 
+void	remove_deadends(t_lem *lem, int prev)
+{	
+	int	i;
+	int count;
+	int room;
+	int save;
+
+	save = 0;
+	room = 1;
+	while (room < lem->nbr_rooms)
+	{
+		count = 0;
+		i = 0;
+		while (i < lem->nbr_tunnels)
+		{
+			if ((lem->tunnel_dir[i][0] == room || lem->tunnel_dir[i][1] == room) && lem->tunnel_dir[i][2] != -2)
+			{
+				count++;
+				save = i;
+				// ft_printf("tunnel:%d-%d\n", lem->tunnel_dir[i][0], lem->tunnel_dir[i][1]);
+				// ft_printf("room name: %s\n", lem->room_directory[room]);
+			}
+			i++;
+		}
+		// ft_printf("count: %d\n", count);
+		// ft_printf("e_room_index: %d\n", lem->e_room_index);
+		if (count == 1 && lem->tunnel_dir[save][0] != lem->s_room_index 
+		&& lem->tunnel_dir[save][1] != lem->s_room_index 
+		&& lem->tunnel_dir[save][0] != lem->e_room_index 
+		&& lem->tunnel_dir[save][1] != lem->e_room_index)
+		{
+			lem->tunnel_dir[save][2] = -2;
+			ft_printf("save:%d\n", save);
+		}
+		room++;
+	}
+	if (save != prev)
+		remove_deadends(lem, save);
+}
+
+//function scans all the tunnels for the room name we are currently looking at and returns the number of times that room is found in tunnels.
+
 int	tunnel_room_scan(t_lem *lem, int i, int b, char *tunnel)
 {
 	int	a;
@@ -110,7 +152,7 @@ void	get_tunnel_int_arr(t_lem *lem)
 		error_message(lem, 1);
 	while (i < lem->nbr_tunnels)
 	{
-		lem->tunnel_dir[i] = (int *)malloc(sizeof(int) * 3);
+		lem->tunnel_dir[i] = (int *)malloc(sizeof(int) * 4);
 		if (lem->tunnel_dir[i] == NULL)
 			error_message(lem, 1);
 		i++;
@@ -133,4 +175,9 @@ void	get_tunnel_int_arr(t_lem *lem)
 		i++;
 	}
 	remove_duplicated(lem);
+	remove_deadends(lem, 0);
+	ft_printf("\nPRINTING TUNNELS\n");
+	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+//	exit(1);
 }

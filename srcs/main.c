@@ -35,8 +35,8 @@ int	main(void)
 	tree_creation(lem);
 	create_path_arr(lem);
 	count_valid_paths(lem);
-	// ft_printf("ALL PATHS:\n");
-	// print_double_arr(lem->all_paths, lem->max_paths);
+	ft_printf("ALL PATHS:\n");
+	print_double_arr(lem->all_paths, lem->max_paths);
 	sort_paths(lem);
 	flow_management(lem);
 	output(lem);
