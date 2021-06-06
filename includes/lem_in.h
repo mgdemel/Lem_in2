@@ -74,6 +74,7 @@ void		room_duplicates(t_lem *lem, char *r_name, int i);
 
 /*	TUNNEL_MAKING */
 void		get_tunnel_int_arr(t_lem *lem);
+void		remove_deadends(t_lem *lem, int prev, int before);
 
 /* TREE_MAKING */
 int			find_parent_links(int parent, t_lem *lem);

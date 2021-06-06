@@ -12,7 +12,7 @@ int	find_parent_links(int parent, t_lem *lem)
 	t = 0;
 	while (i < lem->nbr_tunnels)
 	{
-		if (lem->tunnel_dir[i][2] != 0)
+		if (lem->tunnel_dir[i][2] != 0 || lem->tunnel_dir[i][3] != 0)
 			i++;
 		else if (ft_strword(lem->tunnel_dir[i], lem->e_room_index))
 			i++;
