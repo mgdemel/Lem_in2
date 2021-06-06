@@ -67,13 +67,9 @@ void	remove_deadends(t_lem *lem, int prev, int before)
 			{
 				count++;
 				save = i;
-				// ft_printf("tunnel:%d-%d\n", lem->tunnel_dir[i][0], lem->tunnel_dir[i][1]);
-				// ft_printf("room name: %s\n", lem->room_directory[room]);
 			}
 			i++;
 		}
-		// ft_printf("count: %d\n", count);
-		// ft_printf("e_room_index: %d\n", lem->e_room_index);
 		if (count == 1 && lem->tunnel_dir[save][0] != lem->s_room_index 
 		&& lem->tunnel_dir[save][1] != lem->s_room_index 
 		&& lem->tunnel_dir[save][0] != lem->e_room_index 
@@ -83,14 +79,6 @@ void	remove_deadends(t_lem *lem, int prev, int before)
 				lem->tunnel_dir[save][3] = -1;
 			else
 				lem->tunnel_dir[save][3] = 1;
-			ft_printf("save:%d\n", save);
-			// if (save == 20)
-			// {
-			// 	ft_printf("\nPRINTING TUNNELS: AFTER DEADENDS\n");
-			// 	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-			// 	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
-			// 	exit(1);
-			// }
 		}
 		room++;
 	}
