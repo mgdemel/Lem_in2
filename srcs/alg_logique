@@ -592,18 +592,16 @@ testy2
 |    |     |
 |    |     10
 |    |
-|    8-----3
-|    |
-|    5
+|    8-----5
+|    |     |
+|    5     8
 |    |
 |    10
 |
 4----5
 |    |
-|    4---10
-|    |
-|    1
-1
+|    4---    (10)    // this sibling isn't created as it is blocked someshow by a -1 in tunnels[x][2]
+
 
 
 
