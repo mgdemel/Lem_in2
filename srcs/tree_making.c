@@ -151,7 +151,7 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
-		distance_sibling(lem, child->name, 1);
+	//	distance_sibling(lem, child->name, 1);
 
 		//TEST//
 	//	ft_printf("\nPRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG\n");
@@ -159,10 +159,12 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 		lem->tunnel_dir[i][2] = 1;
+		ft_printf("BLOCKED [%d][%d]\n", lem->tunnel_dir[i][0], lem->tunnel_dir[i][1]);
 		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		lem->sib_name = make_sibling(child, parent, lem);
 		lem->tunnel_dir[i][2] = 0;
-		distance_sibling(lem, 0, -1);
+		ft_printf("UNBLOCKED [%d][%d]\n", lem->tunnel_dir[i][0], lem->tunnel_dir[i][1]);
+	//	distance_sibling(lem, 0, -1);
 
 		//TEST//
 	//	ft_printf("\nPRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG\n");
@@ -252,13 +254,13 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	{
 		if (lem->tunnel_dir[j][2] != 0 || lem->tunnel_dir[j][3] != 0)
 			j++;
-		else if (ft_strword(lem->tunnel_dir[j], lem->e_room_index))
-			j++;
+		// else if (ft_strword(lem->tunnel_dir[j], lem->e_room_index))
+		// 	j++;
 		else if (ft_strword(lem->tunnel_dir[j], parent->name))
 		{
 			sibling->name = ft_strword(lem->tunnel_dir[j], parent->name);
 			sibling->parent = parent;
-			lem->tunnel_dir[j][2] = 1;
+		//	lem->tunnel_dir[j][2] = 1;
 			//TEST//
 			ft_printf("\nPARENT NAME: %d, SIBLING NAME: %d\n", parent->name, sibling->name);
 			//TEST//
@@ -270,15 +272,15 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	if (sibling->name != 0 && sibling->name == lem->e_room_index)
 	{
 		lem->total_paths++;
-		ft_printf("\n\n\nFOUND END RECURSION STOPS HERE\n\n\n");
+		ft_printf("\n\n\nFOUND END IN MAKE SIBLING RECURSION STOPS HERE\n");
 		ft_printf("Sibling:%d\nParent:%d\n", sibling->name, parent->name);
 		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
-		exit(1);
 	}
 	if (sibling->name != 0)
 		find_family(lem, parent, sibling);
 	if (sibling->name == 0)   // sibling name should never be 0 as we already check for multiple in find family
 	{						 // so this test was to see if too much is blocked
+		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		ft_printf("WRONG\n");
 		exit (1);
 	}
@@ -321,12 +323,15 @@ int	make_child(t_tree *parent, t_lem *lem)
 	if (child->name != 0 && child->name == lem->e_room_index)
 	{
 		lem->total_paths++;
-		ft_printf("\n\n\nFOUND THE END\n\n\n");
+		ft_printf("\n\n\nFOUND THE END IN MAKECHILD\n");
+		ft_printf("Child:%d\nParent:%d\n", child->name, parent->name);
+		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	}
 	if (child->name == 0)
 	{
 		lem->end_trigger = 1;
-		ft_printf("\n\n\nFOUND DEAD END RECURSION STOPS HERE\n\n\n");
+		ft_printf("\n\n\n***----->FOUND DEAD END IN MAKECHILD<-----***\n");
+		ft_printf("Child:%d\nParent:%d\n", child->name, parent->name);
 		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	}
 	return (child->name);

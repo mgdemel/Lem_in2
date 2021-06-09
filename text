@@ -28,6 +28,7 @@ MAKE_CHILD CALLED WITH PARENT: 9
 PARENT NAME: 9, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 9, CHILD: 8
+BLOCKED [9][8]
  9 | 8 | 1 | 0 |
  1 | 9 | 0 | 0 |
  1 | 4 | 0 | 0 |
@@ -50,7 +51,7 @@ FIND FAMILY CALLED WITH PARENT: 9, CHILD: 1
 PRINTING TUNNELS: PARENT: 1
 nbr_tunnels: 12
  9 | 8 | 1 | 0 |
- 1 | 9 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
  1 | 4 | 0 | 0 |
  8 | 4 | 0 | 0 |
  8 | 5 | 0 | 0 |
@@ -67,8 +68,9 @@ MAKE_CHILD CALLED WITH PARENT: 1
 PARENT NAME: 1, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 1, CHILD: 4
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+BLOCKED [1][4]
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
  1 | 4 | 1 | 0 |
  8 | 4 | 0 | 0 |
  8 | 5 | 0 | 0 |
@@ -88,8 +90,8 @@ FIND FAMILY CALLED WITH PARENT: 1, CHILD: 3
 
 PRINTING TUNNELS: PARENT: 3
 nbr_tunnels: 12
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -2 | 0 |
  1 | 4 | 1 | 0 |
  8 | 4 | 0 | 0 |
  8 | 5 | 0 | 0 |
@@ -99,7 +101,7 @@ nbr_tunnels: 12
  5 | 10 | 0 | 0 |
  4 | 3 | 0 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 1 | 0 |
+ 1 | 3 | -1 | 0 |
 
 MAKE_CHILD CALLED WITH PARENT: 3
 
@@ -109,8 +111,8 @@ FIND FAMILY CALLED WITH PARENT: 3, CHILD: 4
 
 PRINTING TUNNELS: PARENT: 4
 nbr_tunnels: 12
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
  1 | 4 | 1 | 0 |
  8 | 4 | 0 | 0 |
  8 | 5 | 0 | 0 |
@@ -120,16 +122,17 @@ nbr_tunnels: 12
  5 | 10 | 0 | 0 |
  4 | 3 | -1 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 1 | 0 |
+ 1 | 3 | -2 | 0 |
 
 MAKE_CHILD CALLED WITH PARENT: 4
 
 PARENT NAME: 4, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 8
- 9 | 8 | 3 | 0 |
- 1 | 9 | 3 | 0 |
- 1 | 4 | 2 | 0 |
+BLOCKED [8][4]
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | 1 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | 0 | 0 |
  4 | 5 | 0 | 0 |
@@ -138,7 +141,7 @@ FIND FAMILY CALLED WITH PARENT: 4, CHILD: 8
  5 | 10 | 0 | 0 |
  4 | 3 | -1 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 2 | 0 |
+ 1 | 3 | -2 | 0 |
 
 MAKE_SIB CALLED WITH PARENT: 4
 
@@ -148,65 +151,105 @@ FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
 
 PRINTING TUNNELS: PARENT: 5
 nbr_tunnels: 12
- 9 | 8 | 3 | 0 |
- 1 | 9 | 3 | 0 |
- 1 | 4 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
+ 1 | 4 | 1 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | 0 | 0 |
- 4 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | 0 | 0 |
  4 | 3 | -2 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 2 | 0 |
+ 1 | 3 | -3 | 0 |
 
 MAKE_CHILD CALLED WITH PARENT: 5
 
 PARENT NAME: 5, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
+BLOCKED [8][5]
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -2 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -3 | 0 |
+
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -2 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -3 | 0 |
+
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+UNBLOCKED [8][5]
 
 PRINTING TUNNELS: PARENT: 8
 nbr_tunnels: 12
- 9 | 8 | 3 | 0 |
- 1 | 9 | 3 | 0 |
- 1 | 4 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -5 | 0 |
+ 1 | 4 | 1 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | -1 | 0 |
- 4 | 5 | 1 | 0 |
+ 4 | 5 | -2 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -1 | 0 |
  4 | 3 | -3 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 2 | 0 |
+ 1 | 3 | -4 | 0 |
 
 MAKE_CHILD CALLED WITH PARENT: 8
 
 
 
-FOUND DEAD END RECURSION STOPS HERE
-
-
- 9 | 8 | 3 | 0 |
- 1 | 9 | 3 | 0 |
- 1 | 4 | 2 | 0 |
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:8
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -5 | 0 |
+ 1 | 4 | 1 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | -1 | 0 |
- 4 | 5 | 1 | 0 |
+ 4 | 5 | -2 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -1 | 0 |
  4 | 3 | -3 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 2 | 0 |
+ 1 | 3 | -4 | 0 |
 
+UNBLOCKED [8][4]
 
 PRINTING TUNNELS: PARENT: 8
 nbr_tunnels: 12
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
  1 | 4 | 1 | 0 |
  8 | 4 | -1 | 0 |
  8 | 5 | 0 | 0 |
@@ -216,7 +259,7 @@ nbr_tunnels: 12
  5 | 10 | 0 | 0 |
  4 | 3 | -2 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 1 | 0 |
+ 1 | 3 | -3 | 0 |
 
 MAKE_CHILD CALLED WITH PARENT: 8
 
@@ -226,8 +269,8 @@ FIND FAMILY CALLED WITH PARENT: 8, CHILD: 5
 
 PRINTING TUNNELS: PARENT: 5
 nbr_tunnels: 12
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -5 | 0 |
  1 | 4 | 1 | 0 |
  8 | 4 | -2 | 0 |
  8 | 5 | -1 | 0 |
@@ -237,7 +280,7 @@ nbr_tunnels: 12
  5 | 10 | 0 | 0 |
  4 | 3 | -3 | 0 |
  1 | 2 | 0 | -1 |
- 1 | 3 | 1 | 0 |
+ 1 | 3 | -4 | 0 |
 
 MAKE_CHILD CALLED WITH PARENT: 5
 
@@ -245,14 +288,28 @@ PARENT NAME: 5, CHILD NAME: 10
 
 
 
-FOUND THE END
+FOUND THE END IN MAKECHILD
+Child:10
+Parent:5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -5 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -2 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -2 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -3 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -4 | 0 |
 
-
+UNBLOCKED [1][4]
 
 PRINTING TUNNELS: PARENT: 4
 nbr_tunnels: 12
  9 | 8 | 1 | 0 |
- 1 | 9 | 1 | 0 |
+ 1 | 9 | -2 | 0 |
  1 | 4 | -1 | 0 |
  8 | 4 | 0 | 0 |
  8 | 5 | 0 | 0 |
@@ -269,8 +326,9 @@ MAKE_CHILD CALLED WITH PARENT: 4
 PARENT NAME: 4, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 8
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+BLOCKED [8][4]
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -2 | 0 |
  1 | 4 | -1 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | 0 | 0 |
@@ -287,15 +345,71 @@ MAKE_SIB CALLED WITH PARENT: 4
 PARENT NAME: 4, SIBLING NAME: 5
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
+BLOCKED [4][5]
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -2 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
 
-PRINTING TUNNELS: PARENT: 5
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 3
+
+PRINTING TUNNELS: PARENT: 3
 nbr_tunnels: 12
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
  1 | 4 | -2 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | 0 | 0 |
  4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -2 | 0 |
+
+MAKE_CHILD CALLED WITH PARENT: 3
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:3
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | -2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -2 | 0 |
+
+UNBLOCKED [4][5]
+
+PRINTING TUNNELS: PARENT: 5
+nbr_tunnels: 12
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | -2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | -1 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | 0 | 0 |
@@ -308,15 +422,54 @@ MAKE_CHILD CALLED WITH PARENT: 5
 PARENT NAME: 5, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
+BLOCKED [8][5]
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | -2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -2 | 0 |
+
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | -2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -2 | 0 |
+
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+UNBLOCKED [8][5]
 
 PRINTING TUNNELS: PARENT: 8
 nbr_tunnels: 12
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
  1 | 4 | -3 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | -1 | 0 |
- 4 | 5 | 1 | 0 |
+ 4 | 5 | -2 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -1 | 0 |
@@ -328,15 +481,15 @@ MAKE_CHILD CALLED WITH PARENT: 8
 
 
 
-FOUND DEAD END RECURSION STOPS HERE
-
-
- 9 | 8 | 2 | 0 |
- 1 | 9 | 2 | 0 |
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:8
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
  1 | 4 | -3 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | -1 | 0 |
- 4 | 5 | 1 | 0 |
+ 4 | 5 | -2 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -1 | 0 |
@@ -344,11 +497,12 @@ FOUND DEAD END RECURSION STOPS HERE
  1 | 2 | 0 | -1 |
  1 | 3 | -3 | 0 |
 
+UNBLOCKED [8][4]
 
 PRINTING TUNNELS: PARENT: 8
 nbr_tunnels: 12
  9 | 8 | 1 | 0 |
- 1 | 9 | 1 | 0 |
+ 1 | 9 | -3 | 0 |
  1 | 4 | -2 | 0 |
  8 | 4 | -1 | 0 |
  8 | 5 | 0 | 0 |
@@ -369,7 +523,7 @@ FIND FAMILY CALLED WITH PARENT: 8, CHILD: 5
 PRINTING TUNNELS: PARENT: 5
 nbr_tunnels: 12
  9 | 8 | 1 | 0 |
- 1 | 9 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
  1 | 4 | -3 | 0 |
  8 | 4 | -2 | 0 |
  8 | 5 | -1 | 0 |
@@ -387,9 +541,23 @@ PARENT NAME: 5, CHILD NAME: 10
 
 
 
-FOUND THE END
+FOUND THE END IN MAKECHILD
+Child:10
+Parent:5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -4 | 0 |
+ 1 | 4 | -3 | 0 |
+ 8 | 4 | -2 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -2 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -2 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -3 | 0 |
 
-
+UNBLOCKED [9][8]
 
 PRINTING TUNNELS: PARENT: 8
 nbr_tunnels: 12
@@ -411,6 +579,7 @@ MAKE_CHILD CALLED WITH PARENT: 8
 PARENT NAME: 8, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 8, CHILD: 4
+BLOCKED [8][4]
  9 | 8 | -1 | 0 |
  1 | 9 | -1 | 0 |
  1 | 4 | 0 | 0 |
@@ -436,7 +605,7 @@ nbr_tunnels: 12
  1 | 9 | -2 | 0 |
  1 | 4 | 0 | 0 |
  8 | 4 | 1 | 0 |
- 8 | 5 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
  4 | 5 | 0 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -450,6 +619,45 @@ MAKE_CHILD CALLED WITH PARENT: 5
 PARENT NAME: 5, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 4
+BLOCKED [4][5]
+ 9 | 8 | -2 | 0 |
+ 1 | 9 | -2 | 0 |
+ 1 | 4 | 0 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+ 9 | 8 | -2 | 0 |
+ 1 | 9 | -2 | 0 |
+ 1 | 4 | 0 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+UNBLOCKED [4][5]
 
 PRINTING TUNNELS: PARENT: 4
 nbr_tunnels: 12
@@ -457,7 +665,7 @@ nbr_tunnels: 12
  1 | 9 | -3 | 0 |
  1 | 4 | 0 | 0 |
  8 | 4 | 1 | 0 |
- 8 | 5 | 1 | 0 |
+ 8 | 5 | -2 | 0 |
  4 | 5 | -1 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -471,11 +679,12 @@ MAKE_CHILD CALLED WITH PARENT: 4
 PARENT NAME: 4, CHILD NAME: 1
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 1
+BLOCKED [1][4]
  9 | 8 | -3 | 0 |
  1 | 9 | -3 | 0 |
  1 | 4 | 1 | 0 |
- 8 | 4 | 2 | 0 |
- 8 | 5 | 2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -2 | 0 |
  4 | 5 | -1 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -495,13 +704,13 @@ nbr_tunnels: 12
  9 | 8 | -4 | 0 |
  1 | 9 | -4 | 0 |
  1 | 4 | 1 | 0 |
- 8 | 4 | 2 | 0 |
- 8 | 5 | 2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -3 | 0 |
  4 | 5 | -2 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -2 | 0 |
- 4 | 3 | 1 | 0 |
+ 4 | 3 | -1 | 0 |
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
@@ -516,13 +725,13 @@ nbr_tunnels: 12
  9 | 8 | -5 | 0 |
  1 | 9 | -5 | 0 |
  1 | 4 | 1 | 0 |
- 8 | 4 | 2 | 0 |
- 8 | 5 | 2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -4 | 0 |
  4 | 5 | -3 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -3 | 0 |
- 4 | 3 | 1 | 0 |
+ 4 | 3 | -2 | 0 |
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
@@ -530,22 +739,23 @@ MAKE_CHILD CALLED WITH PARENT: 1
 
 
 
-FOUND DEAD END RECURSION STOPS HERE
-
-
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:1
  9 | 8 | -5 | 0 |
  1 | 9 | -5 | 0 |
  1 | 4 | 1 | 0 |
- 8 | 4 | 2 | 0 |
- 8 | 5 | 2 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -4 | 0 |
  4 | 5 | -3 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | -3 | 0 |
- 4 | 3 | 1 | 0 |
+ 4 | 3 | -2 | 0 |
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
+UNBLOCKED [1][4]
 
 PRINTING TUNNELS: PARENT: 1
 nbr_tunnels: 12
@@ -553,7 +763,7 @@ nbr_tunnels: 12
  1 | 9 | -4 | 0 |
  1 | 4 | -1 | 0 |
  8 | 4 | 1 | 0 |
- 8 | 5 | 1 | 0 |
+ 8 | 5 | -3 | 0 |
  4 | 5 | -2 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -574,7 +784,7 @@ nbr_tunnels: 12
  1 | 9 | -5 | 0 |
  1 | 4 | -2 | 0 |
  8 | 4 | 1 | 0 |
- 8 | 5 | 1 | 0 |
+ 8 | 5 | -4 | 0 |
  4 | 5 | -3 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -587,14 +797,14 @@ MAKE_CHILD CALLED WITH PARENT: 3
 
 
 
-FOUND DEAD END RECURSION STOPS HERE
-
-
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:3
  9 | 8 | -5 | 0 |
  1 | 9 | -5 | 0 |
  1 | 4 | -2 | 0 |
  8 | 4 | 1 | 0 |
- 8 | 5 | 1 | 0 |
+ 8 | 5 | -4 | 0 |
  4 | 5 | -3 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -603,6 +813,7 @@ FOUND DEAD END RECURSION STOPS HERE
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
+UNBLOCKED [8][4]
 
 PRINTING TUNNELS: PARENT: 4
 nbr_tunnels: 12
@@ -624,6 +835,7 @@ MAKE_CHILD CALLED WITH PARENT: 4
 PARENT NAME: 4, CHILD NAME: 1
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 1
+BLOCKED [1][4]
  9 | 8 | -2 | 0 |
  1 | 9 | -2 | 0 |
  1 | 4 | 1 | 0 |
@@ -642,8 +854,27 @@ MAKE_SIB CALLED WITH PARENT: 4
 PARENT NAME: 4, SIBLING NAME: 5
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
+BLOCKED [4][5]
+ 9 | 8 | -2 | 0 |
+ 1 | 9 | -2 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
 
-PRINTING TUNNELS: PARENT: 5
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 3
+
+PRINTING TUNNELS: PARENT: 3
 nbr_tunnels: 12
  9 | 8 | -3 | 0 |
  1 | 9 | -3 | 0 |
@@ -658,15 +889,87 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 1
+
+PRINTING TUNNELS: PARENT: 1
+nbr_tunnels: 12
+ 9 | 8 | -4 | 0 |
+ 1 | 9 | -4 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -3 | 0 |
+ 8 | 5 | -3 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -2 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+MAKE_CHILD CALLED WITH PARENT: 1
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:1
+ 9 | 8 | -4 | 0 |
+ 1 | 9 | -4 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -3 | 0 |
+ 8 | 5 | -3 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -2 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+UNBLOCKED [4][5]
+
+PRINTING TUNNELS: PARENT: 5
+nbr_tunnels: 12
+ 9 | 8 | -3 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -2 | 0 |
+ 8 | 5 | -2 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
 MAKE_CHILD CALLED WITH PARENT: 5
 
 PARENT NAME: 5, CHILD NAME: 10
 
 
 
-FOUND THE END
+FOUND THE END IN MAKECHILD
+Child:10
+Parent:5
+ 9 | 8 | -3 | 0 |
+ 1 | 9 | -3 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -2 | 0 |
+ 8 | 5 | -2 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
 
-
+UNBLOCKED [1][4]
 
 PRINTING TUNNELS: PARENT: 1
 nbr_tunnels: 12
@@ -708,9 +1011,9 @@ MAKE_CHILD CALLED WITH PARENT: 3
 
 
 
-FOUND DEAD END RECURSION STOPS HERE
-
-
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:3
  9 | 8 | -4 | 0 |
  1 | 9 | -4 | 0 |
  1 | 4 | -2 | 0 |
@@ -740,31 +1043,3 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
-ALL PATHS:
- -6 | 9 | 8 | 4 | 1 | 3 | -2 |
- -7 | 9 | 1 | 4 | 8 | 5 | 10 | -1 |
- -8 | 9 | 1 | 3 | 4 | 8 | 5 | 10 | -1 |
- -7 | 9 | 1 | 3 | 4 | 5 | 8 | -2 |
- -6 | 9 | 1 | 4 | 5 | 8 | -2 |
- -7 | 9 | 8 | 5 | 4 | 1 | 3 | -2 |
- -7 | 9 | 8 | 5 | 4 | 3 | 1 | -2 |
- -6 | 9 | 8 | 4 | 5 | 10 | -1 |
-
-
-
-ALL VALID PATHS - SORTED: 
-total:3
- -6 | 9 | 8 | 4 | 5 | 10 | -1 |
- -7 | 9 | 1 | 4 | 8 | 5 | 10 | -1 |
- -8 | 9 | 1 | 3 | 4 | 8 | 5 | 10 | -1 |
-
-L1-eight 
-L1-four L2-eight 
-L1-five L2-four L3-eight 
-L1-ten L2-five L3-four L4-eight 
-L2-ten L3-five L4-four L5-eight 
-L3-ten L4-five L5-four 
-L4-ten L5-five 
-L5-ten 
-
-printed:8, steps:7
