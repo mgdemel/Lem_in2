@@ -77,7 +77,7 @@ void		get_tunnel_int_arr(t_lem *lem);
 void		remove_deadends(t_lem *lem, int prev, int before);
 
 /* TREE_MAKING */
-int			find_parent_links(int parent, t_lem *lem);
+int			find_parent_links(int parent, t_lem *lem, int child);
 void		tree_creation(t_lem *lem);
 int			make_child(t_tree *parent, t_lem *lem);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);

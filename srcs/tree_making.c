@@ -18,6 +18,7 @@ void	distance_sibling(t_lem *lem, int object, int add_reduce)
 	int	i;
 
 	i = 0;
+	object = 1; // remove
 	if (add_reduce == 1)
 	{
 		while (i < lem->nbr_tunnels)
@@ -26,10 +27,10 @@ void	distance_sibling(t_lem *lem, int object, int add_reduce)
 				&& lem->tunnel_dir[i][1] != lem->e_room_index
 				&& lem->tunnel_dir[i][2] > 0)
 				lem->tunnel_dir[i][2]++;
-			else if ((lem->tunnel_dir[i][0] == object       //  <------------------- Smth here is blocking too many tunnels.
-				|| lem->tunnel_dir[i][1] == object)         //  <------------------- See testy2 map: when parent is 1, child is 3, 
-				&& lem->tunnel_dir[i][2] == 0 && lem->tunnel_dir[i][3] == 0)  // <-- tunnel 3-4 is blocked during DISTANCE CHILD PLUS
-				lem->tunnel_dir[i][2] = 1;
+			// else if ((lem->tunnel_dir[i][0] == object       //  <------------------- Smth here is blocking too many tunnels.
+			// 	|| lem->tunnel_dir[i][1] == object)         //  <------------------- See testy2 map: when parent is 1, child is 3, 
+			// 	&& lem->tunnel_dir[i][2] == 0 && lem->tunnel_dir[i][3] == 0)  // <-- tunnel 3-4 is blocked during DISTANCE CHILD PLUS
+			// 	lem->tunnel_dir[i][2] = 1;
 			i++;
 		}
 	}
@@ -84,7 +85,7 @@ void	distance_child(t_lem *lem, int object, int add_reduce)
 				lem->tunnel_dir[i][2]--;
 			else if ((lem->tunnel_dir[i][0] == object
 				|| lem->tunnel_dir[i][1] == object)
-				&& lem->tunnel_dir[i][2] >= 0 && lem->tunnel_dir[i][3] == 0)
+				&& lem->tunnel_dir[i][2] == 0 && lem->tunnel_dir[i][3] == 0)
 				lem->tunnel_dir[i][2] = -1;
 			i++;
 		}
@@ -121,71 +122,75 @@ void	add_reduce_dead_end(t_lem *lem, int add_reduce)
 void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 {
 	int tunnel;
+	int i;
 
 	tunnel = 0;
 	//TEST//
 	ft_printf("\nFIND FAMILY CALLED WITH PARENT: %d, CHILD: %d\n", parent->name, child->name);
 	//TEST//
-	if (find_parent_links(parent->name, lem) > 1)
+	i = find_parent_links(parent->name, lem, child->name);
+	if (i >= 0)
 	{
 		//TEST//
-		ft_printf("NOW WORKING WITH A SIB FROM PARENT %d\n", parent->name);
+	//	ft_printf("NOW WORKING WITH A SIB FROM PARENT %d\n", parent->name);
 		//TEST//
 
-		add_reduce_dead_end(lem, 1);
+	//	add_reduce_dead_end(lem, 1);
 		
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: ADD DEADENDS FOR SIBLING\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	ft_printf("\nPRINTING TUNNELS: ADD DEADENDS FOR SIBLING\n");
+	//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
-		remove_deadends(lem, 0, 0);
+	//	remove_deadends(lem, 0, 0);
 		
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: REMOVE DEADENDS FOR SIBLING\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	ft_printf("\nPRINTING TUNNELS: REMOVE DEADENDS FOR SIBLING\n");
+	//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 		
 		distance_sibling(lem, child->name, 1);
 
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	ft_printf("\nPRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG\n");
+	//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
-
+		lem->tunnel_dir[i][2] = 1;
+		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		lem->sib_name = make_sibling(child, parent, lem);
+		lem->tunnel_dir[i][2] = 0;
 		distance_sibling(lem, 0, -1);
 
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	ft_printf("\nPRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG\n");
+	//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
-		distance_special(lem, lem->sib_name);
+	//	distance_special(lem, lem->sib_name);
 
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: DISTANCE SPECIAL\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	ft_printf("\nPRINTING TUNNELS: DISTANCE SPECIAL\n");
+	//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
 		lem->sib_name = 0;
-		add_reduce_dead_end(lem, -1);
+	//	add_reduce_dead_end(lem, -1);
 
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: REDUCE DEADENDS FOR SIBLING\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	ft_printf("\nPRINTING TUNNELS: REDUCE DEADENDS FOR SIBLING\n");
+	//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
 	}
 	if (child->name != lem->e_room_index)  // <--------------- Removing deadend calls here makes 
 	{									   // <--------------- our program closest in efficiency yet 
-		// add_reduce_dead_end(lem, 1);    // <--------------- but we are still looping at the 9 map and map10 
+	//	add_reduce_dead_end(lem, 1);    // <--------------- but we are still looping at the 9 map and map10 
 
 		// //TEST//
 		// ft_printf("\nPRINTING TUNNELS: ADD DEADENDS FOR CHILD\n");
@@ -193,7 +198,7 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 		// print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		// //TEST//
 
-		// remove_deadends(lem, 0, 0);
+	//	remove_deadends(lem, 0, 0);
 
 		// //TEST//
 		// ft_printf("\nPRINTING TUNNELS: REMOVE DEADENDS FOR CHILD\n");
@@ -204,21 +209,23 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 		distance_child(lem, parent->name, 1);
 
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: DISTANCE CHILD PLUS FLAG\n");
+		ft_printf("\nPRINTING TUNNELS: PARENT: %d\n", child->name);
 		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
 		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
 		tunnel = make_child(child, lem);
+
+
 		distance_child(lem, 0, -1);
 
 		//TEST//
-		ft_printf("\nPRINTING TUNNELS: DISTANCE CHILD MINUS FLAG\n");
-		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+		// ft_printf("\nPRINTING TUNNELS: DISTANCE CHILD MINUS FLAG\n");
+		// ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+		// print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
-		// add_reduce_dead_end(lem, -1);
+	//	add_reduce_dead_end(lem, -1);
 
 		// //TEST//
 		// ft_printf("\nPRINTING TUNNELS: REDUCE DEADENDS FOR CHILD\n");
@@ -251,6 +258,7 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 		{
 			sibling->name = ft_strword(lem->tunnel_dir[j], parent->name);
 			sibling->parent = parent;
+			lem->tunnel_dir[j][2] = 1;
 			//TEST//
 			ft_printf("\nPARENT NAME: %d, SIBLING NAME: %d\n", parent->name, sibling->name);
 			//TEST//
@@ -298,9 +306,16 @@ int	make_child(t_tree *parent, t_lem *lem)
 		find_family(lem, parent, child);
 	}
 	if (child->name != 0 && child->name == lem->e_room_index)
+	{
 		lem->total_paths++;
+		ft_printf("\n\n\nFOUND THE END\n\n\n");
+	}
 	if (child->name == 0)
+	{
 		lem->end_trigger = 1;
+		ft_printf("\n\n\nFOUND DEAD END RECURSION STOPS HERE\n\n\n");
+		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	}
 	return (child->name);
 }
 

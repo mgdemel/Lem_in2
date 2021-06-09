@@ -176,8 +176,8 @@ void	get_tunnel_int_arr(t_lem *lem)
 	}
 	remove_duplicated(lem);
 	remove_deadends(lem, 0, 1);
-	ft_printf("\nPRINTING TUNNELS: AFTER DEADENDS\n");
-	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+//	ft_printf("\nPRINTING TUNNELS: AFTER DEADENDS\n");
+//	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
+//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 //	exit(1);
 }
