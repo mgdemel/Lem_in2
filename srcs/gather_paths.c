@@ -56,8 +56,9 @@ void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 			scan_paths(tree->sib, lem, lem->path, r);
 		}
 		r++;
-		tree = tree->child;
-		if (tree->name != 0 && tree->name == lem->e_room_index)
+		if (tree->name != lem->e_room_index)
+			tree = tree->child;
+		if (tree->name == lem->e_room_index)
 		{
 			get_room_num(tree, lem, r, i);
 			r++;
