@@ -160,7 +160,7 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 		//TEST//
 		lem->tunnel_dir[i][2] = 1;
 		ft_printf("BLOCKED [%d][%d]\n", lem->tunnel_dir[i][0], lem->tunnel_dir[i][1]);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		lem->sib_name = make_sibling(child, parent, lem);
 		lem->tunnel_dir[i][2] = 0;
 		ft_printf("UNBLOCKED [%d][%d]\n", lem->tunnel_dir[i][0], lem->tunnel_dir[i][1]);
@@ -213,7 +213,7 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 		//TEST//
 		ft_printf("\nPRINTING TUNNELS: PARENT: %d\n", child->name);
 		ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		//TEST//
 
 		tunnel = make_child(child, lem);
@@ -274,13 +274,13 @@ int	make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 		lem->total_paths++;
 		ft_printf("\n\n\nFOUND END IN MAKE SIBLING RECURSION STOPS HERE\n");
 		ft_printf("Sibling:%d\nParent:%d\n", sibling->name, parent->name);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	}
 	if (sibling->name != 0)
 		find_family(lem, parent, sibling);
 	if (sibling->name == 0)   // sibling name should never be 0 as we already check for multiple in find family
 	{						 // so this test was to see if too much is blocked
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 		ft_printf("WRONG\n");
 		exit (1);
 	}
@@ -313,7 +313,7 @@ int	make_child(t_tree *parent, t_lem *lem)
 					//TEST//
 				break ;
 			}
-		}
+		}	
 		j++;
 	}
 	if (child->name != 0 && child->name != lem->e_room_index)
@@ -325,14 +325,14 @@ int	make_child(t_tree *parent, t_lem *lem)
 		lem->total_paths++;
 		ft_printf("\n\n\nFOUND THE END IN MAKECHILD\n");
 		ft_printf("Child:%d\nParent:%d\n", child->name, parent->name);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	}
 	if (child->name == 0)
 	{
 		lem->end_trigger = 1;
 		ft_printf("\n\n\n***----->FOUND DEAD END IN MAKECHILD<-----***\n");
 		ft_printf("Child:%d\nParent:%d\n", child->name, parent->name);
-		print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+	//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	}
 	return (child->name);
 }
@@ -347,5 +347,5 @@ void	tree_creation(t_lem *lem)
 	make_child(lem->tree, lem);
 	ft_printf("\nPRINTING TUNNELS: END OF TREE_CREATION\n");
 	ft_printf("nbr_tunnels: %d\n", lem->nbr_tunnels);
-	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 }

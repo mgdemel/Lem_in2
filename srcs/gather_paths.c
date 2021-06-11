@@ -79,4 +79,5 @@ void	create_path_arr(t_lem *lem)
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
 	scan_paths(start, lem, 0, 0);
+	ft_printf("Seggy?\n");
 }
