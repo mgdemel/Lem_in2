@@ -631,3 +631,24 @@ testy2 our program:
 |    |
 |    10
 3
+
+
+
+
+Change idea:
+
+We find a number that is >= 0 for which index is the sibling in find_parent_links (tree_making 132).
+What if we do the same for make_child? So we don't need to use negative numbers adding up
+for each blocked index.
+
+So if we return negative numbers if find_parent_links we can use those as indexes for which
+tunnel needs to be blocked and then unblocked after recursion.
+
+lem->tunnel_dir[i][2] = -1;
+make_child(child, lem);
+lem->tunnel_dir[i][2] = 0;
+
+This is how the code would look like just like make_sibling.
+
+This wont work immediately but this should open it up even more as the sibling one did (check how many
+paths we get now in testy2). Hoping this is at least the last step for accuracy.
