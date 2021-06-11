@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:27:33 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/02/07 12:18:52 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:54:36 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	size_t			content_size;
@@ -36,7 +36,7 @@ char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strnstr(const char *haystack, const char *needle,
-					size_t len);
+						size_t len);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

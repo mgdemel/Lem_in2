@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:35:06 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/03/12 17:00:49 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:54:57 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	while (s1[i])
 		i++;
-	if (!(tmp = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
+	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	i = 0;
 	while (s1[i])
 	{

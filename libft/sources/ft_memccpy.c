@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 16:33:15 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:03:05 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:17:12 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	{
 		cpy[i] = srccpy[i];
 		if (srccpy[i] == (unsigned char)c)
-			return ((void*)dst + i + 1);
+			return ((void *)dst + i + 1);
 		++i;
 	}
 	return (NULL);

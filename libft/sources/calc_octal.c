@@ -6,15 +6,15 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 12:33:27 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 18:26:37 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:29:16 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static int		get_oct_len(unsigned long long num)
+static int	get_oct_len(unsigned long long num)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (num > 0)
@@ -25,7 +25,7 @@ static int		get_oct_len(unsigned long long num)
 	return (i);
 }
 
-static char		*oct_stringrev(char *oct)
+static char	*oct_stringrev(char *oct)
 {
 	int		i;
 	int		len;
@@ -44,7 +44,7 @@ static char		*oct_stringrev(char *oct)
 	return (oct);
 }
 
-char			*calc_octal(unsigned long long decimal)
+char	*calc_octal(unsigned long long decimal)
 {
 	unsigned long long	octal;
 	unsigned long long	multiplier;

@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 18:19:35 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 22:07:17 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:06:00 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long double	ftoa_helper(char *big)
 {
-	long double f;
+	long double	f;
 
 	f = 0;
 	while (*big)
@@ -26,9 +26,9 @@ long double	ftoa_helper(char *big)
 	return (f);
 }
 
-int			count_big_f(long double f)
+int	count_big_f(long double f)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (f > 1)
@@ -44,7 +44,7 @@ int			count_big_f(long double f)
 
 long double	ten_pow(int pow)
 {
-	long double f;
+	long double	f;
 
 	f = 1;
 	while (pow > 0)
@@ -60,7 +60,7 @@ long double	ten_pow(int pow)
 	return (f);
 }
 
-char		*big_f(long double f)
+char	*big_f(long double f)
 {
 	char		*s;
 	char		*ptr;
@@ -69,8 +69,7 @@ char		*big_f(long double f)
 	long double	temp;
 
 	count = count_big_f(f);
-	if (!(s = (char *)ft_memalloc(count + 1)))
-		return (NULL);
+	s = (char *)ft_memalloc(count + 1);
 	ptr = s;
 	while (count)
 	{
@@ -88,20 +87,23 @@ char		*big_f(long double f)
 	return (s);
 }
 
-char		*small_f(long double f, int p, char *big)
+char	*small_f(long double f, int p, char *big)
 {
 	char	*s;
 	int		i;
 
 	i = 0;
-	f = f < 0 ? -f : f;
+	if (f < 0)
+		f *= -f;
 	f -= ftoa_helper(big);
-	if (!(s = (char *)ft_memalloc(p + 1)))
-		return (NULL);
+	s = (char *)ft_memalloc(p + 1);
 	while (i < p)
 	{
 		f *= 10;
-		s[i++] = (f > 0) ? (int)f + '0' : '0';
+		if (f > 0)
+			s[i++] = (int)f + '0';
+		else
+			s[i++] = '0';
 		f -= (int)f;
 	}
 	return (s);

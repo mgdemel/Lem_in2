@@ -6,15 +6,15 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 13:19:35 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/03/20 12:41:18 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:00:11 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static int		counters(char const *s)
+static int	counters(char const *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
@@ -22,11 +22,11 @@ static int		counters(char const *s)
 	return (i);
 }
 
-static int		fn(char const *s)
+static int	fn(char const *s)
 {
-	int i;
-	int j;
-	int x;
+	int	i;
+	int	j;
+	int	x;
 
 	x = 0;
 	j = 0;
@@ -46,9 +46,9 @@ static int		fn(char const *s)
 	return (x);
 }
 
-static int		countere(char const *s)
+static int	countere(char const *s)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(s);
 	while (s[i - 1] == ' ' || s[i - 1] == '\n' || s[i - 1] == '\t')
@@ -56,7 +56,7 @@ static int		countere(char const *s)
 	return (i);
 }
 
-char			*ft_strtrim(char const *s)
+char	*ft_strtrim(char const *s)
 {
 	char	*new;
 	int		c;
@@ -68,8 +68,7 @@ char			*ft_strtrim(char const *s)
 	i = counters(s);
 	j = 0;
 	c = countere(s);
-	if (!(new = (char *)malloc(sizeof(char) * (ft_strlen(s) - n) + 1)))
-		return (NULL);
+	new = (char *)malloc(sizeof(char) * (ft_strlen(s) - n) + 1);
 	while (s[i] != '\0' && i < c)
 	{
 		new[j] = s[i];

@@ -6,13 +6,13 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 11:24:26 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 22:28:13 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:57:48 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int		flag_short_or_long(t_ftprintf *flags, char first, char second)
+int	flag_short_or_long(t_ftprintf *flags, char first, char second)
 {
 	if (first == 'h')
 	{
@@ -47,7 +47,7 @@ int		flag_short_or_long(t_ftprintf *flags, char first, char second)
 **	so we save the number in the struct flags.
 */
 
-int		flag_dot(const char *copy, int i, t_ftprintf *flags, va_list args)
+int	flag_dot(const char *copy, int i, t_ftprintf *flags, va_list args)
 {
 	i++;
 	if (copy[i] == '*')

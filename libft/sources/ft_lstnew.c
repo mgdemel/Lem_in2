@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 15:15:50 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:03:13 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:40:56 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list	*newlist;
 
-	if (!(newlist = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
+	newlist = (t_list *)malloc(sizeof(t_list));
 	if (content == NULL)
 	{
 		newlist->content = NULL;
@@ -25,11 +24,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(newlist->content = (void *)malloc(sizeof(size_t) * content_size)))
-		{
-			free(newlist);
-			return (NULL);
-		}
+		newlist->content = (void *)malloc(sizeof(size_t) * content_size);
 		ft_memcpy(newlist->content, content, content_size);
 		newlist->content_size = content_size;
 	}

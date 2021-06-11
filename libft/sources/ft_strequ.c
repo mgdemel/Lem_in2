@@ -6,13 +6,13 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 17:01:23 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/02/07 13:22:28 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:47:57 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strequ(char const *s1, char const *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i] || s2[i])

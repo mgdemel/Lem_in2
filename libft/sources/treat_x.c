@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 11:58:44 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 21:55:36 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:01:02 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	minus_off(char *hexa, t_ftprintf *flags, intmax_t x, int hashed)
 
 static void	treat_x_putchar(char *hexa, t_ftprintf *flags, uintmax_t x)
 {
-	int hashed;
+	int	hashed;
 
 	hashed = 0;
 	minus_on(hexa, flags, x);
@@ -74,7 +74,7 @@ static void	treat_x_putchar(char *hexa, t_ftprintf *flags, uintmax_t x)
 	minus_off(hexa, flags, x, hashed);
 }
 
-int			treat_x(uintmax_t x, t_ftprintf *flags)
+int	treat_x(uintmax_t x, t_ftprintf *flags)
 {
 	char	*hexa;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 10:11:32 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 21:53:18 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:27:01 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static void	treat_o_putchar(char *octal, t_ftprintf *flags, int o)
 	minus_off(octal, flags, o);
 }
 
-int			treat_o(unsigned long long o, t_ftprintf *flags)
+int	treat_o(unsigned long long o, t_ftprintf *flags)
 {
-	char *octal;
+	char	*octal;
 
 	if (o == 0 && flags->dot == -1)
 	{

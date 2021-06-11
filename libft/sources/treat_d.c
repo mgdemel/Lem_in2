@@ -6,13 +6,13 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 10:10:38 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 21:52:37 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:10:15 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-void			put_part_d(int i, char *num, t_ftprintf *flags)
+void	put_part_d(int i, char *num, t_ftprintf *flags)
 {
 	if ((i < 0 || flags->isneg == 1) && flags->dot >= 0)
 	{
@@ -28,7 +28,7 @@ void			put_part_d(int i, char *num, t_ftprintf *flags)
 	putstrprecision(num, ft_strlen(num), flags);
 }
 
-void			treat_d_putchar(char *num, int i, t_ftprintf *flags)
+void	treat_d_putchar(char *num, int i, t_ftprintf *flags)
 {
 	if (flags->minus == 1)
 		put_part_d(i, num, flags);
@@ -63,12 +63,12 @@ static intmax_t	negative(intmax_t arg, t_ftprintf *flags)
 	return (arg);
 }
 
-int				treat_d(intmax_t arg, t_ftprintf *flags)
+int	treat_d(intmax_t arg, t_ftprintf *flags)
 {
-	char *num;
+	char	*num;
 
 	if (flags->space == 1 && arg >= 0 && flags->plus != 1 && (flags->star == 1
-	|| (flags->dot == -1 && flags->star == 0)))
+			|| (flags->dot == -1 && flags->star == 0)))
 	{
 		putstrprecision(" ", 1, flags);
 		flags->width--;

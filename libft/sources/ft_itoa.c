@@ -6,15 +6,15 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 11:36:49 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:03:32 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:53:18 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static int		checkln(int n)
+static int	checkln(int n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n == 0)
@@ -32,13 +32,13 @@ static int		checkln(int n)
 	return (len);
 }
 
-static int		negat(int n)
+static int	negat(int n)
 {
 	n = n * -1;
 	return (n);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*new;
 	int		i;
@@ -47,8 +47,7 @@ char			*ft_itoa(int n)
 	i = checkln(n);
 	if (n == -2147483648)
 		return (new = ft_strdup("-2147483648"));
-	if (!(new = (char *)malloc(sizeof(char) * i + 1)))
-		return (NULL);
+	new = (char *)malloc(sizeof(char) * i + 1);
 	new[i--] = '\0';
 	if (n == 0)
 		new[0] = '0';

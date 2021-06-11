@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 13:50:39 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:03:03 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:11:14 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (n--)
 	{
 		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return (&((void*)s)[i]);
+			return (&((void *)s)[i]);
 		i++;
 	}
 	return (NULL);

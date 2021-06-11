@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 14:26:21 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/29 13:48:31 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:54:23 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 **	STRUCTS
 */
 
-typedef struct	s_ftprintf
+typedef struct s_ftprintf
 {
 	int			percentages;
 	int			char_count;
@@ -61,7 +61,7 @@ void			init_flags(t_ftprintf *flags);
 int				is_f(int c);
 int				is_t(int c);
 int				flag_dot(const char *copy, int start, t_ftprintf *flags,
-va_list args);
+					va_list args);
 void			flag_width(va_list args, t_ftprintf *flags);
 void			flag_digit(char c, t_ftprintf *flags);
 void			flag_minus(t_ftprintf *flags);
@@ -72,7 +72,7 @@ intmax_t		typecast_uoxx(t_ftprintf *flags, va_list args);
 void			treat_string(char *str, t_ftprintf *flags);
 void			treat_char(char c, t_ftprintf *flags);
 void			treat_width(int width, int minus, int if_zero,
-t_ftprintf *flags);
+					t_ftprintf *flags);
 int				treat_d(intmax_t arg, t_ftprintf *flags);
 void			putstrprecision(char *str, int precision, t_ftprintf *flags);
 int				treat_u(unsigned long long u, t_ftprintf *flags);

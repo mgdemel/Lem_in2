@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 14:39:49 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/30 10:56:13 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:48:40 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 intmax_t	typecast_uoxx(t_ftprintf *flags, va_list args)
 {
-	intmax_t num;
+	intmax_t	num;
 
 	if (flags->short_h == 1)
 		num = (unsigned short int)va_arg(args, unsigned int);

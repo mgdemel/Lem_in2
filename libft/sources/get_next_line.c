@@ -6,13 +6,13 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:01:51 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:00:46 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:23:35 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/get_next_line.h"
 
-static int			get_newline(char **s, char **line)
+static int	get_newline(char **s, char **line)
 {
 	int		len;
 	char	*temp;
@@ -22,10 +22,8 @@ static int			get_newline(char **s, char **line)
 		len++;
 	if ((*s)[len] == '\n')
 	{
-		if ((*line = ft_strsub(*s, 0, len)) == NULL)
-			return (-1);
-		if ((temp = ft_strdup(&((*s)[len + 1]))) == NULL)
-			return (-1);
+		*line = ft_strsub(*s, 0, len);
+		temp = ft_strdup(&((*s)[len + 1]));
 		free(*s);
 		*s = temp;
 		if ((*s)[0] == '\0')
@@ -33,14 +31,13 @@ static int			get_newline(char **s, char **line)
 	}
 	else
 	{
-		if ((*line = ft_strdup(*s)) == NULL)
-			return (-1);
+		*line = ft_strdup(*s);
 		ft_strdel(s);
 	}
 	return (1);
 }
 
-static int			find_newline(const char *s)
+static int	find_newline(const char *s)
 {
 	while (*s)
 	{
@@ -53,7 +50,7 @@ static int			find_newline(const char *s)
 	return (1);
 }
 
-static int			check_end(int ret, char **s, int fd, char **line)
+static int	check_end(int ret, char **s, int fd, char **line)
 {
 	if (ret < 0)
 		return (-1);
@@ -68,27 +65,28 @@ static int			check_end(int ret, char **s, int fd, char **line)
 **	by another function.
 */
 
-int					get_next_line(const int fd, char **line)
+int	get_next_line(const int fd, char **line)
 {
-	static char *s[4864];
+	static char	*s[4864];
 	char		buff[BUFF_SIZE + 1];
 	int			ret;
 	char		*tmp;
 
+	ret = 1;
 	if (fd < 0 || line == NULL || fd > 4864)
 		return (-1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
+	while (ret > 0)
 	{
+		ret = read(fd, buff, BUFF_SIZE);
 		buff[ret] = '\0';
 		if (s[fd] != NULL)
 		{
-			if ((tmp = ft_strjoin(s[fd], buff)) == NULL)
-				return (-1);
+			tmp = ft_strjoin(s[fd], buff);
 			free(s[fd]);
 			s[fd] = tmp;
 		}
-		else if ((s[fd] = ft_strdup(buff)) == NULL)
-			return (-1);
+		else
+			s[fd] = ft_strdup(buff);
 		if (find_newline(s[fd]) == 0)
 			break ;
 	}

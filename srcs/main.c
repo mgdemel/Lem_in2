@@ -40,10 +40,7 @@ int	main(void)
 	sort_paths(lem);
 	flow_management(lem);
 	output(lem);
-	//while (1);
 	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
 	free_tree(lem->tree, lem);
-	//free_room(lem->all_rooms);
-	//free_lem(lem);
 	return (0);
 }

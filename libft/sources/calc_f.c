@@ -6,15 +6,15 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 12:00:21 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 18:31:22 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:44:50 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int		block_len_f(char *big_s, t_ftprintf *flags)
+int	block_len_f(char *big_s, t_ftprintf *flags)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(big_s) + flags->dot2;
 	if (flags->dot2 > 0 || flags->hash)
@@ -35,22 +35,27 @@ void	write_padding(int len, char c)
 
 void	pad_block_f(int len, t_ftprintf *flags, int seg)
 {
-	if (!flags->zero && !flags->minus && flags->width >
-		len && seg == 1)
+	if (!flags->zero && !flags->minus && flags->width
+		> len && seg == 1)
 		write_padding(flags->width - len, ' ');
-	else if (!flags->zero && flags->minus && flags->width >
-		len && seg == 2)
+	else if (!flags->zero && flags->minus && flags->width
+		> len && seg == 2)
 		write_padding(flags->width - len, ' ');
 	else if (seg == 0)
 	{
 		if (flags->zero && flags->width)
-			write_padding(flags->width > len ? flags->width - len : 0, '0');
+		{
+			if (flags->width > len)
+				write_padding(flags->width - len, '0');
+			else
+				write_padding(0, '0');
+		}
 	}
 }
 
 void	write_f(t_ftprintf *flags, char sign, char *big, char *small)
 {
-	int len;
+	int	len;
 
 	len = block_len_f(big, flags);
 	pad_block_f(len, flags, 1);
@@ -78,7 +83,8 @@ void	fltoascii(long double f, t_ftprintf *flags)
 		flags->dot2 = 6;
 	else
 		flags->dot2 = flags->dot;
-	f = f < 0 ? -f : f;
+	if (f < 0)
+		f *= -f;
 	big = big_f(f);
 	small = small_f(f, flags->dot2, big);
 	small = increase_last(small, flags);

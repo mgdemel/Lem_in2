@@ -6,21 +6,21 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 14:49:47 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/10/22 10:32:23 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:53:53 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	int sign;
-	int result;
+	int	i;
+	int	sign;
+	int	result;
 
 	sign = 1;
 	i = 0;
 	result = 0;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
-			|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{

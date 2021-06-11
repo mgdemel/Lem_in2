@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 12:20:21 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/08/20 13:06:51 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:33:04 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*hex_stringrev(char *hex)
 
 static int	get_hex_length(intmax_t n)
 {
-	int length;
+	int	length;
 
 	length = 0;
 	while (n > 0)
@@ -75,7 +75,7 @@ static char	*calc_hex(uintmax_t n, t_ftprintf *flags)
 	return (hex);
 }
 
-char		*decimal_to_hexa(uintmax_t n, t_ftprintf *flags)
+char	*decimal_to_hexa(uintmax_t n, t_ftprintf *flags)
 {
 	char	*hexdecnum;
 

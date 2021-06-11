@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 11:36:51 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 21:51:10 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:13:01 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	putstrprecision(char *str, int precision, t_ftprintf *flags)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && i < precision)

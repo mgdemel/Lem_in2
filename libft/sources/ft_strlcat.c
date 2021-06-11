@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:41:14 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:01:39 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:55:48 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t sized;
-	size_t sizes;
+	size_t	sized;
+	size_t	sizes;
 
 	sized = ft_strlen(dst);
 	sizes = ft_strlen(src);

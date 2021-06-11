@@ -6,14 +6,14 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 16:53:15 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/08/03 12:37:05 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:48:36 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include <stdio.h>
 
-static void			put_part_f(int i, char *num, t_ftprintf *flags)
+static void	put_part_f(int i, char *num, t_ftprintf *flags)
 {
 	if (i < 0 && flags->dot >= 0)
 		ft_putchar('-');
@@ -22,7 +22,7 @@ static void			put_part_f(int i, char *num, t_ftprintf *flags)
 	putstrprecision(num, ft_strlen(num), flags);
 }
 
-static void			treat_f_putchar(char *num, int i, t_ftprintf *flags)
+static void	treat_f_putchar(char *num, int i, t_ftprintf *flags)
 {
 	if (flags->minus == 1)
 		put_part_f(i, num, flags);
@@ -47,7 +47,7 @@ static void			treat_f_putchar(char *num, int i, t_ftprintf *flags)
 	free(num);
 }
 
-int					treat_f(char *arg, t_ftprintf *flags, double n)
+int	treat_f(char *arg, t_ftprintf *flags, double n)
 {
 	if (flags->space == 1 && arg >= 0 && flags->plus != 1 && flags->dot < 0)
 		putstrprecision(" ", 1, flags);

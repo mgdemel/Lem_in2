@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:22:55 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:01:21 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:42:32 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < len && src[i] != '\0')

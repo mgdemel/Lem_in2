@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/01 14:24:29 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/03/25 12:18:12 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:32:46 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ static int	flag_ifs(const char *copy, int i, t_ftprintf *flags, va_list args)
 		flag_minus(flags);
 	if (copy[i] == '*')
 		flag_width(args, flags);
-	if (copy[i] == 'h' || copy[i] == 'l' ||
-	(copy[i] == 'L' && copy[i + 1] == 'f') || copy[i] == 'j' || copy[i] == 'L')
+	if (copy[i] == 'h' || copy[i] == 'l'
+		|| (copy[i] == 'L' && copy[i + 1] == 'f') || copy[i] == 'j'
+		|| copy[i] == 'L')
 		i += flag_short_or_long(flags, copy[i], copy[i + 1]);
 	if (copy[i] == '#')
 		flags->hash = 1;
@@ -42,8 +43,7 @@ static int	flag_ifs(const char *copy, int i, t_ftprintf *flags, va_list args)
 	return (i);
 }
 
-int			flag_parsing(const char *copy, int i, t_ftprintf *flags,
-va_list args)
+int	flag_parsing(const char *copy, int i, t_ftprintf *flags, va_list args)
 {
 	while (copy[i])
 	{
@@ -74,7 +74,7 @@ va_list args)
 **	continue the loop.
 */
 
-int			found_percentage(const char *copy, va_list args, t_ftprintf *p,
+int	found_percentage(const char *copy, va_list args, t_ftprintf *p,
 int i)
 {
 	i = flag_parsing(copy, (i + 1), p, args);
@@ -88,7 +88,7 @@ int i)
 	return (i);
 }
 
-int			handle_copy(const char *copy, va_list args, t_ftprintf *p)
+int	handle_copy(const char *copy, va_list args, t_ftprintf *p)
 {
 	int			i;
 	int			len;
@@ -124,7 +124,7 @@ int			handle_copy(const char *copy, va_list args, t_ftprintf *p)
 **	and free the copy in the end before returning.
 */
 
-int			ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	const char	*copy;
 	va_list		args;
@@ -132,8 +132,7 @@ int			ft_printf(const char *format, ...)
 	int			characters;
 
 	copy = ft_strdup(format);
-	if (!(p = (t_ftprintf*)malloc(sizeof(t_ftprintf))))
-		return (-1);
+	p = (t_ftprintf *)malloc(sizeof(t_ftprintf));
 	initialize(p);
 	va_start(args, format);
 	characters = handle_copy(copy, args, p);

@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 10:43:24 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 21:54:27 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:43:28 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ static void	treat_u_putchar(char *u, t_ftprintf *flags)
 	}
 }
 
-int			treat_u(unsigned long long u, t_ftprintf *flags)
+int	treat_u(unsigned long long u, t_ftprintf *flags)
 {
-	char *unlong;
+	char	*unlong;
 
 	if (flags->dot == 0 && u == 0)
 	{

@@ -6,15 +6,15 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 18:16:52 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 22:01:10 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:50:16 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-char		*increase_last(char *str, t_ftprintf *flags)
+char	*increase_last(char *str, t_ftprintf *flags)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -37,13 +37,12 @@ char		*increase_last(char *str, t_ftprintf *flags)
 	return (str);
 }
 
-char		*ft_addchar(char c, char *str)
+char	*ft_addchar(char c, char *str)
 {
 	size_t	i;
 	char	*new;
 
-	if (!(new = (char *)malloc(sizeof(char) * ft_strlen(str) + 1)))
-		return (NULL);
+	new = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
 	new[ft_strlen(str)] = '\0';
 	new[0] = c;
 	i = 1;
@@ -56,9 +55,9 @@ char		*ft_addchar(char c, char *str)
 	return (new);
 }
 
-char		*increase_last_big(char *str)
+char	*increase_last_big(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -79,14 +78,14 @@ char		*increase_last_big(char *str)
 	return (str);
 }
 
-int			is_not_str(char *str)
+int	is_not_str(char *str)
 {
 	return ((str[ft_strlen(str) - 1] - '0') % 2);
 }
 
-char		set_sign_f(long double f, t_ftprintf *flags)
+char	set_sign_f(long double f, t_ftprintf *flags)
 {
-	char sign;
+	char	sign;
 
 	if (flags->space == 1)
 		sign = ' ';

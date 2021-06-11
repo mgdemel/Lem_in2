@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:53:48 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:01:30 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:00:46 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	if (s == NULL || f == NULL)
 		return (NULL);
-	if (!(str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1)))
-		return (NULL);
+	str = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
 	i = 0;
 	while (s[i] != '\0')
 	{

@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:07:01 by lvasanoj          #+#    #+#             */
-/*   Updated: 2021/01/28 14:03:08 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:25:18 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	*ft_memalloc(size_t size)
 {
-	void *ptr;
+	void	*ptr;
 
-	if (!(ptr = (void *)malloc(size)))
-		return (NULL);
+	ptr = (void *)malloc(size);
 	if (size)
 	{
 		ft_bzero(ptr, size);

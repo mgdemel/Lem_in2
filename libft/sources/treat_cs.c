@@ -6,13 +6,13 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/19 11:40:48 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/08/22 10:33:12 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:26:41 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-void		treat_char(char c, t_ftprintf *flags)
+void	treat_char(char c, t_ftprintf *flags)
 {
 	if (flags->minus == 1)
 		ft_putchar(c);
@@ -33,7 +33,7 @@ static void	putstr_part(char *str, t_ftprintf *flags)
 		putstrprecision(str, ft_strlen(str), flags);
 }
 
-void		treat_string(char *str, t_ftprintf *flags)
+void	treat_string(char *str, t_ftprintf *flags)
 {
 	if (!str)
 		str = "(null)";

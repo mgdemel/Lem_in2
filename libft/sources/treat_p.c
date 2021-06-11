@@ -6,7 +6,7 @@
 /*   By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 14:24:47 by lvasanoj          #+#    #+#             */
-/*   Updated: 2020/09/01 21:53:41 by lvasanoj         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:41:10 by lvasanoj         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static void	treat_p_putchar(char *str, t_ftprintf *flags)
 		putstrprecision(str, ft_strlen(str), flags);
 }
 
-int			treat_p(unsigned long long p, t_ftprintf *flags)
+int	treat_p(unsigned long long p, t_ftprintf *flags)
 {
-	char *ptr;
+	char	*ptr;
 
 	if (p == 0 && flags->dot == 0)
 	{
