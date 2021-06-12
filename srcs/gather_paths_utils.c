@@ -5,6 +5,7 @@ void	arr_row_size(t_tree *start, t_lem *lem)
 	t_tree	*tree;
 
 	tree = start;
+	ft_printf("%d\n", tree->name);
 	while (tree->name != lem->e_room_index && tree->name != 0)
 	{
 		if (tree->sib != NULL)
@@ -12,6 +13,7 @@ void	arr_row_size(t_tree *start, t_lem *lem)
 			lem->max_paths++;
 			arr_row_size(tree->sib, lem);
 		}
+		ft_printf("%d\n", tree->name);
 		tree = tree->child;
 		if (tree->name == 0)
 			break ;

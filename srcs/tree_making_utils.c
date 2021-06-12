@@ -9,12 +9,11 @@ int	find_parent_links(int parent, t_lem *lem, int child)
 	// return -1 in case of no sibling, return 0-whatever when finding a sibling
 
 	int	i;
-	int	t;
 	int save;
 
 	i = 0;
 	save = 0;
-	t = 0;
+	lem->links_found = 0;
 	while (i < lem->nbr_tunnels)
 	{
 		if (lem->tunnel_dir[i][2] != 0 || lem->tunnel_dir[i][3] != 0)
@@ -25,15 +24,17 @@ int	find_parent_links(int parent, t_lem *lem, int child)
 		{
 			if (ft_strword(lem->tunnel_dir[i], child))
 				save = i;
-			t++;
+			lem->links_found++;
 			i++;
 		}
 		else
 			i++;
 	}
 	i = 0;
-	if (t > 1)
+	if (lem->links_found > 1)
 		return (save);
+	else
+		return (-save);
 	return (-1);
 }
 

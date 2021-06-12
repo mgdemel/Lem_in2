@@ -38,6 +38,7 @@ typedef struct s_lem
 	int				printed;
 	int 			end_trigger;
 	int				end_trigger2;
+	int				links_found;
 }					t_lem;
 
 typedef struct s_tree

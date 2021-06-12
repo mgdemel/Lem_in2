@@ -42,6 +42,7 @@ void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 
 	prev_index = r;
 	tree = start;
+	ft_printf("COOL\n");
 	while (tree->name != 0)
 	{
 		get_room_num(tree, lem, r, i);
@@ -73,8 +74,10 @@ void	create_path_arr(t_lem *lem)
 {
 	t_tree	*start;
 
+	ft_printf("Seggy?\n");
 	start = lem->tree;
 	arr_row_size(start, lem);
+	ft_printf("Seggy?\n");
 	lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths);
 	lem->all_paths[0] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
