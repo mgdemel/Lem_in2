@@ -315,7 +315,7 @@ int	make_child(t_tree *parent, t_lem *lem)
 					//TEST//
 				break ;
 			}
-		}	
+		}
 		j++;
 	}
 	if (child->name != 0 && child->name != lem->e_room_index)
