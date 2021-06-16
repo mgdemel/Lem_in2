@@ -32,7 +32,7 @@ void	copy_col(int r, t_lem *lem, int array, int name)
 		lem->all_paths[array][i] = new[i];
 		i++;
 	}
-	lem->test_stopper++;
+	//lem->test_stopper++;
 }
 
 void	scan_paths(t_tree *start, t_lem *lem, int i, int r)

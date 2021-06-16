@@ -5,19 +5,22 @@ void	arr_row_size(t_tree *start, t_lem *lem)
 	t_tree	*tree;
 
 	tree = start;
-	ft_printf("%d\n", tree->name);
-	while (tree->name != lem->e_room_index && tree->name != 0)
+	ft_printf("sibling: %d\n", tree->name);
+	while (tree->name != 0)
 	{
 		if (tree->sib != NULL)
 		{
 			lem->max_paths++;
 			arr_row_size(tree->sib, lem);
 		}
-		ft_printf("%d\n", tree->name);
-		tree = tree->child;
-		if (tree->name == 0)
+		if (tree->name != lem->e_room_index)
+			tree = tree->child;
+		ft_printf("child: %d\n", tree->name);
+	
+		if (tree->name == 0 || tree->name == lem->e_room_index)
 			break ;
 	}
+	ft_printf("ENDING LOOP\n");
 }
 
 void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)

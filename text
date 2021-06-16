@@ -28,6 +28,7 @@ MAKE_CHILD CALLED WITH PARENT: 9
 PARENT NAME: 9, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 9, CHILD: 8
+child name: 8, parent name: 9 i: 0, links found: 2
 
 PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 nbr_tunnels: 12
@@ -50,29 +51,17 @@ MAKE_SIB CALLED WITH PARENT: 9
 PARENT NAME: 9, SIBLING NAME: 1
 
 FIND FAMILY CALLED WITH PARENT: 9, CHILD: 1
+child name: 1, parent name: 9 i: -1, links found: 1
 
 PRINTING TUNNELS: PARENT: 1
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
 i:-1
-Before
+BLOCKED [1][9]
 MAKE_CHILD CALLED WITH PARENT: 1
 
 PARENT NAME: 1, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 1, CHILD: 4
+child name: 4, parent name: 1 i: 2, links found: 2
 
 PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 nbr_tunnels: 12
@@ -95,52 +84,27 @@ MAKE_SIB CALLED WITH PARENT: 1
 PARENT NAME: 1, SIBLING NAME: 3
 
 FIND FAMILY CALLED WITH PARENT: 1, CHILD: 3
+child name: 3, parent name: 1 i: -11, links found: 1
 
 PRINTING TUNNELS: PARENT: 3
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
 i:-11
-Before
+BLOCKED [1][3]
 MAKE_CHILD CALLED WITH PARENT: 3
 
 PARENT NAME: 3, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 3, CHILD: 4
+child name: 4, parent name: 3 i: -9, links found: 1
 
 PRINTING TUNNELS: PARENT: 4
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | -1 | 0 |
-
 i:-9
-Before
+BLOCKED [4][3]
 MAKE_CHILD CALLED WITH PARENT: 4
 
 PARENT NAME: 4, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 8
+child name: 8, parent name: 4 i: 3, links found: 2
 
 PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 nbr_tunnels: 12
@@ -163,29 +127,17 @@ MAKE_SIB CALLED WITH PARENT: 4
 PARENT NAME: 4, SIBLING NAME: 5
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
+child name: 5, parent name: 4 i: -5, links found: 1
 
 PRINTING TUNNELS: PARENT: 5
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 1 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | -1 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | -1 | 0 |
-
 i:-5
-Before
+BLOCKED [4][5]
 MAKE_CHILD CALLED WITH PARENT: 5
 
 PARENT NAME: 5, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
+child name: 8, parent name: 5 i: 4, links found: 2
 
 PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 nbr_tunnels: 12
@@ -212,17 +164,11 @@ PARENT NAME: 5, SIBLING NAME: 10
 FOUND END IN MAKE SIBLING RECURSION STOPS HERE
 Sibling:10
 Parent:5
-
-FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
-UNBLOCKED [8][5]
-
-PRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG
-nbr_tunnels: 12
  9 | 8 | 1 | 0 |
  1 | 9 | -1 | 0 |
  1 | 4 | 1 | 0 |
  8 | 4 | 1 | 0 |
- 8 | 5 | 0 | 0 |
+ 8 | 5 | 1 | 0 |
  4 | 5 | -1 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
@@ -231,148 +177,31 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
-after
 
-PRINTING TUNNELS: DISTANCE CHILD MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 1 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | -1 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | -1 | 0 |
-
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+child name: 10, parent name: 5 i: -8, links found: 1
+UNBLOCKED [8][5]
+UNBLOCKED [4][5]
+child->name:5
 UNBLOCKED [8][4]
-
-PRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | -1 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | -1 | 0 |
-
-after
-
-PRINTING TUNNELS: DISTANCE CHILD MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | -1 | 0 |
-
-after
-
-PRINTING TUNNELS: DISTANCE CHILD MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 1 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
+UNBLOCKED [4][3]
+child->name:4
+UNBLOCKED [1][3]
+child->name:3
 UNBLOCKED [1][4]
-
-PRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | -1 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
-after
-
-PRINTING TUNNELS: DISTANCE CHILD MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 1 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
+UNBLOCKED [1][9]
+child->name:1
 UNBLOCKED [9][8]
 
-PRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 0 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
-
 PRINTING TUNNELS: PARENT: 8
-nbr_tunnels: 12
- 9 | 8 | 0 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
 i:0
-Before
+BLOCKED [9][8]
 MAKE_CHILD CALLED WITH PARENT: 8
 
 PARENT NAME: 8, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 8, CHILD: 4
+child name: 4, parent name: 8 i: 3, links found: 2
 
 PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 nbr_tunnels: 12
@@ -395,29 +224,17 @@ MAKE_SIB CALLED WITH PARENT: 8
 PARENT NAME: 8, SIBLING NAME: 5
 
 FIND FAMILY CALLED WITH PARENT: 8, CHILD: 5
+child name: 5, parent name: 8 i: -4, links found: 1
 
 PRINTING TUNNELS: PARENT: 5
-nbr_tunnels: 12
- 9 | 8 | -1 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 1 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
 i:-4
-Before
+BLOCKED [8][5]
 MAKE_CHILD CALLED WITH PARENT: 5
 
 PARENT NAME: 5, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 4
+child name: 4, parent name: 5 i: 5, links found: 2
 
 PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 nbr_tunnels: 12
@@ -444,18 +261,12 @@ PARENT NAME: 5, SIBLING NAME: 10
 FOUND END IN MAKE SIBLING RECURSION STOPS HERE
 Sibling:10
 Parent:5
-
-FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
-UNBLOCKED [4][5]
-
-PRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG
-nbr_tunnels: 12
  9 | 8 | -1 | 0 |
  1 | 9 | 0 | 0 |
  1 | 4 | 0 | 0 |
  8 | 4 | 1 | 0 |
  8 | 5 | -1 | 0 |
- 4 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
  5 | 6 | 0 | -1 |
  6 | 7 | 0 | -1 |
  5 | 10 | 0 | 0 |
@@ -463,59 +274,28 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
-after
 
-PRINTING TUNNELS: DISTANCE CHILD MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | -1 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 1 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+child name: 10, parent name: 5 i: -8, links found: 1
+UNBLOCKED [4][5]
+UNBLOCKED [8][5]
+child->name:5
 UNBLOCKED [8][4]
-
-PRINTING TUNNELS: DISTANCE SIBLING MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | -1 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
-after
-
-PRINTING TUNNELS: DISTANCE CHILD MINUS FLAG
-nbr_tunnels: 12
- 9 | 8 | 0 | 0 |
- 1 | 9 | 0 | 0 |
- 1 | 4 | 0 | 0 |
- 8 | 4 | 0 | 0 |
- 8 | 5 | 0 | 0 |
- 4 | 5 | 0 | 0 |
- 5 | 6 | 0 | -1 |
- 6 | 7 | 0 | -1 |
- 5 | 10 | 0 | 0 |
- 4 | 3 | 0 | 0 |
- 1 | 2 | 0 | -1 |
- 1 | 3 | 0 | 0 |
-
+UNBLOCKED [9][8]
+child->name:8
 
 PRINTING TUNNELS: END OF TREE_CREATION
 nbr_tunnels: 12
 Seggy?
-Seggy?
+sibling: 9
+child: 8
+sibling: 1
+child: 4
+sibling: 3
+child: 4
+child: 8
+sibling: 5
+child: 8
+sibling: 10
+child: 10
+ENDING LOOP

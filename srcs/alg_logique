@@ -582,13 +582,13 @@ testy2
 8----1
 |    |
 |    4-----3
-|    |     |
-|    |     4
-|    |     |
+|          |
+|          4
+|          |
 |    |     8----5
 |    |     |    |
 |    |     |    8----10
-|    |     5
+|    |     
 |    |
 |    |
 |    |
@@ -652,3 +652,33 @@ This is how the code would look like just like make_sibling.
 
 This wont work immediately but this should open it up even more as the sibling one did (check how many
 paths we get now in testy2). Hoping this is at least the last step for accuracy.
+
+Make sibling should change so it is only blocking to the correct child downwards
+
+
+
+
+// testymap:
+// 1
+// |
+// 2 --- 4 ----------- 3
+// |   	 |             |
+// 5     5 - 8         5
+// |     |   |         |
+// 8     8   9         8
+// |     |             |
+// 9     9             9
+
+
+// testy2:
+// 9
+// |
+// 8 ----------- 1
+// |       		 |
+// 4 - 5    	 3 - 4
+// |   |	     |   |
+// 5   10(E)     4   5
+// |             |   |
+// 10(E)         5   10(E)
+//               |
+//               10(E)
