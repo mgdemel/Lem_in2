@@ -85,7 +85,8 @@ void	store_data(t_lem *lem, t_room *room, int fd)
 	i = 1;
 	get_ants(fd, line, lem);
 	get_room_and_tunnel(lem, room, line, fd);
-	lem->room_directory = (char **)malloc(sizeof(char *) * lem->current_roomnum);
+	lem->room_directory = (char **)malloc(sizeof(char *)
+			* lem->current_roomnum);
 	if (lem->room_directory == NULL)
 		error_message(lem, 1);
 	tmp = lem->all_rooms;

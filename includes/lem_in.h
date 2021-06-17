@@ -90,6 +90,7 @@ void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
 void		arr_row_size(t_tree *start, t_lem *lem);
 void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
+void		scan_paths(t_tree *start, t_lem *lem, int i, int r);
 
 /* FLOW_MANAGEMENT */
 void		flow_management(t_lem *lem);

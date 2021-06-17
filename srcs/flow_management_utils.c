@@ -52,7 +52,7 @@ int	compare(int *final, int *other_path)
 	return (0);
 }
 
-int	set_steps(int *option, t_lem *lem, int i, int ants_cpy) //something a bit off here - sometimes the steps don't include the final steps
+int	set_steps(int *option, t_lem *lem, int i, int ants_cpy)
 {
 	int	*ants_and_len;
 	int	tab;

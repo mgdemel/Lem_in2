@@ -11,10 +11,11 @@ void	copy_previous_path(t_lem *lem, int r, int path, int i)
 
 void	copy_col(int r, t_lem *lem, int array, int name)
 {
-	int	new[r + 2]; //gotta do something about this for norm
+	int	*new;
 	int	i;
 
 	i = 0;
+	new = (int *)malloc(sizeof(int) * (r + 2));
 	new[i] = ((r + 1) * -1);
 	i++;
 	while (i < (r + 1))
@@ -32,7 +33,15 @@ void	copy_col(int r, t_lem *lem, int array, int name)
 		lem->all_paths[array][i] = new[i];
 		i++;
 	}
-	//lem->test_stopper++;
+}
+
+void	scan_paths2(t_lem *lem, int i, int prev_index)
+{
+	lem->path++;
+	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
+	if (lem->all_paths[lem->path] == NULL)
+		error_message(lem, 1);
+	copy_previous_path(lem, prev_index, lem->path, i);
 }
 
 void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
@@ -42,18 +51,13 @@ void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 
 	prev_index = r;
 	tree = start;
-	ft_printf("COOL\n");
 	while (tree->name != 0)
 	{
 		get_room_num(tree, lem, r, i);
 		prev_index++;
-		if (tree->sib != NULL && tree->name != lem->e_room_index) //this statement to a new function :)
+		if (tree->sib != NULL && tree->name != lem->e_room_index)
 		{
-			lem->path++;
-			lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
-			if (lem->all_paths[lem->path] == NULL)
-				error_message(lem, 1);
-			copy_previous_path(lem, prev_index, lem->path, i);
+			scan_paths2(lem, i, prev_index);
 			scan_paths(tree->sib, lem, lem->path, r);
 		}
 		r++;
