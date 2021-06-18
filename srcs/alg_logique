@@ -682,3 +682,47 @@ Make sibling should change so it is only blocking to the correct child downwards
 // 10(E)         5   10(E)
 //               |
 //               10(E)
+
+Ants:
+1000
+
+start:
+rum1
+rum2
+rum3
+rum4
+rum5
+SLUT:
+rum6
+rum1-rum2
+rum1-rum3
+rum2-rum6
+rum4-rum3
+rum5-rum4
+rum5-rum6
+
+1
+|
+2
+|
+6
+
+1
+|
+3
+|
+4
+|
+5
+|
+6
+
+
+sifrror[0] = -5
+sifrror[1] = 1
+sifrror[2] = 3
+sifrror[3] = 4
+sifrror[4] = 8
+siffror[5] = -1
+
+siffror[siffror[0] * -1] = -1

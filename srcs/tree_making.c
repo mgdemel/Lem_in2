@@ -101,7 +101,7 @@ void	find_family(t_lem *lem, t_tree *parent, t_tree *child)
 	//TEST//
 	ft_printf("\nFIND FAMILY CALLED WITH PARENT: %d, CHILD: %d\n", parent->name, child->name);
 	//TEST//
-	
+//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	i = find_parent_links(parent->name, lem, child->name, 0);
 	lem->test_stopper++;
 	ft_printf("child name: %d, parent name: %d i: %d, links found: %d\n", child->name, parent->name, i, lem->links_found);

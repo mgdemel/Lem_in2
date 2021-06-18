@@ -41,6 +41,7 @@ int	main(void)
 	flow_management(lem);
 	output(lem);
 	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]); // 
+	ft_printf("how many ants do we have? We have %d ants.\n", lem->ants);
 	free_tree(lem->tree, lem);
 	return (0);
 }

@@ -28,10 +28,6 @@ MAKE_CHILD CALLED WITH PARENT: 9
 PARENT NAME: 9, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 9, CHILD: 8
-child name: 8, parent name: 9 i: 0, links found: 2
-
-PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
-nbr_tunnels: 12
  9 | 8 | 0 | 0 |
  1 | 9 | 0 | 0 |
  1 | 4 | 0 | 0 |
@@ -45,26 +41,41 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
+child name: 8, parent name: 9 i: 0, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 BLOCKED [9][8]
 MAKE_SIB CALLED WITH PARENT: 9
 
 PARENT NAME: 9, SIBLING NAME: 1
 
-FIND FAMILY CALLED WITH PARENT: 9, CHILD: 1
-child name: 1, parent name: 9 i: -1, links found: 1
+9
+|
+8----1
 
-PRINTING TUNNELS: PARENT: 1
-i:-1
+
+FIND FAMILY CALLED WITH PARENT: 9, CHILD: 1
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 0 | 0 |
+ 8 | 4 | 0 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 9 i: 1, links found: 1
+i:1
 BLOCKED [1][9]
 MAKE_CHILD CALLED WITH PARENT: 1
 
 PARENT NAME: 1, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 1, CHILD: 4
-child name: 4, parent name: 1 i: 2, links found: 2
-
-PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
-nbr_tunnels: 12
  9 | 8 | 1 | 0 |
  1 | 9 | -1 | 0 |
  1 | 4 | 0 | 0 |
@@ -78,36 +89,57 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
+child name: 4, parent name: 1 i: 2, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 BLOCKED [1][4]
 MAKE_SIB CALLED WITH PARENT: 1
 
 PARENT NAME: 1, SIBLING NAME: 3
 
 FIND FAMILY CALLED WITH PARENT: 1, CHILD: 3
-child name: 3, parent name: 1 i: -11, links found: 1
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 0 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
 
-PRINTING TUNNELS: PARENT: 3
-i:-11
+child name: 3, parent name: 1 i: 11, links found: 1
+i:11
 BLOCKED [1][3]
 MAKE_CHILD CALLED WITH PARENT: 3
 
 PARENT NAME: 3, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 3, CHILD: 4
-child name: 4, parent name: 3 i: -9, links found: 1
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 0 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
 
-PRINTING TUNNELS: PARENT: 4
-i:-9
+child name: 4, parent name: 3 i: 9, links found: 1
+i:9
 BLOCKED [4][3]
 MAKE_CHILD CALLED WITH PARENT: 4
 
 PARENT NAME: 4, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 8
-child name: 8, parent name: 4 i: 3, links found: 2
-
-PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
-nbr_tunnels: 12
  9 | 8 | 1 | 0 |
  1 | 9 | -1 | 0 |
  1 | 4 | 1 | 0 |
@@ -121,26 +153,36 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
+child name: 8, parent name: 4 i: 3, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 BLOCKED [8][4]
 MAKE_SIB CALLED WITH PARENT: 4
 
 PARENT NAME: 4, SIBLING NAME: 5
 
 FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
-child name: 5, parent name: 4 i: -5, links found: 1
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
 
-PRINTING TUNNELS: PARENT: 5
-i:-5
+child name: 5, parent name: 4 i: 5, links found: 1
+i:5
 BLOCKED [4][5]
 MAKE_CHILD CALLED WITH PARENT: 5
 
 PARENT NAME: 5, CHILD NAME: 8
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
-child name: 8, parent name: 5 i: 4, links found: 2
-
-PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
-nbr_tunnels: 12
  9 | 8 | 1 | 0 |
  1 | 9 | -1 | 0 |
  1 | 4 | 1 | 0 |
@@ -154,6 +196,9 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
+child name: 8, parent name: 5 i: 4, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 BLOCKED [8][5]
 MAKE_SIB CALLED WITH PARENT: 5
 
@@ -164,6 +209,8 @@ PARENT NAME: 5, SIBLING NAME: 10
 FOUND END IN MAKE SIBLING RECURSION STOPS HERE
 Sibling:10
 Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
  9 | 8 | 1 | 0 |
  1 | 9 | -1 | 0 |
  1 | 4 | 1 | 0 |
@@ -177,23 +224,486 @@ Parent:5
  1 | 2 | 0 | -1 |
  1 | 3 | -1 | 0 |
 
-
-FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
-child name: 10, parent name: 5 i: -8, links found: 1
+child name: 10, parent name: 5 i: 8, links found: 1
 UNBLOCKED [8][5]
+i:4
+BLOCKED [8][5]
+MAKE_CHILD CALLED WITH PARENT: 8
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:8
+UNBLOCKED [8][5]
+child->name:8
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [4][5]
 child->name:5
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [8][4]
+i:3
+BLOCKED [8][4]
+MAKE_CHILD CALLED WITH PARENT: 8
+
+PARENT NAME: 8, CHILD NAME: 5
+
+FIND FAMILY CALLED WITH PARENT: 8, CHILD: 5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 5, parent name: 8 i: 4, links found: 1
+i:4
+BLOCKED [8][5]
+MAKE_CHILD CALLED WITH PARENT: 5
+
+PARENT NAME: 5, CHILD NAME: 4
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 4
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 4, parent name: 5 i: 5, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [4][5]
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 10, parent name: 5 i: 8, links found: 1
+UNBLOCKED [4][5]
+i:5
+BLOCKED [4][5]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:4
+UNBLOCKED [4][5]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [8][5]
+child->name:5
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [8][4]
+child->name:8
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [4][3]
 child->name:4
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [1][3]
 child->name:3
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [1][4]
+i:2
+BLOCKED [1][4]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+PARENT NAME: 4, CHILD NAME: 8
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 8
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 0 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 8, parent name: 4 i: 3, links found: 3
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [8][4]
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 5
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 5, parent name: 4 i: 5, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [4][5]
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 3
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 3, parent name: 4 i: 9, links found: 1
+i:9
+BLOCKED [4][3]
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 1
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 3 i: 11, links found: 1
+i:11
+BLOCKED [1][3]
+MAKE_CHILD CALLED WITH PARENT: 1
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:1
+UNBLOCKED [1][3]
+child->name:1
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][3]
+child->name:3
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+i:5
+BLOCKED [4][5]
+MAKE_CHILD CALLED WITH PARENT: 5
+
+PARENT NAME: 5, CHILD NAME: 8
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 8, parent name: 5 i: 4, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [8][5]
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 10, parent name: 5 i: 8, links found: 1
+UNBLOCKED [8][5]
+i:4
+BLOCKED [8][5]
+MAKE_CHILD CALLED WITH PARENT: 8
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:8
+UNBLOCKED [8][5]
+child->name:8
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+child->name:5
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [8][4]
+i:3
+BLOCKED [8][4]
+MAKE_CHILD CALLED WITH PARENT: 8
+
+PARENT NAME: 8, CHILD NAME: 5
+
+FIND FAMILY CALLED WITH PARENT: 8, CHILD: 5
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 5, parent name: 8 i: 4, links found: 1
+i:4
+BLOCKED [8][5]
+MAKE_CHILD CALLED WITH PARENT: 5
+
+PARENT NAME: 5, CHILD NAME: 4
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 4
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 4, parent name: 5 i: 5, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [4][5]
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 10, parent name: 5 i: 8, links found: 1
+UNBLOCKED [4][5]
+i:5
+BLOCKED [4][5]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+PARENT NAME: 4, CHILD NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 3
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 3, parent name: 4 i: 9, links found: 1
+i:9
+BLOCKED [4][3]
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 1
+ 9 | 8 | 1 | 0 |
+ 1 | 9 | -1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 3 i: 11, links found: 1
+i:11
+BLOCKED [1][3]
+MAKE_CHILD CALLED WITH PARENT: 1
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:1
+UNBLOCKED [1][3]
+child->name:1
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][3]
+child->name:3
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [8][5]
+child->name:5
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [8][4]
+child->name:8
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][4]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [1][9]
 child->name:1
-UNBLOCKED [9][8]
 
-PRINTING TUNNELS: PARENT: 8
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [9][8]
 i:0
 BLOCKED [9][8]
 MAKE_CHILD CALLED WITH PARENT: 8
@@ -201,10 +711,6 @@ MAKE_CHILD CALLED WITH PARENT: 8
 PARENT NAME: 8, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 8, CHILD: 4
-child name: 4, parent name: 8 i: 3, links found: 2
-
-PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
-nbr_tunnels: 12
  9 | 8 | -1 | 0 |
  1 | 9 | 0 | 0 |
  1 | 4 | 0 | 0 |
@@ -218,26 +724,36 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
+child name: 4, parent name: 8 i: 3, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 BLOCKED [8][4]
 MAKE_SIB CALLED WITH PARENT: 8
 
 PARENT NAME: 8, SIBLING NAME: 5
 
 FIND FAMILY CALLED WITH PARENT: 8, CHILD: 5
-child name: 5, parent name: 8 i: -4, links found: 1
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 0 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
 
-PRINTING TUNNELS: PARENT: 5
-i:-4
+child name: 5, parent name: 8 i: 4, links found: 1
+i:4
 BLOCKED [8][5]
 MAKE_CHILD CALLED WITH PARENT: 5
 
 PARENT NAME: 5, CHILD NAME: 4
 
 FIND FAMILY CALLED WITH PARENT: 5, CHILD: 4
-child name: 4, parent name: 5 i: 5, links found: 2
-
-PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
-nbr_tunnels: 12
  9 | 8 | -1 | 0 |
  1 | 9 | 0 | 0 |
  1 | 4 | 0 | 0 |
@@ -251,6 +767,9 @@ nbr_tunnels: 12
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
+child name: 4, parent name: 5 i: 5, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
 BLOCKED [4][5]
 MAKE_SIB CALLED WITH PARENT: 5
 
@@ -261,6 +780,8 @@ PARENT NAME: 5, SIBLING NAME: 10
 FOUND END IN MAKE SIBLING RECURSION STOPS HERE
 Sibling:10
 Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
  9 | 8 | -1 | 0 |
  1 | 9 | 0 | 0 |
  1 | 4 | 0 | 0 |
@@ -274,15 +795,650 @@ Parent:5
  1 | 2 | 0 | -1 |
  1 | 3 | 0 | 0 |
 
-
-FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
-child name: 10, parent name: 5 i: -8, links found: 1
+child name: 10, parent name: 5 i: 8, links found: 1
 UNBLOCKED [4][5]
+i:5
+BLOCKED [4][5]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+PARENT NAME: 4, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 1
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 0 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 4 i: 2, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [1][4]
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 3
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 3, parent name: 4 i: 9, links found: 1
+i:9
+BLOCKED [4][3]
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 1
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 3 i: 11, links found: 1
+i:11
+BLOCKED [1][3]
+MAKE_CHILD CALLED WITH PARENT: 1
+
+PARENT NAME: 1, CHILD NAME: 9
+
+FIND FAMILY CALLED WITH PARENT: 1, CHILD: 9
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 9, parent name: 1 i: 1, links found: 1
+i:1
+BLOCKED [1][9]
+MAKE_CHILD CALLED WITH PARENT: 9
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:9
+UNBLOCKED [1][9]
+child->name:9
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][3]
+child->name:1
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][3]
+child->name:3
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][4]
+i:2
+BLOCKED [1][4]
+MAKE_CHILD CALLED WITH PARENT: 1
+
+PARENT NAME: 1, CHILD NAME: 9
+
+FIND FAMILY CALLED WITH PARENT: 1, CHILD: 9
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 9, parent name: 1 i: 1, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [1][9]
+MAKE_SIB CALLED WITH PARENT: 1
+
+PARENT NAME: 1, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 1, CHILD: 3
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 3, parent name: 1 i: 11, links found: 1
+i:11
+BLOCKED [1][3]
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 4
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 4
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | 1 | 0 |
+ 8 | 5 | -1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 4, parent name: 3 i: 9, links found: 1
+i:9
+BLOCKED [4][3]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:4
+UNBLOCKED [4][3]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][3]
+child->name:3
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][9]
+i:1
+BLOCKED [1][9]
+MAKE_CHILD CALLED WITH PARENT: 9
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:9
+UNBLOCKED [1][9]
+child->name:9
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][4]
+child->name:1
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [8][5]
 child->name:5
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [8][4]
+i:3
+BLOCKED [8][4]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+PARENT NAME: 4, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 1
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 0 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 4 i: 2, links found: 3
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [1][4]
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 5
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 5, parent name: 4 i: 5, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [4][5]
+MAKE_SIB CALLED WITH PARENT: 4
+
+PARENT NAME: 4, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 3
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 3, parent name: 4 i: 9, links found: 1
+i:9
+BLOCKED [4][3]
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 1
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 1
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 1, parent name: 3 i: 11, links found: 1
+i:11
+BLOCKED [1][3]
+MAKE_CHILD CALLED WITH PARENT: 1
+
+PARENT NAME: 1, CHILD NAME: 9
+
+FIND FAMILY CALLED WITH PARENT: 1, CHILD: 9
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 9, parent name: 1 i: 1, links found: 1
+i:1
+BLOCKED [1][9]
+MAKE_CHILD CALLED WITH PARENT: 9
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:9
+UNBLOCKED [1][9]
+child->name:9
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][3]
+child->name:1
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][3]
+child->name:3
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+i:5
+BLOCKED [4][5]
+MAKE_CHILD CALLED WITH PARENT: 5
+
+PARENT NAME: 5, CHILD NAME: 8
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 8, parent name: 5 i: 4, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [8][5]
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | 1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 10, parent name: 5 i: 8, links found: 1
+UNBLOCKED [8][5]
+i:4
+BLOCKED [8][5]
+MAKE_CHILD CALLED WITH PARENT: 8
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:8
+UNBLOCKED [8][5]
+child->name:8
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+child->name:5
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][4]
+i:2
+BLOCKED [1][4]
+MAKE_CHILD CALLED WITH PARENT: 1
+
+PARENT NAME: 1, CHILD NAME: 9
+
+FIND FAMILY CALLED WITH PARENT: 1, CHILD: 9
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 0 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 9, parent name: 1 i: 1, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [1][9]
+MAKE_SIB CALLED WITH PARENT: 1
+
+PARENT NAME: 1, SIBLING NAME: 3
+
+FIND FAMILY CALLED WITH PARENT: 1, CHILD: 3
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | 0 | 0 |
+
+child name: 3, parent name: 1 i: 11, links found: 1
+i:11
+BLOCKED [1][3]
+MAKE_CHILD CALLED WITH PARENT: 3
+
+PARENT NAME: 3, CHILD NAME: 4
+
+FIND FAMILY CALLED WITH PARENT: 3, CHILD: 4
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | 0 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 4, parent name: 3 i: 9, links found: 1
+i:9
+BLOCKED [4][3]
+MAKE_CHILD CALLED WITH PARENT: 4
+
+PARENT NAME: 4, CHILD NAME: 5
+
+FIND FAMILY CALLED WITH PARENT: 4, CHILD: 5
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | 0 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 5, parent name: 4 i: 5, links found: 1
+i:5
+BLOCKED [4][5]
+MAKE_CHILD CALLED WITH PARENT: 5
+
+PARENT NAME: 5, CHILD NAME: 8
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 8
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 0 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 8, parent name: 5 i: 4, links found: 2
+
+PRINTING TUNNELS: DISTANCE SIBLING PLUS FLAG
+BLOCKED [8][5]
+MAKE_SIB CALLED WITH PARENT: 5
+
+PARENT NAME: 5, SIBLING NAME: 10
+
+
+
+FOUND END IN MAKE SIBLING RECURSION STOPS HERE
+Sibling:10
+Parent:5
+
+FIND FAMILY CALLED WITH PARENT: 5, CHILD: 10
+ 9 | 8 | -1 | 0 |
+ 1 | 9 | 1 | 0 |
+ 1 | 4 | -1 | 0 |
+ 8 | 4 | -1 | 0 |
+ 8 | 5 | 1 | 0 |
+ 4 | 5 | -1 | 0 |
+ 5 | 6 | 0 | -1 |
+ 6 | 7 | 0 | -1 |
+ 5 | 10 | 0 | 0 |
+ 4 | 3 | -1 | 0 |
+ 1 | 2 | 0 | -1 |
+ 1 | 3 | -1 | 0 |
+
+child name: 10, parent name: 5 i: 8, links found: 1
+UNBLOCKED [8][5]
+i:4
+BLOCKED [8][5]
+MAKE_CHILD CALLED WITH PARENT: 8
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:8
+UNBLOCKED [8][5]
+child->name:8
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][5]
+child->name:5
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [4][3]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][3]
+child->name:3
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][9]
+i:1
+BLOCKED [1][9]
+MAKE_CHILD CALLED WITH PARENT: 9
+
+
+
+***----->FOUND DEAD END IN MAKECHILD<-----***
+Child:0
+Parent:9
+UNBLOCKED [1][9]
+child->name:9
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [1][4]
+child->name:1
+
+
+**********FOUND DEAD END**********
+
+UNBLOCKED [8][4]
+child->name:4
+
+
+**********FOUND DEAD END**********
+
 UNBLOCKED [9][8]
 child->name:8
+
+
+**********FOUND DEAD END**********
+
 
 PRINTING TUNNELS: END OF TREE_CREATION
 nbr_tunnels: 12
@@ -299,3 +1455,122 @@ child: 8
 sibling: 10
 child: 10
 ENDING LOOP
+child: 0
+ENDING LOOP
+child: 5
+child: 4
+sibling: 10
+child: 10
+ENDING LOOP
+child: 0
+ENDING LOOP
+child: 8
+sibling: 5
+sibling: 3
+child: 1
+child: 0
+ENDING LOOP
+child: 8
+sibling: 10
+child: 10
+ENDING LOOP
+child: 0
+ENDING LOOP
+child: 5
+child: 4
+sibling: 10
+child: 10
+ENDING LOOP
+child: 3
+child: 1
+child: 0
+ENDING LOOP
+child: 4
+sibling: 5
+child: 4
+sibling: 10
+child: 10
+ENDING LOOP
+child: 1
+sibling: 3
+child: 1
+child: 9
+child: 0
+ENDING LOOP
+child: 9
+sibling: 3
+child: 4
+child: 0
+ENDING LOOP
+child: 0
+ENDING LOOP
+child: 1
+sibling: 5
+sibling: 3
+child: 1
+child: 9
+child: 0
+ENDING LOOP
+child: 8
+sibling: 10
+child: 10
+ENDING LOOP
+child: 0
+ENDING LOOP
+child: 9
+sibling: 3
+child: 4
+child: 5
+child: 8
+sibling: 10
+child: 10
+ENDING LOOP
+child: 0
+ENDING LOOP
+child: 0
+ENDING LOOP
+Seggy?
+Seggy?
+ALL PATHS:
+ -6 | 9 | 8 | 4 | 1 | 9 | -2 |
+ -9 | 9 | 1 | 4 | 8 | 5 | 4 | 3 | 1 | -2 |
+ -8 | 9 | 1 | 3 | 4 | 8 | 5 | 4 | -2 |
+ -7 | 9 | 1 | 3 | 4 | 5 | 8 | -2 |
+ -8 | 9 | 1 | 3 | 4 | 5 | 10 | 10 | -1 |
+ -9 | 9 | 1 | 3 | 4 | 8 | 5 | 10 | 10 | -1 |
+ -6 | 9 | 1 | 4 | 5 | 8 | -2 |
+ -6 | 9 | 1 | 4 | 3 | 1 | -2 |
+ -7 | 9 | 1 | 4 | 5 | 10 | 10 | -1 |
+ -8 | 9 | 1 | 4 | 8 | 5 | 10 | 10 | -1 |
+ -7 | 9 | 8 | 5 | 4 | 1 | 9 | -2 |
+ -6 | 9 | 8 | 5 | 10 | 10 | -1 |
+ -8 | 9 | 8 | 5 | 4 | 3 | 1 | 9 | -2 |
+ -8 | 9 | 8 | 5 | 4 | 1 | 3 | 4 | -2 |
+ -6 | 9 | 8 | 4 | 5 | 8 | -2 |
+ -7 | 9 | 8 | 4 | 3 | 1 | 9 | -2 |
+ -7 | 9 | 8 | 4 | 5 | 10 | 10 | -1 |
+ -9 | 9 | 8 | 4 | 1 | 3 | 4 | 5 | 8 | -2 |
+ -10 | 9 | 8 | 4 | 1 | 3 | 4 | 5 | 10 | 10 | -1 |
+
+
+
+ALL VALID PATHS - SORTED: 
+total:7
+ -6 | 9 | 8 | 5 | 10 | 10 | -1 |
+ -7 | 9 | 1 | 4 | 5 | 10 | 10 | -1 |
+ -7 | 9 | 8 | 4 | 5 | 10 | 10 | -1 |
+ -8 | 9 | 1 | 3 | 4 | 5 | 10 | 10 | -1 |
+ -8 | 9 | 1 | 4 | 8 | 5 | 10 | 10 | -1 |
+ -9 | 9 | 1 | 3 | 4 | 8 | 5 | 10 | 10 | -1 |
+ -10 | 9 | 8 | 4 | 1 | 3 | 4 | 5 | 10 | 10 | -1 |
+
+L1-eight 
+L1-five L2-eight 
+L1-ten L2-five L3-eight 
+L1-ten L2-ten L3-five L4-eight 
+L2-ten L3-ten L4-five L5-eight 
+L3-ten L4-ten L5-five 
+L4-ten L5-ten 
+L5-ten 
+
+printed:8, steps:7
