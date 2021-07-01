@@ -46,6 +46,8 @@ t_room	*get_room(char *line, t_room *room, t_lem *lem)
 
 int	check_rooms_validity(char *line, t_lem *lem, int i, int space)
 {
+	if (ft_strstr(line, "L"))
+		error_message(lem, 4);
 	if (ft_strstr(line, "##start") || ft_strstr(line, "##end"))
 	{
 		lem->found_start_end++;
