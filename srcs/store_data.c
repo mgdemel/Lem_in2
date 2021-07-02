@@ -85,12 +85,14 @@ void	store_data(t_lem *lem, t_room *room, int fd)
 	i = 1;
 	get_ants(fd, line, lem);
 	get_room_and_tunnel(lem, room, line, fd);
+	ft_printf("After get_room_and_tunnel\n");
 	lem->room_directory = (char **)malloc(sizeof(char *)
 			* lem->current_roomnum);
 	if (lem->room_directory == NULL)
 		error_message(lem, 1);
 	tmp = lem->all_rooms;
 	lem->room_directory[0] = ft_strdup("SKIP");
+	ft_printf("before while\n");
 	while (room->next != NULL)
 	{
 		if (ft_strcmp(room->name, lem->e_room_name) == 0)

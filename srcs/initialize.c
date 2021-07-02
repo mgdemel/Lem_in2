@@ -13,6 +13,7 @@ t_lem	*initialize_lem(void)
 	lem->found_start_end = 0;
 	lem->all_rooms = NULL;
 	lem->tunnels = NULL;
+	lem->tunnel_index = 0;
 	lem->s_room_name = NULL;
 	lem->e_room_name = NULL;
 	lem->tree = NULL;
