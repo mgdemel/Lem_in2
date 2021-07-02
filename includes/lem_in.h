@@ -80,7 +80,7 @@ void		remove_deadends(t_lem *lem, int prev, int before);
 /* TREE_MAKING */
 int			find_parent_links(int parent, t_lem *lem, int child, int siborchild);
 void		tree_creation(t_lem *lem);
-int			make_child(t_tree *parent, t_lem *lem);
+int			make_child(t_tree *parent, t_lem *lem, int super_parent);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
 int			ft_strword(int *haystack, int needle);
 

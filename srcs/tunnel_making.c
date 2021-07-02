@@ -120,7 +120,6 @@ char	**ft_tunnelsplit(char *tunnel, t_lem *lem)
 	rooms = (char **)malloc(sizeof(char *) * 2);
 	if (rooms == NULL)
 		error_message(lem, 1);
-	ft_printf("after malloc\n");
 	while (y < 2)
 	{
 		i = 1;
@@ -129,7 +128,6 @@ char	**ft_tunnelsplit(char *tunnel, t_lem *lem)
 			b = lem->tunnel_index;
 			if (tunnel_room_scan(lem, i, b, tunnel) == 1)
 			{
-				ft_printf("before ft_strdup\n");
 				rooms[y] = ft_strdup(lem->room_directory[i]);
 				break ;
 			}
@@ -137,7 +135,6 @@ char	**ft_tunnelsplit(char *tunnel, t_lem *lem)
 		}
 		y++;
 	}
-	ft_printf("after while\n");
 	lem->tunnel_index = 0;
 	return (rooms);
 }
@@ -150,7 +147,6 @@ void	get_tunnel_int_arr(t_lem *lem)
 
 	i = 0;
 	j = 0;
-	ft_printf("Starting get_tunnel_int_arr\n");
 	lem->tunnel_dir = (int **)malloc(sizeof(int *) * lem->nbr_tunnels);
 	if (lem->tunnel_dir == NULL)
 		error_message(lem, 1);
@@ -166,10 +162,7 @@ void	get_tunnel_int_arr(t_lem *lem)
 	while (i < lem->nbr_tunnels)
 	{
 		j = 0;
-		ft_printf("Test\n");
-		ft_printf("i: %d\n", i);
 		rooms = ft_tunnelsplit(lem->tunnels[i], lem);
-		ft_printf("htehtae\n");
 		lem->tunnel_dir[i][2] = 0;
 		lem->tunnel_dir[i][3] = 0;
 		while (j < 2)

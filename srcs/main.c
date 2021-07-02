@@ -31,15 +31,10 @@ int main(void)
 	lem = initialize_lem();
 	lem->all_rooms = initialize_room(lem);
 	store_data(lem, lem->all_rooms, 0);
-	ft_printf("After store data\n");
 	get_tunnel_int_arr(lem);
-	ft_printf("After get tunnel int arr\n");
 	tree_creation(lem);
-	ft_printf("After tree creation\n");
 	create_path_arr(lem);
-	ft_printf("After create path arr\n");
 	count_valid_paths(lem);
-	ft_printf("After count valid paths\n");
 	ft_printf("ALL PATHS:\n");						  //
 	print_double_arr(lem->all_paths, lem->max_paths); //
 	sort_paths(lem);

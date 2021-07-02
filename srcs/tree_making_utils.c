@@ -21,6 +21,7 @@ int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
 		{
 			if (ft_strword(lem->tunnel_dir[i], child))
 			{
+				ft_printf("found i %d\n", i);
 				save = i;
 				if (siborchild == 1)
 					return (save);
