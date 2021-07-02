@@ -1,0 +1,355 @@
+1
+#Here is the number of lines required: 28
+##start
+Dmc9 3 3
+##end
+Ojw6 7 7
+I_u7 9 9
+Pdq7 11 11
+Ezl5 15 15
+Yjo3 19 19
+Jzj6 22 22
+Adw4 25 25
+Emd6 26 26
+Pes7 29 29
+Wcn9 31 31
+Qqw4 33 33
+Onb6 35 35
+Ynk9 38 38
+Dg_7 40 40
+Dgy0 43 43
+Qoe7 45 45
+Hvs3 50 50
+Z__8 52 52
+Rol9 53 53
+Yld5 55 55
+Sfn4 59 59
+Pmf6 64 64
+Zn_5 69 69
+V_j4 71 71
+Qag5 72 72
+Ud_7 74 74
+Yaf2 77 77
+Evy1 79 79
+Vd_9 81 81
+Vcr0 83 83
+Agb1 85 85
+Kqg2 87 87
+Mjt5 92 92
+Ydf8 96 96
+Beb1 100 100
+Xib1 103 103
+Ql_9 104 104
+Ojc0 105 105
+Wdv0 107 107
+Aqv3 110 110
+Pna1 114 114
+Psk3 117 117
+B_w1 120 120
+Km_3 125 125
+Kqr2 129 129
+Qkd9 134 134
+Enk4 136 136
+Ehq2 138 138
+Zqr3 143 143
+Dzd8 147 147
+Cjl7 150 150
+Xop2 151 151
+Kdk5 154 154
+Vdh5 157 157
+Hzv1 158 158
+Fe_6 159 159
+Ihc8 162 162
+Dvm6 165 165
+Qqt4 170 170
+Oqg5 172 172
+Jtb0 173 173
+S_c7 176 176
+Wrw9 178 178
+Anj7 180 180
+Wks5 183 183
+Kaz8 188 188
+Tra0 190 190
+Tmn9 194 194
+J_i4 195 195
+Yd_7 197 197
+Fnw5 201 201
+Hgb8 204 204
+Ntd5 205 205
+Zod8 208 208
+Gmd8 211 211
+C_i7 214 214
+Uad4 217 217
+R_l2 219 219
+Sak0 223 223
+Jud9 224 224
+Pdc1 226 226
+Ugf8 230 230
+Cks9 235 235
+Hxw0 238 238
+Ctt8 243 243
+T_m6 244 244
+Jad6 247 247
+Dwg4 250 250
+Yqr0 251 251
+Xap2 254 254
+Ccj3 257 257
+Dbs0 259 259
+Zfh3 263 263
+Eqp9 267 267
+Dni4 272 272
+Ucl5 274 274
+Mvg7 277 277
+Tcu8 279 279
+Oeq3 281 281
+Zht0 282 282
+Efk9 284 284
+Gtm5 287 287
+Wnz2 290 290
+Fod8 292 292
+Glw2 294 294
+Zay8 297 297
+Y_z8 300 300
+Qzw5 304 304
+Ugz4 308 308
+Yaz9 311 311
+Rux8 313 313
+Nlo4 316 316
+Wiz0 318 318
+Kpi0 320 320
+Uyl6 324 324
+Jrz6 328 328
+Gwq8 331 331
+Hdq1 334 334
+Bif8 337 337
+I_y2 339 339
+Xyg2 341 341
+Q__6 344 344
+Hrl5 349 349
+Dga7 353 353
+Ffj9 356 356
+Jee4 359 359
+N_q9 362 362
+Arh3 364 364
+Byr5 365 365
+Bpj4 368 368
+Ipq5 373 373
+A_a7 376 376
+Mra4 379 379
+Pdb5 382 382
+Umn5 385 385
+Y_b6 386 386
+Sbm8 388 388
+Je_8 392 392
+Nwl0 394 394
+Wqj3 398 398
+Bhp1 402 402
+Snz7 403 403
+Who8 406 406
+W_r4 408 408
+Pcf8 412 412
+Wfp1 414 414
+Nai7 419 419
+Rm_3 422 422
+Qc_2 426 426
+Yjf0 431 431
+Xbz6 433 433
+Ond7 438 438
+Kct1 440 440
+Mo_8 442 442
+Gnz6 447 447
+Dry6 450 450
+E_l8 454 454
+Zn_2 459 459
+Ggr5 460 460
+O_z4 462 462
+Qms7 463 463
+Hpe2 466 466
+Rvm4 471 471
+Tuq0 474 474
+Gzt2 475 475
+Qyb5 480 480
+Ssp3 483 483
+Xam0 488 488
+Uaw9 491 491
+Kp_6 496 496
+Rr_8 500 500
+Zlv5 502 502
+Uvv9 507 507
+Mmi8 511 511
+Dwg4-Pdq7
+Tra0-Ezl5
+Gmd8-Uvv9
+Xap2-Adw4
+Fod8-Emd6
+Uaw9-Pes7
+Ssp3-Wcn9
+Gnz6-Qqw4
+Zn_2-Ssp3
+Mo_8-Ynk9
+Xop2-Tuq0
+Ydf8-Dgy0
+Ctt8-Rvm4
+Gmd8-Qoe7
+Gmd8-Z__8
+Ql_9-Rol9
+Dga7-Yld5
+Vcr0-Ggr5
+Kqr2-Zn_2
+I_y2-E_l8
+B_w1-Gnz6
+Wfp1-Mo_8
+Wks5-Qag5
+Ctt8-Ond7
+Tmn9-Qc_2
+Sak0-Ud_7
+Anj7-Nai7
+Bhp1-Pcf8
+Yqr0-Who8
+Vd_9-Ojw6
+Wqj3-Vd_9
+Je_8-Nwl0
+Vcr0-Je_8
+Ydf8-Mjt5
+Ql_9-Mra4
+A_a7-Ojc0
+Ipq5-A_a7
+Wdv0-Bpj4
+Byr5-Psk3
+Jee4-N_q9
+Kqr2-Q__6
+Zqr3-Ehq2
+I_y2-Dzd8
+Bif8-I_y2
+Hdq1-Bif8
+Xop2-Gwq8
+Hzv1-Uyl6
+Nlo4-Wiz0
+Oqg5-Qqt4
+Rux8-Oqg5
+Jtb0-Rux8
+Yaz9-Jtb0
+Qzw5-S_c7
+Y_z8-Anj7
+Wks5-Y_z8
+Fod8-Glw2
+Tmn9-Fod8
+Yd_7-J_i4
+Zod8-Ntd5
+Gtm5-Zod8
+Ctt8-Ojw6
+R_l2-Oeq3
+Tcu8-Jud9
+Mvg7-Tcu8
+Ucl5-Pdc1
+Dbs0-Cks9
+Xap2-Ccj3
+Dmc9-Hxw0
+Hxw0-T_m6
+T_m6-Jad6
+Jad6-Dwg4
+Dwg4-Yqr0
+Yqr0-Xap2
+Ccj3-Dbs0
+Cks9-Zfh3
+Zfh3-Eqp9
+Eqp9-Ugf8
+Ugf8-Dni4
+Dni4-Ucl5
+Pdc1-Mvg7
+Jud9-Sak0
+Sak0-R_l2
+Oeq3-Uad4
+Uad4-Zht0
+Zht0-C_i7
+C_i7-Gmd8
+Gmd8-Efk9
+Efk9-Ctt8
+Dmc9-Gtm5
+Ntd5-Hgb8
+Hgb8-Fnw5
+Fnw5-Wnz2
+Wnz2-Yd_7
+J_i4-Tmn9
+Glw2-Tra0
+Tra0-Zay8
+Zay8-Kaz8
+Kaz8-Wks5
+Anj7-Wrw9
+Wrw9-Qzw5
+S_c7-Ugz4
+Ugz4-Yaz9
+Qqt4-Nlo4
+Wiz0-Dvm6
+Dvm6-Ihc8
+Ihc8-Kpi0
+Kpi0-Fe_6
+Fe_6-Hzv1
+Uyl6-Vdh5
+Vdh5-Kdk5
+Kdk5-Jrz6
+Jrz6-Xop2
+Gwq8-Cjl7
+Cjl7-Hdq1
+Dzd8-Zqr3
+Ehq2-Enk4
+Enk4-Qkd9
+Qkd9-Xyg2
+Xyg2-Kqr2
+Q__6-Hrl5
+Hrl5-Dga7
+Dga7-Ffj9
+Ffj9-Km_3
+Km_3-Jee4
+N_q9-B_w1
+B_w1-Arh3
+Arh3-Byr5
+Psk3-Pna1
+Pna1-Aqv3
+Aqv3-Wdv0
+Bpj4-Ipq5
+Ojc0-Ql_9
+Mra4-Xib1
+Xib1-Pdb5
+Pdb5-Beb1
+Beb1-Ydf8
+Mjt5-Umn5
+Umn5-Kqg2
+Kqg2-Agb1
+Agb1-Y_b6
+Y_b6-Sbm8
+Sbm8-Vcr0
+Nwl0-Wqj3
+Dga7-Bhp1
+Ihc8-Snz7
+Ojc0-Evy1
+Ntd5-W_r4
+A_a7-Wfp1
+R_l2-Yaf2
+Nai7-Rm_3
+Hrl5-Yjf0
+Hxw0-Xbz6
+Yjf0-Kct1
+Agb1-Dry6
+Yaz9-V_j4
+Je_8-Zn_5
+Bhp1-Pmf6
+Uad4-Sfn4
+Zn_5-O_z4
+Ql_9-Hvs3
+Ccj3-Qms7
+Ojc0-Hpe2
+Bif8-Dg_7
+Pdb5-Gzt2
+Ntd5-Qyb5
+Sbm8-Xam0
+Zfh3-Onb6
+Umn5-Uaw9
+Nai7-Kp_6
+Uaw9-Rr_8
+Ehq2-Zlv5
+Byr5-Jzj6
+Pmf6-Yjo3
+Bpj4-Mmi8
+Ntd5-I_u7
+#Here is the number of lines required: 28
