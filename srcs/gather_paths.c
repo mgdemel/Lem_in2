@@ -35,29 +35,28 @@ void	copy_col(int r, t_lem *lem, int array, int name)
 	}
 }
 
-void	scan_paths2(t_lem *lem, int i, int prev_index)
+void	scan_paths2(t_lem *lem, int i)
 {
 	lem->path++;
 	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
 	if (lem->all_paths[lem->path] == NULL)
 		error_message(lem, 1);
-	copy_previous_path(lem, prev_index, lem->path, i);
+	copy_previous_path(lem, lem->prev_index, lem->path, i);
 }
 
 void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 {
 	t_tree	*tree;
-	int		prev_index;
 
-	prev_index = r;
+	lem->prev_index = r;
 	tree = start;
 	while (tree->name != 0)
 	{
 		get_room_num(tree, lem, r, i);
-		prev_index++;
+		lem->prev_index++;
 		if (tree->sib != NULL && tree->name != lem->e_room_index)
 		{
-			scan_paths2(lem, i, prev_index);
+			scan_paths2(lem, i);
 			scan_paths(tree->sib, lem, lem->path, r);
 		}
 		r++;
@@ -74,18 +73,19 @@ void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 		copy_col(r, lem, i, tree->name);
 }
 
-void	create_path_arr(t_lem *lem, t_tree *family_tree)
+void	create_path_arr(t_lem *lem)
 {
 	t_tree	*start;
+	t_tree	*start2;
 
-	start = family_tree;
+	start = lem->tree;
+	start2 = lem->tree2;
 	arr_row_size(start, lem);
 	lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths);
 	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
-
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
-	ft_printf("yes?\n");
 	scan_paths(start, lem, 0, 0);
+	scan_paths(start2, lem, 0, lem->prev_index);
 	ft_printf("feaaw!\n");
 }

@@ -17,7 +17,7 @@ t_lem	*initialize_lem(void)
 	lem->s_room_name = NULL;
 	lem->e_room_name = NULL;
 	lem->tree = NULL;
-	lem->test_index = 1; // remove after
+	lem->tree2 = NULL;
 	lem->max_paths = 1;
 	lem->path = 0;
 	lem->sib_name = 0;
@@ -25,10 +25,6 @@ t_lem	*initialize_lem(void)
 	lem->i_pos = 0;
 	lem->result = NULL;
 	lem->total_paths = 0; // remove after
-	lem->test_stopper = 0; // remove after
-	lem->end_trigger = 0;
-	lem->end_trigger2 = 0;
-	lem->ForwBackw = 0;
 	return (lem);
 }
 
