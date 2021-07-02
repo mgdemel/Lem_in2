@@ -212,5 +212,7 @@ void tree_creation(t_lem *lem)
 	i = 0;
 	lem->test_index = 0; // delete
 	lem->tree = head_tree_init(lem, lem->s_room_index);
+	lem->tree2 = head_tree_init(lem, lem->s_room_index);
 	make_child(lem->tree, lem, -1);
+	make_child2(lem->tree2, lem, -1);
 }

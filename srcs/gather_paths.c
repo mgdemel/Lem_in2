@@ -74,18 +74,18 @@ void	scan_paths(t_tree *start, t_lem *lem, int i, int r)
 		copy_col(r, lem, i, tree->name);
 }
 
-void	create_path_arr(t_lem *lem)
+void	create_path_arr(t_lem *lem, t_tree *family_tree)
 {
 	t_tree	*start;
 
-	ft_printf("Seggy?\n");
-	start = lem->tree;
+	start = family_tree;
 	arr_row_size(start, lem);
-	ft_printf("Seggy?\n");
 	lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths);
-	lem->all_paths[0] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
+	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
+
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
+	ft_printf("yes?\n");
 	scan_paths(start, lem, 0, 0);
-	ft_printf("Seggy?\n");
+	ft_printf("feaaw!\n");
 }

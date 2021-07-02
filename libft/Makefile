@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lvasanoj <lvasanoj@student.hive.fi>        +#+  +:+       +#+         #
+#    By: lvasanoj <lvasanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/26 11:02:46 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/04/05 11:26:49 by lvasanoj         ###   ########.fr        #
+#    Updated: 2021/07/02 14:45:48 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -34,11 +34,13 @@ typedef struct s_lem
 	int				e_room_index;
 	int				sib_name;
 	struct s_tree	*tree;
+	struct s_tree	*tree2;
 	int				*result;
 	int				printed;
 	int 			end_trigger;
 	int				end_trigger2;
 	int				links_found;
+	int				ForwBackw;
 }					t_lem;
 
 typedef struct s_tree
@@ -78,14 +80,19 @@ void		get_tunnel_int_arr(t_lem *lem);
 void		remove_deadends(t_lem *lem, int prev, int before);
 
 /* TREE_MAKING */
+void 		find_family2(t_lem *lem, t_tree *parent, t_tree *child);
 int			find_parent_links(int parent, t_lem *lem, int child, int siborchild);
+int			find_parent_links2(int parent, t_lem *lem, int child, int siborchild);
 void		tree_creation(t_lem *lem);
 int			make_child(t_tree *parent, t_lem *lem, int super_parent);
+int			make_child2(t_tree *parent, t_lem *lem, int super_parent);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
+int 		make_sibling2(t_tree *child, t_tree *parent, t_lem *lem);
+
 int			ft_strword(int *haystack, int needle);
 
 /* GATHER_PATHS */
-void		create_path_arr(t_lem *lem);
+void		create_path_arr(t_lem *lem, t_tree *family_tree);
 void		get_room_num(t_tree *tree, t_lem *lem, int r, int i);
 void		arr_row_size(t_tree *start, t_lem *lem);
 void		sort_paths(t_lem *lem);

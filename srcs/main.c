@@ -33,7 +33,14 @@ int main(void)
 	store_data(lem, lem->all_rooms, 0);
 	get_tunnel_int_arr(lem);
 	tree_creation(lem);
-	create_path_arr(lem);
+	create_path_arr(lem, lem->tree);
+	ft_printf("Finished first direction\n");
+	sleep(1);
+	ft_printf("Tree head name:%d\n", lem->tree->name);
+	ft_printf("First child name:%d\n", lem->tree->child->name);
+	lem->path++;
+	lem->max_paths++;
+	create_path_arr(lem, lem->tree2);
 	count_valid_paths(lem);
 	ft_printf("ALL PATHS:\n");						  //
 	print_double_arr(lem->all_paths, lem->max_paths); //

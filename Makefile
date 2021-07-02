@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Melissa <Melissa@student.42.fr>            +#+  +:+       +#+         #
+#    By: lvasanoj <lvasanoj@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 13:38:26 by lvasanoj          #+#    #+#              #
-#    Updated: 2021/05/09 16:22:53 by Melissa          ###   ########.fr        #
+#    Updated: 2021/07/02 14:45:24 by lvasanoj         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS = 	main.c \
 		gather_paths_utils.c \
 		output.c \
 		tunnel_making.c \
+		tree_making2.c \
 
 INCLUDES := -I $(INCL_PATH)
 

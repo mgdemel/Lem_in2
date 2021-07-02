@@ -28,6 +28,7 @@ t_lem	*initialize_lem(void)
 	lem->test_stopper = 0; // remove after
 	lem->end_trigger = 0;
 	lem->end_trigger2 = 0;
+	lem->ForwBackw = 0;
 	return (lem);
 }
 
