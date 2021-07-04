@@ -89,10 +89,12 @@ void	count_valid_paths(t_lem *lem)
 
 	i = 0;
 	lem->negative_one = 0;
+	ft_printf("seg?\n");
 	while (i < lem->max_paths)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
 			lem->negative_one++;
 		i++;
 	}
+	ft_printf("seg!\n");
 }

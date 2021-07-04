@@ -88,12 +88,9 @@ void	create_path_arr(t_lem *lem)
 	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
-	
 	scan_paths(tree, lem, 0, 0);
 	//lem->path++;
-
 	scan_paths(tree2, lem, lem->path, 0);
-
-	ft_printf("ALL_PATHS: \n");
-	print_double_arr(lem->all_paths, lem->max_paths);
+	// ft_printf("ALL_PATHS: \n");
+	// print_double_arr(lem->all_paths, lem->max_paths);
 }
