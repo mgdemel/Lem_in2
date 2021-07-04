@@ -36,8 +36,8 @@ typedef struct s_lem
 	int				*result;
 	int				printed;
 	int				links_found;
-	int				prev_index;
-	int				test_index;
+	int				prev_room;
+	int				test_index; //remove
 }					t_lem;
 
 typedef struct s_tree
