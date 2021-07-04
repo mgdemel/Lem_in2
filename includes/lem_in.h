@@ -37,6 +37,7 @@ typedef struct s_lem
 	int				printed;
 	int				links_found;
 	int				prev_index;
+	int				test_index;
 }					t_lem;
 
 typedef struct s_tree
@@ -74,6 +75,10 @@ void		room_duplicates(t_lem *lem, char *r_name, int i);
 /*	TUNNEL_MAKING */
 void		get_tunnel_int_arr(t_lem *lem);
 void		remove_deadends(t_lem *lem, int prev, int before);
+void		init_tunnel_arr(t_lem *lem);
+void		remove_deadends(t_lem *lem, int prev, int before);
+void		remove_duplicated(t_lem *lem);
+
 
 /* TREE_MAKING */
 void 		find_family(t_lem *lem, t_tree *parent, t_tree *child);
@@ -116,5 +121,6 @@ void		print_int_arr(int *arr, int len, char *str);
 void		print_double_arr(int **arr, int max);
 void		print_tunnel_dir(int **arr, int max);
 void		test_structs(t_lem *lem);
+void 		scan_tree(t_tree *start, t_lem *lem, int i);
 
 #endif

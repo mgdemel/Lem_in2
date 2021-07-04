@@ -67,3 +67,34 @@ void test_array(t_lem *lem)
 		i++;
 	}
 }
+
+void scan_tree(t_tree *start, t_lem *lem, int i)
+{
+	t_tree *tree;
+	ft_printf("STARTED SCAN_TREE\n");
+	tree = start;
+	i = 0;
+
+	if (tree->name != 0)
+	{
+		while (tree->name != lem->e_room_index)
+		{
+			ft_putchar('\n');
+			ft_printf("Step %d\n", lem->test_index);
+			ft_printf("name of current room %d|\n", tree->name);
+			lem->test_index++;
+			if (tree->sib != NULL)
+			{
+				ft_printf("%d\n", tree->sib->name);
+				ft_printf("NO SEG\n");
+				ft_printf("Changing PATH, found sibling\n");
+				ft_printf("parent is %d\n", tree->parent->name);
+				scan_tree(tree->sib, lem, lem->path);
+			}
+			if (tree->child->name != 0)
+				tree = tree->child;
+			else
+				break ;
+		}
+	}
+}

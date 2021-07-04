@@ -2,25 +2,23 @@
 
 void	arr_row_size(t_tree *start, t_lem *lem)
 {
-	t_tree	*tree;
+	t_tree *tree;
 
 	tree = start;
-	ft_printf("sibling: %d\n", tree->name);
 	while (tree->name != 0)
 	{
+		ft_printf("max_paths:%d\n", lem->max_paths);
 		if (tree->sib != NULL)
 		{
+			ft_printf("name:%d, sib:%d, child:%d, parent:%d\n\n", tree->name, tree->sib->name, tree->child->name, tree->parent->name);
 			lem->max_paths++;
 			arr_row_size(tree->sib, lem);
 		}
 		if (tree->name != lem->e_room_index)
 			tree = tree->child;
-		ft_printf("child: %d\n", tree->name);
-	
 		if (tree->name == 0 || tree->name == lem->e_room_index)
 			break ;
 	}
-	ft_printf("ENDING LOOP\n");
 }
 
 void	get_room_num(t_tree *tree, t_lem *lem, int r, int i)
@@ -84,7 +82,6 @@ void	sort_paths(t_lem *lem)
 			x++;
 	}
 	ft_putstr("\n\nALL VALID PATHS - SORTED: \n"); //remove after
-	ft_printf("total:%d\n", lem->total_paths); //remove after
 	print_double_arr(lem->final, lem->max_paths); //remove after
 }
 

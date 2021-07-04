@@ -24,7 +24,7 @@ t_lem	*initialize_lem(void)
 	lem->malloc_len = 4;
 	lem->i_pos = 0;
 	lem->result = NULL;
-	lem->total_paths = 0; // remove after
+	lem->test_index = 1; // remove after
 	return (lem);
 }
 
