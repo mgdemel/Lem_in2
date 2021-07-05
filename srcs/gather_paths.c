@@ -48,7 +48,6 @@ void	scan_paths2(t_lem *lem, int prev_path)
 
 void	scan_paths(t_tree *tree, t_lem *lem, int path, int room)
 {
-
 	lem->prev_room = room;
 	while (tree->name != 0)
 	{
@@ -64,8 +63,11 @@ void	scan_paths(t_tree *tree, t_lem *lem, int path, int room)
 			tree = tree->child;
 		if (tree->name == lem->e_room_index)
 		{
-			lem->all_paths[path][room] = lem->e_room_index;
-			room++;
+			if (lem->all_paths[path][room - 1] != lem->e_room_index)
+			{
+				lem->all_paths[path][room] = lem->e_room_index;
+				room++;
+			}
 			break ;
 		}
 	}
@@ -81,7 +83,6 @@ void	create_path_arr(t_lem *lem)
 	tree = lem->tree;
 	tree2 = lem->tree2;
 	lem->prev_room = 0;
-
 	arr_row_size(tree, lem);
 	arr_row_size(tree2, lem);
 	lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths);
@@ -91,6 +92,4 @@ void	create_path_arr(t_lem *lem)
 	scan_paths(tree, lem, 0, 0);
 	//lem->path++;
 	scan_paths(tree2, lem, lem->path, 0);
-	// ft_printf("ALL_PATHS: \n");
-	// print_double_arr(lem->all_paths, lem->max_paths);
 }

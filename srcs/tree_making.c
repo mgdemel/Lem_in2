@@ -65,14 +65,27 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	return (sibling->name);
 }
 
+void	block_parent(t_lem *lem, int super_parent)
+{
+	int i;
+
+	i = 0;
+	while (i < lem->nbr_tunnels)
+	{
+		if (lem->tunnel_dir[i][2] == 0 && lem->tunnel_dir[i][3] == 0 
+			&& (lem->tunnel_dir[i][0] == super_parent
+			|| lem->tunnel_dir[i][1] == super_parent))
+			lem->tunnel_dir[i][2] = -1;
+		i++;
+	}
+}
+
 int make_child(t_tree *parent, t_lem *lem, int super_parent)
 {
 	t_tree *child;
 	int j;
-	int i;
 
 	j = 0;
-	i = 0;
 	super_parent++;
 	super_parent--;
 	child = tree_init(lem, parent);
@@ -90,12 +103,7 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 		}
 		j++;
 	}
-	while (i < lem->nbr_tunnels)
-	{
-		if (lem->tunnel_dir[i][2] == 0 && lem->tunnel_dir[i][3] == 0 && (lem->tunnel_dir[i][0] == super_parent || lem->tunnel_dir[i][1] == super_parent))
-			lem->tunnel_dir[i][2] = -1;
-		i++;
-	}
+	block_parent(lem, super_parent);
 	if (child->name != 0 && child->name != lem->e_room_index)
 		find_family(lem, parent, child);
 	return (parent->name);

@@ -5,7 +5,7 @@ void	arr_row_size(t_tree *start, t_lem *lem)
 	t_tree *tree;
 
 	tree = start;
-	while (tree->name != 0)
+	while (tree->name != 0 && tree->name != lem->e_room_index)
 	{
 		if (tree->sib != NULL)
 		{
@@ -88,13 +88,14 @@ void	count_valid_paths(t_lem *lem)
 	int	i;
 
 	i = 0;
+//	print_tunnel_dir(lem->all_paths, lem->max_paths);
+//	ft_printf("max_paths:%d\n", lem->max_paths);
+//	exit(1);
 	lem->negative_one = 0;
-	ft_printf("seg?\n");
 	while (i < lem->max_paths)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
 			lem->negative_one++;
 		i++;
 	}
-	ft_printf("seg!\n");
 }
