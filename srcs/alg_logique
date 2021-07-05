@@ -726,3 +726,13 @@ sifrror[4] = 8
 siffror[5] = -1
 
 siffror[siffror[0] * -1] = -1
+
+
+New algorithm:
+
+We scan through tunnels from start to end, then end to start and add paths.
+
+We could depending on the amount of paths, start at the middle point, scan to the end, then
+start at the middle point -1 and scan to the start. For even more precision scanning.
+
+

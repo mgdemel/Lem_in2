@@ -88,9 +88,6 @@ void	count_valid_paths(t_lem *lem)
 	int	i;
 
 	i = 0;
-//	print_tunnel_dir(lem->all_paths, lem->max_paths);
-//	ft_printf("max_paths:%d\n", lem->max_paths);
-//	exit(1);
 	lem->negative_one = 0;
 	while (i < lem->max_paths)
 	{
