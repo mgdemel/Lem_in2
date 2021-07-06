@@ -16,8 +16,6 @@ t_lem	*initialize_lem(void)
 	lem->tunnel_index = 0;
 	lem->s_room_name = NULL;
 	lem->e_room_name = NULL;
-	lem->tree = NULL;
-	lem->tree2 = NULL;
 	lem->max_paths = 1;
 	lem->path = 0;
 	lem->sib_name = 0;
@@ -25,6 +23,7 @@ t_lem	*initialize_lem(void)
 	lem->i_pos = 0;
 	lem->result = NULL;
 	lem->test_index = 1; // remove after
+	lem->t_index = 0;
 	return (lem);
 }
 

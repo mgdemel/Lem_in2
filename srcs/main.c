@@ -33,13 +33,18 @@ int main(void)
 	store_data(lem, lem->all_rooms, 0);
 	get_tunnel_int_arr(lem);
 	tree_creation(lem);
+	ft_printf("ending tree_creation\n");
 	create_path_arr(lem);
+	ft_printf("ending create_path_arr\n");
 	count_valid_paths(lem);
+	ft_printf("ending count_valid_paths\n");
 	sort_paths(lem);
+	ft_printf("ending sort_paths\n");
 	flow_management(lem);
+	ft_printf("ending flow_management\n");
 	output(lem);
 	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
 	ft_printf("how many ants do we have? We have %d ants.\n", lem->ants);
-	free_tree(lem->tree, lem);
+	//free_tree(lem->tree, lem);
 	return (0);
 }

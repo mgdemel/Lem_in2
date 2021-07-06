@@ -31,13 +31,13 @@ typedef struct s_lem
 	int				s_room_index;
 	int				e_room_index;
 	int				sib_name;
-	struct s_tree	*tree;
-	struct s_tree	*tree2;
+	struct s_tree	**tree;
 	int				*result;
 	int				printed;
 	int				links_found;
 	int				prev_room;
 	int				test_index; //remove
+	int				t_index;
 }					t_lem;
 
 typedef struct s_tree

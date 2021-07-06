@@ -77,18 +77,25 @@ void	scan_paths(t_tree *tree, t_lem *lem, int path, int room)
 
 void	create_path_arr(t_lem *lem)
 {
-	t_tree	*tree;
-	t_tree	*tree2;
+	t_tree	**tree;
+	int		i;
 
+	i = 0;
 	tree = lem->tree;
-	tree2 = lem->tree2;
 	lem->prev_room = 0;
-	arr_row_size(tree, lem);
-	arr_row_size(tree2, lem);
+	while (i < lem->nbr_tunnels)
+	{
+		arr_row_size(tree[i], lem);
+		i++;
+	}
+	i = 0;
 	lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths);
 	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
-	scan_paths(tree, lem, 0, 0);
-	scan_paths(tree2, lem, lem->path, 0);
+	while (i < lem->nbr_tunnels)
+	{
+		scan_paths(tree[i], lem, lem->path, 0);
+		i++;
+	}
 }

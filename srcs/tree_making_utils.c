@@ -6,8 +6,10 @@ int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
 
 	int	i;
 	int save;
+	int tunnel;
 
-	i = 0;
+	tunnel = lem->t_index;
+	i = lem->t_index;
 	save = -1;
 	lem->links_found = 0;
 	while (i < lem->nbr_tunnels)
@@ -28,7 +30,25 @@ int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
 		else
 			i++;
 	}
-	i = 0;
+	tunnel--;
+	while (tunnel > 0)
+	{
+		if (lem->tunnel_dir[tunnel][2] != 0 || lem->tunnel_dir[tunnel][3] != 0)
+			tunnel--;
+		else if (ft_strword(lem->tunnel_dir[tunnel], parent))
+		{
+			if (ft_strword(lem->tunnel_dir[tunnel], child))
+			{
+				save = tunnel;
+				if (siborchild == 1)
+					return (save);
+			}
+			lem->links_found++;
+			tunnel--;
+		}
+		else
+			tunnel--;
+	}
 	return (save);
 }
 
