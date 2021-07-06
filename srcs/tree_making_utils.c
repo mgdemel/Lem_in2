@@ -1,39 +1,5 @@
 #include "lem_in.h"
 
-/*
-**	Searching for parent links, taking any forbidden into account.
-*/
-int	find_parent_links2(int parent, t_lem *lem, int child, int siborchild)
-{
-	// return -1 in case of no sibling, return 0-whatever when finding a sibling
-
-	int	i;
-	int save;
-
-	i = lem->nbr_tunnels - 1;
-	save = -1;
-	lem->links_found = 0;
-	while (i > 0)
-	{
-		if (lem->tunnel_dir[i][2] != 0 || lem->tunnel_dir[i][3] != 0)
-			i--;
-		else if (ft_strword(lem->tunnel_dir[i], parent))
-		{
-			if (ft_strword(lem->tunnel_dir[i], child))
-			{
-				save = i;
-				if (siborchild == 1)
-					return (save);
-			}
-			lem->links_found++;
-			i--;
-		}
-		else
-			i--;
-	}
-	return (save);
-}
-
 int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
 {
 	// return -1 in case of no sibling, return 0-whatever when finding a sibling

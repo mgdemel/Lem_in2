@@ -120,7 +120,5 @@ void tree_creation(t_lem *lem)
 	init_tunnel_arr(lem);
 	remove_duplicated(lem);
 	remove_deadends(lem, 0, 1);
-	ft_printf("PRINTING TUNNEL_DIR BEFORE TREE2\n");
-	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
 	make_child2(lem->tree2, lem, -1);
 }
