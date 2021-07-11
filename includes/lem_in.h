@@ -99,6 +99,7 @@ void		arr_row_size(t_tree *start, t_lem *lem);
 void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
 void		scan_paths(t_tree *start, t_lem *lem, int i, int r);
+void		remove_dup_paths(t_lem *lem);
 
 /* FLOW_MANAGEMENT */
 void		flow_management(t_lem *lem);

@@ -3,8 +3,6 @@
 void find_family(t_lem *lem, t_tree *parent, t_tree *child)
 {
 	int i;
-	if (lem->t_index == 462)
-		ft_printf("Find family\n");
 	i = find_parent_links(parent->name, lem, child->name, 0);
 	if (i >= 0 && lem->links_found > 1)
 	{
@@ -41,8 +39,6 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 	int j;
 	int tunnel;
 
-	if (lem->t_index == 462)
-		ft_printf("Make sibling\n");
 	tunnel = lem->t_index;
 	j = lem->t_index;
 	sibling = tree_init(lem, parent);
@@ -99,18 +95,13 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 	t_tree *child;
 	int j;
 	int tunnel;
-	if (lem->t_index == 462)
-		ft_printf("making child with parent %d\n", parent->name);
-//	ft_printf("TUNNELS BEFORE MAKKE CHILD\n");
-//	print_tunnel_dir(lem->tunnel_dir, lem->nbr_tunnels);
+
 	tunnel = lem->t_index;
 	j = lem->t_index;
 	child = tree_init(lem, parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
-		if (lem->t_index == 462)
-			ft_printf("j while makechild\n");
 		if (lem->tunnel_dir[j][2] == 0 && lem->tunnel_dir[j][3] == 0)
 		{
 			if (ft_strword(lem->tunnel_dir[j], parent->name))
@@ -125,8 +116,6 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 	tunnel--;
 	while (tunnel > 0)
 	{
-		//if (lem->t_index == 462)
-		//	ft_printf("tunnel while makechild\n");
 		if (lem->tunnel_dir[tunnel][2] == 0 && lem->tunnel_dir[tunnel][3] == 0)
 		{
 			if (ft_strword(lem->tunnel_dir[tunnel], parent->name))
@@ -146,20 +135,16 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 
 void tree_creation(t_lem *lem)
 {
-	ft_printf("malloced %d\n", lem->nbr_tunnels);
-//	exit (1);
 	lem->tree = (t_tree **)malloc(sizeof(t_tree *) * lem->nbr_tunnels);
 	if (lem->tree == NULL)
 		error_message(lem, 0);
 	while (lem->t_index < lem->nbr_tunnels)
 	{
-		ft_printf("mallocing tree->%d\n", lem->t_index);
 		lem->tree[lem->t_index] = head_tree_init(lem, lem->s_room_index);
 		make_child(lem->tree[lem->t_index], lem, -1);
 		init_tunnel_arr(lem);
 		remove_duplicated(lem);
 		remove_deadends(lem, 0, 1);
-		//ft_printf("name:%d\n", lem->tree[lem->t_index]->child->name);
 		lem->t_index++;
 	}
 }

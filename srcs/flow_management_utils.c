@@ -1,4 +1,40 @@
 #include "lem_in.h"
+void	remove_dup_paths(t_lem *lem)
+{
+	int i;
+	int j;
+	int room;
+	int tab;
+	
+	i = 0;
+	j = 1;
+	while (i < lem->max_paths)
+	{
+		if (lem->final[i][lem->final[i][0] * -1] == -2)
+		{
+			while (i < lem->max_paths && lem->final[i][lem->final[i][0] * -1] == -2)
+				i++;
+		}
+		if (i > (lem->max_paths -2))
+			break ;
+		tab = lem->final[i][0];
+		j = i + 1;
+		if (j < lem->max_paths && lem->final[j][0] == tab)
+		{
+			while (j < lem->max_paths && lem->final[j][0] == tab)
+			{
+				room = 0;
+				while (lem->final[i][room] == lem->final[j][room] && lem->final[i][room] != -1)
+					room++;
+				if (lem->final[i][room] == -1)
+					lem->final[j][room] = -2;
+				j++;
+			}
+		}
+		i++;
+	}
+}
+
 /*
 **	An int** array is sent in to be increased by one, so we add one in
 **	tmp and copy over all content to the tmp and return that.
