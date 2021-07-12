@@ -53,9 +53,9 @@ int	**recursion_adding(t_lem *lem, int **options, int comp)
 	int	i;
 
 	i = 0;
-	if (lem->i_pos < lem->max_paths - 1)
+	if (lem->i_pos < lem->final_tab - 1)
 	{
-		while (comp < lem->max_paths)
+		while (comp < lem->final_tab)
 		{
 			if (!(scan_similar(lem, options[lem->i_pos - 1], lem->final[comp])))
 			{
@@ -96,7 +96,7 @@ void	flow_management(t_lem *lem)
 	if (options == NULL)
 		error_message(lem, 1);
 	options = add_major_option(options, lem, lem->i_pos, 0);
-	while (major_index <= lem->max_paths - 1)
+	while (major_index <= lem->final_tab - 1)
 	{
 		if (lem->i_pos != 0)
 		{
