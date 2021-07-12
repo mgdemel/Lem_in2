@@ -24,7 +24,9 @@ typedef struct s_lem
 	int				total_paths; // remove after
 	struct s_room	*all_rooms;
 	int				**all_paths;
+	int				**sorted;
 	int				**final;
+	int				final_tab;
 	char			**tunnels;
 	char			*s_room_name;
 	char			*e_room_name;
@@ -79,17 +81,12 @@ void		init_tunnel_arr(t_lem *lem);
 void		remove_deadends(t_lem *lem, int prev, int before);
 void		remove_duplicated(t_lem *lem);
 
-
 /* TREE_MAKING */
 void 		find_family(t_lem *lem, t_tree *parent, t_tree *child);
 int			find_parent_links(int parent, t_lem *lem, int child, int siborchild);
-int			find_parent_links2(int parent, t_lem *lem, int child, int siborchild);
 void		tree_creation(t_lem *lem);
 int			make_child(t_tree *parent, t_lem *lem, int super_parent);
-int			make_child2(t_tree *parent, t_lem *lem, int super_parent);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
-int 		make_sibling2(t_tree *child, t_tree *parent, t_lem *lem);
-
 int			ft_strword(int *haystack, int needle);
 
 /* GATHER_PATHS */
@@ -100,6 +97,7 @@ void		sort_paths(t_lem *lem);
 void		count_valid_paths(t_lem *lem);
 void		scan_paths(t_tree *start, t_lem *lem, int i, int r);
 void		remove_dup_paths(t_lem *lem);
+void    	create_final_arr(t_lem *lem);
 
 /* FLOW_MANAGEMENT */
 void		flow_management(t_lem *lem);

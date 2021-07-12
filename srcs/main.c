@@ -33,13 +33,10 @@ int main(void)
 	store_data(lem, lem->all_rooms, 0);
 	get_tunnel_int_arr(lem);
 	tree_creation(lem);
-	ft_printf("ending tree_creation\n");
 	create_path_arr(lem);
-	ft_printf("ending create_path_arr\n");
 	count_valid_paths(lem);
-	ft_printf("ending count_valid_paths\n");
 	sort_paths(lem);
-	ft_printf("ending sort_paths\n");
+	create_final_arr(lem);
 	flow_management(lem);
 	ft_printf("ending flow_management\n");
 	output(lem);
