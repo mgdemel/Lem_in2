@@ -92,10 +92,8 @@ void	output(t_lem *lem)
 	while (i < lem->ants)
 	{
 		ant_flow[i] = (int*)malloc(sizeof(int) * (3 + ((lem->final[lem->result[j]][0]) + 2) * -1));
-		if (ant_flow[i] == NULL){
-			ft_printf("hereeee");
+		if (ant_flow[i] == NULL)
 			error_message(lem, 1);
-		}
 		if (j < (lem->result[0] * -1) - 2)
 			j++;
 		else

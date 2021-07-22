@@ -16,7 +16,6 @@ void print_tunnel_dir(int **arr, int max)
 		ft_printf("\n");
 		t++;
 	}
-	t = 0;
 	ft_printf("\n");
 }
 
@@ -34,11 +33,11 @@ void print_double_arr(int **arr, int max)
 			ft_printf(" %d |", arr[t][tt]);
 			tt++;
 		}
-		ft_printf(" %d |", arr[t][tt]);
+		if (arr[t][tt -1] != -1)
+			ft_printf(" %d |", arr[t][tt]);
 		ft_printf("\n");
 		t++;
 	}
-	t = 0;
 	ft_printf("\n");
 }
 

@@ -80,8 +80,6 @@ void	sort_paths(t_lem *lem)
 			x++;
 	}
 	remove_dup_paths(lem);
-	ft_putstr("\n\nALL SORTED PATHS: \n"); //remove after
-	print_double_arr(lem->sorted, lem->max_paths); //remove after
 }
 
 void	count_valid_paths(t_lem *lem)

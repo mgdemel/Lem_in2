@@ -31,10 +31,7 @@ int	**add_minor_option(int **options, t_lem *lem, int next_path, int num)
 	len = lem->malloc_len;
 	options[num] = (int *)malloc(sizeof(int) * len);
 	if (options[num] == NULL)
-	{
-		ft_printf("real here\n");
 		error_message(lem, 1);
-	}
 	options[num][0] = (len * -1);
 	while (len > 3)
 	{
@@ -46,7 +43,6 @@ int	**add_minor_option(int **options, t_lem *lem, int next_path, int num)
 	options[num][j] = next_path;
 	j++;
 	options[num][j] = -1;
-	options[num][1] = 0;
 	options[num][1] = set_steps(options[num], lem, lem->ants);
 	return (options);
 }
@@ -79,10 +75,7 @@ int	**add_major_option(int **options, t_lem *lem, int index, int num)
 {
 	options[index] = (int *)malloc(sizeof(int) * 4);
 	if (options[index] == NULL)
-	{
-		ft_printf("major option\n");
 		error_message(lem, 1);
-	}
 	options[index][0] = -4;
 	options[index][1] = lem->ants + (lem->final[num][0] * -1) - 2;
 	options[index][2] = num;
@@ -114,6 +107,7 @@ void	flow_management(t_lem *lem)
 		comp++;
 		options = recursion_adding(lem, options, comp);
 	}
+	ft_putstr("\n\nALL OPTIONS: \n"); //remove after
 	print_double_arr(options, major_index);
 	lem->result = get_result(options, lem);
 }
