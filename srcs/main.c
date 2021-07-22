@@ -44,14 +44,13 @@ int main(void)
 	print_double_arr(lem->all_paths, lem->max_paths); //remove after
 	count_valid_paths(lem);
 
-	ft_putstr("\n\nALL FINAL PATHS: \n"); //remove after
-	print_double_arr(lem->final, lem->final_tab); //remove after
-
 	sort_paths(lem);
 	ft_putstr("\n\nALL SORTED PATHS: \n"); //remove after
 	print_double_arr(lem->sorted, lem->max_paths); //remove after
-
+	
 	create_final_arr(lem);
+	ft_putstr("\n\nALL FINAL PATHS: \n"); //remove after
+	print_double_arr(lem->final, lem->final_tab); //remove after
 
 	flow_management(lem);
 

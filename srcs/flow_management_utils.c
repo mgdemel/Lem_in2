@@ -61,29 +61,43 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 	int	*ants_and_len;
 	int	tab;
 	int i;
+	int c;
 
 	i = 0;
+	c = 0;
 	tab = (option[0] * -1) - 3;
-	ft_printf("tab: %d\n", tab);
 	ants_and_len = (int *)malloc(sizeof(int) * tab);
+	ft_printf("options: ");
+	while (option[c] != -1)
+	{
+		ft_printf("| %d ", option[c]);
+		c++;
+	}
+	ft_printf(" -1 |\n");
 	if (ants_and_len == NULL)
 		error_message(lem, 1);
+	ft_printf("ants_and_len: ");
 	while (i < tab)
 	{
 		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 2;
-		ft_printf("option[i + 2]: %d\n", option[i + 2]);
-		ft_printf("lem->final[option[i + 2]][0]: %d\n", lem->final[option[i + 2]][0]);
+		ft_printf("| %d ", ants_and_len[i]);
 		i++;
 	}
-	ft_printf("\n");
+	ft_printf("|\n");
 	while (ants_cpy > 0)
 	{
 		i = tab - 1;
+		ft_printf("i: %d\n", i);
 		while (i > 0 && ants_and_len[i] > ants_and_len[i - 1])
+		{
+			ft_printf("ants_and_len[i]: %d\n", ants_and_len[i]);
+			ft_printf("ants_and_len[i - 1]: %d\n", ants_and_len[i - 1]);
 			i--;
+		}
 		ants_and_len[i]++;
 		ants_cpy--;
 	}
+	ft_printf("\n");
 	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);
