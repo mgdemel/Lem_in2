@@ -83,7 +83,7 @@ void	create_path_arr(t_lem *lem)
 	i = 0;
 	tree = lem->tree;
 	lem->prev_room = 0;
-	while (i < lem->nbr_tunnels)
+	while (i < 2)
 	{
 		arr_row_size(tree[i], lem);
 		i++;
@@ -93,7 +93,7 @@ void	create_path_arr(t_lem *lem)
 	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
-	while (i < lem->nbr_tunnels)
+	while (i < 2)
 	{
 		scan_paths(tree[i], lem, lem->path, 0);
 		i++;

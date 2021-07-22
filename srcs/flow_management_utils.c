@@ -14,7 +14,10 @@ int	**append_array(t_lem *lem, int **arr, int max)
 	i = 0;
 	tmp = (int **)malloc(sizeof(int *) * (max + 1));
 	if (tmp == NULL)
+	{
+		ft_printf("append\n");
 		error_message(lem, 2);
+	}
 	while (i < max)
 	{
 		j = 0;
@@ -53,28 +56,34 @@ int	compare(int *final, int *other_path)
 	return (0);
 }
 
-int	set_steps(int *option, t_lem *lem, int i, int ants_cpy)
+int	set_steps(int *option, t_lem *lem, int ants_cpy)
 {
 	int	*ants_and_len;
 	int	tab;
+	int i;
 
+	i = 0;
+	ft_printf("ants_cpy: %d\n", ants_cpy);
 	tab = (option[0] * -1) - 3;
+	ft_printf("tab:%d\n", tab);
 	ants_and_len = (int *)malloc(sizeof(int) * tab);
 	if (ants_and_len == NULL)
 		error_message(lem, 1);
 	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 3;
+		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 2; //ultiate goal = see how many steps it takes to complete when there are x paths and y rooms for each path
 		i++;
 	}
+	ft_printf("ants_and_len:%d\n", ants_and_len[0]);
 	while (ants_cpy > 0)
 	{
-		i = 0;
-		while (i + 1 < tab && ants_and_len[i] > ants_and_len[i + 1])
-			i++;
+		i = tab - 1;
+		while (i > 0 && ants_and_len[i] > ants_and_len[i - 1])
+			i--;
 		ants_and_len[i]++;
 		ants_cpy--;
 	}
+	ft_printf("ants_and_len:%d\n", ants_and_len[0]);
 	tab = ants_and_len[0];
 	free(ants_and_len);
 	return (tab);

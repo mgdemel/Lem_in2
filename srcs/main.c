@@ -32,13 +32,19 @@ int main(void)
 	lem->all_rooms = initialize_room(lem);
 	store_data(lem, lem->all_rooms, 0);
 	get_tunnel_int_arr(lem);
+	sleep(1);
 	tree_creation(lem);
 	create_path_arr(lem);
+	ft_putstr("\n\nALL PATHS: \n"); //remove after
+	print_double_arr(lem->all_paths, lem->max_paths); //remove after
 	count_valid_paths(lem);
+	ft_putstr("\n\nALL PATHS 2: \n"); //remove after
+	print_double_arr(lem->all_paths, lem->max_paths); //remove after
 	sort_paths(lem);
 	create_final_arr(lem);
 	flow_management(lem);
-	ft_printf("ending flow_management\n");
+	ft_putstr("\n\nALL FINAL PATHS: \n"); //remove after
+	print_double_arr(lem->final, lem->final_tab); //remove after
 	output(lem);
 	ft_printf("\nprinted:%d, steps:%d\n", lem->printed, lem->result[1]);
 	ft_printf("how many ants do we have? We have %d ants.\n", lem->ants);

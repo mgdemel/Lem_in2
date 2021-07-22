@@ -102,7 +102,7 @@ void    	create_final_arr(t_lem *lem);
 /* FLOW_MANAGEMENT */
 void		flow_management(t_lem *lem);
 int			**append_array(t_lem *lem, int **arr, int max);
-int			set_steps(int *option, t_lem *lem, int i, int ants_cpy);
+int			set_steps(int *option, t_lem *lem, int ants_cpy);
 int			scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp);
 
 /* OUTPUT */

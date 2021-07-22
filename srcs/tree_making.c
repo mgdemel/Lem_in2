@@ -22,9 +22,9 @@ void find_family(t_lem *lem, t_tree *parent, t_tree *child)
 			i = 0;
 			while (i < lem->nbr_tunnels)
 			{
-				if (lem->tunnel_dir[i][2] != 0 && lem->tunnel_dir[i][3] != 0 
+				if ((lem->tunnel_dir[i][2] != 0 || lem->tunnel_dir[i][3] != 0) 
 					&& (lem->tunnel_dir[i][0] == parent->name || lem->tunnel_dir[i][1] == parent->name))
-					lem->tunnel_dir[i][2] = 0;
+						lem->tunnel_dir[i][2] = 0;
 				i++;
 			}
 		}
@@ -98,12 +98,14 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 
 	tunnel = lem->t_index;
 	j = lem->t_index;
+
 	child = tree_init(lem, parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
 		if (lem->tunnel_dir[j][2] == 0 && lem->tunnel_dir[j][3] == 0)
 		{
+			
 			if (ft_strword(lem->tunnel_dir[j], parent->name))
 			{
 				child->name = ft_strword(lem->tunnel_dir[j], parent->name);
@@ -127,7 +129,7 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 		}
 		tunnel--;
 	}
-	block_parent(lem, super_parent);
+	block_parent(lem, super_parent); // might need an if
 	if (child->name != 0 && child->name != lem->e_room_index)
 		find_family(lem, parent, child);
 	return (parent->name);
@@ -138,7 +140,9 @@ void tree_creation(t_lem *lem)
 	lem->tree = (t_tree **)malloc(sizeof(t_tree *) * lem->nbr_tunnels);
 	if (lem->tree == NULL)
 		error_message(lem, 0);
-	while (lem->t_index < lem->nbr_tunnels)
+	ft_printf("lem->nbr_tullens:%d\n", lem->nbr_tunnels);
+	sleep(1);
+	while (lem->t_index < 2)
 	{
 		lem->tree[lem->t_index] = head_tree_init(lem, lem->s_room_index);
 		make_child(lem->tree[lem->t_index], lem, -1);
@@ -146,5 +150,6 @@ void tree_creation(t_lem *lem)
 		remove_duplicated(lem);
 		remove_deadends(lem, 0, 1);
 		lem->t_index++;
+		ft_printf("tree making from tunnel %d\n", lem->t_index);
 	}
 }

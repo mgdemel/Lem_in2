@@ -35,8 +35,7 @@ void    create_final_arr(t_lem *lem)
         }
         i++;
     }
-    ft_putstr("\n\nALL FINAL PATHS: \n"); //remove after
-	print_double_arr(lem->final, lem->final_tab); //remove after
+    
 }
 
 void	remove_dup_paths(t_lem *lem)
