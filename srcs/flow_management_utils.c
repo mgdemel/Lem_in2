@@ -14,10 +14,7 @@ int	**append_array(t_lem *lem, int **arr, int max)
 	i = 0;
 	tmp = (int **)malloc(sizeof(int *) * (max + 1));
 	if (tmp == NULL)
-	{
-		ft_printf("append\n");
 		error_message(lem, 2);
-	}
 	while (i < max)
 	{
 		j = 0;
@@ -61,46 +58,39 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 	int	*ants_and_len;
 	int	tab;
 	int i;
-	int c;
+	int most_steps;
 
 	i = 0;
-	c = 0;
-	tab = (option[0] * -1) - 3;
+	tab = (option[0] * -1) - 3; //removes 0, 1, and last index to get #paths used in option
 	ants_and_len = (int *)malloc(sizeof(int) * tab);
-	ft_printf("options: ");
-	while (option[c] != -1)
-	{
-		ft_printf("| %d ", option[c]);
-		c++;
-	}
-	ft_printf(" -1 |\n");
 	if (ants_and_len == NULL)
 		error_message(lem, 1);
-	ft_printf("ants_and_len: ");
 	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 2;
-		ft_printf("| %d ", ants_and_len[i]);
+		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 2; //removes 0, 1, and last index to get #rooms in path
 		i++;
 	}
-	ft_printf("|\n");
 	while (ants_cpy > 0)
 	{
 		i = tab - 1;
-		ft_printf("i: %d\n", i);
 		while (i > 0 && ants_and_len[i] > ants_and_len[i - 1])
-		{
-			ft_printf("ants_and_len[i]: %d\n", ants_and_len[i]);
-			ft_printf("ants_and_len[i - 1]: %d\n", ants_and_len[i - 1]);
 			i--;
-		}
 		ants_and_len[i]++;
 		ants_cpy--;
 	}
-	ft_printf("\n");
-	tab = ants_and_len[0];
+	i = 0;
+	most_steps = ants_and_len[i];
+	while (i < tab - 1)
+	{
+		if (ants_and_len[i] > ants_and_len[i + 1])
+			most_steps = ants_and_len[i];
+		else
+			most_steps = ants_and_len[i + 1];
+		i++;
+	}
+	print_ants_and_len(ants_and_len, tab);
 	free(ants_and_len);
-	return (tab);
+	return (most_steps);
 }
 
 int	scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp)

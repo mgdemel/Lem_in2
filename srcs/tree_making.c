@@ -140,8 +140,6 @@ void tree_creation(t_lem *lem)
 	lem->tree = (t_tree **)malloc(sizeof(t_tree *) * lem->nbr_tunnels);
 	if (lem->tree == NULL)
 		error_message(lem, 0);
-	ft_printf("lem->nbr_tullens:%d\n", lem->nbr_tunnels);
-	sleep(1);
 	while (lem->t_index < 2)
 	{
 		lem->tree[lem->t_index] = head_tree_init(lem, lem->s_room_index);
@@ -150,6 +148,5 @@ void tree_creation(t_lem *lem)
 		remove_duplicated(lem);
 		remove_deadends(lem, 0, 1);
 		lem->t_index++;
-		ft_printf("tree making from tunnel %d\n", lem->t_index);
 	}
 }

@@ -1,5 +1,33 @@
 #include "lem_in.h"
 
+void print_ants_and_len(int *ants_and_len, int tab)
+{
+	int i;
+
+	i = 0;
+	ft_printf("ants_and_len: ");
+	while (i < tab)
+	{
+		ft_printf("| %d ", ants_and_len[i]);
+		i++;
+	}
+	ft_printf("|\n");
+}
+
+void print_option(int *option)
+{
+	int c;
+	
+	c = 0;
+	ft_printf("option: ");
+	while (option[c] != -1)
+	{
+		ft_printf("| %d ", option[c]);
+		c++;
+	}
+	ft_printf("| -1 |\n");
+}
+
 void print_tunnel_dir(int **arr, int max)
 {
 	int t = 0;

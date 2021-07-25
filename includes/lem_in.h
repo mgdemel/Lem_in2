@@ -116,6 +116,8 @@ void		free_array(char **array);
 void		free_int_array(int **array, int max_paths);
 
 /* TESTS */
+void 		print_ants_and_len(int *ants_and_len, int tab);
+void 		print_option(int *option);
 void		print_int_arr(int *arr, int len, char *str);
 void		print_double_arr(int **arr, int max);
 void		print_tunnel_dir(int **arr, int max);
