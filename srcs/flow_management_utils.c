@@ -53,6 +53,20 @@ int	compare(int *final, int *other_path)
 	return (0);
 }
 
+int comparing_ants_len(int *ants_and_len, int i)
+{
+	int compare;
+
+	compare = ants_and_len[i];
+	while (i >= 0)
+	{
+		if (ants_and_len[i] < compare)
+			return (1);
+		i--;
+	}
+	return (0);
+}
+
 int	set_steps(int *option, t_lem *lem, int ants_cpy)
 {
 	int	*ants_and_len;
@@ -67,13 +81,15 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 		error_message(lem, 1);
 	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 2; //removes 0, 1, and last index to get #rooms in path
+		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 3; //removes 0, 1, and last index to get #rooms in path
 		i++;
 	}
+	ft_printf("Before ant distrb ");
+	print_ants_and_len(ants_and_len, tab);
 	while (ants_cpy > 0)
 	{
 		i = tab - 1;
-		while (i > 0 && ants_and_len[i] > ants_and_len[i - 1])
+		while (i > 0 && comparing_ants_len(ants_and_len, i) == 1)
 			i--;
 		ants_and_len[i]++;
 		ants_cpy--;
@@ -88,6 +104,7 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 			most_steps = ants_and_len[i + 1];
 		i++;
 	}
+	ft_printf("After  ant distrb ");
 	print_ants_and_len(ants_and_len, tab);
 	free(ants_and_len);
 	return (most_steps);
