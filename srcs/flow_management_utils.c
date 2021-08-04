@@ -75,17 +75,15 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 	int most_steps;
 
 	i = 0;
-	tab = (option[0] * -1) - 3; //removes 0, 1, and last index to get #paths used in option
+	tab = (option[0] * -1) - 3;
 	ants_and_len = (int *)malloc(sizeof(int) * tab);
 	if (ants_and_len == NULL)
 		error_message(lem, 1);
 	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 3; //removes 0, 1, and last index to get #rooms in path
+		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 3;
 		i++;
 	}
-	ft_printf("Before ant distrb ");
-	print_ants_and_len(ants_and_len, tab);
 	while (ants_cpy > 0)
 	{
 		i = tab - 1;
@@ -104,8 +102,6 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 			most_steps = ants_and_len[i + 1];
 		i++;
 	}
-	ft_printf("After  ant distrb ");
-	print_ants_and_len(ants_and_len, tab);
 	free(ants_and_len);
 	return (most_steps);
 }

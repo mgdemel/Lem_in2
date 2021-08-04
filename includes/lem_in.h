@@ -33,13 +33,14 @@ typedef struct s_lem
 	int				s_room_index;
 	int				e_room_index;
 	int				sib_name;
-	struct s_tree	**tree;
+	struct s_tree	*tree;
 	int				*result;
 	int				printed;
 	int				links_found;
 	int				prev_room;
 	int				test_index; //remove
 	int				t_index;
+	int				siborchild;
 }					t_lem;
 
 typedef struct s_tree
@@ -76,18 +77,19 @@ void		room_duplicates(t_lem *lem, char *r_name, int i);
 
 /*	TUNNEL_MAKING */
 void		get_tunnel_int_arr(t_lem *lem);
-void		remove_deadends(t_lem *lem, int prev, int before);
 void		init_tunnel_arr(t_lem *lem);
-void		remove_deadends(t_lem *lem, int prev, int before);
+void		remove_deadends(t_lem *lem, int prev, int before, int save);
 void		remove_duplicated(t_lem *lem);
+void		find_room_name(t_lem *lem, char *room_name, int row, int column);
+char		**ft_tunnelsplit(char *tunnel, t_lem *lem, int y);
 
 /* TREE_MAKING */
 void 		find_family(t_lem *lem, t_tree *parent, t_tree *child);
-int			find_parent_links(int parent, t_lem *lem, int child, int siborchild);
+int			find_parent_links(int parent, t_lem *lem, int child, int i);
 void		tree_creation(t_lem *lem);
 int			make_child(t_tree *parent, t_lem *lem, int super_parent);
 int			make_sibling(t_tree *child, t_tree *parent, t_lem *lem);
-int			ft_strword(int *haystack, int needle);
+int			haystack_finder(int *haystack, int needle);
 
 /* GATHER_PATHS */
 void		create_path_arr(t_lem *lem);

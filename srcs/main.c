@@ -33,13 +33,9 @@ int main(void)
 	lem = initialize_lem();
 	lem->all_rooms = initialize_room(lem);
 	store_data(lem, lem->all_rooms, 0);
-
 	get_tunnel_int_arr(lem);
-
 	tree_creation(lem);
-
 	create_path_arr(lem);
-
 	// ft_putstr("\n\nALL PATHS: \n"); //remove after
 	// print_double_arr(lem->all_paths, lem->max_paths); //remove after
 	count_valid_paths(lem);

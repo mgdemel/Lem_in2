@@ -77,10 +77,9 @@ int	**add_major_option(int **options, t_lem *lem, int index, int num)
 	if (options[index] == NULL)
 		error_message(lem, 1);
 	options[index][0] = -4;
-	options[index][1] = lem->ants + (lem->final[num][0] * -1) - 2; //removes 0, 1, and last index to get #rooms in path
+	options[index][1] = lem->ants + (lem->final[num][0] * -1) - 2;
 	options[index][2] = num;
 	options[index][3] = -1;
-	ft_printf("ants_and_len: | %d |\n", options[index][1]);
 	return (options);
 }
 
@@ -108,7 +107,5 @@ void	flow_management(t_lem *lem)
 		comp++;
 		options = recursion_adding(lem, options, comp);
 	}
-	ft_putstr("\n\nALL OPTIONS: \n"); //remove after
-	print_double_arr(options, lem->i_pos);
 	lem->result = get_result(options, lem);
 }

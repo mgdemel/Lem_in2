@@ -22,8 +22,8 @@ t_lem	*initialize_lem(void)
 	lem->malloc_len = 4;
 	lem->i_pos = 0;
 	lem->result = NULL;
-	lem->test_index = 1; // remove after
 	lem->t_index = 0;
+	lem->siborchild = -1;
 	return (lem);
 }
 
@@ -50,7 +50,10 @@ t_tree	*tree_init(t_lem *lem, t_tree *parent)
 	if (tree == NULL)
 		error_message(lem, 1);
 	tree->name = 0;
-	tree->parent = parent;
+	if (parent == NULL)
+		tree->parent = NULL;
+	else
+		tree->parent = parent;
 	tree->child = NULL;
 	tree->sib = NULL;
 	return (tree);

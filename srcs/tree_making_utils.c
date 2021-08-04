@@ -1,27 +1,47 @@
 #include "lem_in.h"
 
-int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
+// int	find_parent_links2(t_lem *lem, int parent, int child, int save)
+// {
+// 	int	tunnel;
+
+// 	tunnel = lem->t_index - 1;
+// 	while (tunnel > 0)
+// 	{
+// 		if (lem->tunnel_dir[tunnel][2] != 0 || lem->tunnel_dir[tunnel][3] != 0)
+// 			tunnel--;
+// 		else if (haystack_finder(lem->tunnel_dir[tunnel], parent))
+// 		{
+// 			if (haystack_finder(lem->tunnel_dir[tunnel], child))
+// 			{
+// 				save = tunnel;
+// 				if (lem->siborchild == 1)
+// 					return (save);
+// 			}
+// 			lem->links_found++;
+// 			tunnel--;
+// 		}
+// 		else
+// 			tunnel--;
+// 	}
+// 	return (save);
+// }
+
+int	find_parent_links(int parent, t_lem *lem, int child, int i)
 {
-	// return -1 in case of no sibling, return 0-whatever when finding a sibling
+	int	save;
 
-	int	i;
-	int save;
-	int tunnel;
-
-	tunnel = lem->t_index;
-	i = lem->t_index;
 	save = -1;
 	lem->links_found = 0;
 	while (i < lem->nbr_tunnels)
 	{
 		if (lem->tunnel_dir[i][2] != 0 || lem->tunnel_dir[i][3] != 0)
 			i++;
-		else if (ft_strword(lem->tunnel_dir[i], parent))
+		else if (haystack_finder(lem->tunnel_dir[i], parent))
 		{
-			if (ft_strword(lem->tunnel_dir[i], child))
+			if (haystack_finder(lem->tunnel_dir[i], child))
 			{
 				save = i;
-				if (siborchild == 1)
+				if (lem->siborchild == 1)
 					return (save);
 			}
 			lem->links_found++;
@@ -30,25 +50,7 @@ int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
 		else
 			i++;
 	}
-	tunnel--;
-	while (tunnel > 0)
-	{
-		if (lem->tunnel_dir[tunnel][2] != 0 || lem->tunnel_dir[tunnel][3] != 0)
-			tunnel--;
-		else if (ft_strword(lem->tunnel_dir[tunnel], parent))
-		{
-			if (ft_strword(lem->tunnel_dir[tunnel], child))
-			{
-				save = tunnel;
-				if (siborchild == 1)
-					return (save);
-			}
-			lem->links_found++;
-			tunnel--;
-		}
-		else
-			tunnel--;
-	}
+	//save = find_parent_links2(lem, parent, child, save);
 	return (save);
 }
 
@@ -58,8 +60,7 @@ int	find_parent_links(int parent, t_lem *lem, int child, int siborchild)
 ** 	after a '-' character.
 */
 
-// CHANGE THE NAME OF THIS FUNCTION YOU DINGUS
-int	ft_strword(int *haystack, int needle)
+int	haystack_finder(int *haystack, int needle)
 {
 	if (haystack[0] == needle)
 		return (haystack[1]);
