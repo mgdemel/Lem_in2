@@ -39,10 +39,6 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 {
 	t_tree *sibling;
 	int j;
-	//int tunnel;
-
-	//tunnel = lem->t_index;
-//	ft_printf("test\n");
 
 	j = 0;
 	sibling = tree_init(lem, parent);
@@ -60,20 +56,6 @@ int make_sibling(t_tree *child, t_tree *parent, t_lem *lem)
 		}
 		j++;
 	}
-	// tunnel--;
-	// while (tunnel > 0)
-	// {
-	// 	if (lem->tunnel_dir[tunnel][2] == 0 && lem->tunnel_dir[tunnel][3] == 0)
-	// 	{
-	// 		if (haystack_finder(lem->tunnel_dir[tunnel], parent->name))
-	// 		{
-	// 			sibling->name = haystack_finder(lem->tunnel_dir[tunnel], parent->name);
-	// 			sibling->parent = parent;
-	// 			break;
-	// 		}
-	// 	}
-	// 	tunnel--;
-	// }
 	if (sibling->name != 0)
 		find_family(lem, parent, sibling);
 	return (sibling->name);
@@ -100,14 +82,12 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 	int j;
 
 	j = 0;
-	ft_printf("test\n");
 	child = tree_init(lem, parent);
 	parent->child = child;
 	while (j < lem->nbr_tunnels)
 	{
 		if (lem->tunnel_dir[j][2] == 0 && lem->tunnel_dir[j][3] == 0)
 		{
-			
 			if (haystack_finder(lem->tunnel_dir[j], parent->name))
 			{
 				child->name = haystack_finder(lem->tunnel_dir[j], parent->name);
@@ -125,13 +105,6 @@ int make_child(t_tree *parent, t_lem *lem, int super_parent)
 
 void	tree_creation(t_lem *lem)
 {
-	// while (lem->t_index < 2)
-	// {
-		lem->tree = head_tree_init(lem, lem->s_room_index);
-		make_child(lem->tree, lem, -1);
-	//	init_tunnel_arr(lem);
-	//	remove_duplicated(lem);
-	//	remove_deadends(lem, 0, 1, 0);
-	// 	lem->t_index++;
-	// }
+	lem->tree = head_tree_init(lem, lem->s_room_index);
+	make_child(lem->tree, lem, -1);
 }
