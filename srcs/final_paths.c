@@ -1,4 +1,22 @@
 #include "lem_in.h"
+int	*ft_intdup(int *row)
+{
+	int		i;
+	int		*tmp;
+
+	i = 0;
+	while (row[i])
+		i++;
+	tmp = (int *)malloc(sizeof(int) * i);
+	i = 0;
+	while (row[i])
+	{
+		tmp[i] = row[i];
+		i++;
+	}
+	return (tmp);
+}
+
 void    create_final_arr(t_lem *lem)
 {
     int i;

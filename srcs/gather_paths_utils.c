@@ -45,7 +45,7 @@ void	discard_deadends(t_lem *lem)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
 		{
-			lem->sorted[j] = lem->all_paths[i];
+			lem->sorted[j] = ft_intdup(lem->all_paths[i]);
 			j++;
 		}
 		else
