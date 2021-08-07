@@ -31,14 +31,9 @@ void	free_lem(t_lem *lem)
 	free_tree(lem->tree, lem);
 	free_array(lem->tunnels, lem->nbr_tunnels);
 	free_array(lem->room_directory, lem->current_roomnum);
-
-	free_int_array(lem->sorted, lem->negative_one);
-	free_int_array(lem->final, lem->negative_one);
-
-print_double_arr(lem->all_paths, lem->all_paths_size);
-
-	free(lem->all_paths);
-	//free_int_array(lem->all_paths, lem->all_paths_size);
+	free_int_array(lem->sorted, lem->max_valid);
+	free_int_array(lem->final, lem->final_tab);
+	free_int_array(lem->all_paths, lem->all_paths_size);
 	free_int_array(lem->tunnel_dir, lem->nbr_tunnels);
 	free(lem);
 }

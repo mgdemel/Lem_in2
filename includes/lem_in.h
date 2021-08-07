@@ -21,7 +21,7 @@ typedef struct s_lem
 	int				all_paths_size;
 	int				malloc_len;
 	int				i_pos;
-	int				negative_one;
+	int				max_valid;
 	int				total_paths; // remove after
 	struct s_room	*all_rooms;
 	int				**all_paths;

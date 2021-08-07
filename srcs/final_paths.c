@@ -33,9 +33,8 @@ void    create_final_arr(t_lem *lem)
             lem->final[j][tab] = -1;
             j++;
         }
-        i++;
+		i++;
     }
-    
 }
 
 void	remove_dup_paths(t_lem *lem)
@@ -54,7 +53,7 @@ void	remove_dup_paths(t_lem *lem)
 			while (i < lem->max_paths && lem->sorted[i][lem->sorted[i][0] * -1] == -2)
 				i++;
 		}
-		if (i > (lem->max_paths -2))
+		if (i > (lem->max_paths - 2))
 			break ;
 		tab = lem->sorted[i][0];
 		j = i + 1;

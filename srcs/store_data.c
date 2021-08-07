@@ -102,4 +102,5 @@ void	store_data(t_lem *lem, t_room *room, int fd)
 		room = room->next;
 		i++;
 	}
+	get_tunnel_int_arr(lem);
 }

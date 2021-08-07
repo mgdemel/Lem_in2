@@ -40,7 +40,6 @@ void	discard_deadends(t_lem *lem)
 
 	i = 0;
 	j = 0;
-	lem->max_paths = lem->max_paths;
 	tab = lem->max_paths;
 	while (i < tab)
 	{
@@ -64,11 +63,11 @@ void	sort_paths(t_lem *lem)
 	int	x;
 
 	x = 0;
-	lem->sorted = (int **)malloc(sizeof(int *) * lem->negative_one);
+	lem->sorted = (int **)malloc(sizeof(int *) * lem->max_valid);
 	if (lem->sorted == NULL)
 		error_message(lem, 2);
 	discard_deadends(lem);
-	while (x + 1 < lem->negative_one)
+	while (x + 1 < lem->max_valid)
 	{
 		if (lem->sorted[x][0] * -1 > lem->sorted[x + 1][0] * -1)
 		{
@@ -88,11 +87,12 @@ void	count_valid_paths(t_lem *lem)
 	int	i;
 
 	i = 0;
-	lem->negative_one = 0;
+	lem->max_valid = 0;
 	while (i < lem->max_paths)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
-			lem->negative_one++;
+			lem->max_valid++;
 		i++;
 	}
+	sort_paths(lem);
 }
