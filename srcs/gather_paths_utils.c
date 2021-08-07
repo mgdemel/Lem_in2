@@ -40,6 +40,7 @@ void	discard_deadends(t_lem *lem)
 
 	i = 0;
 	j = 0;
+	lem->max_paths = lem->max_paths;
 	tab = lem->max_paths;
 	while (i < tab)
 	{

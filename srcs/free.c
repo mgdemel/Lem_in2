@@ -1,11 +1,11 @@
 #include "lem_in.h"
 
-void	free_array(char **array)
+void	free_array(char **array, int max)
 {
 	int	i;
 
 	i = 0;
-	while (array[i])
+	while (i < max)
 	{
 		free(array[i]);
 		i++;
@@ -13,12 +13,12 @@ void	free_array(char **array)
 	free(array);
 }
 
-void	free_int_array(int **array, int max_paths)
+void	free_int_array(int **array, int max)
 {
 	int	i;
 
 	i = 0;
-	while (i < max_paths)
+	while (i < max)
 	{
 		free(array[i]);
 		i++;
@@ -28,9 +28,19 @@ void	free_int_array(int **array, int max_paths)
 
 void	free_lem(t_lem *lem)
 {
-	free_array(lem->tunnels);
-	free_int_array(lem->all_paths, lem->max_paths);
+	free_tree(lem->tree, lem);
+	free_array(lem->tunnels, lem->nbr_tunnels);
+	free_array(lem->room_directory, lem->current_roomnum);
+
+	free_int_array(lem->sorted, lem->negative_one);
 	free_int_array(lem->final, lem->negative_one);
+
+print_double_arr(lem->all_paths, lem->all_paths_size);
+
+	free(lem->all_paths);
+	//free_int_array(lem->all_paths, lem->all_paths_size);
+	free_int_array(lem->tunnel_dir, lem->nbr_tunnels);
+	free(lem);
 }
 
 void	free_room(t_room *room)
@@ -53,9 +63,7 @@ void	free_room(t_room *room)
 void	free_tree(t_tree *start, t_lem *lem)
 {
 	t_tree	*tmp;
-	int		n;
 
-	n = 0;
 	if (start->name != 0)
 	{
 		while (start->name != lem->e_room_index)

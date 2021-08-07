@@ -35,6 +35,7 @@ void	copy_col(int r, t_lem *lem, int array, int name)
 		lem->all_paths[array][i] = new[i];
 		i++;
 	}
+	// free(new);
 }
 
 void	scan_paths2(t_lem *lem, int prev_path)
@@ -83,6 +84,7 @@ void	create_path_arr(t_lem *lem)
 	lem->prev_room = 0;
 	arr_row_size(tree, lem);
 	lem->all_paths = (int **)malloc(sizeof(int *) * lem->max_paths);
+	lem->all_paths_size = lem->max_paths;
 	lem->all_paths[lem->path] = (int *)malloc(sizeof(int) * lem->nbr_rooms + 2);
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);

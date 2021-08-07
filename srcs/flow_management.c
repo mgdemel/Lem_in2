@@ -108,4 +108,5 @@ void	flow_management(t_lem *lem)
 		options = recursion_adding(lem, options, comp);
 	}
 	lem->result = get_result(options, lem);
+	free_int_array(options, lem->i_pos);
 }

@@ -18,6 +18,7 @@ typedef struct s_lem
 	int				tunnel_index;
 	int				path;
 	int				max_paths;
+	int				all_paths_size;
 	int				malloc_len;
 	int				i_pos;
 	int				negative_one;
@@ -114,8 +115,8 @@ void		output(t_lem *lem);
 void		free_tree(t_tree *start, t_lem *lem);
 void		free_room(t_room *room);
 void		free_lem(t_lem *lem);
-void		free_array(char **array);
-void		free_int_array(int **array, int max_paths);
+void		free_array(char **array, int max);
+void		free_int_array(int **array, int max);
 
 /* TESTS */
 void 		print_ants_and_len(int *ants_and_len, int tab);
