@@ -40,7 +40,6 @@ SRCS = 	main.c \
 		output.c \
 		tunnel_making.c \
 		tunnel_making_utils.c \
-		final_paths.c \
 
 INCLUDES := -I $(INCL_PATH)
 

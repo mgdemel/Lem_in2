@@ -35,9 +35,6 @@ int main(void)
 	store_data(lem, lem->all_rooms, 0);
 	tree_creation(lem);
 	create_path_arr(lem);
-	create_final_arr(lem);
-	//ft_putstr("\nALL FINAL PATHS: \n"); //remove after
-	//print_double_arr(lem->final, lem->final_tab); //remove after
 	flow_management(lem);
 	output(lem);
 	//ft_printf("printed:%d, steps:%d\n", lem->printed, lem->result[1]);

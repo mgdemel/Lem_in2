@@ -1,5 +1,24 @@
 #include "lem_in.h"
 
+int		*ft_intdup(int *row)
+{
+	int		i;
+	int		*tmp;
+
+	i = 0;
+	while (row[i] != -1)
+		i++;
+	tmp = (int *)malloc(sizeof(int) * (i + 1));
+	i = 0;
+	while (row[i])
+	{
+		tmp[i] = row[i];
+		i++;
+	}
+	tmp[i] = -1;
+	return (tmp);
+}
+
 void	arr_row_size(t_tree *start, t_lem *lem)
 {
 	t_tree *tree;
@@ -67,6 +86,8 @@ void	sort_paths(t_lem *lem)
 	if (lem->sorted == NULL)
 		error_message(lem, 2);
 	discard_deadends(lem);
+	// ft_putstr("\n\nALL SORTED PATHS: \n"); //remove after
+	// print_double_arr(lem->sorted, lem->max_paths); //remove after
 	while (x + 1 < lem->max_valid)
 	{
 		if (lem->sorted[x][0] * -1 > lem->sorted[x + 1][0] * -1)
@@ -79,7 +100,6 @@ void	sort_paths(t_lem *lem)
 		else
 			x++;
 	}
-	remove_dup_paths(lem);
 }
 
 void	count_valid_paths(t_lem *lem)
@@ -95,4 +115,6 @@ void	count_valid_paths(t_lem *lem)
 		i++;
 	}
 	sort_paths(lem);
+	// ft_putstr("\n\nALL SORTED PATHS: \n"); //remove after
+	// print_double_arr(lem->sorted, lem->max_paths); //remove after
 }

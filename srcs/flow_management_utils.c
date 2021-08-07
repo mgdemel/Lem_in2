@@ -81,7 +81,7 @@ int	set_steps(int *option, t_lem *lem, int ants_cpy)
 		error_message(lem, 1);
 	while (i < tab)
 	{
-		ants_and_len[i] = (lem->final[option[i + 2]][0] * -1) - 3;
+		ants_and_len[i] = (lem->sorted[option[i + 2]][0] * -1) - 3;
 		i++;
 	}
 	while (ants_cpy > 0)
@@ -113,7 +113,7 @@ int	scan_similar(t_lem *lem, int *index_of_valid_paths, int *to_comp)
 	i = 2;
 	while (i < (index_of_valid_paths[0] * -1) - 1)
 	{
-		if (compare(lem->final[index_of_valid_paths[i]], to_comp) == 1)
+		if (compare(lem->sorted[index_of_valid_paths[i]], to_comp) == 1)
 			return (1);
 		i++;
 	}
