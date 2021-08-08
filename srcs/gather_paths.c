@@ -88,7 +88,5 @@ void	create_path_arr(t_lem *lem)
 	if (lem->all_paths == NULL || lem->all_paths[0] == NULL)
 		error_message(lem, 1);
 	scan_paths(tree, lem, lem->path, 0);
-	// ft_putstr("\n\nALL PATHS: \n"); //remove after
-	// print_double_arr(lem->all_paths, lem->max_paths); //remove after
-	count_valid_paths(lem); // <-------------------------------------------- GATHER_PATHS_UTILS
+	count_valid_paths(lem);
 }

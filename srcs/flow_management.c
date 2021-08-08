@@ -1,5 +1,5 @@
 #include "lem_in.h"
-int	*get_result(int **options, t_lem *lem)
+int	get_result(int **options, t_lem *lem)
 {
 	int	i;
 	int	lowest;
@@ -17,7 +17,7 @@ int	*get_result(int **options, t_lem *lem)
 		}
 		i++;
 	}
-	return (options[tab]);
+	return (tab);
 }
 
 int	**add_minor_option(int **options, t_lem *lem, int next_path, int num)
@@ -88,6 +88,7 @@ void	flow_management(t_lem *lem)
 	int	**options;
 	int	major_index;
 	int	comp;
+	int res;
 
 	major_index = 0;
 	comp = 0;
@@ -107,6 +108,11 @@ void	flow_management(t_lem *lem)
 		comp++;
 		options = recursion_adding(lem, options, comp);
 	}
-	lem->result = get_result(options, lem);
+	res = get_result(options, lem);
+	lem->result = (int *)malloc(sizeof(int) * (options[res][0] * -1));
+	if (lem->result == NULL)
+		error_message(lem, 1);
+	lem->result = ft_intdup(options[res], lem);
+	output(lem);
 	free_int_array(options, lem->i_pos);
 }

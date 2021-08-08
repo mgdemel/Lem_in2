@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-int		*ft_intdup(int *row)
+int		*ft_intdup(int *row, t_lem *lem)
 {
 	int		i;
 	int		*tmp;
@@ -9,8 +9,10 @@ int		*ft_intdup(int *row)
 	while (row[i] != -1)
 		i++;
 	tmp = (int *)malloc(sizeof(int) * (i + 1));
+	if (tmp == NULL)
+		error_message(lem, 2);
 	i = 0;
-	while (row[i])
+	while (row[i] != -1)
 	{
 		tmp[i] = row[i];
 		i++;
@@ -48,27 +50,20 @@ void	get_room_num(t_tree *tree, t_lem *lem, int room, int path)
 	lem->all_paths[path][room] = x;
 }
 
-/*
-** Discards dead ends from all_paths
-*/
-void	discard_deadends(t_lem *lem)
+void	populate_sorted(t_lem *lem)
 {
 	int	i;
 	int	j;
-	int	tab;
 
 	i = 0;
 	j = 0;
-	tab = lem->max_paths;
-	while (i < tab)
+	while (i < lem->max_paths)
 	{
 		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
 		{
-			lem->sorted[j] = ft_intdup(lem->all_paths[i]);
+			lem->sorted[j] = ft_intdup(lem->all_paths[i], lem);
 			j++;
 		}
-		else
-			lem->max_paths--;
 		i++;
 	}
 }
@@ -78,27 +73,25 @@ void	discard_deadends(t_lem *lem)
 */
 void	sort_paths(t_lem *lem)
 {
-	int	*tmp;
-	int	x;
+	int	i;
+	int *tmp;
 
-	x = 0;
+	i = 0;
 	lem->sorted = (int **)malloc(sizeof(int *) * lem->max_valid);
 	if (lem->sorted == NULL)
 		error_message(lem, 2);
-	discard_deadends(lem);
-	// ft_putstr("\n\nALL SORTED PATHS: \n"); //remove after
-	// print_double_arr(lem->sorted, lem->max_paths); //remove after
-	while (x + 1 < lem->max_valid)
+	populate_sorted(lem);
+	while((i + 1) < lem->max_valid)
 	{
-		if (lem->sorted[x][0] * -1 > lem->sorted[x + 1][0] * -1)
+		if (lem->sorted[i][0] * -1 > lem->sorted[i + 1][0] * -1)
 		{
-			tmp = lem->sorted[x];
-			lem->sorted[x] = lem->sorted[x + 1];
-			lem->sorted[x + 1] = tmp;
-			x = 0;
+			tmp = lem->sorted[i];
+			lem->sorted[i] = lem->sorted[i + 1];
+			lem->sorted[i + 1] = tmp;
+			i = 0;
 		}
 		else
-			x++;
+			i++;
 	}
 }
 
@@ -115,6 +108,4 @@ void	count_valid_paths(t_lem *lem)
 		i++;
 	}
 	sort_paths(lem);
-	// ft_putstr("\n\nALL SORTED PATHS: \n"); //remove after
-	// print_double_arr(lem->sorted, lem->max_paths); //remove after
 }

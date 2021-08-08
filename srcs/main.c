@@ -2,7 +2,7 @@
 
 void error_message(t_lem *lem, int i)
 {
-	free(lem);
+	lem->max_paths = 0; //just to check if that free(lem) call was what was giving me crap
 	if (i == 1)
 		ft_putstr("ERROR: MALLOC\n");
 	else if (i == 2)
@@ -36,9 +36,8 @@ int main(void)
 	tree_creation(lem);
 	create_path_arr(lem);
 	flow_management(lem);
-	output(lem);
 	//ft_printf("printed:%d, steps:%d\n", lem->printed, lem->result[1]);
-	// ft_printf("how many ants do we have? We have %d ants.\n", lem->ants);
+	//ft_printf("how many ants do we have? We have %d ants.\n", lem->ants);
 	free_lem(lem);
 	while (1);
 	return (0);

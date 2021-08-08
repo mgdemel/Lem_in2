@@ -101,7 +101,7 @@ void		count_valid_paths(t_lem *lem);
 void		scan_paths(t_tree *start, t_lem *lem, int i, int r);
 void		remove_dup_paths(t_lem *lem);
 void    	create_final_arr(t_lem *lem);
-int			*ft_intdup(int *row);
+int			*ft_intdup(int *row, t_lem *lem);
 
 /* FLOW_MANAGEMENT */
 void		flow_management(t_lem *lem);
