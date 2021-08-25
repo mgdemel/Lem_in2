@@ -34,11 +34,13 @@ int main(void)
 	lem->all_rooms = initialize_room(lem);
 	store_data(lem, lem->all_rooms, 0);
 	tree_creation(lem);
-	create_path_arr(lem);
-	flow_management(lem);
-	//ft_printf("printed:%d, steps:%d\n", lem->printed, lem->result[1]);
+	// create_path_arr(lem);
+	// flow_management(lem);
+	// ft_putstr("\nALL FINAL PATHS: \n"); //remove after
+	// print_double_arr(lem->all_paths, lem->max_paths); //remove after
+	// ft_printf("printed:%d, steps:%d\n", lem->printed, lem->result[1]);
 	//ft_printf("how many ants do we have? We have %d ants.\n", lem->ants);
-	free_lem(lem);
-	while (1);
+	// free_lem(lem);
+//	while (1);
 	return (0);
 }

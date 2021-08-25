@@ -53,6 +53,7 @@ void	init_tunnel_arr(t_lem *lem)
 		j = 0;
 		lem->tunnel_dir[i][2] = 0;
 		lem->tunnel_dir[i][3] = 0;
+		lem->tunnel_dir[i][4] = 0;
 		i++;
 	}
 }
@@ -90,7 +91,7 @@ void	get_tunnel_int_arr(t_lem *lem)
 		error_message(lem, 1);
 	while (i < lem->nbr_tunnels)
 	{
-		lem->tunnel_dir[i] = (int *)malloc(sizeof(int) * 4);
+		lem->tunnel_dir[i] = (int *)malloc(sizeof(int) * 5);
 		if (lem->tunnel_dir[i] == NULL)
 			error_message(lem, 1);
 		i++;

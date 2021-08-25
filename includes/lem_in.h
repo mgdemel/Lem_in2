@@ -52,6 +52,25 @@ typedef struct s_tree
 	struct s_tree	*sib;
 }					t_tree;
 
+typedef struct 	s_point
+{
+	int a;
+}				t_point;
+
+typedef struct 	s_queue
+{
+	int				room;
+	struct s_queue 	*prev;
+	struct s_queue 	*next;
+}				t_queue;
+
+typedef struct s_tunnels
+{
+	struct s_point *src;
+	struct s_point *dst;
+
+}				t_tunnels;
+
 typedef struct s_room
 {
 	char				*name;
