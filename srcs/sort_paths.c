@@ -21,35 +21,6 @@ int		*ft_intdup(int *row, t_lem *lem)
 	return (tmp);
 }
 
-void	arr_row_size(t_tree *start, t_lem *lem)
-{
-	t_tree *tree;
-
-	tree = start;
-	while (tree->name != 0 && tree->name != lem->e_room_index)
-	{
-		if (tree->sib != NULL)
-		{
-			lem->max_paths++;
-			arr_row_size(tree->sib, lem);
-		}
-		if (tree->name != lem->e_room_index)
-			tree = tree->child;
-		if (tree->name == 0 || tree->name == lem->e_room_index)
-			break ;
-	}
-}
-
-void	get_room_num(t_tree *tree, t_lem *lem, int room, int path)
-{
-	int	x;
-
-	x = 0;
-	while (x < lem->current_roomnum && x != tree->name)
-		x++;
-	lem->all_paths[path][room] = x;
-}
-
 void	populate_sorted(t_lem *lem)
 {
 	int	i;
@@ -93,19 +64,4 @@ void	sort_paths(t_lem *lem)
 		else
 			i++;
 	}
-}
-
-void	count_valid_paths(t_lem *lem)
-{
-	int	i;
-
-	i = 0;
-	lem->max_valid = 0;
-	while (i < lem->max_paths)
-	{
-		if (lem->all_paths[i][lem->all_paths[i][0] * -1] == -1)
-			lem->max_valid++;
-		i++;
-	}
-	sort_paths(lem);
 }
